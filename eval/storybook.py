@@ -47,7 +47,7 @@ OPTIONS = {
         ["A new codec that does its own I/O, in every Zarr reader", "Zarr readers must tell a codec the chunk's coordinates", "Icechunk change only when the chunk shape changes"], "Built as an evaluation codec."),
     "switch_index_prefix": ("Case table · the store prepends the chunk's index", "A table of cases",
         "On every read the store puts the chunk's grid index in front of its bytes, and the codec looks the case up from that.",
-        ["A new codec in every Zarr reader", "Icechunk must prepend the index for these arrays and no others"], "Emulated: a Python wrapper around the store prepends the index."),
+        ["A new codec in every Zarr reader", "Icechunk must prepend the index for these arrays and no others"], "Built: the Icechunk branch prepends the index for arrays whose metadata asks. First run as a Python emulation, with the same results."),
     "conditional_codec": ("The conditional codec", "A narrower codec",
         "zarr-extensions' conditional codec: a one-byte header in front of each chunk says which of a list of compressors to apply.",
         ["The conditional codec in every Zarr reader", "Icechunk references that are a literal followed by a byte range"], "Built from my reading of the merged spec."),

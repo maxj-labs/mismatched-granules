@@ -49,15 +49,15 @@
    "outcome": "equal"
   },
   "switch_index_prefix": {
-   "build_seconds": 0.17,
+   "build_seconds": 0.19,
    "zarr_json_bytes": 217504,
-   "manifest_bytes": 10902,
-   "store_bytes": 18995,
+   "manifest_bytes": 10906,
+   "store_bytes": 19011,
    "native_chunk_bytes": 0,
    "open_seconds": 0.011,
-   "one_chunk_milliseconds": 1.52,
-   "read_all_seconds": 0.55,
-   "microseconds_per_chunk": 550,
+   "one_chunk_milliseconds": 1.53,
+   "read_all_seconds": 0.64,
+   "microseconds_per_chunk": 640,
    "outcome": "equal"
   },
   "switch_sidecar": {
@@ -175,15 +175,15 @@
    "outcome": "equal"
   },
   "switch_index_prefix": {
-   "build_seconds": 0.24,
+   "build_seconds": 0.23,
    "zarr_json_bytes": 374611,
-   "manifest_bytes": 10183,
-   "store_bytes": 30705,
+   "manifest_bytes": 10216,
+   "store_bytes": 30541,
    "native_chunk_bytes": 0,
-   "open_seconds": 0.017,
-   "one_chunk_milliseconds": 1.71,
-   "read_all_seconds": 0.69,
-   "microseconds_per_chunk": 690,
+   "open_seconds": 0.018,
+   "one_chunk_milliseconds": 2.29,
+   "read_all_seconds": 1.05,
+   "microseconds_per_chunk": 1050,
    "outcome": "equal"
   },
   "switch_sidecar": {
@@ -301,15 +301,15 @@
    "outcome": "equal"
   },
   "switch_index_prefix": {
-   "build_seconds": 0.82,
+   "build_seconds": 0.84,
    "zarr_json_bytes": 868504,
-   "manifest_bytes": 42500,
-   "store_bytes": 67580,
+   "manifest_bytes": 42498,
+   "store_bytes": 67585,
    "native_chunk_bytes": 0,
    "open_seconds": 0.034,
-   "one_chunk_milliseconds": 1.69,
-   "read_all_seconds": 2.19,
-   "microseconds_per_chunk": 548,
+   "one_chunk_milliseconds": 1.92,
+   "read_all_seconds": 2.62,
+   "microseconds_per_chunk": 655,
    "outcome": "equal"
   },
   "switch_sidecar": {
@@ -427,15 +427,15 @@
    "outcome": "equal"
   },
   "switch_index_prefix": {
-   "build_seconds": 1.43,
+   "build_seconds": 1.0,
    "zarr_json_bytes": 1496953,
    "manifest_bytes": 40036,
-   "store_bytes": 116996,
+   "store_bytes": 116992,
    "native_chunk_bytes": 0,
-   "open_seconds": 0.11,
-   "one_chunk_milliseconds": 3.55,
-   "read_all_seconds": 3.96,
-   "microseconds_per_chunk": 990,
+   "open_seconds": 0.061,
+   "one_chunk_milliseconds": 2.82,
+   "read_all_seconds": 4.12,
+   "microseconds_per_chunk": 1030,
    "outcome": "equal"
   },
   "switch_sidecar": {
@@ -553,15 +553,15 @@
    "outcome": "equal"
   },
   "switch_index_prefix": {
-   "build_seconds": 6.24,
+   "build_seconds": 6.32,
    "zarr_json_bytes": 3472506,
-   "manifest_bytes": 171037,
-   "store_bytes": 259401,
+   "manifest_bytes": 171031,
+   "store_bytes": 259394,
    "native_chunk_bytes": 0,
-   "open_seconds": 0.139,
-   "one_chunk_milliseconds": 2.78,
-   "read_all_seconds": 9.19,
-   "microseconds_per_chunk": 574,
+   "open_seconds": 0.14,
+   "one_chunk_milliseconds": 3.0,
+   "read_all_seconds": 10.39,
+   "microseconds_per_chunk": 649,
    "outcome": "equal"
   },
   "switch_sidecar": {
@@ -679,15 +679,15 @@
    "outcome": "equal"
   },
   "switch_index_prefix": {
-   "build_seconds": 7.49,
+   "build_seconds": 7.1,
    "zarr_json_bytes": 5990126,
-   "manifest_bytes": 167535,
-   "store_bytes": 467281,
+   "manifest_bytes": 167536,
+   "store_bytes": 467290,
    "native_chunk_bytes": 0,
-   "open_seconds": 0.261,
-   "one_chunk_milliseconds": 6.82,
-   "read_all_seconds": 16.77,
-   "microseconds_per_chunk": 1048,
+   "open_seconds": 0.265,
+   "one_chunk_milliseconds": 4.4,
+   "read_all_seconds": 18.33,
+   "microseconds_per_chunk": 1146,
    "outcome": "equal"
   },
   "switch_sidecar": {

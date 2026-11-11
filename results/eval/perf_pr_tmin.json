@@ -15,37 +15,37 @@
    "reads": {
     "map: 2 days, whole grid, across the 2020 change": {
      "equal_to_files": true,
-     "seconds": 0.055,
+     "seconds": 0.033,
      "runs": 3,
      "source_requests": 2,
      "source_megabytes": 0.05
     },
     "box: 30 days x 50x50 cells, across the change": {
      "equal_to_files": true,
-     "seconds": 0.218,
+     "seconds": 0.226,
      "runs": 3,
      "source_requests": 30,
      "source_megabytes": 0.76
     },
     "series: 10 years at one cell, across the change": {
      "equal_to_files": true,
-     "seconds": 25.097,
+     "seconds": 25.269,
      "runs": 3,
      "source_requests": 3650,
      "source_megabytes": 94.88
     },
     "series: every day at one cell": {
      "equal_to_files": true,
-     "seconds": 29.908,
-     "runs": 3,
+     "seconds": 30.176,
+     "runs": 2,
      "source_requests": 4380,
      "source_megabytes": 113.96
     }
    },
-   "build_seconds": 0.05,
+   "build_seconds": 0.06,
    "zarr_json_bytes": 917,
-   "manifest_bytes": 62371,
-   "store_bytes": 87382,
+   "manifest_bytes": 62543,
+   "store_bytes": 87559,
    "strategy": "switch",
    "cases": 2,
    "outcome": "equal"
@@ -171,7 +171,7 @@
    "reads": {
     "map: 2 days, whole grid, across the 2020 change": {
      "equal_to_files": true,
-     "seconds": 0.033,
+     "seconds": 0.036,
      "runs": 3,
      "source_requests": 2,
      "source_megabytes": 0.05
@@ -185,23 +185,23 @@
     },
     "series: 10 years at one cell, across the change": {
      "equal_to_files": true,
-     "seconds": 25.194,
+     "seconds": 25.738,
      "runs": 3,
      "source_requests": 3650,
      "source_megabytes": 94.88
     },
     "series: every day at one cell": {
      "equal_to_files": true,
-     "seconds": 30.248,
+     "seconds": 30.825,
      "runs": 2,
      "source_requests": 4380,
      "source_megabytes": 113.96
     }
    },
-   "build_seconds": 0.07,
+   "build_seconds": 0.05,
    "zarr_json_bytes": 956,
-   "manifest_bytes": 62339,
-   "store_bytes": 87362,
+   "manifest_bytes": 62296,
+   "store_bytes": 87327,
    "strategy": "switch",
    "cases": 2,
    "outcome": "equal"

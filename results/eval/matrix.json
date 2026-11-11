@@ -30,15 +30,15 @@
  },
  "cells": {
   "switch_position|codec_eras": {
-   "build_seconds": 0.033,
+   "build_seconds": 0.026,
    "zarr_json_bytes": 1019,
-   "manifest_bytes": 481,
+   "manifest_bytes": 484,
    "native_chunk_bytes": 0,
-   "store_bytes": 3669,
+   "store_bytes": 3670,
    "strategy": "switch",
    "cases": 3,
    "one_array": true,
-   "read_seconds": 0.031,
+   "read_seconds": 0.041,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     18,
@@ -48,15 +48,15 @@
    "outcome": "equal"
   },
   "switch_key|codec_eras": {
-   "build_seconds": 0.031,
+   "build_seconds": 0.026,
    "zarr_json_bytes": 1074,
-   "manifest_bytes": 572,
+   "manifest_bytes": 571,
    "native_chunk_bytes": 0,
-   "store_bytes": 3818,
+   "store_bytes": 3816,
    "strategy": "switch",
    "cases": 3,
    "one_array": true,
-   "read_seconds": 0.04,
+   "read_seconds": 0.039,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     18,
@@ -66,11 +66,11 @@
    "outcome": "equal"
   },
   "switch_case_id|codec_eras": {
-   "build_seconds": 0.025,
+   "build_seconds": 0.031,
    "zarr_json_bytes": 1041,
-   "manifest_bytes": 557,
+   "manifest_bytes": 554,
    "native_chunk_bytes": 0,
-   "store_bytes": 3760,
+   "store_bytes": 3755,
    "strategy": "switch",
    "cases": 3,
    "one_array": true,
@@ -84,15 +84,15 @@
    "outcome": "equal"
   },
   "switch_key_parameters|codec_eras": {
-   "build_seconds": 0.026,
+   "build_seconds": 0.032,
    "zarr_json_bytes": 1096,
-   "manifest_bytes": 574,
+   "manifest_bytes": 575,
    "native_chunk_bytes": 0,
-   "store_bytes": 3831,
+   "store_bytes": 3828,
    "strategy": "switch",
    "cases": 3,
    "one_array": true,
-   "read_seconds": 0.04,
+   "read_seconds": 0.044,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     18,
@@ -102,14 +102,13 @@
    "outcome": "equal"
   },
   "switch_index_prefix|codec_eras": {
-   "build_seconds": 0.022,
+   "build_seconds": 0.03,
    "zarr_json_bytes": 1058,
-   "manifest_bytes": 485,
+   "manifest_bytes": 482,
    "native_chunk_bytes": 0,
-   "store_bytes": 3694,
+   "store_bytes": 3690,
    "strategy": "switch",
    "cases": 3,
-   "needs_store_wrapper": true,
    "one_array": true,
    "read_seconds": 0.035,
    "data_type": "float32",
@@ -121,16 +120,16 @@
    "outcome": "equal"
   },
   "switch_sidecar|codec_eras": {
-   "build_seconds": 0.034,
+   "build_seconds": 0.035,
    "zarr_json_bytes": 1025,
-   "manifest_bytes": 637,
+   "manifest_bytes": 639,
    "native_chunk_bytes": 0,
    "store_bytes": 4049,
    "strategy": "switch",
    "cases": 3,
    "extra_arrays": 1,
    "one_array": true,
-   "read_seconds": 0.045,
+   "read_seconds": 0.047,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     18,
@@ -140,31 +139,14 @@
    "outcome": "equal"
   },
   "switch_store_context|codec_eras": {
-   "build_seconds": 0.03,
+   "build_seconds": 0.038,
    "zarr_json_bytes": 992,
-   "manifest_bytes": 638,
+   "manifest_bytes": 640,
    "native_chunk_bytes": 0,
-   "store_bytes": 4035,
+   "store_bytes": 4042,
    "strategy": "switch",
    "cases": 3,
    "needs_store_wrapper": true,
-   "one_array": true,
-   "read_seconds": 0.031,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    18,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "conditional_codec|codec_eras": {
-   "build_seconds": 0.025,
-   "zarr_json_bytes": 659,
-   "manifest_bytes": 560,
-   "native_chunk_bytes": 0,
-   "store_bytes": 3590,
-   "cases": 3,
    "one_array": true,
    "read_seconds": 0.032,
    "data_type": "float32",
@@ -175,15 +157,32 @@
    ],
    "outcome": "equal"
   },
-  "array_concat|codec_eras": {
-   "build_seconds": 0.186,
-   "zarr_json_bytes": 550,
-   "manifest_bytes": 991,
+  "conditional_codec|codec_eras": {
+   "build_seconds": 0.033,
+   "zarr_json_bytes": 659,
+   "manifest_bytes": 560,
    "native_chunk_bytes": 0,
-   "store_bytes": 4507,
+   "store_bytes": 3599,
+   "cases": 3,
+   "one_array": true,
+   "read_seconds": 0.035,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    18,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
+  "array_concat|codec_eras": {
+   "build_seconds": 0.194,
+   "zarr_json_bytes": 550,
+   "manifest_bytes": 993,
+   "native_chunk_bytes": 0,
+   "store_bytes": 4511,
    "extra_arrays": 3,
    "one_array": true,
-   "read_seconds": 0.082,
+   "read_seconds": 0.073,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     18,
@@ -193,14 +192,14 @@
    "outcome": "equal"
   },
   "zarr_reference|codec_eras": {
-   "build_seconds": 0.043,
+   "build_seconds": 0.057,
    "zarr_json_bytes": 448,
-   "manifest_bytes": 1192,
+   "manifest_bytes": 1193,
    "native_chunk_bytes": 0,
-   "store_bytes": 4789,
+   "store_bytes": 4790,
    "extra_arrays": 3,
    "one_array": true,
-   "read_seconds": 0.044,
+   "read_seconds": 0.033,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     18,
@@ -218,14 +217,14 @@
    "why": "the files' codec chains differ; a declared domain keeps one chain for the array"
   },
   "materialize_odd_chunks|codec_eras": {
-   "build_seconds": 0.043,
+   "build_seconds": 0.041,
    "zarr_json_bytes": 517,
-   "manifest_bytes": 643,
+   "manifest_bytes": 630,
    "native_chunk_bytes": 30326,
-   "store_bytes": 33952,
+   "store_bytes": 33936,
    "copied_fraction": 0.6667,
    "one_array": true,
-   "read_seconds": 0.027,
+   "read_seconds": 0.031,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     18,
@@ -235,14 +234,14 @@
    "outcome": "equal"
   },
   "native_copy|codec_eras": {
-   "build_seconds": 0.029,
+   "build_seconds": 0.027,
    "zarr_json_bytes": 493,
    "manifest_bytes": 225,
    "native_chunk_bytes": 45303,
-   "store_bytes": 48425,
+   "store_bytes": 48415,
    "copied_fraction": 1.0,
    "one_array": true,
-   "read_seconds": 0.017,
+   "read_seconds": 0.018,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     18,
@@ -252,15 +251,15 @@
    "outcome": "equal"
   },
   "separate_files|codec_eras": {
-   "build_seconds": 0.065,
+   "build_seconds": 0.08,
    "one_array": false,
-   "read_seconds": 0.178,
+   "read_seconds": 0.172,
    "outcome": "equal"
   },
   "switch_position|file_lengths": {
-   "build_seconds": 0.029,
+   "build_seconds": 0.024,
    "zarr_json_bytes": 647,
-   "manifest_bytes": 275,
+   "manifest_bytes": 278,
    "native_chunk_bytes": 0,
    "store_bytes": 3290,
    "strategy": "switch",
@@ -276,15 +275,15 @@
    "outcome": "equal"
   },
   "switch_key|file_lengths": {
-   "build_seconds": 0.024,
+   "build_seconds": 0.028,
    "zarr_json_bytes": 876,
-   "manifest_bytes": 323,
+   "manifest_bytes": 322,
    "native_chunk_bytes": 0,
-   "store_bytes": 3411,
+   "store_bytes": 3399,
    "strategy": "switch",
    "cases": 2,
    "one_array": true,
-   "read_seconds": 0.023,
+   "read_seconds": 0.027,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     90,
@@ -294,11 +293,47 @@
    "outcome": "equal"
   },
   "switch_case_id|file_lengths": {
-   "build_seconds": 0.026,
+   "build_seconds": 0.027,
    "zarr_json_bytes": 669,
    "manifest_bytes": 299,
    "native_chunk_bytes": 0,
-   "store_bytes": 3338,
+   "store_bytes": 3333,
+   "strategy": "switch",
+   "cases": 1,
+   "one_array": true,
+   "read_seconds": 0.025,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    90,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
+  "switch_key_parameters|file_lengths": {
+   "build_seconds": 0.027,
+   "zarr_json_bytes": 696,
+   "manifest_bytes": 311,
+   "native_chunk_bytes": 0,
+   "store_bytes": 3360,
+   "strategy": "switch",
+   "cases": 1,
+   "one_array": true,
+   "read_seconds": 0.024,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    90,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
+  "switch_index_prefix|file_lengths": {
+   "build_seconds": 0.025,
+   "zarr_json_bytes": 686,
+   "manifest_bytes": 276,
+   "native_chunk_bytes": 0,
+   "store_bytes": 3308,
    "strategy": "switch",
    "cases": 1,
    "one_array": true,
@@ -311,54 +346,17 @@
    ],
    "outcome": "equal"
   },
-  "switch_key_parameters|file_lengths": {
-   "build_seconds": 0.029,
-   "zarr_json_bytes": 696,
-   "manifest_bytes": 310,
-   "native_chunk_bytes": 0,
-   "store_bytes": 3353,
-   "strategy": "switch",
-   "cases": 1,
-   "one_array": true,
-   "read_seconds": 0.028,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    90,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "switch_index_prefix|file_lengths": {
-   "build_seconds": 0.028,
-   "zarr_json_bytes": 686,
-   "manifest_bytes": 277,
-   "native_chunk_bytes": 0,
-   "store_bytes": 3317,
-   "strategy": "switch",
-   "cases": 1,
-   "needs_store_wrapper": true,
-   "one_array": true,
-   "read_seconds": 0.032,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    90,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
   "switch_sidecar|file_lengths": {
-   "build_seconds": 0.031,
+   "build_seconds": 0.026,
    "zarr_json_bytes": 679,
    "manifest_bytes": 277,
    "native_chunk_bytes": 0,
-   "store_bytes": 3490,
+   "store_bytes": 3491,
    "strategy": "switch",
    "cases": 1,
    "extra_arrays": 1,
    "one_array": true,
-   "read_seconds": 0.027,
+   "read_seconds": 0.026,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     90,
@@ -368,16 +366,16 @@
    "outcome": "equal"
   },
   "switch_store_context|file_lengths": {
-   "build_seconds": 0.038,
+   "build_seconds": 0.031,
    "zarr_json_bytes": 646,
-   "manifest_bytes": 279,
+   "manifest_bytes": 277,
    "native_chunk_bytes": 0,
-   "store_bytes": 3486,
+   "store_bytes": 3477,
    "strategy": "switch",
    "cases": 1,
    "needs_store_wrapper": true,
    "one_array": true,
-   "read_seconds": 0.028,
+   "read_seconds": 0.022,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     90,
@@ -387,101 +385,12 @@
    "outcome": "equal"
   },
   "conditional_codec|file_lengths": {
-   "build_seconds": 0.028,
+   "build_seconds": 0.026,
    "zarr_json_bytes": 594,
-   "manifest_bytes": 301,
+   "manifest_bytes": 299,
    "native_chunk_bytes": 0,
-   "store_bytes": 3203,
+   "store_bytes": 3207,
    "cases": 1,
-   "one_array": true,
-   "read_seconds": 0.028,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    90,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "array_concat|file_lengths": {
-   "build_seconds": 0.049,
-   "zarr_json_bytes": 554,
-   "manifest_bytes": 724,
-   "native_chunk_bytes": 0,
-   "store_bytes": 4159,
-   "extra_arrays": 3,
-   "one_array": true,
-   "read_seconds": 0.046,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    90,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "zarr_reference|file_lengths": {
-   "build_seconds": 0.052,
-   "zarr_json_bytes": 452,
-   "manifest_bytes": 922,
-   "native_chunk_bytes": 0,
-   "store_bytes": 4439,
-   "extra_arrays": 3,
-   "one_array": true,
-   "read_seconds": 0.038,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    90,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "grid_encoded_shapes|file_lengths": {
-   "build_seconds": 0.036,
-   "zarr_json_bytes": 520,
-   "manifest_bytes": 280,
-   "native_chunk_bytes": 0,
-   "store_bytes": 3148,
-   "emulated": "declared in an attribute, read by a patched grid",
-   "one_array": true,
-   "read_seconds": 0.023,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    90,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "domain_convention|file_lengths": {
-   "build_seconds": 0.03,
-   "zarr_json_bytes": 539,
-   "manifest_bytes": 279,
-   "native_chunk_bytes": 0,
-   "store_bytes": 3157,
-   "stored_shape": [
-    90,
-    24,
-    30
-   ],
-   "one_array": true,
-   "read_seconds": 0.027,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    90,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "materialize_odd_chunks|file_lengths": {
-   "build_seconds": 0.027,
-   "zarr_json_bytes": 520,
-   "manifest_bytes": 277,
-   "native_chunk_bytes": 0,
-   "store_bytes": 3148,
-   "copied_fraction": 0.0,
    "one_array": true,
    "read_seconds": 0.021,
    "data_type": "float32",
@@ -492,15 +401,104 @@
    ],
    "outcome": "equal"
   },
+  "array_concat|file_lengths": {
+   "build_seconds": 0.043,
+   "zarr_json_bytes": 554,
+   "manifest_bytes": 713,
+   "native_chunk_bytes": 0,
+   "store_bytes": 4126,
+   "extra_arrays": 3,
+   "one_array": true,
+   "read_seconds": 0.043,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    90,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
+  "zarr_reference|file_lengths": {
+   "build_seconds": 0.05,
+   "zarr_json_bytes": 452,
+   "manifest_bytes": 919,
+   "native_chunk_bytes": 0,
+   "store_bytes": 4422,
+   "extra_arrays": 3,
+   "one_array": true,
+   "read_seconds": 0.03,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    90,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
+  "grid_encoded_shapes|file_lengths": {
+   "build_seconds": 0.026,
+   "zarr_json_bytes": 520,
+   "manifest_bytes": 277,
+   "native_chunk_bytes": 0,
+   "store_bytes": 3144,
+   "emulated": "declared in an attribute, read by a patched grid",
+   "one_array": true,
+   "read_seconds": 0.02,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    90,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
+  "domain_convention|file_lengths": {
+   "build_seconds": 0.027,
+   "zarr_json_bytes": 539,
+   "manifest_bytes": 277,
+   "native_chunk_bytes": 0,
+   "store_bytes": 3165,
+   "stored_shape": [
+    90,
+    24,
+    30
+   ],
+   "one_array": true,
+   "read_seconds": 0.02,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    90,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
+  "materialize_odd_chunks|file_lengths": {
+   "build_seconds": 0.032,
+   "zarr_json_bytes": 520,
+   "manifest_bytes": 280,
+   "native_chunk_bytes": 0,
+   "store_bytes": 3141,
+   "copied_fraction": 0.0,
+   "one_array": true,
+   "read_seconds": 0.022,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    90,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
   "native_copy|file_lengths": {
-   "build_seconds": 0.04,
+   "build_seconds": 0.035,
    "zarr_json_bytes": 493,
-   "manifest_bytes": 459,
+   "manifest_bytes": 457,
    "native_chunk_bytes": 233139,
-   "store_bytes": 236564,
+   "store_bytes": 236566,
    "copied_fraction": 1.0,
    "one_array": true,
-   "read_seconds": 0.026,
+   "read_seconds": 0.029,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     90,
@@ -510,21 +508,21 @@
    "outcome": "equal"
   },
   "separate_files|file_lengths": {
-   "build_seconds": 0.059,
+   "build_seconds": 0.056,
    "one_array": false,
-   "read_seconds": 0.077,
+   "read_seconds": 0.07,
    "outcome": "equal"
   },
   "switch_position|padded_last_chunk": {
-   "build_seconds": 0.03,
+   "build_seconds": 0.025,
    "zarr_json_bytes": 665,
    "manifest_bytes": 405,
    "native_chunk_bytes": 0,
-   "store_bytes": 3493,
+   "store_bytes": 3488,
    "strategy": "switch",
    "cases": 1,
    "one_array": true,
-   "read_seconds": 0.028,
+   "read_seconds": 0.023,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     30,
@@ -534,15 +532,15 @@
    "outcome": "equal"
   },
   "switch_key|padded_last_chunk": {
-   "build_seconds": 0.029,
+   "build_seconds": 0.027,
    "zarr_json_bytes": 701,
    "manifest_bytes": 458,
    "native_chunk_bytes": 0,
-   "store_bytes": 3562,
+   "store_bytes": 3563,
    "strategy": "switch",
    "cases": 1,
    "one_array": true,
-   "read_seconds": 0.031,
+   "read_seconds": 0.026,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     30,
@@ -552,15 +550,15 @@
    "outcome": "equal"
   },
   "switch_case_id|padded_last_chunk": {
-   "build_seconds": 0.025,
+   "build_seconds": 0.035,
    "zarr_json_bytes": 687,
-   "manifest_bytes": 449,
+   "manifest_bytes": 452,
    "native_chunk_bytes": 0,
-   "store_bytes": 3533,
+   "store_bytes": 3538,
    "strategy": "switch",
    "cases": 1,
    "one_array": true,
-   "read_seconds": 0.022,
+   "read_seconds": 0.024,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     30,
@@ -570,15 +568,15 @@
    "outcome": "equal"
   },
   "switch_key_parameters|padded_last_chunk": {
-   "build_seconds": 0.025,
+   "build_seconds": 0.028,
    "zarr_json_bytes": 714,
-   "manifest_bytes": 459,
+   "manifest_bytes": 458,
    "native_chunk_bytes": 0,
-   "store_bytes": 3581,
+   "store_bytes": 3574,
    "strategy": "switch",
    "cases": 1,
    "one_array": true,
-   "read_seconds": 0.028,
+   "read_seconds": 0.026,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     30,
@@ -588,16 +586,15 @@
    "outcome": "equal"
   },
   "switch_index_prefix|padded_last_chunk": {
-   "build_seconds": 0.025,
+   "build_seconds": 0.026,
    "zarr_json_bytes": 704,
-   "manifest_bytes": 402,
+   "manifest_bytes": 403,
    "native_chunk_bytes": 0,
-   "store_bytes": 3504,
+   "store_bytes": 3502,
    "strategy": "switch",
    "cases": 1,
-   "needs_store_wrapper": true,
    "one_array": true,
-   "read_seconds": 0.026,
+   "read_seconds": 0.03,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     30,
@@ -607,16 +604,16 @@
    "outcome": "equal"
   },
   "switch_sidecar|padded_last_chunk": {
-   "build_seconds": 0.03,
+   "build_seconds": 0.031,
    "zarr_json_bytes": 697,
    "manifest_bytes": 403,
    "native_chunk_bytes": 0,
-   "store_bytes": 3660,
+   "store_bytes": 3665,
    "strategy": "switch",
    "cases": 1,
    "extra_arrays": 1,
    "one_array": true,
-   "read_seconds": 0.026,
+   "read_seconds": 0.03,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     30,
@@ -626,16 +623,16 @@
    "outcome": "equal"
   },
   "switch_store_context|padded_last_chunk": {
-   "build_seconds": 0.029,
+   "build_seconds": 0.031,
    "zarr_json_bytes": 664,
-   "manifest_bytes": 404,
+   "manifest_bytes": 401,
    "native_chunk_bytes": 0,
-   "store_bytes": 3658,
+   "store_bytes": 3655,
    "strategy": "switch",
    "cases": 1,
    "needs_store_wrapper": true,
    "one_array": true,
-   "read_seconds": 0.025,
+   "read_seconds": 0.02,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     30,
@@ -649,14 +646,14 @@
    "why": "chunks are stored larger than their place in the grid, and a bytes-to-bytes codec cannot crop"
   },
   "array_concat|padded_last_chunk": {
-   "build_seconds": 0.047,
+   "build_seconds": 0.045,
    "zarr_json_bytes": 553,
-   "manifest_bytes": 880,
+   "manifest_bytes": 881,
    "native_chunk_bytes": 0,
-   "store_bytes": 4320,
+   "store_bytes": 4315,
    "extra_arrays": 3,
    "one_array": true,
-   "read_seconds": 0.05,
+   "read_seconds": 0.045,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     30,
@@ -666,14 +663,14 @@
    "outcome": "equal"
   },
   "zarr_reference|padded_last_chunk": {
-   "build_seconds": 0.054,
+   "build_seconds": 0.044,
    "zarr_json_bytes": 449,
-   "manifest_bytes": 1085,
+   "manifest_bytes": 1088,
    "native_chunk_bytes": 0,
-   "store_bytes": 4587,
+   "store_bytes": 4591,
    "extra_arrays": 3,
    "one_array": true,
-   "read_seconds": 0.028,
+   "read_seconds": 0.035,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     30,
@@ -683,14 +680,14 @@
    "outcome": "equal"
   },
   "grid_encoded_shapes|padded_last_chunk": {
-   "build_seconds": 0.027,
+   "build_seconds": 0.028,
    "zarr_json_bytes": 606,
-   "manifest_bytes": 406,
+   "manifest_bytes": 404,
    "native_chunk_bytes": 0,
-   "store_bytes": 3351,
+   "store_bytes": 3350,
    "emulated": "declared in an attribute, read by a patched grid",
    "one_array": true,
-   "read_seconds": 0.02,
+   "read_seconds": 0.023,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     30,
@@ -702,16 +699,16 @@
   "domain_convention|padded_last_chunk": {
    "build_seconds": 0.023,
    "zarr_json_bytes": 555,
-   "manifest_bytes": 403,
+   "manifest_bytes": 406,
    "native_chunk_bytes": 0,
-   "store_bytes": 3352,
+   "store_bytes": 3354,
    "stored_shape": [
     36,
     24,
     30
    ],
    "one_array": false,
-   "read_seconds": 0.032,
+   "read_seconds": 0.029,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     36,
@@ -721,14 +718,14 @@
    "outcome": "equal"
   },
   "materialize_odd_chunks|padded_last_chunk": {
-   "build_seconds": 0.045,
+   "build_seconds": 0.036,
    "zarr_json_bytes": 541,
-   "manifest_bytes": 441,
+   "manifest_bytes": 442,
    "native_chunk_bytes": 15436,
-   "store_bytes": 18799,
+   "store_bytes": 18795,
    "copied_fraction": 0.2,
    "one_array": true,
-   "read_seconds": 0.02,
+   "read_seconds": 0.023,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     30,
@@ -738,14 +735,14 @@
    "outcome": "equal"
   },
   "native_copy|padded_last_chunk": {
-   "build_seconds": 0.026,
+   "build_seconds": 0.028,
    "zarr_json_bytes": 493,
    "manifest_bytes": 262,
    "native_chunk_bytes": 76794,
-   "store_bytes": 79956,
+   "store_bytes": 79952,
    "copied_fraction": 1.0,
    "one_array": true,
-   "read_seconds": 0.028,
+   "read_seconds": 0.021,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     30,
@@ -755,15 +752,15 @@
    "outcome": "equal"
   },
   "separate_files|padded_last_chunk": {
-   "build_seconds": 0.065,
+   "build_seconds": 0.055,
    "one_array": false,
-   "read_seconds": 0.112,
+   "read_seconds": 0.108,
    "outcome": "equal"
   },
   "switch_position|packing_per_file": {
    "build_seconds": 0.036,
    "zarr_json_bytes": 1540,
-   "manifest_bytes": 500,
+   "manifest_bytes": 501,
    "native_chunk_bytes": 0,
    "store_bytes": 3777,
    "strategy": "switch",
@@ -781,13 +778,13 @@
   "switch_key|packing_per_file": {
    "build_seconds": 0.031,
    "zarr_json_bytes": 1595,
-   "manifest_bytes": 579,
+   "manifest_bytes": 581,
    "native_chunk_bytes": 0,
-   "store_bytes": 3909,
+   "store_bytes": 3916,
    "strategy": "switch",
    "cases": 3,
    "one_array": true,
-   "read_seconds": 0.051,
+   "read_seconds": 0.047,
    "data_type": "float64",
    "shape_seen_by_a_reader": [
     18,
@@ -797,15 +794,15 @@
    "outcome": "equal"
   },
   "switch_case_id|packing_per_file": {
-   "build_seconds": 0.035,
+   "build_seconds": 0.032,
    "zarr_json_bytes": 1562,
    "manifest_bytes": 558,
    "native_chunk_bytes": 0,
-   "store_bytes": 3855,
+   "store_bytes": 3857,
    "strategy": "switch",
    "cases": 3,
    "one_array": true,
-   "read_seconds": 0.05,
+   "read_seconds": 0.049,
    "data_type": "float64",
    "shape_seen_by_a_reader": [
     18,
@@ -815,7 +812,7 @@
    "outcome": "equal"
   },
   "switch_key_parameters|packing_per_file": {
-   "build_seconds": 0.031,
+   "build_seconds": 0.028,
    "zarr_json_bytes": 917,
    "manifest_bytes": 597,
    "native_chunk_bytes": 0,
@@ -823,7 +820,7 @@
    "strategy": "switch",
    "cases": 1,
    "one_array": true,
-   "read_seconds": 0.068,
+   "read_seconds": 0.063,
    "data_type": "float64",
    "shape_seen_by_a_reader": [
     18,
@@ -833,16 +830,15 @@
    "outcome": "equal"
   },
   "switch_index_prefix|packing_per_file": {
-   "build_seconds": 0.027,
+   "build_seconds": 0.031,
    "zarr_json_bytes": 1579,
    "manifest_bytes": 501,
    "native_chunk_bytes": 0,
-   "store_bytes": 3799,
+   "store_bytes": 3802,
    "strategy": "switch",
    "cases": 3,
-   "needs_store_wrapper": true,
    "one_array": true,
-   "read_seconds": 0.055,
+   "read_seconds": 0.054,
    "data_type": "float64",
    "shape_seen_by_a_reader": [
     18,
@@ -852,16 +848,16 @@
    "outcome": "equal"
   },
   "switch_sidecar|packing_per_file": {
-   "build_seconds": 0.035,
+   "build_seconds": 0.031,
    "zarr_json_bytes": 1546,
-   "manifest_bytes": 660,
+   "manifest_bytes": 656,
    "native_chunk_bytes": 0,
-   "store_bytes": 4172,
+   "store_bytes": 4157,
    "strategy": "switch",
    "cases": 3,
    "extra_arrays": 1,
    "one_array": true,
-   "read_seconds": 0.057,
+   "read_seconds": 0.059,
    "data_type": "float64",
    "shape_seen_by_a_reader": [
     18,
@@ -873,14 +869,14 @@
   "switch_store_context|packing_per_file": {
    "build_seconds": 0.039,
    "zarr_json_bytes": 867,
-   "manifest_bytes": 676,
+   "manifest_bytes": 678,
    "native_chunk_bytes": 0,
-   "store_bytes": 4284,
+   "store_bytes": 4288,
    "strategy": "switch",
    "cases": 1,
    "needs_store_wrapper": true,
    "one_array": true,
-   "read_seconds": 0.055,
+   "read_seconds": 0.044,
    "data_type": "float64",
    "shape_seen_by_a_reader": [
     18,
@@ -894,14 +890,14 @@
    "why": "the files differ before the bytes stage (data type or packing), which a bytes-to-bytes codec cannot vary"
   },
   "array_concat|packing_per_file": {
-   "build_seconds": 0.063,
+   "build_seconds": 0.049,
    "zarr_json_bytes": 552,
    "manifest_bytes": 1020,
    "native_chunk_bytes": 0,
-   "store_bytes": 4618,
+   "store_bytes": 4608,
    "extra_arrays": 3,
    "one_array": true,
-   "read_seconds": 0.113,
+   "read_seconds": 0.105,
    "data_type": "float64",
    "shape_seen_by_a_reader": [
     18,
@@ -911,14 +907,14 @@
    "outcome": "equal"
   },
   "zarr_reference|packing_per_file": {
-   "build_seconds": 0.052,
+   "build_seconds": 0.043,
    "zarr_json_bytes": 450,
-   "manifest_bytes": 1219,
+   "manifest_bytes": 1220,
    "native_chunk_bytes": 0,
-   "store_bytes": 4913,
+   "store_bytes": 4906,
    "extra_arrays": 3,
    "one_array": true,
-   "read_seconds": 0.048,
+   "read_seconds": 0.05,
    "data_type": "float64",
    "shape_seen_by_a_reader": [
     18,
@@ -940,14 +936,14 @@
    "why": "every file packs or narrows its values in its own way, so no file's chain can hold the others' values: all would be copied"
   },
   "native_copy|packing_per_file": {
-   "build_seconds": 0.03,
+   "build_seconds": 0.028,
    "zarr_json_bytes": 493,
-   "manifest_bytes": 220,
+   "manifest_bytes": 227,
    "native_chunk_bytes": 33359,
-   "store_bytes": 36472,
+   "store_bytes": 36486,
    "copied_fraction": 1.0,
    "one_array": true,
-   "read_seconds": 0.022,
+   "read_seconds": 0.02,
    "data_type": "float64",
    "shape_seen_by_a_reader": [
     18,
@@ -957,21 +953,21 @@
    "outcome": "equal"
   },
   "separate_files|packing_per_file": {
-   "build_seconds": 0.068,
+   "build_seconds": 0.07,
    "one_array": false,
-   "read_seconds": 0.185,
+   "read_seconds": 0.182,
    "outcome": "equal"
   },
   "switch_position|data_types": {
-   "build_seconds": 0.03,
+   "build_seconds": 0.023,
    "zarr_json_bytes": 892,
-   "manifest_bytes": 424,
+   "manifest_bytes": 425,
    "native_chunk_bytes": 0,
-   "store_bytes": 3557,
+   "store_bytes": 3549,
    "strategy": "switch",
    "cases": 2,
    "one_array": true,
-   "read_seconds": 0.024,
+   "read_seconds": 0.025,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     12,
@@ -981,15 +977,15 @@
    "outcome": "equal"
   },
   "switch_key|data_types": {
-   "build_seconds": 0.028,
+   "build_seconds": 0.02,
    "zarr_json_bytes": 936,
-   "manifest_bytes": 493,
+   "manifest_bytes": 492,
    "native_chunk_bytes": 0,
-   "store_bytes": 3659,
+   "store_bytes": 3670,
    "strategy": "switch",
    "cases": 2,
    "one_array": true,
-   "read_seconds": 0.024,
+   "read_seconds": 0.03,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     12,
@@ -999,11 +995,11 @@
    "outcome": "equal"
   },
   "switch_case_id|data_types": {
-   "build_seconds": 0.024,
+   "build_seconds": 0.02,
    "zarr_json_bytes": 914,
-   "manifest_bytes": 465,
+   "manifest_bytes": 464,
    "native_chunk_bytes": 0,
-   "store_bytes": 3614,
+   "store_bytes": 3605,
    "strategy": "switch",
    "cases": 2,
    "one_array": true,
@@ -1017,15 +1013,15 @@
    "outcome": "equal"
   },
   "switch_key_parameters|data_types": {
-   "build_seconds": 0.02,
+   "build_seconds": 0.024,
    "zarr_json_bytes": 955,
    "manifest_bytes": 491,
    "native_chunk_bytes": 0,
-   "store_bytes": 3668,
+   "store_bytes": 3661,
    "strategy": "switch",
    "cases": 2,
    "one_array": true,
-   "read_seconds": 0.035,
+   "read_seconds": 0.039,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     12,
@@ -1035,16 +1031,15 @@
    "outcome": "equal"
   },
   "switch_index_prefix|data_types": {
-   "build_seconds": 0.023,
+   "build_seconds": 0.02,
    "zarr_json_bytes": 931,
-   "manifest_bytes": 421,
+   "manifest_bytes": 426,
    "native_chunk_bytes": 0,
-   "store_bytes": 3561,
+   "store_bytes": 3571,
    "strategy": "switch",
    "cases": 2,
-   "needs_store_wrapper": true,
    "one_array": true,
-   "read_seconds": 0.034,
+   "read_seconds": 0.032,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     12,
@@ -1054,16 +1049,16 @@
    "outcome": "equal"
   },
   "switch_sidecar|data_types": {
-   "build_seconds": 0.026,
+   "build_seconds": 0.024,
    "zarr_json_bytes": 911,
    "manifest_bytes": 579,
    "native_chunk_bytes": 0,
-   "store_bytes": 3944,
+   "store_bytes": 3933,
    "strategy": "switch",
    "cases": 2,
    "extra_arrays": 1,
    "one_array": true,
-   "read_seconds": 0.041,
+   "read_seconds": 0.033,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     12,
@@ -1073,11 +1068,11 @@
    "outcome": "equal"
   },
   "switch_store_context|data_types": {
-   "build_seconds": 0.03,
+   "build_seconds": 0.028,
    "zarr_json_bytes": 878,
-   "manifest_bytes": 574,
+   "manifest_bytes": 579,
    "native_chunk_bytes": 0,
-   "store_bytes": 3923,
+   "store_bytes": 3932,
    "strategy": "switch",
    "cases": 2,
    "needs_store_wrapper": true,
@@ -1096,14 +1091,14 @@
    "why": "the files differ before the bytes stage (data type or packing), which a bytes-to-bytes codec cannot vary"
   },
   "array_concat|data_types": {
-   "build_seconds": 0.04,
+   "build_seconds": 0.035,
    "zarr_json_bytes": 513,
-   "manifest_bytes": 672,
+   "manifest_bytes": 671,
    "native_chunk_bytes": 0,
-   "store_bytes": 4100,
+   "store_bytes": 4097,
    "extra_arrays": 2,
    "one_array": true,
-   "read_seconds": 0.075,
+   "read_seconds": 0.058,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     12,
@@ -1113,14 +1108,14 @@
    "outcome": "equal"
   },
   "zarr_reference|data_types": {
-   "build_seconds": 0.034,
+   "build_seconds": 0.04,
    "zarr_json_bytes": 450,
-   "manifest_bytes": 857,
+   "manifest_bytes": 856,
    "native_chunk_bytes": 0,
-   "store_bytes": 4355,
+   "store_bytes": 4349,
    "extra_arrays": 2,
    "one_array": true,
-   "read_seconds": 0.038,
+   "read_seconds": 0.036,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     12,
@@ -1138,14 +1133,14 @@
    "why": "the files' codec chains differ; a declared domain keeps one chain for the array"
   },
   "materialize_odd_chunks|data_types": {
-   "build_seconds": 0.026,
+   "build_seconds": 0.023,
    "zarr_json_bytes": 519,
-   "manifest_bytes": 499,
+   "manifest_bytes": 493,
    "native_chunk_bytes": 3349,
-   "store_bytes": 6772,
+   "store_bytes": 6774,
    "copied_fraction": 0.5,
    "one_array": true,
-   "read_seconds": 0.029,
+   "read_seconds": 0.023,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     12,
@@ -1155,14 +1150,14 @@
    "outcome": "equal"
   },
   "native_copy|data_types": {
-   "build_seconds": 0.023,
+   "build_seconds": 0.021,
    "zarr_json_bytes": 493,
-   "manifest_bytes": 199,
+   "manifest_bytes": 197,
    "native_chunk_bytes": 17206,
-   "store_bytes": 20285,
+   "store_bytes": 20289,
    "copied_fraction": 1.0,
    "one_array": true,
-   "read_seconds": 0.012,
+   "read_seconds": 0.013,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     12,
@@ -1172,92 +1167,19 @@
    "outcome": "equal"
   },
   "separate_files|data_types": {
-   "build_seconds": 0.038,
+   "build_seconds": 0.041,
    "one_array": false,
-   "read_seconds": 0.137,
+   "read_seconds": 0.164,
    "outcome": "equal"
   },
   "switch_position|chunk_shape_change": {
-   "build_seconds": 0.024,
+   "build_seconds": 0.02,
    "zarr_json_bytes": 1329,
    "manifest_bytes": 821,
    "native_chunk_bytes": 0,
-   "store_bytes": 4018,
+   "store_bytes": 4010,
    "strategy": "shards",
    "cases": 2,
-   "one_array": true,
-   "read_seconds": 0.087,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    16,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "switch_key|chunk_shape_change": {
-   "build_seconds": 0.02,
-   "zarr_json_bytes": 1379,
-   "manifest_bytes": 840,
-   "native_chunk_bytes": 0,
-   "store_bytes": 4074,
-   "strategy": "shards",
-   "cases": 2,
-   "one_array": true,
-   "read_seconds": 0.05,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    16,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "switch_case_id|chunk_shape_change": {
-   "build_seconds": 0.032,
-   "zarr_json_bytes": 1351,
-   "manifest_bytes": 829,
-   "native_chunk_bytes": 0,
-   "store_bytes": 4036,
-   "strategy": "shards",
-   "cases": 2,
-   "one_array": true,
-   "read_seconds": 0.05,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    16,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "switch_key_parameters|chunk_shape_change": {
-   "build_seconds": 0.023,
-   "zarr_json_bytes": 1392,
-   "manifest_bytes": 847,
-   "native_chunk_bytes": 0,
-   "store_bytes": 4096,
-   "strategy": "shards",
-   "cases": 2,
-   "one_array": true,
-   "read_seconds": 0.056,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    16,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "switch_index_prefix|chunk_shape_change": {
-   "build_seconds": 0.019,
-   "zarr_json_bytes": 1368,
-   "manifest_bytes": 821,
-   "native_chunk_bytes": 0,
-   "store_bytes": 4035,
-   "strategy": "shards",
-   "cases": 2,
-   "needs_store_wrapper": true,
    "one_array": true,
    "read_seconds": 0.055,
    "data_type": "float32",
@@ -1268,15 +1190,50 @@
    ],
    "outcome": "equal"
   },
-  "switch_sidecar|chunk_shape_change": {
-   "build_seconds": 0.028,
-   "zarr_json_bytes": 1348,
-   "manifest_bytes": 970,
+  "switch_key|chunk_shape_change": {
+   "build_seconds": 0.025,
+   "zarr_json_bytes": 1379,
+   "manifest_bytes": 839,
    "native_chunk_bytes": 0,
-   "store_bytes": 4402,
+   "store_bytes": 4085,
    "strategy": "shards",
    "cases": 2,
-   "extra_arrays": 1,
+   "one_array": true,
+   "read_seconds": 0.048,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    16,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
+  "switch_case_id|chunk_shape_change": {
+   "build_seconds": 0.022,
+   "zarr_json_bytes": 1351,
+   "manifest_bytes": 831,
+   "native_chunk_bytes": 0,
+   "store_bytes": 4042,
+   "strategy": "shards",
+   "cases": 2,
+   "one_array": true,
+   "read_seconds": 0.048,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    16,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
+  "switch_key_parameters|chunk_shape_change": {
+   "build_seconds": 0.024,
+   "zarr_json_bytes": 1392,
+   "manifest_bytes": 841,
+   "native_chunk_bytes": 0,
+   "store_bytes": 4089,
+   "strategy": "shards",
+   "cases": 2,
    "one_array": true,
    "read_seconds": 0.047,
    "data_type": "float32",
@@ -1287,17 +1244,54 @@
    ],
    "outcome": "equal"
   },
-  "switch_store_context|chunk_shape_change": {
-   "build_seconds": 0.027,
-   "zarr_json_bytes": 1315,
+  "switch_index_prefix|chunk_shape_change": {
+   "build_seconds": 0.029,
+   "zarr_json_bytes": 1368,
+   "manifest_bytes": 819,
+   "native_chunk_bytes": 0,
+   "store_bytes": 4035,
+   "strategy": "shards",
+   "cases": 2,
+   "one_array": true,
+   "read_seconds": 0.049,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    16,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
+  "switch_sidecar|chunk_shape_change": {
+   "build_seconds": 0.023,
+   "zarr_json_bytes": 1348,
    "manifest_bytes": 973,
    "native_chunk_bytes": 0,
-   "store_bytes": 4392,
+   "store_bytes": 4406,
+   "strategy": "shards",
+   "cases": 2,
+   "extra_arrays": 1,
+   "one_array": true,
+   "read_seconds": 0.049,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    16,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
+  "switch_store_context|chunk_shape_change": {
+   "build_seconds": 0.031,
+   "zarr_json_bytes": 1315,
+   "manifest_bytes": 972,
+   "native_chunk_bytes": 0,
+   "store_bytes": 4393,
    "strategy": "shards",
    "cases": 2,
    "needs_store_wrapper": true,
    "one_array": true,
-   "read_seconds": 0.049,
+   "read_seconds": 0.044,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     16,
@@ -1311,14 +1305,14 @@
    "why": "the chunk shape changes, and a bytes-to-bytes codec cannot change what a chunk decodes to"
   },
   "array_concat|chunk_shape_change": {
-   "build_seconds": 0.042,
+   "build_seconds": 0.035,
    "zarr_json_bytes": 511,
    "manifest_bytes": 1229,
    "native_chunk_bytes": 0,
    "store_bytes": 4870,
    "extra_arrays": 2,
    "one_array": true,
-   "read_seconds": 0.051,
+   "read_seconds": 0.052,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     16,
@@ -1328,14 +1322,14 @@
    "outcome": "equal"
   },
   "zarr_reference|chunk_shape_change": {
-   "build_seconds": 0.031,
+   "build_seconds": 0.039,
    "zarr_json_bytes": 448,
-   "manifest_bytes": 1413,
+   "manifest_bytes": 1414,
    "native_chunk_bytes": 0,
-   "store_bytes": 5131,
+   "store_bytes": 5118,
    "extra_arrays": 2,
    "one_array": true,
-   "read_seconds": 0.051,
+   "read_seconds": 0.048,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     16,
@@ -1353,14 +1347,14 @@
    "why": "the chunk shape changes; a declared domain keeps one codec chain and one inner chunk shape"
   },
   "materialize_odd_chunks|chunk_shape_change": {
-   "build_seconds": 0.045,
+   "build_seconds": 0.048,
    "zarr_json_bytes": 527,
-   "manifest_bytes": 1411,
+   "manifest_bytes": 1410,
    "native_chunk_bytes": 21462,
-   "store_bytes": 26126,
+   "store_bytes": 26111,
    "copied_fraction": 0.5,
    "one_array": true,
-   "read_seconds": 0.054,
+   "read_seconds": 0.045,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     16,
@@ -1370,12 +1364,72 @@
    "outcome": "equal"
   },
   "native_copy|chunk_shape_change": {
-   "build_seconds": 0.025,
+   "build_seconds": 0.02,
    "zarr_json_bytes": 493,
-   "manifest_bytes": 200,
+   "manifest_bytes": 191,
    "native_chunk_bytes": 40181,
-   "store_bytes": 43267,
+   "store_bytes": 43255,
    "copied_fraction": 1.0,
+   "one_array": true,
+   "read_seconds": 0.012,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    16,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
+  "separate_files|chunk_shape_change": {
+   "build_seconds": 0.043,
+   "one_array": false,
+   "read_seconds": 0.374,
+   "outcome": "equal"
+  },
+  "switch_position|fill_value_differs": {
+   "build_seconds": 0.02,
+   "zarr_json_bytes": 850,
+   "manifest_bytes": 321,
+   "native_chunk_bytes": 0,
+   "store_bytes": 3384,
+   "strategy": "switch",
+   "cases": 2,
+   "one_array": true,
+   "read_seconds": 0.013,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    16,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
+  "switch_key|fill_value_differs": {
+   "build_seconds": 0.022,
+   "zarr_json_bytes": 894,
+   "manifest_bytes": 405,
+   "native_chunk_bytes": 0,
+   "store_bytes": 3530,
+   "strategy": "switch",
+   "cases": 2,
+   "one_array": true,
+   "read_seconds": 0.014,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    16,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
+  "switch_case_id|fill_value_differs": {
+   "build_seconds": 0.023,
+   "zarr_json_bytes": 872,
+   "manifest_bytes": 391,
+   "native_chunk_bytes": 0,
+   "store_bytes": 3484,
+   "strategy": "switch",
+   "cases": 2,
    "one_array": true,
    "read_seconds": 0.015,
    "data_type": "float32",
@@ -1386,72 +1440,30 @@
    ],
    "outcome": "equal"
   },
-  "separate_files|chunk_shape_change": {
-   "build_seconds": 0.038,
-   "one_array": false,
-   "read_seconds": 0.385,
+  "switch_key_parameters|fill_value_differs": {
+   "build_seconds": 0.02,
+   "zarr_json_bytes": 913,
+   "manifest_bytes": 404,
+   "native_chunk_bytes": 0,
+   "store_bytes": 3532,
+   "strategy": "switch",
+   "cases": 2,
+   "one_array": true,
+   "read_seconds": 0.023,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    16,
+    24,
+    30
+   ],
    "outcome": "equal"
   },
-  "switch_position|fill_value_differs": {
-   "build_seconds": 0.02,
-   "zarr_json_bytes": 850,
+  "switch_index_prefix|fill_value_differs": {
+   "build_seconds": 0.016,
+   "zarr_json_bytes": 889,
    "manifest_bytes": 321,
    "native_chunk_bytes": 0,
-   "store_bytes": 3374,
-   "strategy": "switch",
-   "cases": 2,
-   "one_array": true,
-   "read_seconds": 0.017,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    16,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "switch_key|fill_value_differs": {
-   "build_seconds": 0.016,
-   "zarr_json_bytes": 894,
-   "manifest_bytes": 403,
-   "native_chunk_bytes": 0,
-   "store_bytes": 3521,
-   "strategy": "switch",
-   "cases": 2,
-   "one_array": true,
-   "read_seconds": 0.017,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    16,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "switch_case_id|fill_value_differs": {
-   "build_seconds": 0.02,
-   "zarr_json_bytes": 872,
-   "manifest_bytes": 394,
-   "native_chunk_bytes": 0,
-   "store_bytes": 3480,
-   "strategy": "switch",
-   "cases": 2,
-   "one_array": true,
-   "read_seconds": 0.017,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    16,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "switch_key_parameters|fill_value_differs": {
-   "build_seconds": 0.016,
-   "zarr_json_bytes": 913,
-   "manifest_bytes": 402,
-   "native_chunk_bytes": 0,
-   "store_bytes": 3527,
+   "store_bytes": 3414,
    "strategy": "switch",
    "cases": 2,
    "one_array": true,
@@ -1464,36 +1476,17 @@
    ],
    "outcome": "equal"
   },
-  "switch_index_prefix|fill_value_differs": {
-   "build_seconds": 0.015,
-   "zarr_json_bytes": 889,
-   "manifest_bytes": 321,
-   "native_chunk_bytes": 0,
-   "store_bytes": 3410,
-   "strategy": "switch",
-   "cases": 2,
-   "needs_store_wrapper": true,
-   "one_array": true,
-   "read_seconds": 0.015,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    16,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
   "switch_sidecar|fill_value_differs": {
-   "build_seconds": 0.019,
+   "build_seconds": 0.02,
    "zarr_json_bytes": 869,
-   "manifest_bytes": 475,
+   "manifest_bytes": 473,
    "native_chunk_bytes": 0,
-   "store_bytes": 3778,
+   "store_bytes": 3767,
    "strategy": "switch",
    "cases": 2,
    "extra_arrays": 1,
    "one_array": true,
-   "read_seconds": 0.031,
+   "read_seconds": 0.027,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     16,
@@ -1503,16 +1496,16 @@
    "outcome": "equal"
   },
   "switch_store_context|fill_value_differs": {
-   "build_seconds": 0.025,
+   "build_seconds": 0.023,
    "zarr_json_bytes": 836,
-   "manifest_bytes": 473,
+   "manifest_bytes": 474,
    "native_chunk_bytes": 0,
-   "store_bytes": 3754,
+   "store_bytes": 3757,
    "strategy": "switch",
    "cases": 2,
    "needs_store_wrapper": true,
    "one_array": true,
-   "read_seconds": 0.014,
+   "read_seconds": 0.017,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     16,
@@ -1526,14 +1519,14 @@
    "why": "a bytes-to-bytes codec cannot give a run of chunks its own fill value"
   },
   "array_concat|fill_value_differs": {
-   "build_seconds": 0.177,
+   "build_seconds": 0.031,
    "zarr_json_bytes": 515,
-   "manifest_bytes": 566,
+   "manifest_bytes": 565,
    "native_chunk_bytes": 0,
-   "store_bytes": 3889,
+   "store_bytes": 3894,
    "extra_arrays": 2,
    "one_array": true,
-   "read_seconds": 0.04,
+   "read_seconds": 0.044,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     16,
@@ -1543,14 +1536,14 @@
    "outcome": "equal"
   },
   "zarr_reference|fill_value_differs": {
-   "build_seconds": 0.029,
+   "build_seconds": 0.036,
    "zarr_json_bytes": 452,
-   "manifest_bytes": 749,
+   "manifest_bytes": 751,
    "native_chunk_bytes": 0,
-   "store_bytes": 4156,
+   "store_bytes": 4146,
    "extra_arrays": 2,
    "one_array": true,
-   "read_seconds": 0.023,
+   "read_seconds": 0.022,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     16,
@@ -1568,14 +1561,14 @@
    "why": "the files' fill values differ; a declared domain keeps one fill value"
   },
   "materialize_odd_chunks|fill_value_differs": {
-   "build_seconds": 0.021,
+   "build_seconds": 0.022,
    "zarr_json_bytes": 520,
-   "manifest_bytes": 433,
+   "manifest_bytes": 430,
    "native_chunk_bytes": 9949,
-   "store_bytes": 13291,
+   "store_bytes": 13288,
    "copied_fraction": 0.5,
    "one_array": true,
-   "read_seconds": 0.015,
+   "read_seconds": 0.02,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     16,
@@ -1585,14 +1578,14 @@
    "outcome": "equal"
   },
   "native_copy|fill_value_differs": {
-   "build_seconds": 0.016,
+   "build_seconds": 0.018,
    "zarr_json_bytes": 493,
-   "manifest_bytes": 201,
+   "manifest_bytes": 198,
    "native_chunk_bytes": 25454,
-   "store_bytes": 28539,
+   "store_bytes": 28529,
    "copied_fraction": 1.0,
    "one_array": true,
-   "read_seconds": 0.015,
+   "read_seconds": 0.019,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     16,
@@ -1602,21 +1595,21 @@
    "outcome": "equal"
   },
   "separate_files|fill_value_differs": {
-   "build_seconds": 0.05,
+   "build_seconds": 0.038,
    "one_array": false,
-   "read_seconds": 0.062,
+   "read_seconds": 0.064,
    "outcome": "equal"
   },
   "switch_position|variable_absent": {
-   "build_seconds": 0.025,
+   "build_seconds": 0.019,
    "zarr_json_bytes": 645,
-   "manifest_bytes": 373,
+   "manifest_bytes": 371,
    "native_chunk_bytes": 0,
-   "store_bytes": 3429,
+   "store_bytes": 3430,
    "strategy": "switch",
    "cases": 1,
    "one_array": true,
-   "read_seconds": 0.023,
+   "read_seconds": 0.021,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     12,
@@ -1626,15 +1619,15 @@
    "outcome": "equal"
   },
   "switch_key|variable_absent": {
-   "build_seconds": 0.027,
+   "build_seconds": 0.022,
    "zarr_json_bytes": 677,
-   "manifest_bytes": 422,
+   "manifest_bytes": 423,
    "native_chunk_bytes": 0,
-   "store_bytes": 3521,
+   "store_bytes": 3518,
    "strategy": "switch",
    "cases": 1,
    "one_array": true,
-   "read_seconds": 0.028,
+   "read_seconds": 0.022,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     12,
@@ -1644,15 +1637,15 @@
    "outcome": "equal"
   },
   "switch_case_id|variable_absent": {
-   "build_seconds": 0.026,
+   "build_seconds": 0.023,
    "zarr_json_bytes": 666,
-   "manifest_bytes": 408,
+   "manifest_bytes": 410,
    "native_chunk_bytes": 0,
-   "store_bytes": 3474,
+   "store_bytes": 3482,
    "strategy": "switch",
    "cases": 1,
    "one_array": true,
-   "read_seconds": 0.024,
+   "read_seconds": 0.025,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     12,
@@ -1664,13 +1657,13 @@
   "switch_key_parameters|variable_absent": {
    "build_seconds": 0.023,
    "zarr_json_bytes": 693,
-   "manifest_bytes": 421,
+   "manifest_bytes": 422,
    "native_chunk_bytes": 0,
    "store_bytes": 3517,
    "strategy": "switch",
    "cases": 1,
    "one_array": true,
-   "read_seconds": 0.025,
+   "read_seconds": 0.029,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     12,
@@ -1684,12 +1677,11 @@
    "zarr_json_bytes": 684,
    "manifest_bytes": 373,
    "native_chunk_bytes": 0,
-   "store_bytes": 3461,
+   "store_bytes": 3452,
    "strategy": "switch",
    "cases": 1,
-   "needs_store_wrapper": true,
    "one_array": true,
-   "read_seconds": 0.023,
+   "read_seconds": 0.034,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     12,
@@ -1699,16 +1691,16 @@
    "outcome": "equal"
   },
   "switch_sidecar|variable_absent": {
-   "build_seconds": 0.022,
+   "build_seconds": 0.028,
    "zarr_json_bytes": 676,
-   "manifest_bytes": 373,
+   "manifest_bytes": 372,
    "native_chunk_bytes": 0,
-   "store_bytes": 3626,
+   "store_bytes": 3615,
    "strategy": "switch",
    "cases": 1,
    "extra_arrays": 1,
    "one_array": true,
-   "read_seconds": 0.035,
+   "read_seconds": 0.034,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     12,
@@ -1718,16 +1710,16 @@
    "outcome": "equal"
   },
   "switch_store_context|variable_absent": {
-   "build_seconds": 0.026,
+   "build_seconds": 0.028,
    "zarr_json_bytes": 643,
    "manifest_bytes": 373,
    "native_chunk_bytes": 0,
-   "store_bytes": 3611,
+   "store_bytes": 3613,
    "strategy": "switch",
    "cases": 1,
    "needs_store_wrapper": true,
    "one_array": true,
-   "read_seconds": 0.024,
+   "read_seconds": 0.02,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     12,
@@ -1737,118 +1729,12 @@
    "outcome": "equal"
   },
   "conditional_codec|variable_absent": {
-   "build_seconds": 0.025,
+   "build_seconds": 0.023,
    "zarr_json_bytes": 591,
-   "manifest_bytes": 410,
+   "manifest_bytes": 406,
    "native_chunk_bytes": 0,
-   "store_bytes": 3350,
+   "store_bytes": 3340,
    "cases": 1,
-   "one_array": true,
-   "read_seconds": 0.024,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    12,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "array_concat|variable_absent": {
-   "build_seconds": 0.035,
-   "zarr_json_bytes": 550,
-   "manifest_bytes": 623,
-   "native_chunk_bytes": 0,
-   "store_bytes": 4026,
-   "extra_arrays": 3,
-   "one_array": true,
-   "read_seconds": 0.063,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    12,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "zarr_reference|variable_absent": {
-   "build_seconds": 0.044,
-   "zarr_json_bytes": 448,
-   "manifest_bytes": 818,
-   "native_chunk_bytes": 0,
-   "store_bytes": 4285,
-   "extra_arrays": 3,
-   "one_array": true,
-   "read_seconds": 0.029,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    12,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "grid_encoded_shapes|variable_absent": {
-   "build_seconds": 0.027,
-   "zarr_json_bytes": 517,
-   "manifest_bytes": 374,
-   "native_chunk_bytes": 0,
-   "store_bytes": 3279,
-   "emulated": "declared in an attribute, read by a patched grid",
-   "one_array": true,
-   "read_seconds": 0.023,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    12,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "domain_convention|variable_absent": {
-   "build_seconds": 0.022,
-   "zarr_json_bytes": 536,
-   "manifest_bytes": 371,
-   "native_chunk_bytes": 0,
-   "store_bytes": 3293,
-   "stored_shape": [
-    12,
-    24,
-    30
-   ],
-   "one_array": true,
-   "read_seconds": 0.021,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    12,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "materialize_odd_chunks|variable_absent": {
-   "build_seconds": 0.032,
-   "zarr_json_bytes": 517,
-   "manifest_bytes": 373,
-   "native_chunk_bytes": 0,
-   "store_bytes": 3268,
-   "copied_fraction": 0.0,
-   "one_array": true,
-   "read_seconds": 0.023,
-   "data_type": "float32",
-   "shape_seen_by_a_reader": [
-    12,
-    24,
-    30
-   ],
-   "outcome": "equal"
-  },
-  "native_copy|variable_absent": {
-   "build_seconds": 0.029,
-   "zarr_json_bytes": 493,
-   "manifest_bytes": 202,
-   "native_chunk_bytes": 20364,
-   "store_bytes": 23442,
-   "copied_fraction": 1.0,
    "one_array": true,
    "read_seconds": 0.025,
    "data_type": "float32",
@@ -1859,23 +1745,129 @@
    ],
    "outcome": "equal"
   },
+  "array_concat|variable_absent": {
+   "build_seconds": 0.038,
+   "zarr_json_bytes": 550,
+   "manifest_bytes": 628,
+   "native_chunk_bytes": 0,
+   "store_bytes": 4020,
+   "extra_arrays": 3,
+   "one_array": true,
+   "read_seconds": 0.064,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    12,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
+  "zarr_reference|variable_absent": {
+   "build_seconds": 0.049,
+   "zarr_json_bytes": 448,
+   "manifest_bytes": 830,
+   "native_chunk_bytes": 0,
+   "store_bytes": 4289,
+   "extra_arrays": 3,
+   "one_array": true,
+   "read_seconds": 0.03,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    12,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
+  "grid_encoded_shapes|variable_absent": {
+   "build_seconds": 0.021,
+   "zarr_json_bytes": 517,
+   "manifest_bytes": 371,
+   "native_chunk_bytes": 0,
+   "store_bytes": 3278,
+   "emulated": "declared in an attribute, read by a patched grid",
+   "one_array": true,
+   "read_seconds": 0.024,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    12,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
+  "domain_convention|variable_absent": {
+   "build_seconds": 0.027,
+   "zarr_json_bytes": 536,
+   "manifest_bytes": 371,
+   "native_chunk_bytes": 0,
+   "store_bytes": 3286,
+   "stored_shape": [
+    12,
+    24,
+    30
+   ],
+   "one_array": true,
+   "read_seconds": 0.022,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    12,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
+  "materialize_odd_chunks|variable_absent": {
+   "build_seconds": 0.024,
+   "zarr_json_bytes": 517,
+   "manifest_bytes": 372,
+   "native_chunk_bytes": 0,
+   "store_bytes": 3277,
+   "copied_fraction": 0.0,
+   "one_array": true,
+   "read_seconds": 0.022,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    12,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
+  "native_copy|variable_absent": {
+   "build_seconds": 0.021,
+   "zarr_json_bytes": 493,
+   "manifest_bytes": 199,
+   "native_chunk_bytes": 20364,
+   "store_bytes": 23445,
+   "copied_fraction": 1.0,
+   "one_array": true,
+   "read_seconds": 0.016,
+   "data_type": "float32",
+   "shape_seen_by_a_reader": [
+    12,
+    24,
+    30
+   ],
+   "outcome": "equal"
+  },
   "separate_files|variable_absent": {
-   "build_seconds": 0.051,
+   "build_seconds": 0.059,
    "one_array": false,
-   "read_seconds": 0.162,
+   "read_seconds": 0.151,
    "outcome": "differs",
    "why": "differs from the files in: everything, window across seam 1, window across seam 2, cell 1, one row along the joined axis"
   },
   "switch_position|layouts_alternate": {
-   "build_seconds": 0.071,
+   "build_seconds": 0.072,
    "zarr_json_bytes": 3065,
-   "manifest_bytes": 596,
+   "manifest_bytes": 595,
    "native_chunk_bytes": 0,
-   "store_bytes": 3815,
+   "store_bytes": 3823,
    "strategy": "switch",
    "cases": 12,
    "one_array": true,
-   "read_seconds": 0.056,
+   "read_seconds": 0.051,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     24,
@@ -1885,15 +1877,15 @@
    "outcome": "equal"
   },
   "switch_key|layouts_alternate": {
-   "build_seconds": 0.066,
+   "build_seconds": 0.064,
    "zarr_json_bytes": 939,
    "manifest_bytes": 710,
    "native_chunk_bytes": 0,
-   "store_bytes": 3972,
+   "store_bytes": 3974,
    "strategy": "switch",
    "cases": 2,
    "one_array": true,
-   "read_seconds": 0.048,
+   "read_seconds": 0.055,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     24,
@@ -1903,7 +1895,7 @@
    "outcome": "equal"
   },
   "switch_case_id|layouts_alternate": {
-   "build_seconds": 0.071,
+   "build_seconds": 0.068,
    "zarr_json_bytes": 917,
    "manifest_bytes": 705,
    "native_chunk_bytes": 0,
@@ -1911,7 +1903,7 @@
    "strategy": "switch",
    "cases": 2,
    "one_array": true,
-   "read_seconds": 0.052,
+   "read_seconds": 0.051,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     24,
@@ -1921,15 +1913,15 @@
    "outcome": "equal"
   },
   "switch_key_parameters|layouts_alternate": {
-   "build_seconds": 0.069,
+   "build_seconds": 0.073,
    "zarr_json_bytes": 958,
-   "manifest_bytes": 710,
+   "manifest_bytes": 711,
    "native_chunk_bytes": 0,
-   "store_bytes": 3979,
+   "store_bytes": 3982,
    "strategy": "switch",
    "cases": 2,
    "one_array": true,
-   "read_seconds": 0.066,
+   "read_seconds": 0.061,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     24,
@@ -1939,16 +1931,15 @@
    "outcome": "equal"
   },
   "switch_index_prefix|layouts_alternate": {
-   "build_seconds": 0.075,
+   "build_seconds": 0.064,
    "zarr_json_bytes": 3104,
    "manifest_bytes": 595,
    "native_chunk_bytes": 0,
    "store_bytes": 3844,
    "strategy": "switch",
    "cases": 12,
-   "needs_store_wrapper": true,
    "one_array": true,
-   "read_seconds": 0.057,
+   "read_seconds": 0.064,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     24,
@@ -1958,16 +1949,16 @@
    "outcome": "equal"
   },
   "switch_sidecar|layouts_alternate": {
-   "build_seconds": 0.079,
+   "build_seconds": 0.072,
    "zarr_json_bytes": 914,
-   "manifest_bytes": 751,
+   "manifest_bytes": 748,
    "native_chunk_bytes": 0,
-   "store_bytes": 4169,
+   "store_bytes": 4175,
    "strategy": "switch",
    "cases": 2,
    "extra_arrays": 1,
    "one_array": true,
-   "read_seconds": 0.061,
+   "read_seconds": 0.058,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     24,
@@ -1979,14 +1970,14 @@
   "switch_store_context|layouts_alternate": {
    "build_seconds": 0.082,
    "zarr_json_bytes": 881,
-   "manifest_bytes": 751,
+   "manifest_bytes": 752,
    "native_chunk_bytes": 0,
-   "store_bytes": 4178,
+   "store_bytes": 4172,
    "strategy": "switch",
    "cases": 2,
    "needs_store_wrapper": true,
    "one_array": true,
-   "read_seconds": 0.048,
+   "read_seconds": 0.05,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     24,
@@ -1996,14 +1987,14 @@
    "outcome": "equal"
   },
   "conditional_codec|layouts_alternate": {
-   "build_seconds": 0.069,
+   "build_seconds": 0.066,
    "zarr_json_bytes": 659,
-   "manifest_bytes": 711,
+   "manifest_bytes": 710,
    "native_chunk_bytes": 0,
-   "store_bytes": 3774,
+   "store_bytes": 3768,
    "cases": 2,
    "one_array": true,
-   "read_seconds": 0.052,
+   "read_seconds": 0.05,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     24,
@@ -2013,14 +2004,14 @@
    "outcome": "equal"
   },
   "array_concat|layouts_alternate": {
-   "build_seconds": 0.135,
+   "build_seconds": 0.12,
    "zarr_json_bytes": 903,
-   "manifest_bytes": 3236,
+   "manifest_bytes": 3237,
    "native_chunk_bytes": 0,
    "store_bytes": 7719,
    "extra_arrays": 12,
    "one_array": true,
-   "read_seconds": 0.112,
+   "read_seconds": 0.102,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     24,
@@ -2030,14 +2021,14 @@
    "outcome": "equal"
   },
   "zarr_reference|layouts_alternate": {
-   "build_seconds": 0.16,
+   "build_seconds": 0.14,
    "zarr_json_bytes": 449,
-   "manifest_bytes": 3537,
+   "manifest_bytes": 3534,
    "native_chunk_bytes": 0,
    "store_bytes": 8123,
    "extra_arrays": 12,
    "one_array": true,
-   "read_seconds": 0.067,
+   "read_seconds": 0.065,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     24,
@@ -2055,14 +2046,14 @@
    "why": "the files' codec chains differ; a declared domain keeps one chain for the array"
   },
   "materialize_odd_chunks|layouts_alternate": {
-   "build_seconds": 0.085,
+   "build_seconds": 0.082,
    "zarr_json_bytes": 517,
-   "manifest_bytes": 741,
+   "manifest_bytes": 737,
    "native_chunk_bytes": 30871,
-   "store_bytes": 34624,
+   "store_bytes": 34619,
    "copied_fraction": 0.5,
    "one_array": true,
-   "read_seconds": 0.042,
+   "read_seconds": 0.035,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     24,
@@ -2072,14 +2063,14 @@
    "outcome": "equal"
   },
   "native_copy|layouts_alternate": {
-   "build_seconds": 0.065,
+   "build_seconds": 0.068,
    "zarr_json_bytes": 493,
-   "manifest_bytes": 223,
+   "manifest_bytes": 230,
    "native_chunk_bytes": 60777,
-   "store_bytes": 63889,
+   "store_bytes": 63903,
    "copied_fraction": 1.0,
    "one_array": true,
-   "read_seconds": 0.023,
+   "read_seconds": 0.021,
    "data_type": "float32",
    "shape_seen_by_a_reader": [
     24,
@@ -2089,21 +2080,21 @@
    "outcome": "equal"
   },
   "separate_files|layouts_alternate": {
-   "build_seconds": 0.217,
+   "build_seconds": 0.222,
    "one_array": false,
-   "read_seconds": 0.236,
+   "read_seconds": 0.255,
    "outcome": "equal"
   },
   "switch_position|packing_per_chunk": {
-   "build_seconds": 0.36,
+   "build_seconds": 0.373,
    "zarr_json_bytes": 22848,
-   "manifest_bytes": 897,
+   "manifest_bytes": 895,
    "native_chunk_bytes": 0,
-   "store_bytes": 5236,
+   "store_bytes": 5240,
    "strategy": "switch",
    "cases": 60,
    "one_array": true,
-   "read_seconds": 0.136,
+   "read_seconds": 0.14,
    "data_type": "float64",
    "shape_seen_by_a_reader": [
     60,
@@ -2113,15 +2104,15 @@
    "outcome": "equal"
   },
   "switch_key|packing_per_chunk": {
-   "build_seconds": 0.373,
+   "build_seconds": 0.391,
    "zarr_json_bytes": 23530,
-   "manifest_bytes": 1602,
+   "manifest_bytes": 1603,
    "native_chunk_bytes": 0,
-   "store_bytes": 6704,
+   "store_bytes": 6714,
    "strategy": "switch",
    "cases": 60,
    "one_array": true,
-   "read_seconds": 0.108,
+   "read_seconds": 0.11,
    "data_type": "float64",
    "shape_seen_by_a_reader": [
     60,
@@ -2131,15 +2122,15 @@
    "outcome": "equal"
   },
   "switch_case_id|packing_per_chunk": {
-   "build_seconds": 0.357,
+   "build_seconds": 0.373,
    "zarr_json_bytes": 22870,
-   "manifest_bytes": 1110,
+   "manifest_bytes": 1113,
    "native_chunk_bytes": 0,
-   "store_bytes": 5683,
+   "store_bytes": 5699,
    "strategy": "switch",
    "cases": 60,
    "one_array": true,
-   "read_seconds": 0.109,
+   "read_seconds": 0.141,
    "data_type": "float64",
    "shape_seen_by_a_reader": [
     60,
@@ -2149,11 +2140,11 @@
    "outcome": "equal"
   },
   "switch_key_parameters|packing_per_chunk": {
-   "build_seconds": 0.385,
+   "build_seconds": 0.372,
    "zarr_json_bytes": 917,
-   "manifest_bytes": 1566,
+   "manifest_bytes": 1569,
    "native_chunk_bytes": 0,
-   "store_bytes": 5085,
+   "store_bytes": 5073,
    "strategy": "switch",
    "cases": 1,
    "one_array": true,
@@ -2167,16 +2158,15 @@
    "outcome": "equal"
   },
   "switch_index_prefix|packing_per_chunk": {
-   "build_seconds": 0.355,
+   "build_seconds": 0.353,
    "zarr_json_bytes": 22887,
    "manifest_bytes": 894,
    "native_chunk_bytes": 0,
-   "store_bytes": 5257,
+   "store_bytes": 5266,
    "strategy": "switch",
    "cases": 60,
-   "needs_store_wrapper": true,
    "one_array": true,
-   "read_seconds": 0.127,
+   "read_seconds": 0.134,
    "data_type": "float64",
    "shape_seen_by_a_reader": [
     60,
@@ -2186,16 +2176,16 @@
    "outcome": "equal"
   },
   "switch_sidecar|packing_per_chunk": {
-   "build_seconds": 0.36,
+   "build_seconds": 0.333,
    "zarr_json_bytes": 22113,
-   "manifest_bytes": 1139,
+   "manifest_bytes": 1138,
    "native_chunk_bytes": 0,
-   "store_bytes": 5712,
+   "store_bytes": 5711,
    "strategy": "switch",
    "cases": 60,
    "extra_arrays": 1,
    "one_array": true,
-   "read_seconds": 0.126,
+   "read_seconds": 0.124,
    "data_type": "float64",
    "shape_seen_by_a_reader": [
     60,
@@ -2205,16 +2195,16 @@
    "outcome": "equal"
   },
   "switch_store_context|packing_per_chunk": {
-   "build_seconds": 0.363,
+   "build_seconds": 0.341,
    "zarr_json_bytes": 867,
-   "manifest_bytes": 1531,
+   "manifest_bytes": 1533,
    "native_chunk_bytes": 0,
-   "store_bytes": 5357,
+   "store_bytes": 5347,
    "strategy": "switch",
    "cases": 1,
    "needs_store_wrapper": true,
    "one_array": true,
-   "read_seconds": 0.125,
+   "read_seconds": 0.128,
    "data_type": "float64",
    "shape_seen_by_a_reader": [
     60,
@@ -2228,14 +2218,14 @@
    "why": "the files differ before the bytes stage (data type or packing), which a bytes-to-bytes codec cannot vary"
   },
   "array_concat|packing_per_chunk": {
-   "build_seconds": 0.673,
+   "build_seconds": 0.647,
    "zarr_json_bytes": 2825,
-   "manifest_bytes": 14510,
+   "manifest_bytes": 14470,
    "native_chunk_bytes": 0,
-   "store_bytes": 24865,
+   "store_bytes": 24806,
    "extra_arrays": 60,
    "one_array": true,
-   "read_seconds": 0.275,
+   "read_seconds": 0.269,
    "data_type": "float64",
    "shape_seen_by_a_reader": [
     60,
@@ -2245,14 +2235,14 @@
    "outcome": "equal"
   },
   "zarr_reference|packing_per_chunk": {
-   "build_seconds": 0.685,
+   "build_seconds": 0.649,
    "zarr_json_bytes": 451,
-   "manifest_bytes": 15151,
+   "manifest_bytes": 15067,
    "native_chunk_bytes": 0,
-   "store_bytes": 25798,
+   "store_bytes": 25702,
    "extra_arrays": 60,
    "one_array": true,
-   "read_seconds": 0.217,
+   "read_seconds": 0.229,
    "data_type": "float64",
    "shape_seen_by_a_reader": [
     60,
@@ -2274,14 +2264,14 @@
    "why": "every file packs or narrows its values in its own way, so no file's chain can hold the others' values: all would be copied"
   },
   "native_copy|packing_per_chunk": {
-   "build_seconds": 0.345,
+   "build_seconds": 0.314,
    "zarr_json_bytes": 493,
-   "manifest_bytes": 363,
+   "manifest_bytes": 361,
    "native_chunk_bytes": 135578,
-   "store_bytes": 138872,
+   "store_bytes": 138873,
    "copied_fraction": 1.0,
    "one_array": true,
-   "read_seconds": 0.028,
+   "read_seconds": 0.026,
    "data_type": "float64",
    "shape_seen_by_a_reader": [
     60,
@@ -2291,9 +2281,9 @@
    "outcome": "equal"
   },
   "separate_files|packing_per_chunk": {
-   "build_seconds": 1.141,
+   "build_seconds": 1.046,
    "one_array": false,
-   "read_seconds": 0.475,
+   "read_seconds": 0.536,
    "outcome": "equal"
   }
  }

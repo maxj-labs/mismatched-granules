@@ -200,8 +200,9 @@ def switch_index_prefix(case: Case, pieces: list[ManifestArray]) -> Built:
     _create(session.store, "v", plan, SwitchXCodec(config_json=json.dumps(config)))
     _refs(session.store, "v", plan.refs)
     session.commit("x")
-    return _finish("switch_index_prefix", case, repo, path, wrap=lambda s: IndexPrefixStore(s, ("v",)),
-                   strategy=plan.strategy, cases=len(plan.cases), needs_store_wrapper=True)
+    # Icechunk itself prepends the index (the branch does so for arrays whose metadata
+    # names this mode); xcodecs.IndexPrefixStore is the Python stand-in used before that.
+    return _finish("switch_index_prefix", case, repo, path, strategy=plan.strategy, cases=len(plan.cases))
 
 
 def _write_sidecar(store: Any, plan: JoinedArrayPlan) -> tuple[list[dict], bool]:

@@ -12,6 +12,7 @@ planners and writers see what they would see for that many one-chunk granules.
 from __future__ import annotations
 
 import json
+import os
 import sys
 import time
 
@@ -84,7 +85,7 @@ def measure(kind: str, n: int) -> dict:
     rng = np.random.default_rng(3)
     picks = rng.integers(0, n, 200)
     out: dict = {}
-    for arm in ARMS:
+    for arm in [a for a in ARMS if a in os.environ.get("ONLY_ARMS", a)]:
         rec: dict = {}
         out[arm] = rec
         t0 = time.perf_counter()
@@ -121,5 +122,5 @@ if __name__ == "__main__":
     report = json.loads(out_path.read_text()) if out_path.exists() else {}
     for n in sizes:
         for kind in ("alternate", "packed"):
-            report[f"{kind}|{n}"] = measure(kind, n)
+            report.setdefault(f"{kind}|{n}", {}).update(measure(kind, n))
             out_path.write_text(json.dumps(report, indent=1))

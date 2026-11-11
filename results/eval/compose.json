@@ -65,7 +65,7 @@
   },
   "switch_position|chunk_shape_change": {
    "outcome": "needs its own metadata rewritten",
-   "why": "error: Error -5 while decompressing data: incomplete or truncated stream"
+   "why": "ValueError: cannot reshape array of size 320 into shape (1,12,15)"
   },
   "switch_key|chunk_shape_change": {
    "outcome": "composes as it stands"

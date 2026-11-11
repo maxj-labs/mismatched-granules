@@ -107,7 +107,7 @@ def render(g: dict) -> str:
   <div class="prose"><p>The issue lists what a solution should do: fail safely for readers that do not understand it, compose with operations on the manifest, and work without Icechunk. Each was tested where it could be.</p></div>
   {g["requirements_table"]()}
   <div class="prose">
-    <p><b>Readers without the feature.</b> Every store from the matrix was opened by released zarr-python 3.4.2. All the codec options are refused with <code>UnknownCodecError</code>. The declared domain is the exception: an ordinary reader sees the padding as data and returns an array of the wrong shape with no error. The grid option is refused only by an unrelated reshape error. A reader that has the codecs but released Icechunk refuses every store whose references carry a prefix or several ranges (<code>FormatError</code>), and reads the rest correctly.</p>
+    <p><b>Readers without the feature.</b> Every store from the matrix was opened by released zarr-python 3.4.2. All the codec options are refused with <code>UnknownCodecError</code>. The declared domain is the exception: an ordinary reader sees the padding as data and returns an array of the wrong shape with no error. The grid option is refused only by an unrelated reshape error. A reader that has the codecs but released Icechunk refuses every store whose references carry a prefix or several ranges (<code>FormatError</code>), and reads the rest correctly. One refusal is luck: with the index-prepending store, released Icechunk hands the codec chunk bytes with no index in front, and the codec fails only because the bytes it takes for an index point outside its table.</p>
     <p><b>Composition.</b> The first chunks of each array were dropped the way a manifest tool would: shape and chunk grid shortened, references moved up, the codec's configuration untouched. Options that find the case from something stored with the chunk still read correctly. Options that find it from the chunk's position do not, and in the alternating-layout and packing cases they returned wrong values without an error. A store that kept the context with each reference would carry it along, which is how that row is emulated.</p>
     <p><b>Without Icechunk.</b> {g["kerchunk_sentence"]()} Concatenation and the side-array option need only plain references. Key selection was also run on refkv as released, which has such references.</p>
     <p class="note">&dagger; by inspection of how the option stores its data, not by a run.</p>
@@ -159,7 +159,7 @@ def render(g: dict) -> str:
   <div class="two">
     <div>
       <ul>
-        <li>Three options are emulations, as marked in the first table: the store that prepends an index, the store context call, and encoded chunk shapes in the grid. An implementation inside Icechunk or zarr-python could behave differently, especially on speed.</li>
+        <li>Two options are emulations, as marked in the first table: the store context call, and encoded chunk shapes in the grid. An implementation inside Icechunk or zarr-python could behave differently, especially on speed. The store that prepends an index was first emulated and then built into the Icechunk branch; its results did not change.</li>
         <li>The <span class="mono">conditional</span> codec and the key + parameters codec are my implementations of others' designs. refkv itself was run only on Daymet Puerto Rico.</li>
         <li>Only zarr-python reads any of these arrays.</li>
       </ul>

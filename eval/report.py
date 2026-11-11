@@ -50,7 +50,7 @@ SOURCE = {
     "switch_key": ("zarr-specs#399: inline bytes in front of the chunk, read by the codec (d-v-b, jbms)", "Built: all three branches"),
     "switch_case_id": ("NASA-IMPACT/veda-odd#498: a per-chunk variant in the manifest", "Built: the key mode with 1-byte keys"),
     "switch_key_parameters": ("refkv PR #73 (d-v-b): cases as templates, numbers carried per chunk", "Built here on Icechunk as an evaluation codec; also run as released on refkv"),
-    "switch_index_prefix": ("zarr-specs#399 design 2.1 as first written; veda-odd#498 step 3", "Emulated: a Python store wrapper prepends the index"),
+    "switch_index_prefix": ("zarr-specs#399 design 2.1 as first written; veda-odd#498 step 3", "Built: the Icechunk branch prepends the index for arrays that ask; the codec is an evaluation codec"),
     "switch_sidecar": ("zarr-specs#399 design 2.2, <span class=\"mono\">ChunkContextFetcherCodec</span>", "Built as an evaluation codec that reads a second array"),
     "switch_store_context": ("zarr-specs#399 design 3, &ldquo;Zarr v3.2&rdquo;: <span class=\"mono\">Store.get_context</span>", "Emulated: a store wrapper answers the call; the codec asks it directly, not through <span class=\"mono\">ArraySpec</span>"),
     "conditional_codec": ("zarr-extensions <span class=\"mono\">conditional</span> (mkitti); HDF5's per-chunk filter mask", "Built: my reading of the merged spec, 1-byte header"),
@@ -149,7 +149,7 @@ def unaware_summary(arm: str) -> tuple[str, str]:
             out.append("reads correctly")
         else:
             out.append(f'reads {outcomes.count("reads correctly")}, <span class="yes">refuses</span> {outcomes.count("refuses")}')
-    if arm in ("switch_index_prefix", "switch_store_context"):
+    if arm == "switch_store_context":
         out[1] = '<span class="sub0">not a stored format: it needs new behaviour from the store</span>'
     return out[0], out[1]
 
