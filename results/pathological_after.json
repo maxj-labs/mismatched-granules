@@ -1,0 +1,133 @@
+{
+ "chunks": 20000,
+ "chunk_shape": [
+  1,
+  32,
+  32
+ ],
+ "runs": [
+  {
+   "cases": 1,
+   "write_seconds_position": 8.1,
+   "arms": {
+    "plain": {
+     "zarr_json_bytes": 387,
+     "open_seconds": 0.0008,
+     "read_all_seconds": 1.07,
+     "microseconds_per_chunk": 53.3,
+     "one_chunk_read_milliseconds": 0.34,
+     "equal": true
+    },
+    "position": {
+     "zarr_json_bytes": 602,
+     "open_seconds": 0.0008,
+     "read_all_seconds": 5.06,
+     "microseconds_per_chunk": 253.2,
+     "one_chunk_read_milliseconds": 0.74,
+     "equal": true
+    },
+    "key": {
+     "zarr_json_bytes": 634,
+     "open_seconds": 0.0009,
+     "read_all_seconds": 5.35,
+     "microseconds_per_chunk": 267.4,
+     "one_chunk_read_milliseconds": 0.71,
+     "store_reads_per_chunk_read": 1.0,
+     "equal": true
+    }
+   }
+  },
+  {
+   "cases": 2,
+   "write_seconds_position": 8.17,
+   "arms": {
+    "position": {
+     "zarr_json_bytes": 4160390,
+     "open_seconds": 0.1576,
+     "read_all_seconds": 5.11,
+     "microseconds_per_chunk": 255.5,
+     "one_chunk_read_milliseconds": 0.73,
+     "equal": true
+    },
+    "key": {
+     "zarr_json_bytes": 856,
+     "open_seconds": 0.0009,
+     "read_all_seconds": 5.43,
+     "microseconds_per_chunk": 271.4,
+     "one_chunk_read_milliseconds": 0.72,
+     "store_reads_per_chunk_read": 1.0,
+     "equal": true
+    }
+   }
+  },
+  {
+   "cases": 100,
+   "write_seconds_position": 8.02,
+   "arms": {
+    "position": {
+     "zarr_json_bytes": 4160390,
+     "open_seconds": 0.2769,
+     "read_all_seconds": 5.14,
+     "microseconds_per_chunk": 256.8,
+     "one_chunk_read_milliseconds": 0.74,
+     "equal": true
+    },
+    "key": {
+     "zarr_json_bytes": 22612,
+     "open_seconds": 0.0017,
+     "read_all_seconds": 5.48,
+     "microseconds_per_chunk": 273.8,
+     "one_chunk_read_milliseconds": 0.74,
+     "store_reads_per_chunk_read": 1.0,
+     "equal": true
+    }
+   }
+  },
+  {
+   "cases": 2000,
+   "write_seconds_position": 8.39,
+   "arms": {
+    "position": {
+     "zarr_json_bytes": 4160390,
+     "open_seconds": 0.1583,
+     "read_all_seconds": 5.27,
+     "microseconds_per_chunk": 263.5,
+     "one_chunk_read_milliseconds": 0.75,
+     "equal": true
+    },
+    "key": {
+     "zarr_json_bytes": 444412,
+     "open_seconds": 0.0167,
+     "read_all_seconds": 5.56,
+     "microseconds_per_chunk": 278.1,
+     "one_chunk_read_milliseconds": 0.75,
+     "store_reads_per_chunk_read": 1.0,
+     "equal": true
+    }
+   }
+  },
+  {
+   "cases": 20000,
+   "write_seconds_position": 9.91,
+   "arms": {
+    "position": {
+     "zarr_json_bytes": 4171414,
+     "open_seconds": 0.1923,
+     "read_all_seconds": 7.75,
+     "microseconds_per_chunk": 387.5,
+     "one_chunk_read_milliseconds": 0.81,
+     "equal": true
+    },
+    "key": {
+     "zarr_json_bytes": 4451436,
+     "open_seconds": 0.1687,
+     "read_all_seconds": 7.56,
+     "microseconds_per_chunk": 378.0,
+     "one_chunk_read_milliseconds": 0.81,
+     "store_reads_per_chunk_read": 1.0,
+     "equal": true
+    }
+   }
+  }
+ ]
+}

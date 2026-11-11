@@ -3,7 +3,7 @@
   "collection": "TEMPO_NO2_L2",
   "granules": 4,
   "variables": 46,
-  "seconds": 2.5,
+  "seconds": 2.8,
   "outcomes": {
    "equal to files": 46
   },
@@ -12,6 +12,7 @@
   "strategies": {
    "switch": 46
   },
+  "joined_despite_absent_granules": 0,
   "variables_with_unstored_chunks": 0,
   "variables_given_their_own_fill": 0,
   "variables_with_several_data_types": 0,
@@ -20,6 +21,8 @@
  "rows": [
   {
    "variable": "geolocation/latitude",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -36,6 +39,8 @@
   },
   {
    "variable": "geolocation/latitude_bounds",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -52,6 +57,8 @@
   },
   {
    "variable": "geolocation/longitude",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -68,6 +75,8 @@
   },
   {
    "variable": "geolocation/longitude_bounds",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -84,6 +93,8 @@
   },
   {
    "variable": "geolocation/relative_azimuth_angle",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -100,6 +111,8 @@
   },
   {
    "variable": "geolocation/solar_azimuth_angle",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -116,6 +129,8 @@
   },
   {
    "variable": "geolocation/solar_zenith_angle",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -132,6 +147,8 @@
   },
   {
    "variable": "geolocation/time",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -148,6 +165,8 @@
   },
   {
    "variable": "geolocation/viewing_azimuth_angle",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -164,6 +183,8 @@
   },
   {
    "variable": "geolocation/viewing_zenith_angle",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -180,6 +201,8 @@
   },
   {
    "variable": "mirror_step",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -196,6 +219,8 @@
   },
   {
    "variable": "product/main_data_quality_flag",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -212,6 +237,8 @@
   },
   {
    "variable": "product/vertical_column_stratosphere",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -228,6 +255,8 @@
   },
   {
    "variable": "product/vertical_column_troposphere",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -244,6 +273,8 @@
   },
   {
    "variable": "product/vertical_column_troposphere_uncertainty",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -260,6 +291,8 @@
   },
   {
    "variable": "qa_statistics/fit_convergence_flag",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -276,6 +309,8 @@
   },
   {
    "variable": "qa_statistics/fit_rms_residual",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -292,6 +327,8 @@
   },
   {
    "variable": "support_data/albedo",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -308,6 +345,8 @@
   },
   {
    "variable": "support_data/amf_cloud_fraction",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -324,6 +363,8 @@
   },
   {
    "variable": "support_data/amf_cloud_pressure",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -340,6 +381,8 @@
   },
   {
    "variable": "support_data/amf_diagnostic_flag",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -356,6 +399,8 @@
   },
   {
    "variable": "support_data/amf_stratosphere",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -372,6 +417,8 @@
   },
   {
    "variable": "support_data/amf_stratosphere_clear_sky",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -388,6 +435,8 @@
   },
   {
    "variable": "support_data/amf_total",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -404,6 +453,8 @@
   },
   {
    "variable": "support_data/amf_total_clear_sky",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -420,6 +471,8 @@
   },
   {
    "variable": "support_data/amf_troposphere",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -436,6 +489,8 @@
   },
   {
    "variable": "support_data/amf_troposphere_clear_sky",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -452,6 +507,8 @@
   },
   {
    "variable": "support_data/destriping_correction",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -468,6 +525,8 @@
   },
   {
    "variable": "support_data/eff_cloud_fraction",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -484,6 +543,8 @@
   },
   {
    "variable": "support_data/fitted_slant_column",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -500,6 +561,8 @@
   },
   {
    "variable": "support_data/fitted_slant_column_uncertainty",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -516,6 +579,8 @@
   },
   {
    "variable": "support_data/fitted_slant_column_uncorrected",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -532,6 +597,8 @@
   },
   {
    "variable": "support_data/gas_profile",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 1,
    "codec_chains": 1,
    "data_types": [
@@ -548,6 +615,8 @@
   },
   {
    "variable": "support_data/ground_pixel_quality_flag",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -564,6 +633,8 @@
   },
   {
    "variable": "support_data/pbl_height",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -580,6 +651,8 @@
   },
   {
    "variable": "support_data/scattering_weights",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 1,
    "codec_chains": 1,
    "data_types": [
@@ -596,6 +669,8 @@
   },
   {
    "variable": "support_data/scattering_weights_clear_sky",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 1,
    "codec_chains": 1,
    "data_types": [
@@ -612,6 +687,8 @@
   },
   {
    "variable": "support_data/snow_ice_fraction",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -628,6 +705,8 @@
   },
   {
    "variable": "support_data/surface_pressure",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -644,6 +723,8 @@
   },
   {
    "variable": "support_data/temperature_profile",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 1,
    "codec_chains": 1,
    "data_types": [
@@ -660,6 +741,8 @@
   },
   {
    "variable": "support_data/terrain_height",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -676,6 +759,8 @@
   },
   {
    "variable": "support_data/tropopause_pressure",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -692,6 +777,8 @@
   },
   {
    "variable": "support_data/vertical_column_total",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -708,6 +795,8 @@
   },
   {
    "variable": "support_data/vertical_column_total_uncertainty",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -724,6 +813,8 @@
   },
   {
    "variable": "support_data/wind_speed",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -740,6 +831,8 @@
   },
   {
    "variable": "xtrack",
+   "present_in": "4 of 4",
+   "absent_handled_as": null,
    "chunk_shapes": 1,
    "codec_chains": 1,
    "data_types": [

@@ -18,7 +18,7 @@
    ],
    "read": "6-day series at one cell",
    "equal_to_files": true,
-   "seconds": 0.061,
+   "seconds": 0.054,
    "zarr_reads": 15,
    "source_requests": 6,
    "source_megabytes": 1.18
@@ -37,7 +37,7 @@
    ],
    "read": "6 days x 200x200 cells",
    "equal_to_files": true,
-   "seconds": 0.085,
+   "seconds": 0.093,
    "zarr_reads": 69,
    "source_requests": 60,
    "source_megabytes": 2.17
@@ -56,7 +56,7 @@
    ],
    "read": "one whole day",
    "equal_to_files": true,
-   "seconds": 0.28,
+   "seconds": 0.288,
    "zarr_reads": 4,
    "source_requests": 81,
    "source_megabytes": 12.54
@@ -75,7 +75,7 @@
    ],
    "read": "6-day series at one cell",
    "equal_to_files": true,
-   "seconds": 0.068,
+   "seconds": 0.077,
    "zarr_reads": 11,
    "source_requests": 6,
    "source_megabytes": 1.18
@@ -94,7 +94,7 @@
    ],
    "read": "6 days x 200x200 cells",
    "equal_to_files": true,
-   "seconds": 0.235,
+   "seconds": 0.198,
    "zarr_reads": 65,
    "source_requests": 60,
    "source_megabytes": 2.17
@@ -113,7 +113,7 @@
    ],
    "read": "one whole day",
    "equal_to_files": true,
-   "seconds": 0.312,
+   "seconds": 0.29,
    "zarr_reads": 85,
    "source_requests": 81,
    "source_megabytes": 12.54

@@ -3,7 +3,7 @@
   "collection": "MODISA_L3m_CHL",
   "granules": 6,
   "variables": 4,
-  "seconds": 9.4,
+  "seconds": 10.2,
   "outcomes": {
    "equal to files": 4
   },
@@ -13,6 +13,7 @@
    "shards": 1,
    "switch": 3
   },
+  "joined_despite_absent_granules": 0,
   "variables_with_unstored_chunks": 0,
   "variables_given_their_own_fill": 0,
   "variables_with_several_data_types": 0,
@@ -21,6 +22,8 @@
  "rows": [
   {
    "variable": "chlor_a",
+   "present_in": "6 of 6",
+   "absent_handled_as": null,
    "chunk_shapes": 2,
    "codec_chains": 1,
    "data_types": [
@@ -37,6 +40,8 @@
   },
   {
    "variable": "lat",
+   "present_in": "6 of 6",
+   "absent_handled_as": null,
    "chunk_shapes": 1,
    "codec_chains": 1,
    "data_types": [
@@ -53,6 +58,8 @@
   },
   {
    "variable": "lon",
+   "present_in": "6 of 6",
+   "absent_handled_as": null,
    "chunk_shapes": 1,
    "codec_chains": 1,
    "data_types": [
@@ -69,6 +76,8 @@
   },
   {
    "variable": "palette",
+   "present_in": "6 of 6",
+   "absent_handled_as": null,
    "chunk_shapes": 1,
    "codec_chains": 1,
    "data_types": [
