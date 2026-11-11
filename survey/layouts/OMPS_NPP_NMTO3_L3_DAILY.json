@@ -1,0 +1,152 @@
+{
+ "short_name": "OMPS_NPP_NMTO3_L3_DAILY",
+ "hits": 5126,
+ "samples": [
+  {
+   "granule": "OMPS_NPP_NMTO3_L3_DAILY.2:OMPS-NPP_NMTO3-L3-DAILY_v2.1_2012m0126_2017m0227t060834.h5",
+   "url": "https://data.gesdisc.earthdata.nasa.gov/data/SNPP_OMPS_Level3/OMPS_NPP_NMTO3_L3_DAILY.2/2012/OMPS-NPP_NMTO3-L3-DAILY_v2.1_2012m0126_2017m0227t060834.h5",
+   "start": "2012-01-25",
+   "size_mb": 2.5,
+   "n_datasets": 8,
+   "layouts": {
+    "ColumnAmountO3": {
+     "shape": [
+      180,
+      360
+     ],
+     "chunks": null,
+     "dtype": "float32",
+     "filters": [],
+     "nbytes": 259200
+    }
+   },
+   "requests": 2,
+   "mb_read": 1.5
+  },
+  {
+   "granule": "OMPS_NPP_NMTO3_L3_DAILY.2:OMPS-NPP_NMTO3-L3-DAILY_v2.1_2015m0521_2017m0227t083431.h5",
+   "url": "https://data.gesdisc.earthdata.nasa.gov/data/SNPP_OMPS_Level3/OMPS_NPP_NMTO3_L3_DAILY.2/2015/OMPS-NPP_NMTO3-L3-DAILY_v2.1_2015m0521_2017m0227t083431.h5",
+   "start": "2015-05-20",
+   "size_mb": 3.2,
+   "n_datasets": 8,
+   "layouts": {
+    "ColumnAmountO3": {
+     "shape": [
+      180,
+      360
+     ],
+     "chunks": null,
+     "dtype": "float32",
+     "filters": [],
+     "nbytes": 259200
+    }
+   },
+   "requests": 3,
+   "mb_read": 2.1
+  },
+  {
+   "granule": "OMPS_NPP_NMTO3_L3_DAILY.2:OMPS-NPP_NMTO3-L3-DAILY_v2.1_2018m0508_2018m0510t030640.h5",
+   "url": "https://data.gesdisc.earthdata.nasa.gov/data/SNPP_OMPS_Level3/OMPS_NPP_NMTO3_L3_DAILY.2/2018/OMPS-NPP_NMTO3-L3-DAILY_v2.1_2018m0508_2018m0510t030640.h5",
+   "start": "2018-05-07",
+   "size_mb": 2.6,
+   "n_datasets": 8,
+   "layouts": {
+    "ColumnAmountO3": {
+     "shape": [
+      180,
+      360
+     ],
+     "chunks": [
+      180,
+      360
+     ],
+     "dtype": "float32",
+     "filters": [
+      "deflate"
+     ],
+     "nbytes": 259200
+    }
+   },
+   "requests": 3,
+   "mb_read": 2.6
+  },
+  {
+   "granule": "OMPS_NPP_NMTO3_L3_DAILY.2:OMPS-NPP_NMTO3-L3-DAILY_v2.1_2021m0227_2021m0301t014413.h5",
+   "url": "https://data.gesdisc.earthdata.nasa.gov/data/SNPP_OMPS_Level3/OMPS_NPP_NMTO3_L3_DAILY.2/2021/OMPS-NPP_NMTO3-L3-DAILY_v2.1_2021m0227_2021m0301t014413.h5",
+   "start": "2021-02-26",
+   "size_mb": 2.5,
+   "n_datasets": 8,
+   "layouts": {
+    "ColumnAmountO3": {
+     "shape": [
+      180,
+      360
+     ],
+     "chunks": [
+      180,
+      360
+     ],
+     "dtype": "float32",
+     "filters": [
+      "deflate"
+     ],
+     "nbytes": 259200
+    }
+   },
+   "requests": 3,
+   "mb_read": 2.5
+  },
+  {
+   "granule": "OMPS_NPP_NMTO3_L3_DAILY.2:OMPS-NPP_NMTO3-L3-DAILY_v2.1_2024m0102_2024m0104t022906.h5",
+   "url": "https://data.gesdisc.earthdata.nasa.gov/data/SNPP_OMPS_Level3/OMPS_NPP_NMTO3_L3_DAILY.2/2024/OMPS-NPP_NMTO3-L3-DAILY_v2.1_2024m0102_2024m0104t022906.h5",
+   "start": "2024-01-01",
+   "size_mb": 2.2,
+   "n_datasets": 8,
+   "layouts": {
+    "ColumnAmountO3": {
+     "shape": [
+      180,
+      360
+     ],
+     "chunks": [
+      180,
+      360
+     ],
+     "dtype": "float32",
+     "filters": [
+      "deflate"
+     ],
+     "nbytes": 259200
+    }
+   },
+   "requests": 3,
+   "mb_read": 2.2
+  },
+  {
+   "granule": "OMPS_NPP_NMTO3_L3_DAILY.2:OMPS-NPP_NMTO3-L3-DAILY_v2.1_2026m1031_2026m1102t012527.h5",
+   "url": "https://data.gesdisc.earthdata.nasa.gov/data/SNPP_OMPS_Level3/OMPS_NPP_NMTO3_L3_DAILY.2/2026/OMPS-NPP_NMTO3-L3-DAILY_v2.1_2026m1031_2026m1102t012527.h5",
+   "start": "2026-10-30",
+   "size_mb": 2.2,
+   "n_datasets": 8,
+   "layouts": {
+    "ColumnAmountO3": {
+     "shape": [
+      180,
+      360
+     ],
+     "chunks": [
+      180,
+      360
+     ],
+     "dtype": "float32",
+     "filters": [
+      "deflate"
+     ],
+     "nbytes": 259200
+    }
+   },
+   "requests": 3,
+   "mb_read": 2.2
+  }
+ ]
+}

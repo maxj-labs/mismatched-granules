@@ -1,0 +1,170 @@
+{
+ "collection": "ATL08",
+ "granules": [
+  "ATL08_20220927000155_00951713_007_01.h5",
+  "ATL08_20220927001459_00961701_007_01.h5",
+  "ATL08_20220927002201_00961702_007_01.h5",
+  "ATL08_20220927003032_00961703_007_01.h5"
+ ],
+ "variables": {
+  "gt1l/land_segments/dem_h": {
+   "joined_along": "the first axis",
+   "parse_error": "KeyError: \"Unable to synchronously open object (object 'land_segments' doesn't exist)\""
+  },
+  "gt1l/signal_photons/classed_pc_indx": {
+   "joined_along": "the first axis",
+   "per_granule": [
+    {
+     "shape": [
+      197
+     ],
+     "chunks": [
+      100000
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "shape": [
+      42923
+     ],
+     "chunks": [
+      100000
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "shape": [
+      899022
+     ],
+     "chunks": [
+      100000
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "shape": [
+      213431
+     ],
+     "chunks": [
+      100000
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    }
+   ],
+   "plain_virtualizarr": "ValueError: Cannot concatenate arrays with partial chunks because only regular chunk grids are currently supported. Concat input 0 has array length 197 along the ",
+   "strategy": "switch",
+   "shape": [
+    1155573
+   ],
+   "cases": 1,
+   "references": 14,
+   "source_chunks": 14,
+   "zarr_json_bytes": 692,
+   "notes": {
+    "distinct_chunk_shapes": [
+     [
+      100000
+     ]
+    ],
+    "distinct_codec_chains": 1,
+    "granules_ending_in_a_cut_chunk": 4,
+    "fill_values": [
+     "np.int32(0)"
+    ],
+    "missing_source_chunks": 0,
+    "granules_with_their_own_fill": 0,
+    "granules_with_a_remapped_sentinel": 0
+   },
+   "reads": [
+    {
+     "read": "window across the boundary after granule 1",
+     "cells": 4,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.012,
+     "zarr_reads": 2,
+     "source_requests": 3,
+     "source_megabytes": 0.01,
+     "per_granule_source_requests": 3,
+     "per_granule_source_megabytes": 0.01
+    },
+    {
+     "read": "window across the boundary after granule 2",
+     "cells": 4,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.054,
+     "zarr_reads": 2,
+     "source_requests": 5,
+     "source_megabytes": 0.02,
+     "per_granule_source_requests": 5,
+     "per_granule_source_megabytes": 0.02
+    },
+    {
+     "read": "window across the boundary after granule 3",
+     "cells": 4,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.06,
+     "zarr_reads": 2,
+     "source_requests": 8,
+     "source_megabytes": 0.03,
+     "per_granule_source_requests": 8,
+     "per_granule_source_megabytes": 0.03
+    },
+    {
+     "read": "series along the joined axis at one position",
+     "cells": 20197,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.049,
+     "zarr_reads": 2,
+     "source_requests": 3,
+     "source_megabytes": 0.01,
+     "per_granule_source_requests": 3,
+     "per_granule_source_megabytes": 0.01
+    },
+    {
+     "read": "whole first granule",
+     "cells": 197,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.051,
+     "zarr_reads": 1,
+     "source_requests": 1,
+     "source_megabytes": 0.0,
+     "per_granule_source_requests": 1,
+     "per_granule_source_megabytes": 0.0
+    },
+    {
+     "read": "30 scattered points",
+     "cells": 30,
+     "equal_to_files": true,
+     "source_requests": 31,
+     "source_megabytes": 0.12
+    }
+   ],
+   "all_equal": true,
+   "source_requests": 20,
+   "per_granule_source_requests": 20,
+   "source_megabytes": 0.07,
+   "per_granule_source_megabytes": 0.07
+  }
+ }
+}

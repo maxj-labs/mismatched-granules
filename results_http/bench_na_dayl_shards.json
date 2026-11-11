@@ -1,0 +1,381 @@
+{
+ "icechunk": "2.3.1",
+ "build": {
+  "seconds": 0.3,
+  "shards_referenced": 999,
+  "source_chunks_referenced": 80226,
+  "refs_failed": null,
+  "store_bytes": 560471,
+  "cases": [
+   {
+    "shards_along_time": 37,
+    "inner_chunk_shape": [
+     1,
+     1000,
+     1000
+    ]
+   },
+   {
+    "shards_along_time": 74,
+    "inner_chunk_shape": [
+     10,
+     300,
+     300
+    ]
+   }
+  ],
+  "missing_source_chunks_2019": 0,
+  "fill_values_per_file": [
+   "np.float32(0.0)",
+   "np.float32(-9999.0)",
+   "np.float32(-9999.0)"
+  ]
+ },
+ "rows": [
+  {
+   "workload": "box: 30 days x 600x600 cells, across the 2019/2020 chunk-shape change",
+   "approach": "concat, 3 pieces",
+   "shape": [
+    30,
+    600,
+    600
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.166,
+   "store_gets": 55,
+   "store_megabytes": 7.3,
+   "source_requests": 48,
+   "source_megabytes": 7.24
+  },
+  {
+   "workload": "box: 30 days x 600x600 cells, across the 2019/2020 chunk-shape change",
+   "approach": "hybrid, 2 pieces",
+   "shape": [
+    30,
+    600,
+    600
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.191,
+   "store_gets": 53,
+   "store_megabytes": 7.2,
+   "source_requests": 48,
+   "source_megabytes": 7.24
+  },
+  {
+   "workload": "box: 30 days x 600x600 cells, across the 2019/2020 chunk-shape change",
+   "approach": "virtual shards, zarr defaults",
+   "shape": [
+    30,
+    600,
+    600
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.173,
+   "store_gets": 55,
+   "store_megabytes": 7.3,
+   "source_requests": 118,
+   "source_megabytes": 11.0
+  },
+  {
+   "workload": "box: 30 days x 600x600 cells, across the 2019/2020 chunk-shape change",
+   "approach": "virtual shards, no range merging",
+   "shape": [
+    30,
+    600,
+    600
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.164,
+   "store_gets": 55,
+   "store_megabytes": 7.3,
+   "source_requests": 48,
+   "source_megabytes": 7.24
+  },
+  {
+   "workload": "box: 30 days x 600x600 cells, across the 2020/2021 file boundary",
+   "approach": "concat, 3 pieces",
+   "shape": [
+    30,
+    600,
+    600
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.206,
+   "store_gets": 43,
+   "store_megabytes": 5.4,
+   "source_requests": 36,
+   "source_megabytes": 5.42
+  },
+  {
+   "workload": "box: 30 days x 600x600 cells, across the 2020/2021 file boundary",
+   "approach": "hybrid, 2 pieces",
+   "shape": [
+    30,
+    600,
+    600
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.242,
+   "store_gets": 40,
+   "store_megabytes": 5.4,
+   "source_requests": 36,
+   "source_megabytes": 5.42
+  },
+  {
+   "workload": "box: 30 days x 600x600 cells, across the 2020/2021 file boundary",
+   "approach": "virtual shards, zarr defaults",
+   "shape": [
+    30,
+    600,
+    600
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.199,
+   "store_gets": 43,
+   "store_megabytes": 5.4,
+   "source_requests": 68,
+   "source_megabytes": 7.6
+  },
+  {
+   "workload": "box: 30 days x 600x600 cells, across the 2020/2021 file boundary",
+   "approach": "virtual shards, no range merging",
+   "shape": [
+    30,
+    600,
+    600
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.186,
+   "store_gets": 43,
+   "store_megabytes": 5.4,
+   "source_requests": 36,
+   "source_megabytes": 5.42
+  },
+  {
+   "workload": "map: 1 day, whole grid, 2019",
+   "approach": "concat, 3 pieces",
+   "shape": [
+    1,
+    8075,
+    7814
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.216,
+   "store_gets": 84,
+   "store_megabytes": 2.6,
+   "source_requests": 72,
+   "source_megabytes": 2.58
+  },
+  {
+   "workload": "map: 1 day, whole grid, 2019",
+   "approach": "hybrid, 2 pieces",
+   "shape": [
+    1,
+    8075,
+    7814
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.519,
+   "store_gets": 76,
+   "store_megabytes": 2.6,
+   "source_requests": 72,
+   "source_megabytes": 2.58
+  },
+  {
+   "workload": "map: 1 day, whole grid, 2019",
+   "approach": "virtual shards, zarr defaults",
+   "shape": [
+    1,
+    8075,
+    7814
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.215,
+   "store_gets": 84,
+   "store_megabytes": 2.6,
+   "source_requests": 72,
+   "source_megabytes": 2.58
+  },
+  {
+   "workload": "map: 1 day, whole grid, 2019",
+   "approach": "virtual shards, no range merging",
+   "shape": [
+    1,
+    8075,
+    7814
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.223,
+   "store_gets": 84,
+   "store_megabytes": 2.6,
+   "source_requests": 72,
+   "source_megabytes": 2.58
+  },
+  {
+   "workload": "map: 1 day, whole grid, 2021",
+   "approach": "concat, 3 pieces",
+   "shape": [
+    1,
+    8075,
+    7814
+   ],
+   "equal_to_files": true,
+   "seconds_median": 2.701,
+   "store_gets": 341,
+   "store_megabytes": 34.1,
+   "source_requests": 729,
+   "source_megabytes": 34.07
+  },
+  {
+   "workload": "map: 1 day, whole grid, 2021",
+   "approach": "hybrid, 2 pieces",
+   "shape": [
+    1,
+    8075,
+    7814
+   ],
+   "equal_to_files": true,
+   "seconds_median": 4.776,
+   "store_gets": 733,
+   "store_megabytes": 34.1,
+   "source_requests": 729,
+   "source_megabytes": 34.07
+  },
+  {
+   "workload": "map: 1 day, whole grid, 2021",
+   "approach": "virtual shards, zarr defaults",
+   "shape": [
+    1,
+    8075,
+    7814
+   ],
+   "equal_to_files": true,
+   "seconds_median": 2.82,
+   "store_gets": 341,
+   "store_megabytes": 34.1,
+   "source_requests": 729,
+   "source_megabytes": 34.07
+  },
+  {
+   "workload": "map: 1 day, whole grid, 2021",
+   "approach": "virtual shards, no range merging",
+   "shape": [
+    1,
+    8075,
+    7814
+   ],
+   "equal_to_files": true,
+   "seconds_median": 2.846,
+   "store_gets": 341,
+   "store_megabytes": 34.1,
+   "source_requests": 729,
+   "source_megabytes": 34.07
+  },
+  {
+   "workload": "series: every day (1,095) at one cell",
+   "approach": "concat, 3 pieces",
+   "shape": [
+    1095
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.915,
+   "store_gets": 553,
+   "store_megabytes": 54.4,
+   "source_requests": 439,
+   "source_megabytes": 54.23
+  },
+  {
+   "workload": "series: every day (1,095) at one cell",
+   "approach": "hybrid, 2 pieces",
+   "shape": [
+    1095
+   ],
+   "equal_to_files": true,
+   "seconds_median": 1.24,
+   "store_gets": 444,
+   "store_megabytes": 54.2,
+   "source_requests": 439,
+   "source_megabytes": 54.23
+  },
+  {
+   "workload": "series: every day (1,095) at one cell",
+   "approach": "virtual shards, zarr defaults",
+   "shape": [
+    1095
+   ],
+   "equal_to_files": true,
+   "seconds_median": 1.473,
+   "store_gets": 553,
+   "store_megabytes": 54.4,
+   "source_requests": 2079,
+   "source_megabytes": 164.54
+  },
+  {
+   "workload": "series: every day (1,095) at one cell",
+   "approach": "virtual shards, no range merging",
+   "shape": [
+    1095
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.902,
+   "store_gets": 553,
+   "store_megabytes": 54.4,
+   "source_requests": 439,
+   "source_megabytes": 54.23
+  },
+  {
+   "workload": "point: 1 day at one cell, 2021",
+   "approach": "concat, 3 pieces",
+   "shape": [
+    1
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.061,
+   "store_gets": 5,
+   "store_megabytes": 0.1,
+   "source_requests": 1,
+   "source_megabytes": 0.13
+  },
+  {
+   "workload": "point: 1 day at one cell, 2021",
+   "approach": "hybrid, 2 pieces",
+   "shape": [
+    1
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.075,
+   "store_gets": 5,
+   "store_megabytes": 0.1,
+   "source_requests": 1,
+   "source_megabytes": 0.13
+  },
+  {
+   "workload": "point: 1 day at one cell, 2021",
+   "approach": "virtual shards, zarr defaults",
+   "shape": [
+    1
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.059,
+   "store_gets": 5,
+   "store_megabytes": 0.1,
+   "source_requests": 1,
+   "source_megabytes": 0.13
+  },
+  {
+   "workload": "point: 1 day at one cell, 2021",
+   "approach": "virtual shards, no range merging",
+   "shape": [
+    1
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.084,
+   "store_gets": 5,
+   "store_megabytes": 0.1,
+   "source_requests": 1,
+   "source_megabytes": 0.13
+  }
+ ],
+ "zarr_json_bytes": 1358
+}

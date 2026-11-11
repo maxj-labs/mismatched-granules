@@ -1,0 +1,347 @@
+{
+ "collection": "TEMPO_NO2_L2",
+ "granules": [
+  "TEMPO_NO2_L2_V04_20260610T155428Z_S007G08.nc",
+  "TEMPO_NO2_L2_V04_20260610T160105Z_S007G09.nc",
+  "TEMPO_NO2_L2_V04_20260610T160801Z_S008G01.nc",
+  "TEMPO_NO2_L2_V04_20260610T161441Z_S008G02.nc"
+ ],
+ "variables": {
+  "support_data/gas_profile": {
+   "joined_along": "the first axis",
+   "per_granule": [
+    {
+     "shape": [
+      131,
+      2048,
+      72
+     ],
+     "chunks": [
+      128,
+      128,
+      72
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "shape": [
+      131,
+      2048,
+      72
+     ],
+     "chunks": [
+      128,
+      128,
+      72
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "shape": [
+      132,
+      2048,
+      72
+     ],
+     "chunks": [
+      128,
+      128,
+      72
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "shape": [
+      132,
+      2048,
+      72
+     ],
+     "chunks": [
+      128,
+      128,
+      72
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    }
+   ],
+   "plain_virtualizarr": "ValueError: Cannot concatenate arrays with partial chunks because only regular chunk grids are currently supported. Concat input 0 has array length 131 along the ",
+   "strategy": "switch",
+   "shape": [
+    526,
+    2048,
+    72
+   ],
+   "cases": 1,
+   "references": 128,
+   "source_chunks": 128,
+   "zarr_json_bytes": 726,
+   "notes": {
+    "distinct_chunk_shapes": [
+     [
+      128,
+      128,
+      72
+     ]
+    ],
+    "distinct_codec_chains": 1,
+    "granules_ending_in_a_cut_chunk": 4,
+    "fill_values": [
+     "np.float32(-1e+30)"
+    ],
+    "missing_source_chunks": 0,
+    "granules_with_their_own_fill": 0,
+    "granules_with_a_remapped_sentinel": 0
+   },
+   "reads": [
+    {
+     "read": "window across the boundary after granule 1",
+     "cells": 73728,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.071,
+     "zarr_reads": 6,
+     "source_requests": 30,
+     "source_megabytes": 2.07,
+     "per_granule_source_requests": 30,
+     "per_granule_source_megabytes": 2.07
+    },
+    {
+     "read": "window across the boundary after granule 2",
+     "cells": 73728,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.075,
+     "zarr_reads": 6,
+     "source_requests": 27,
+     "source_megabytes": 0.9,
+     "per_granule_source_requests": 27,
+     "per_granule_source_megabytes": 0.9
+    },
+    {
+     "read": "window across the boundary after granule 3",
+     "cells": 73728,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.044,
+     "zarr_reads": 6,
+     "source_requests": 27,
+     "source_megabytes": 0.87,
+     "per_granule_source_requests": 27,
+     "per_granule_source_megabytes": 0.87
+    },
+    {
+     "read": "series along the joined axis at one position",
+     "cells": 526,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.053,
+     "zarr_reads": 8,
+     "source_requests": 34,
+     "source_megabytes": 1.03,
+     "per_granule_source_requests": 34,
+     "per_granule_source_megabytes": 1.03
+    },
+    {
+     "read": "whole first granule",
+     "cells": 19316736,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.212,
+     "zarr_reads": 32,
+     "source_requests": 145,
+     "source_megabytes": 6.91,
+     "per_granule_source_requests": 145,
+     "per_granule_source_megabytes": 6.91
+    },
+    {
+     "read": "30 scattered points",
+     "cells": 30,
+     "equal_to_files": true,
+     "source_requests": 125,
+     "source_megabytes": 10.1
+    }
+   ],
+   "all_equal": true,
+   "source_requests": 263,
+   "per_granule_source_requests": 263,
+   "source_megabytes": 11.78,
+   "per_granule_source_megabytes": 11.78
+  },
+  "product/vertical_column_troposphere": {
+   "joined_along": "the first axis",
+   "per_granule": [
+    {
+     "shape": [
+      131,
+      2048
+     ],
+     "chunks": [
+      131,
+      2048
+     ],
+     "codecs": [
+      "bytes"
+     ]
+    },
+    {
+     "shape": [
+      131,
+      2048
+     ],
+     "chunks": [
+      131,
+      2048
+     ],
+     "codecs": [
+      "bytes"
+     ]
+    },
+    {
+     "shape": [
+      132,
+      2048
+     ],
+     "chunks": [
+      132,
+      2048
+     ],
+     "codecs": [
+      "bytes"
+     ]
+    },
+    {
+     "shape": [
+      132,
+      2048
+     ],
+     "chunks": [
+      132,
+      2048
+     ],
+     "codecs": [
+      "bytes"
+     ]
+    }
+   ],
+   "plain_virtualizarr": "ValueError: Cannot concatenate arrays with inconsistent chunk shapes: (132, 2048) vs (131, 2048) .Requires ZEP003 (Variable-length Chunks).",
+   "strategy": "switch",
+   "shape": [
+    526,
+    2048
+   ],
+   "cases": 1,
+   "references": 4,
+   "source_chunks": 4,
+   "zarr_json_bytes": 553,
+   "notes": {
+    "distinct_chunk_shapes": [
+     [
+      131,
+      2048
+     ],
+     [
+      132,
+      2048
+     ]
+    ],
+    "distinct_codec_chains": 1,
+    "granules_ending_in_a_cut_chunk": 0,
+    "fill_values": [
+     "np.float64(-1e+30)"
+    ],
+    "missing_source_chunks": 0,
+    "granules_with_their_own_fill": 0,
+    "granules_with_a_remapped_sentinel": 0
+   },
+   "reads": [
+    {
+     "read": "window across the boundary after granule 1",
+     "cells": 1024,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.046,
+     "zarr_reads": 2,
+     "source_requests": 10,
+     "source_megabytes": 0.07,
+     "per_granule_source_requests": 10,
+     "per_granule_source_megabytes": 0.07
+    },
+    {
+     "read": "window across the boundary after granule 2",
+     "cells": 1024,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.059,
+     "zarr_reads": 2,
+     "source_requests": 10,
+     "source_megabytes": 0.07,
+     "per_granule_source_requests": 10,
+     "per_granule_source_megabytes": 0.07
+    },
+    {
+     "read": "window across the boundary after granule 3",
+     "cells": 1024,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.059,
+     "zarr_reads": 2,
+     "source_requests": 10,
+     "source_megabytes": 0.07,
+     "per_granule_source_requests": 10,
+     "per_granule_source_megabytes": 0.07
+    },
+    {
+     "read": "series along the joined axis at one position",
+     "cells": 526,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.046,
+     "zarr_reads": 4,
+     "source_requests": 20,
+     "source_megabytes": 8.62,
+     "per_granule_source_requests": 20,
+     "per_granule_source_megabytes": 8.62
+    },
+    {
+     "read": "whole first granule",
+     "cells": 268288,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.007,
+     "zarr_reads": 1,
+     "source_requests": 5,
+     "source_megabytes": 2.15,
+     "per_granule_source_requests": 5,
+     "per_granule_source_megabytes": 2.15
+    },
+    {
+     "read": "30 scattered points",
+     "cells": 30,
+     "equal_to_files": true,
+     "source_requests": 20,
+     "source_megabytes": 6.06
+    }
+   ],
+   "all_equal": true,
+   "source_requests": 55,
+   "per_granule_source_requests": 55,
+   "source_megabytes": 10.98,
+   "per_granule_source_megabytes": 10.98
+  }
+ }
+}

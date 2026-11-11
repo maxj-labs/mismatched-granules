@@ -1,0 +1,168 @@
+{
+ "short_name": "MODISA_L3m_CHL",
+ "hits": 10311,
+ "samples": [
+  {
+   "granule": "MODISA_L3m_CHL_AQUA_MODIS.20020704.L3m.DAY.CHL.chlor_a.4km.nc_2022.0",
+   "url": "https://obdaac-tea.earthdatacloud.nasa.gov/ob-cumulus-prod-public/AQUA_MODIS.20020704.L3m.DAY.CHL.chlor_a.4km.nc",
+   "start": "2002-07-04",
+   "size_mb": 13.0,
+   "n_datasets": 3,
+   "layouts": {
+    "chlor_a": {
+     "shape": [
+      4320,
+      8640
+     ],
+     "chunks": [
+      44,
+      87
+     ],
+     "dtype": "float32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 149299200
+    }
+   },
+   "requests": 13,
+   "mb_read": 13.0
+  },
+  {
+   "granule": "MODISA_L3m_CHL_AQUA_MODIS.20080303.L3m.DAY.CHL.chlor_a.4km.nc_2022.0",
+   "url": "https://obdaac-tea.earthdatacloud.nasa.gov/ob-cumulus-prod-public/AQUA_MODIS.20080303.L3m.DAY.CHL.chlor_a.4km.nc",
+   "start": "2008-03-03",
+   "size_mb": 16.2,
+   "n_datasets": 3,
+   "layouts": {
+    "chlor_a": {
+     "shape": [
+      4320,
+      8640
+     ],
+     "chunks": [
+      44,
+      87
+     ],
+     "dtype": "float32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 149299200
+    }
+   },
+   "requests": 16,
+   "mb_read": 16.2
+  },
+  {
+   "granule": "MODISA_L3m_CHL_AQUA_MODIS.20131025.L3m.DAY.CHL.chlor_a.4km.nc_2022.0",
+   "url": "https://obdaac-tea.earthdatacloud.nasa.gov/ob-cumulus-prod-public/AQUA_MODIS.20131025.L3m.DAY.CHL.chlor_a.4km.nc",
+   "start": "2013-10-25",
+   "size_mb": 13.4,
+   "n_datasets": 3,
+   "layouts": {
+    "chlor_a": {
+     "shape": [
+      4320,
+      8640
+     ],
+     "chunks": [
+      44,
+      87
+     ],
+     "dtype": "float32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 149299200
+    }
+   },
+   "requests": 13,
+   "mb_read": 13.4
+  },
+  {
+   "granule": "MODISA_L3m_CHL_AQUA_MODIS.20190618.L3m.DAY.CHL.chlor_a.4km.nc_2022.0",
+   "url": "https://obdaac-tea.earthdatacloud.nasa.gov/ob-cumulus-prod-public/AQUA_MODIS.20190618.L3m.DAY.CHL.chlor_a.4km.nc",
+   "start": "2019-06-18",
+   "size_mb": 13.8,
+   "n_datasets": 3,
+   "layouts": {
+    "chlor_a": {
+     "shape": [
+      4320,
+      8640
+     ],
+     "chunks": [
+      44,
+      87
+     ],
+     "dtype": "float32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 149299200
+    }
+   },
+   "requests": 14,
+   "mb_read": 13.8
+  },
+  {
+   "granule": "MODISA_L3m_CHL_AQUA_MODIS.20230505.L3m.DAY.CHL.chlor_a.4km.nc_2022.0",
+   "url": "https://obdaac-tea.earthdatacloud.nasa.gov/ob-cumulus-prod-public/AQUA_MODIS.20230505.L3m.DAY.CHL.chlor_a.4km.nc",
+   "start": "2023-05-05",
+   "size_mb": 12.4,
+   "n_datasets": 3,
+   "layouts": {
+    "chlor_a": {
+     "shape": [
+      4320,
+      8640
+     ],
+     "chunks": [
+      16,
+      1024
+     ],
+     "dtype": "float32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 149299200
+    }
+   },
+   "requests": 12,
+   "mb_read": 12.4
+  },
+  {
+   "granule": "AQUA_MODIS.20260530.L3m.DAY.CHL.chlor_a.4km.nc",
+   "url": "https://obdaac-tea.earthdatacloud.nasa.gov/ob-cumulus-prod-public/AQUA_MODIS.20260530.L3m.DAY.CHL.chlor_a.4km.nc",
+   "start": "2026-05-30",
+   "size_mb": 8.6,
+   "n_datasets": 3,
+   "layouts": {
+    "chlor_a": {
+     "shape": [
+      4320,
+      8640
+     ],
+     "chunks": [
+      16,
+      1024
+     ],
+     "dtype": "float32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 149299200
+    }
+   },
+   "requests": 9,
+   "mb_read": 8.6
+  }
+ ]
+}

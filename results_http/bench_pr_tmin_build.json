@@ -1,0 +1,35 @@
+{
+ "files": 10,
+ "source_bytes": 100765103,
+ "parse_seconds": 1.2,
+ "concat": {
+  "build_seconds": 4.8,
+  "pieces": [
+   1825,
+   1825
+  ],
+  "store_bytes": 269160
+ },
+ "switch": {
+  "feasible": true,
+  "build_seconds": 4.7,
+  "cases": [
+   {
+    "chunks": 1825,
+    "codecs": [
+     "bytes",
+     "numcodecs.zlib"
+    ]
+   },
+   {
+    "chunks": 1825,
+    "codecs": [
+     "bytes",
+     "numcodecs.shuffle",
+     "numcodecs.zlib"
+    ]
+   }
+  ],
+  "store_bytes": 272616
+ }
+}

@@ -1,0 +1,47 @@
+{
+ "collection": "MODISA_L3m_CHL",
+ "granules_in_record": 10311,
+ "variable": "chlor_a",
+ "granules_used": 230,
+ "parse_seconds": 142.3,
+ "parse_failures": 0,
+ "first_failures": [],
+ "metadata_requests": 3079,
+ "metadata_megabytes": 3115.7,
+ "layouts": {
+  "[[1, 44, 87], [\"bytes\", \"numcodecs.shuffle\", \"numcodecs.zlib\"], \"float32\"]": 151,
+  "[[1, 16, 1024], [\"bytes\", \"numcodecs.shuffle\", \"numcodecs.zlib\"], \"float32\"]": 75,
+  "[[1, 512, 1024], [\"bytes\", \"numcodecs.shuffle\", \"numcodecs.zlib\"], \"float32\"]": 4
+ },
+ "distinct_layouts": 3,
+ "pieces": 3,
+ "strategy": "shards",
+ "cases": 3,
+ "references": 230,
+ "source_chunks": 1677474,
+ "shape": [
+  230,
+  4320,
+  8640
+ ],
+ "plan_seconds": 4.4,
+ "notes": {
+  "distinct_chunk_shapes": "[(1, 16, 1024), (1, 44, 87), (1, 512, 1024)]",
+  "distinct_codec_chains": "1",
+  "distinct_data_types": "['float32']",
+  "pieces_with_their_own_fill": "0",
+  "shard_shape": "[1, 4320, 8640]"
+ },
+ "write_seconds": 0.5,
+ "refs_refused": null,
+ "zarr_json_bytes": 1864,
+ "store_megabytes": 13.91,
+ "layout_changes_at_granule": [
+  151,
+  155
+ ],
+ "granules_checked": 10,
+ "cells_checked": 30,
+ "cells_equal": 30,
+ "check_megabytes": 14.4
+}

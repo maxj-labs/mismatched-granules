@@ -1,0 +1,253 @@
+{
+ "region": "pr",
+ "variable": "tmin",
+ "years": [
+  "2017",
+  "2018",
+  "2019",
+  "2020",
+  "2021",
+  "2022"
+ ],
+ "per_file": [
+  {
+   "file": "daymet_v4_daily_pr_tmin_2017.nc",
+   "chunks": [
+    1,
+    231,
+    364
+   ],
+   "codecs": [
+    "bytes",
+    "numcodecs.zlib"
+   ],
+   "fill_value": "np.float32(-9999.0)",
+   "refs": 369
+  },
+  {
+   "file": "daymet_v4_daily_pr_tmin_2018.nc",
+   "chunks": [
+    1,
+    231,
+    364
+   ],
+   "codecs": [
+    "bytes",
+    "numcodecs.zlib"
+   ],
+   "fill_value": "np.float32(-9999.0)",
+   "refs": 369
+  },
+  {
+   "file": "daymet_v4_daily_pr_tmin_2019.nc",
+   "chunks": [
+    1,
+    231,
+    364
+   ],
+   "codecs": [
+    "bytes",
+    "numcodecs.zlib"
+   ],
+   "fill_value": "np.float32(-9999.0)",
+   "refs": 369
+  },
+  {
+   "file": "daymet_v4_daily_pr_tmin_2020.nc",
+   "chunks": [
+    1,
+    231,
+    364
+   ],
+   "codecs": [
+    "bytes",
+    "numcodecs.shuffle",
+    "numcodecs.zlib"
+   ],
+   "fill_value": "np.float32(-9999.0)",
+   "refs": 367
+  },
+  {
+   "file": "daymet_v4_daily_pr_tmin_2021.nc",
+   "chunks": [
+    1,
+    231,
+    364
+   ],
+   "codecs": [
+    "bytes",
+    "numcodecs.shuffle",
+    "numcodecs.zlib"
+   ],
+   "fill_value": "np.float32(-9999.0)",
+   "refs": 367
+  },
+  {
+   "file": "daymet_v4_daily_pr_tmin_2022.nc",
+   "chunks": [
+    1,
+    231,
+    364
+   ],
+   "codecs": [
+    "bytes",
+    "numcodecs.shuffle",
+    "numcodecs.zlib"
+   ],
+   "fill_value": "np.float32(-9999.0)",
+   "refs": 367
+  }
+ ],
+ "plain_concat": "NotImplementedError: The ManifestArray class cannot concatenate arrays which were stored using different codecs, But found codecs (BytesCodec(endian='little'), Zlib(codec_",
+ "virtualize_seconds": 3.6,
+ "result": "ConcatenatedManifestArray<shape=(2190, 231, 364), dtype=float32, axis=0, pieces=2, sizes=[1095, 1095]>",
+ "pieces": [
+  {
+   "size": 1095,
+   "chunks": [
+    1,
+    231,
+    364
+   ]
+  },
+  {
+   "size": 1095,
+   "chunks": [
+    1,
+    231,
+    364
+   ]
+  }
+ ],
+ "write_seconds": 2.9,
+ "icechunk": "2.3.1",
+ "store_bytes": 164234,
+ "source_bytes": 60254822,
+ "array": {
+  "shape": [
+   2190,
+   231,
+   364
+  ],
+  "codecs": [
+   "array_concat"
+  ]
+ },
+ "dask_chunks_example": "(73, 231, 364)",
+ "checks": [
+  {
+   "check": "15 days across the 2017/2018 seam, 231x364 window",
+   "shape": [
+    15,
+    231,
+    364
+   ],
+   "equal": true,
+   "seconds": 0.04,
+   "valid_fraction": 0.137
+  },
+  {
+   "check": "15 days across the 2018/2019 seam, 231x364 window",
+   "shape": [
+    15,
+    231,
+    364
+   ],
+   "equal": true,
+   "seconds": 0.04,
+   "valid_fraction": 0.137
+  },
+  {
+   "check": "15 days across the 2019/2020 seam, 231x364 window",
+   "shape": [
+    15,
+    231,
+    364
+   ],
+   "equal": true,
+   "seconds": 0.04,
+   "valid_fraction": 0.137
+  },
+  {
+   "check": "15 days across the 2020/2021 seam, 231x364 window",
+   "shape": [
+    15,
+    231,
+    364
+   ],
+   "equal": true,
+   "seconds": 0.04,
+   "valid_fraction": 0.137
+  },
+  {
+   "check": "15 days across the 2021/2022 seam, 231x364 window",
+   "shape": [
+    15,
+    231,
+    364
+   ],
+   "equal": true,
+   "seconds": 0.04,
+   "valid_fraction": 0.137
+  },
+  {
+   "check": "all 2190 days at point y=40, x=327",
+   "shape": [
+    2190
+   ],
+   "equal": true,
+   "seconds": 2.62,
+   "valid_fraction": 1.0
+  },
+  {
+   "check": "all 2190 days at point y=89, x=262",
+   "shape": [
+    2190
+   ],
+   "equal": true,
+   "seconds": 2.57,
+   "valid_fraction": 1.0
+  },
+  {
+   "check": "all 2190 days at point y=58, x=317",
+   "shape": [
+    2190
+   ],
+   "equal": true,
+   "seconds": 2.57,
+   "valid_fraction": 1.0
+  },
+  {
+   "check": "the whole array",
+   "shape": [
+    2190,
+    231,
+    364
+   ],
+   "equal": true,
+   "seconds": 3.29,
+   "valid_fraction": 0.137
+  },
+  {
+   "check": "200 scattered points (vindex)",
+   "shape": [
+    200
+   ],
+   "equal": true,
+   "seconds": 1.5,
+   "valid_fraction": 0.14
+  },
+  {
+   "check": "decoded values through dask vs open_mfdataset",
+   "shape": [
+    10,
+    200,
+    200
+   ],
+   "equal": true,
+   "seconds": 0.52,
+   "valid_fraction": 0.209
+  }
+ ],
+ "all_equal": true
+}

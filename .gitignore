@@ -1,0 +1,7 @@
+data/
+stores/
+stores_http/
+.venv/
+__pycache__/
+*.part
+uv.lock

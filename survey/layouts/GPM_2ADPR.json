@@ -1,0 +1,143 @@
+{
+ "short_name": "GPM_2ADPR",
+ "hits": 138580,
+ "samples": [
+  {
+   "granule": "GPM_2ADPR.07:2A.GPM.DPR.V9-20211125.20140308-S220950-E234217.000144.V07A.HDF5",
+   "url": "https://data.gesdisc.earthdata.nasa.gov/data/GPM_L2/GPM_2ADPR.07/2014/067/2A.GPM.DPR.V9-20211125.20140308-S220950-E234217.000144.V07A.HDF5",
+   "start": "2014-03-08",
+   "size_mb": 863.5,
+   "n_datasets": 280,
+   "layouts": {
+    "FS/PRE/zFactorMeasured": {
+     "shape": [
+      7925,
+      49,
+      176,
+      2
+     ],
+     "chunks": [
+      15,
+      49,
+      176,
+      2
+     ],
+     "dtype": "float32",
+     "filters": [
+      "deflate"
+     ],
+     "nbytes": 546761600
+    },
+    "FS/SLV/precipRateNearSurface": {
+     "shape": [
+      7925,
+      49
+     ],
+     "chunks": [
+      32,
+      49
+     ],
+     "dtype": "float32",
+     "filters": [
+      "deflate"
+     ],
+     "nbytes": 1553300
+    }
+   },
+   "requests": 37,
+   "mb_read": 38.8
+  },
+  {
+   "granule": "GPM_2ADPR.07:2A.GPM.DPR.V9-20211125.20200509-S145751-E163023.035204.V07A.HDF5",
+   "url": "https://data.gesdisc.earthdata.nasa.gov/data/GPM_L2/GPM_2ADPR.07/2020/130/2A.GPM.DPR.V9-20211125.20200509-S145751-E163023.035204.V07A.HDF5",
+   "start": "2020-05-09",
+   "size_mb": 776.5,
+   "n_datasets": 280,
+   "layouts": {
+    "FS/PRE/zFactorMeasured": {
+     "shape": [
+      7933,
+      49,
+      176,
+      2
+     ],
+     "chunks": [
+      15,
+      49,
+      176,
+      2
+     ],
+     "dtype": "float32",
+     "filters": [
+      "deflate"
+     ],
+     "nbytes": 547313536
+    },
+    "FS/SLV/precipRateNearSurface": {
+     "shape": [
+      7933,
+      49
+     ],
+     "chunks": [
+      32,
+      49
+     ],
+     "dtype": "float32",
+     "filters": [
+      "deflate"
+     ],
+     "nbytes": 1554868
+    }
+   },
+   "requests": 32,
+   "mb_read": 33.6
+  },
+  {
+   "granule": "GPM_2ADPR.08:2A.GPM.DPR.V10-20260310.20261109-S215129-E232442.072036.V08A.nc",
+   "url": "https://data.gesdisc.earthdata.nasa.gov/data/GPM_L2/GPM_2ADPR.08/2026/313/2A.GPM.DPR.V10-20260310.20261109-S215129-E232442.072036.V08A.nc",
+   "start": "2026-11-09",
+   "size_mb": 375.3,
+   "n_datasets": 280,
+   "layouts": {
+    "FS/PRE/zFactorMeasured": {
+     "shape": [
+      7990,
+      49,
+      176,
+      2
+     ],
+     "chunks": [
+      15,
+      49,
+      176,
+      2
+     ],
+     "dtype": "float32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 551246080
+    },
+    "FS/SLV/precipRateNearSurface": {
+     "shape": [
+      7990,
+      49
+     ],
+     "chunks": [
+      5000,
+      49
+     ],
+     "dtype": "float32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 1566040
+    }
+   },
+   "requests": 27,
+   "mb_read": 28.3
+  }
+ ]
+}

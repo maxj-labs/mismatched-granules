@@ -1,0 +1,315 @@
+{
+ "years": [
+  2015,
+  2024
+ ],
+ "shape": [
+  3650,
+  231,
+  364
+ ],
+ "seam_index": 1825,
+ "build": {
+  "files": 10,
+  "source_bytes": 100765103,
+  "parse_seconds": 1.2,
+  "concat": {
+   "build_seconds": 4.8,
+   "pieces": [
+    1825,
+    1825
+   ],
+   "store_bytes": 269160
+  },
+  "switch": {
+   "feasible": true,
+   "build_seconds": 4.7,
+   "cases": [
+    {
+     "chunks": 1825,
+     "codecs": [
+      "bytes",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "chunks": 1825,
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    }
+   ],
+   "store_bytes": 272616
+  }
+ },
+ "arrays": {
+  "concat": {
+   "zarr_json_bytes": 1087,
+   "zarr_chunks": [
+    3650,
+    231,
+    364
+   ],
+   "codecs": [
+    "array_concat"
+   ],
+   "xarray_open_seconds": 1.126,
+   "default_dask_chunk_megabytes": 1227.6,
+   "default_dask_chunks": 1,
+   "nodes_in_store": 15,
+   "store_bytes": 269160
+  },
+  "switch": {
+   "zarr_json_bytes": 1867,
+   "zarr_chunks": [
+    1,
+    231,
+    364
+   ],
+   "codecs": [
+    "switch"
+   ],
+   "xarray_open_seconds": 1.133,
+   "default_dask_chunk_megabytes": 0.3,
+   "default_dask_chunks": 3650,
+   "nodes_in_store": 11,
+   "store_bytes": 272616
+  }
+ },
+ "rows": [
+  {
+   "workload": "map: 2 days, whole grid, across the 2020 change",
+   "approach": "concat",
+   "shape": [
+    2,
+    231,
+    364
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.049,
+   "seconds_min": 0.042,
+   "store_gets": 7,
+   "store_megabytes": 0.05,
+   "source_requests": 10,
+   "source_megabytes": 0.05
+  },
+  {
+   "workload": "map: 2 days, whole grid, across the 2020 change",
+   "approach": "switch",
+   "shape": [
+    2,
+    231,
+    364
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.058,
+   "seconds_min": 0.044,
+   "store_gets": 5,
+   "store_megabytes": 0.05,
+   "source_requests": 10,
+   "source_megabytes": 0.05
+  },
+  {
+   "workload": "map: 2 days, whole grid, across the 2020 change",
+   "approach": "separate",
+   "shape": [
+    2,
+    231,
+    364
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.149,
+   "seconds_min": 0.14,
+   "store_gets": 8,
+   "store_megabytes": 0.05,
+   "source_requests": 10,
+   "source_megabytes": 0.05
+  },
+  {
+   "workload": "map: 2 days, whole grid, across the 2020 change",
+   "approach": "files",
+   "shape": [
+    2,
+    231,
+    364
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.869,
+   "seconds_min": 0.792,
+   "store_gets": null,
+   "store_megabytes": null
+  },
+  {
+   "workload": "box: 30 days x 50x50 cells, across the change",
+   "approach": "concat",
+   "shape": [
+    30,
+    50,
+    50
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.185,
+   "seconds_min": 0.142,
+   "store_gets": 35,
+   "store_megabytes": 0.77,
+   "source_requests": 150,
+   "source_megabytes": 0.76
+  },
+  {
+   "workload": "box: 30 days x 50x50 cells, across the change",
+   "approach": "switch",
+   "shape": [
+    30,
+    50,
+    50
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.271,
+   "seconds_min": 0.25,
+   "store_gets": 33,
+   "store_megabytes": 0.77,
+   "source_requests": 150,
+   "source_megabytes": 0.76
+  },
+  {
+   "workload": "box: 30 days x 50x50 cells, across the change",
+   "approach": "separate",
+   "shape": [
+    30,
+    50,
+    50
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.367,
+   "seconds_min": 0.364,
+   "store_gets": 36,
+   "store_megabytes": 0.77,
+   "source_requests": 150,
+   "source_megabytes": 0.76
+  },
+  {
+   "workload": "box: 30 days x 50x50 cells, across the change",
+   "approach": "files",
+   "shape": [
+    30,
+    50,
+    50
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.941,
+   "seconds_min": 0.935,
+   "store_gets": null,
+   "store_megabytes": null
+  },
+  {
+   "workload": "series: 10 years at one cell, across the change",
+   "approach": "concat",
+   "shape": [
+    3650
+   ],
+   "equal_to_files": true,
+   "seconds_median": 25.21,
+   "seconds_min": 13.218,
+   "store_gets": 3655,
+   "store_megabytes": 94.89,
+   "source_requests": 18250,
+   "source_megabytes": 94.88
+  },
+  {
+   "workload": "series: 10 years at one cell, across the change",
+   "approach": "switch",
+   "shape": [
+    3650
+   ],
+   "equal_to_files": true,
+   "seconds_median": 30.716,
+   "seconds_min": 30.657,
+   "store_gets": 3653,
+   "store_megabytes": 94.88,
+   "source_requests": 18250,
+   "source_megabytes": 94.88
+  },
+  {
+   "workload": "series: 10 years at one cell, across the change",
+   "approach": "separate",
+   "shape": [
+    3650
+   ],
+   "equal_to_files": true,
+   "seconds_median": 30.941,
+   "seconds_min": 30.726,
+   "store_gets": 3656,
+   "store_megabytes": 94.88,
+   "source_requests": 18250,
+   "source_megabytes": 94.88
+  },
+  {
+   "workload": "series: 10 years at one cell, across the change",
+   "approach": "files",
+   "shape": [
+    3650
+   ],
+   "equal_to_files": true,
+   "seconds_median": 22.764,
+   "seconds_min": 20.502,
+   "store_gets": null,
+   "store_megabytes": null
+  },
+  {
+   "workload": "series: every day at one cell",
+   "approach": "concat",
+   "shape": [
+    3650
+   ],
+   "equal_to_files": true,
+   "seconds_median": 22.194,
+   "seconds_min": 18.529,
+   "store_gets": 3655,
+   "store_megabytes": 94.89,
+   "source_requests": 18250,
+   "source_megabytes": 94.88
+  },
+  {
+   "workload": "series: every day at one cell",
+   "approach": "switch",
+   "shape": [
+    3650
+   ],
+   "equal_to_files": true,
+   "seconds_median": 30.734,
+   "seconds_min": 30.687,
+   "store_gets": 3653,
+   "store_megabytes": 94.88,
+   "source_requests": 18250,
+   "source_megabytes": 94.88
+  },
+  {
+   "workload": "series: every day at one cell",
+   "approach": "separate",
+   "shape": [
+    3650
+   ],
+   "equal_to_files": true,
+   "seconds_median": 31.048,
+   "seconds_min": 30.847,
+   "store_gets": 3656,
+   "store_megabytes": 94.88,
+   "source_requests": 18250,
+   "source_megabytes": 94.88
+  },
+  {
+   "workload": "series: every day at one cell",
+   "approach": "files",
+   "shape": [
+    3650
+   ],
+   "equal_to_files": true,
+   "seconds_median": 24.537,
+   "seconds_min": 24.016,
+   "store_gets": null,
+   "store_megabytes": null
+  }
+ ]
+}

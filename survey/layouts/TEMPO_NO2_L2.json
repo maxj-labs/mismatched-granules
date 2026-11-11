@@ -1,0 +1,123 @@
+{
+ "short_name": "TEMPO_NO2_L2",
+ "hits": 210649,
+ "samples": [
+  {
+   "granule": "TEMPO_NO2_L2_V03_20230802T151249Z_S001G01.nc",
+   "url": "https://data.asdc.earthdata.nasa.gov/asdc-prod-protected/TEMPO/TEMPO_NO2_L2_V03/2023.08.02/TEMPO_NO2_L2_V03_20230802T151249Z_S001G01.nc",
+   "start": "2023-08-02",
+   "size_mb": 94.0,
+   "n_datasets": 36,
+   "layouts": {
+    "product/vertical_column_troposphere": {
+     "shape": [
+      123,
+      2048
+     ],
+     "chunks": null,
+     "dtype": "float64",
+     "filters": [],
+     "nbytes": 2015232
+    },
+    "support_data/gas_profile": {
+     "shape": [
+      123,
+      2048,
+      72
+     ],
+     "chunks": [
+      123,
+      128,
+      72
+     ],
+     "dtype": "float32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 72548352
+    }
+   },
+   "requests": 7,
+   "mb_read": 7.3
+  },
+  {
+   "granule": "TEMPO_NO2_L2_V03_20241223T230415Z_S014G01.nc",
+   "url": "https://data.asdc.earthdata.nasa.gov/asdc-prod-protected/TEMPO/TEMPO_NO2_L2_V03/2024.12.23/TEMPO_NO2_L2_V03_20241223T230415Z_S014G01.nc",
+   "start": "2024-12-23",
+   "size_mb": 43.9,
+   "n_datasets": 36,
+   "layouts": {
+    "product/vertical_column_troposphere": {
+     "shape": [
+      117,
+      2048
+     ],
+     "chunks": null,
+     "dtype": "float64",
+     "filters": [],
+     "nbytes": 1916928
+    },
+    "support_data/gas_profile": {
+     "shape": [
+      117,
+      2048,
+      72
+     ],
+     "chunks": [
+      117,
+      128,
+      72
+     ],
+     "dtype": "float32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 69009408
+    }
+   },
+   "requests": 6,
+   "mb_read": 6.3
+  },
+  {
+   "granule": "TEMPO_NO2_L2_V04_20261110T214521Z_S011G09.nc",
+   "url": "https://data.asdc.earthdata.nasa.gov/asdc-prod-protected/TEMPO/TEMPO_NO2_L2_V04/2026.11.10/TEMPO_NO2_L2_V04_20261110T214521Z_S011G09.nc",
+   "start": "2026-11-10",
+   "size_mb": 143.4,
+   "n_datasets": 44,
+   "layouts": {
+    "product/vertical_column_troposphere": {
+     "shape": [
+      131,
+      2048
+     ],
+     "chunks": null,
+     "dtype": "float64",
+     "filters": [],
+     "nbytes": 2146304
+    },
+    "support_data/gas_profile": {
+     "shape": [
+      131,
+      2048,
+      72
+     ],
+     "chunks": [
+      128,
+      128,
+      72
+     ],
+     "dtype": "float32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 77266944
+    }
+   },
+   "requests": 9,
+   "mb_read": 9.4
+  }
+ ]
+}

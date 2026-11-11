@@ -1,0 +1,6 @@
+{
+ "zarr": "3.4.2",
+ "concat:tmin": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.",
+ "concat:_pieces/tmin/0": "read values [[-9999.0, -9999.0], [-9999.0, -9999.0]]",
+ "switch:tmin": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/"
+}

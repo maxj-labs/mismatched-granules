@@ -1,0 +1,259 @@
+{
+ "icechunk": "2.3.1",
+ "build": {
+  "seconds": 0.3,
+  "shards_referenced": 999,
+  "source_chunks_referenced": 80226,
+  "refs_failed": null,
+  "store_bytes": 492352,
+  "cases": [
+   {
+    "shards_along_time": 37,
+    "inner_chunk_shape": [
+     1,
+     1000,
+     1000
+    ]
+   },
+   {
+    "shards_along_time": 74,
+    "inner_chunk_shape": [
+     10,
+     300,
+     300
+    ]
+   }
+  ],
+  "missing_source_chunks_2019": 0,
+  "fill_values_per_file": [
+   "np.float32(0.0)",
+   "np.float32(-9999.0)",
+   "np.float32(-9999.0)"
+  ]
+ },
+ "rows": [
+  {
+   "workload": "box: 30 days x 600x600 cells, across the 2019/2020 chunk-shape change",
+   "approach": "concat, 3 pieces",
+   "shape": [
+    30,
+    600,
+    600
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.143,
+   "store_gets": 53,
+   "store_megabytes": 7.2
+  },
+  {
+   "workload": "box: 30 days x 600x600 cells, across the 2019/2020 chunk-shape change",
+   "approach": "hybrid, 2 pieces",
+   "shape": [
+    30,
+    600,
+    600
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.145,
+   "store_gets": 53,
+   "store_megabytes": 7.2
+  },
+  {
+   "workload": "box: 30 days x 600x600 cells, across the 2019/2020 chunk-shape change",
+   "approach": "virtual shards, 1 array",
+   "shape": [
+    30,
+    600,
+    600
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.151,
+   "store_gets": 55,
+   "store_megabytes": 7.3
+  },
+  {
+   "workload": "box: 30 days x 600x600 cells, across the 2020/2021 file boundary",
+   "approach": "concat, 3 pieces",
+   "shape": [
+    30,
+    600,
+    600
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.153,
+   "store_gets": 41,
+   "store_megabytes": 5.4
+  },
+  {
+   "workload": "box: 30 days x 600x600 cells, across the 2020/2021 file boundary",
+   "approach": "hybrid, 2 pieces",
+   "shape": [
+    30,
+    600,
+    600
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.164,
+   "store_gets": 40,
+   "store_megabytes": 5.4
+  },
+  {
+   "workload": "box: 30 days x 600x600 cells, across the 2020/2021 file boundary",
+   "approach": "virtual shards, 1 array",
+   "shape": [
+    30,
+    600,
+    600
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.152,
+   "store_gets": 43,
+   "store_megabytes": 5.4
+  },
+  {
+   "workload": "map: 1 day, whole grid, 2019",
+   "approach": "concat, 3 pieces",
+   "shape": [
+    1,
+    8075,
+    7814
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.233,
+   "store_gets": 76,
+   "store_megabytes": 2.6
+  },
+  {
+   "workload": "map: 1 day, whole grid, 2019",
+   "approach": "hybrid, 2 pieces",
+   "shape": [
+    1,
+    8075,
+    7814
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.234,
+   "store_gets": 76,
+   "store_megabytes": 2.6
+  },
+  {
+   "workload": "map: 1 day, whole grid, 2019",
+   "approach": "virtual shards, 1 array",
+   "shape": [
+    1,
+    8075,
+    7814
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.174,
+   "store_gets": 84,
+   "store_megabytes": 2.6
+  },
+  {
+   "workload": "map: 1 day, whole grid, 2021",
+   "approach": "concat, 3 pieces",
+   "shape": [
+    1,
+    8075,
+    7814
+   ],
+   "equal_to_files": true,
+   "seconds_median": 2.57,
+   "store_gets": 733,
+   "store_megabytes": 34.1
+  },
+  {
+   "workload": "map: 1 day, whole grid, 2021",
+   "approach": "hybrid, 2 pieces",
+   "shape": [
+    1,
+    8075,
+    7814
+   ],
+   "equal_to_files": true,
+   "seconds_median": 2.636,
+   "store_gets": 733,
+   "store_megabytes": 34.1
+  },
+  {
+   "workload": "map: 1 day, whole grid, 2021",
+   "approach": "virtual shards, 1 array",
+   "shape": [
+    1,
+    8075,
+    7814
+   ],
+   "equal_to_files": true,
+   "seconds_median": 2.592,
+   "store_gets": 341,
+   "store_megabytes": 34.1
+  },
+  {
+   "workload": "series: every day (1,095) at one cell",
+   "approach": "concat, 3 pieces",
+   "shape": [
+    1095
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.775,
+   "store_gets": 445,
+   "store_megabytes": 54.2
+  },
+  {
+   "workload": "series: every day (1,095) at one cell",
+   "approach": "hybrid, 2 pieces",
+   "shape": [
+    1095
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.763,
+   "store_gets": 444,
+   "store_megabytes": 54.2
+  },
+  {
+   "workload": "series: every day (1,095) at one cell",
+   "approach": "virtual shards, 1 array",
+   "shape": [
+    1095
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.846,
+   "store_gets": 553,
+   "store_megabytes": 54.4
+  },
+  {
+   "workload": "point: 1 day at one cell, 2021",
+   "approach": "concat, 3 pieces",
+   "shape": [
+    1
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.023,
+   "store_gets": 5,
+   "store_megabytes": 0.1
+  },
+  {
+   "workload": "point: 1 day at one cell, 2021",
+   "approach": "hybrid, 2 pieces",
+   "shape": [
+    1
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.026,
+   "store_gets": 5,
+   "store_megabytes": 0.1
+  },
+  {
+   "workload": "point: 1 day at one cell, 2021",
+   "approach": "virtual shards, 1 array",
+   "shape": [
+    1
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.017,
+   "store_gets": 5,
+   "store_megabytes": 0.1
+  }
+ ],
+ "zarr_json_bytes": 1358
+}

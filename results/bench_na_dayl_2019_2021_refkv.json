@@ -1,0 +1,14 @@
+{
+ "versions": {
+  "zarr": "3.4.2",
+  "virtualizarr": "2.8.0",
+  "refkv": "0.2.0"
+ },
+ "years": [
+  2019,
+  2021
+ ],
+ "parse_seconds": 1.6,
+ "feasible": false,
+ "why": "ValueError: the files are chunked differently along the other axes"
+}

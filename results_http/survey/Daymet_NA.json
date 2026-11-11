@@ -1,0 +1,154 @@
+{
+ "collection": "Daymet_NA",
+ "granules": [
+  "daymet_v4_daily_na_dayl_2019.nc",
+  "daymet_v4_daily_na_dayl_2020.nc",
+  "daymet_v4_daily_na_dayl_2021.nc"
+ ],
+ "variables": {
+  "dayl": {
+   "joined_along": "the first axis",
+   "per_granule": [
+    {
+     "shape": [
+      365,
+      8075,
+      7814
+     ],
+     "chunks": [
+      1,
+      1000,
+      1000
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "shape": [
+      365,
+      8075,
+      7814
+     ],
+     "chunks": [
+      10,
+      300,
+      300
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "shape": [
+      365,
+      8075,
+      7814
+     ],
+     "chunks": [
+      10,
+      300,
+      300
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    }
+   ],
+   "plain_virtualizarr": "NotImplementedError: The ManifestArray class cannot concatenate arrays which were stored using different codecs, But found codecs (BytesCodec(endian='little'), Zlib(codec_",
+   "strategy": "shards",
+   "shape": [
+    1095,
+    8075,
+    7814
+   ],
+   "cases": 2,
+   "references": 999,
+   "source_chunks": 80226,
+   "zarr_json_bytes": 1319,
+   "notes": {
+    "distinct_chunk_shapes": [
+     [
+      1,
+      1000,
+      1000
+     ],
+     [
+      10,
+      300,
+      300
+     ]
+    ],
+    "distinct_codec_chains": 2,
+    "granules_ending_in_a_cut_chunk": 2,
+    "fill_values": [
+     "np.float32(-9999.0)",
+     "np.float32(0.0)"
+    ],
+    "missing_source_chunks": 0,
+    "granules_with_their_own_fill": 0,
+    "granules_with_a_remapped_sentinel": 0,
+    "shard_shape": [
+     10,
+     3000,
+     3000
+    ]
+   },
+   "reads": [
+    {
+     "read": "window across the boundary after granule 1",
+     "cells": 262144,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.031,
+     "zarr_reads": 6,
+     "source_requests": 12,
+     "source_megabytes": 0.09,
+     "per_granule_source_requests": 12,
+     "per_granule_source_megabytes": 0.09
+    },
+    {
+     "read": "window across the boundary after granule 2",
+     "cells": 262144,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.111,
+     "zarr_reads": 10,
+     "source_requests": 40,
+     "source_megabytes": 0.76,
+     "per_granule_source_requests": 40,
+     "per_granule_source_megabytes": 0.76
+    },
+    {
+     "read": "series along the joined axis at one position",
+     "cells": 200,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.361,
+     "zarr_reads": 131,
+     "source_requests": 550,
+     "source_megabytes": 3.36,
+     "per_granule_source_requests": 550,
+     "per_granule_source_megabytes": 3.36
+    },
+    {
+     "read": "30 scattered points",
+     "cells": 30,
+     "equal_to_files": true,
+     "source_requests": 91,
+     "source_megabytes": 1.67
+    }
+   ],
+   "all_equal": true,
+   "source_requests": 602,
+   "per_granule_source_requests": 602,
+   "source_megabytes": 4.21,
+   "per_granule_source_megabytes": 4.21
+  }
+ }
+}

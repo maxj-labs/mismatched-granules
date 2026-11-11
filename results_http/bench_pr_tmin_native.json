@@ -1,0 +1,157 @@
+{
+ "mode": "native",
+ "icechunk": "2.3.1",
+ "rows": [
+  {
+   "workload": "map: 2 days, whole grid, across the 2020 change",
+   "approach": "native: header switch",
+   "shape": [
+    2,
+    231,
+    364
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.057,
+   "seconds_min": 0.038,
+   "store_gets": 5,
+   "store_megabytes": 0.05,
+   "source_requests": 10,
+   "source_megabytes": 0.05
+  },
+  {
+   "workload": "box: 30 days x 50x50 cells, across the change",
+   "approach": "native: header switch",
+   "shape": [
+    30,
+    50,
+    50
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.27,
+   "seconds_min": 0.255,
+   "store_gets": 33,
+   "store_megabytes": 0.77,
+   "source_requests": 150,
+   "source_megabytes": 0.76
+  },
+  {
+   "workload": "series: 10 years at one cell, across the change",
+   "approach": "native: header switch",
+   "shape": [
+    3650
+   ],
+   "equal_to_files": true,
+   "seconds_median": 30.936,
+   "seconds_min": 30.713,
+   "store_gets": 3653,
+   "store_megabytes": 94.91,
+   "source_requests": 18250,
+   "source_megabytes": 94.88
+  },
+  {
+   "workload": "series: every day at one cell",
+   "approach": "native: header switch",
+   "shape": [
+    3650
+   ],
+   "equal_to_files": true,
+   "seconds_median": 30.813,
+   "seconds_min": 30.67,
+   "store_gets": 3653,
+   "store_megabytes": 94.91,
+   "source_requests": 18250,
+   "source_megabytes": 94.88
+  },
+  {
+   "workload": "map: 2 days, whole grid, across the 2020 change",
+   "approach": "native: conditional",
+   "shape": [
+    2,
+    231,
+    364
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.044,
+   "seconds_min": 0.037,
+   "store_gets": 5,
+   "store_megabytes": 0.05,
+   "source_requests": 10,
+   "source_megabytes": 0.05
+  },
+  {
+   "workload": "box: 30 days x 50x50 cells, across the change",
+   "approach": "native: conditional",
+   "shape": [
+    30,
+    50,
+    50
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.269,
+   "seconds_min": 0.259,
+   "store_gets": 33,
+   "store_megabytes": 0.77,
+   "source_requests": 150,
+   "source_megabytes": 0.76
+  },
+  {
+   "workload": "series: 10 years at one cell, across the change",
+   "approach": "native: conditional",
+   "shape": [
+    3650
+   ],
+   "equal_to_files": true,
+   "seconds_median": 30.956,
+   "seconds_min": 30.63,
+   "store_gets": 3653,
+   "store_megabytes": 94.89,
+   "source_requests": 18250,
+   "source_megabytes": 94.88
+  },
+  {
+   "workload": "series: every day at one cell",
+   "approach": "native: conditional",
+   "shape": [
+    3650
+   ],
+   "equal_to_files": true,
+   "seconds_median": 30.95,
+   "seconds_min": 30.849,
+   "store_gets": 3653,
+   "store_megabytes": 94.89,
+   "source_requests": 18250,
+   "source_megabytes": 94.88
+  }
+ ],
+ "arrays": {
+  "header switch": {
+   "zarr_json_bytes": 1069,
+   "codecs": [
+    "header_switch"
+   ],
+   "zarr_chunks": [
+    1,
+    231,
+    364
+   ],
+   "store_bytes": 274763,
+   "build_seconds": 4.9,
+   "header_bytes_per_chunk": 8
+  },
+  "conditional": {
+   "zarr_json_bytes": 865,
+   "codecs": [
+    "bytes",
+    "conditional"
+   ],
+   "zarr_chunks": [
+    1,
+    231,
+    364
+   ],
+   "store_bytes": 270921,
+   "build_seconds": 4.9,
+   "header_bytes_per_chunk": 1
+  }
+ }
+}

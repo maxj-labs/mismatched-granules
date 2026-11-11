@@ -1,0 +1,135 @@
+{
+ "short_name": "OCO2_L2_Lite_FP",
+ "hits": 4982,
+ "samples": [
+  {
+   "granule": "OCO2_L2_Lite_FP.11.2r:oco2_LtCO2_140906_B11210Ar_240819213925s.nc4",
+   "url": "https://data.gesdisc.earthdata.nasa.gov/data/OCO2_DATA/OCO2_L2_Lite_FP.11.2r/2014/oco2_LtCO2_140906_B11210Ar_240819213925s.nc4",
+   "start": "2014-09-06",
+   "size_mb": 29.6,
+   "n_datasets": 126,
+   "layouts": {
+    "xco2": {
+     "shape": [
+      60464
+     ],
+     "chunks": [
+      60464
+     ],
+     "dtype": "float32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 241856
+    },
+    "co2_profile_apriori": {
+     "shape": [
+      60464,
+      20
+     ],
+     "chunks": [
+      30232,
+      10
+     ],
+     "dtype": "float32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 4837120
+    }
+   },
+   "requests": 24,
+   "mb_read": 24.4
+  },
+  {
+   "granule": "OCO2_L2_Lite_FP.11.2r:oco2_LtCO2_190822_B11210Ar_240910235723s.nc4",
+   "url": "https://data.gesdisc.earthdata.nasa.gov/data/OCO2_DATA/OCO2_L2_Lite_FP.11.2r/2019/oco2_LtCO2_190822_B11210Ar_240910235723s.nc4",
+   "start": "2019-08-22",
+   "size_mb": 66.8,
+   "n_datasets": 126,
+   "layouts": {
+    "xco2": {
+     "shape": [
+      164778
+     ],
+     "chunks": [
+      164778
+     ],
+     "dtype": "float32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 659112
+    },
+    "co2_profile_apriori": {
+     "shape": [
+      164778,
+      20
+     ],
+     "chunks": [
+      82389,
+      10
+     ],
+     "dtype": "float32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 13182240
+    }
+   },
+   "requests": 48,
+   "mb_read": 50.0
+  },
+  {
+   "granule": "OCO2_L2_Lite_FP.11.3r:oco2_LtCO2_240225_B11300Ar_260528190641s.nc4",
+   "url": "https://data.gesdisc.earthdata.nasa.gov/data/OCO2_DATA/OCO2_L2_Lite_FP.11.3r/2024/oco2_LtCO2_240225_B11300Ar_260528190641s.nc4",
+   "start": "2024-02-25",
+   "size_mb": 68.2,
+   "n_datasets": 127,
+   "layouts": {
+    "xco2": {
+     "shape": [
+      168269
+     ],
+     "chunks": [
+      168269
+     ],
+     "dtype": "float32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 673076
+    },
+    "co2_profile_apriori": {
+     "shape": [
+      168269,
+      20
+     ],
+     "chunks": [
+      84135,
+      10
+     ],
+     "dtype": "float32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 13461520
+    }
+   },
+   "requests": 49,
+   "mb_read": 50.4
+  },
+  {
+   "granule": "OCO2_L2_Lite_FP.11.3r:oco2_LtCO2_260930_B11300Ar_261104202520s.nc4",
+   "url": "https://oco2.gesdisc.eosdis.nasa.gov/data//OCO2_DATA/OCO2_L2_Lite_FP.11.3r/2026/oco2_LtCO2_260930_B11300Ar_261104202520s.nc4",
+   "start": "2026-09-30",
+   "error": "HTTPError: 401 Client Error: Unauthorized for url: https://urs.earthdata.nasa.gov/oauth/authorize/?scope=uid&app_type=401&client_id"
+  }
+ ]
+}

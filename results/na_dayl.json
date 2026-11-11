@@ -1,0 +1,192 @@
+{
+ "region": "na",
+ "variable": "dayl",
+ "years": [
+  "2019",
+  "2020",
+  "2021"
+ ],
+ "per_file": [
+  {
+   "file": "daymet_v4_daily_na_dayl_2019.nc",
+   "chunks": [
+    1,
+    1000,
+    1000
+   ],
+   "codecs": [
+    "bytes",
+    "numcodecs.zlib"
+   ],
+   "fill_value": "np.float32(0.0)",
+   "refs": 26408
+  },
+  {
+   "file": "daymet_v4_daily_na_dayl_2020.nc",
+   "chunks": [
+    10,
+    300,
+    300
+   ],
+   "codecs": [
+    "bytes",
+    "numcodecs.shuffle",
+    "numcodecs.zlib"
+   ],
+   "fill_value": "np.float32(-9999.0)",
+   "refs": 27117
+  },
+  {
+   "file": "daymet_v4_daily_na_dayl_2021.nc",
+   "chunks": [
+    10,
+    300,
+    300
+   ],
+   "codecs": [
+    "bytes",
+    "numcodecs.shuffle",
+    "numcodecs.zlib"
+   ],
+   "fill_value": "np.float32(-9999.0)",
+   "refs": 27117
+  }
+ ],
+ "plain_concat": "NotImplementedError: The ManifestArray class cannot concatenate arrays which were stored using different codecs, But found codecs (BytesCodec(endian='little'), Zlib(codec_",
+ "virtualize_seconds": 2.5,
+ "result": "ConcatenatedManifestArray<shape=(1095, 8075, 7814), dtype=float32, axis=0, pieces=3, sizes=[365, 365, 365]>",
+ "pieces": [
+  {
+   "size": 365,
+   "chunks": [
+    1,
+    1000,
+    1000
+   ]
+  },
+  {
+   "size": 365,
+   "chunks": [
+    10,
+    300,
+    300
+   ]
+  },
+  {
+   "size": 365,
+   "chunks": [
+    10,
+    300,
+    300
+   ]
+  }
+ ],
+ "write_seconds": 1.7,
+ "icechunk": "2.3.1",
+ "store_bytes": 1449129,
+ "source_bytes": 4257370723,
+ "array": {
+  "shape": [
+   1095,
+   8075,
+   7814
+  ],
+  "codecs": [
+   "array_concat"
+  ]
+ },
+ "dask_chunks_example": "(73, 1000, 1000)",
+ "checks": [
+  {
+   "check": "15 days across the 2019/2020 seam, 600x600 window",
+   "shape": [
+    15,
+    600,
+    600
+   ],
+   "equal": true,
+   "seconds": 0.3,
+   "valid_fraction": 0.982
+  },
+  {
+   "check": "15 days across the 2020/2021 seam, 600x600 window",
+   "shape": [
+    15,
+    600,
+    600
+   ],
+   "equal": true,
+   "seconds": 0.35,
+   "valid_fraction": 1.0
+  },
+  {
+   "check": "all 1095 days at point y=2753, x=4458",
+   "shape": [
+    1095
+   ],
+   "equal": true,
+   "seconds": 2.74,
+   "valid_fraction": 1.0
+  },
+  {
+   "check": "all 1095 days at point y=3003, x=3438",
+   "shape": [
+    1095
+   ],
+   "equal": true,
+   "seconds": 2.74,
+   "valid_fraction": 1.0
+  },
+  {
+   "check": "all 1095 days at point y=4068, x=7095",
+   "shape": [
+    1095
+   ],
+   "equal": true,
+   "seconds": 2.83,
+   "valid_fraction": 1.0
+  },
+  {
+   "check": "full map, day 6 of 2019",
+   "shape": [
+    8075,
+    7814
+   ],
+   "equal": true,
+   "seconds": 0.64,
+   "valid_fraction": 0.34
+  },
+  {
+   "check": "full map, day 63 of 2020",
+   "shape": [
+    8075,
+    7814
+   ],
+   "equal": true,
+   "seconds": 7.96,
+   "valid_fraction": 0.34
+  },
+  {
+   "check": "full map, day 296 of 2021",
+   "shape": [
+    8075,
+    7814
+   ],
+   "equal": true,
+   "seconds": 7.94,
+   "valid_fraction": 0.34
+  },
+  {
+   "check": "decoded values through dask vs open_mfdataset",
+   "shape": [
+    10,
+    200,
+    200
+   ],
+   "equal": true,
+   "seconds": 8.11,
+   "valid_fraction": 0.682
+  }
+ ],
+ "all_equal": true
+}

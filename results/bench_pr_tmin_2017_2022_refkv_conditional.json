@@ -1,0 +1,101 @@
+{
+ "versions": {
+  "zarr": "3.4.2",
+  "virtualizarr": "2.8.0",
+  "refkv": "0.2.0"
+ },
+ "years": [
+  2017,
+  2022
+ ],
+ "parse_seconds": 0.9,
+ "build_seconds": 0.1,
+ "feasible": true,
+ "store_bytes": 344701,
+ "zarr_json_bytes": 7202,
+ "codecs": [
+  {
+   "name": "bytes",
+   "configuration": {
+    "endian": "little"
+   }
+  },
+  {
+   "name": "conditional",
+   "configuration": {
+    "codecs": [
+     {
+      "name": "numcodecs.shuffle",
+      "configuration": {
+       "elementsize": 4
+      }
+     },
+     {
+      "name": "numcodecs.zlib",
+      "configuration": {
+       "level": 4
+      }
+     }
+    ],
+    "header_bits": 8
+   }
+  }
+ ],
+ "chunk_grid": "rectilinear",
+ "zarr_chunk_grid_cells": 2190,
+ "default_dask_chunks": 2190,
+ "rows": [
+  {
+   "workload": "map: 2 days, whole grid, across the 2020 change",
+   "approach": "refkv conditional",
+   "shape": [
+    2,
+    231,
+    364
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.013,
+   "seconds_min": 0.012,
+   "store_gets": 5,
+   "store_megabytes": 0.06
+  },
+  {
+   "workload": "box: 30 days x 50x50 cells, across the change",
+   "approach": "refkv conditional",
+   "shape": [
+    30,
+    50,
+    50
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.041,
+   "seconds_min": 0.04,
+   "store_gets": 33,
+   "store_megabytes": 0.77
+  },
+  {
+   "workload": "series: 10 years at one cell, across the change",
+   "approach": "refkv conditional",
+   "shape": [
+    2190
+   ],
+   "equal_to_files": true,
+   "seconds_median": 2.203,
+   "seconds_min": 2.18,
+   "store_gets": 2193,
+   "store_megabytes": 56.77
+  },
+  {
+   "workload": "series: every day at one cell",
+   "approach": "refkv conditional",
+   "shape": [
+    2190
+   ],
+   "equal_to_files": true,
+   "seconds_median": 2.186,
+   "seconds_min": 2.183,
+   "store_gets": 2193,
+   "store_megabytes": 56.77
+  }
+ ]
+}

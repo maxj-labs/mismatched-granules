@@ -1,0 +1,25 @@
+[project]
+name = "mismatched-granules"
+version = "0"
+description = "Experiments: reading NASA granules with mismatched layouts as one virtual Zarr array"
+requires-python = ">=3.12"
+dependencies = [
+    "zarr",
+    "virtualizarr[hdf,icechunk]",
+    "icechunk",
+    "xarray",
+    "h5py",
+    "h5netcdf",
+    "netcdf4",
+    "requests",
+    "dask",
+    "arro3-core",
+    "cast-value-rs>=0.5.1",
+    "pytest",
+]
+
+# The three prototype branches. Icechunk builds from source (Rust toolchain needed).
+[tool.uv.sources]
+zarr = { git = "https://github.com/maxj-labs/zarr-python", branch = "feat/array-concat-codec" }
+virtualizarr = { git = "https://github.com/maxj-labs/VirtualiZarr", branch = "feat/concat-mismatched-arrays" }
+icechunk = { git = "https://github.com/maxj-labs/icechunk", branch = "feat/virtual-ref-prefix", subdirectory = "icechunk-python" }

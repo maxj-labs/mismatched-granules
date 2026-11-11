@@ -1,0 +1,291 @@
+{
+ "years": [
+  1950,
+  2025
+ ],
+ "shape": [
+  27740,
+  231,
+  364
+ ],
+ "seam_index": 25550,
+ "build": {
+  "files": 76,
+  "source_bytes": 708475716,
+  "parse_seconds": 12.4,
+  "concat": {
+   "build_seconds": 56.3,
+   "pieces": [
+    25550,
+    2190
+   ],
+   "store_bytes": 2026812
+  },
+  "switch": {
+   "feasible": true,
+   "build_seconds": 36.2,
+   "cases": [
+    {
+     "chunks": 25550,
+     "codecs": [
+      "bytes",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "chunks": 2190,
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    }
+   ],
+   "store_bytes": 2042325
+  }
+ },
+ "arrays": {
+  "concat": {
+   "zarr_json_bytes": 1090,
+   "zarr_chunks": [
+    27740,
+    231,
+    364
+   ],
+   "codecs": [
+    "array_concat"
+   ],
+   "xarray_open_seconds": 8.638,
+   "default_dask_chunk_megabytes": 9330.0,
+   "default_dask_chunks": 1,
+   "nodes_in_store": 15,
+   "store_bytes": 2026812
+  },
+  "switch": {
+   "zarr_json_bytes": 1869,
+   "zarr_chunks": [
+    1,
+    231,
+    364
+   ],
+   "codecs": [
+    "switch"
+   ],
+   "xarray_open_seconds": 8.594,
+   "default_dask_chunk_megabytes": 0.3,
+   "default_dask_chunks": 27740,
+   "nodes_in_store": 11,
+   "store_bytes": 2042325
+  }
+ },
+ "rows": [
+  {
+   "workload": "map: 2 days, whole grid, across the 2020 change",
+   "approach": "concat",
+   "shape": [
+    2,
+    231,
+    364
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.016,
+   "seconds_min": 0.015,
+   "store_gets": 7,
+   "store_megabytes": 0.05
+  },
+  {
+   "workload": "map: 2 days, whole grid, across the 2020 change",
+   "approach": "switch",
+   "shape": [
+    2,
+    231,
+    364
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.014,
+   "seconds_min": 0.013,
+   "store_gets": 5,
+   "store_megabytes": 0.05
+  },
+  {
+   "workload": "map: 2 days, whole grid, across the 2020 change",
+   "approach": "separate",
+   "shape": [
+    2,
+    231,
+    364
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.017,
+   "seconds_min": 0.014,
+   "store_gets": 8,
+   "store_megabytes": 0.05
+  },
+  {
+   "workload": "map: 2 days, whole grid, across the 2020 change",
+   "approach": "files",
+   "shape": [
+    2,
+    231,
+    364
+   ],
+   "equal_to_files": true,
+   "seconds_median": 5.702,
+   "seconds_min": 5.638,
+   "store_gets": null,
+   "store_megabytes": null
+  },
+  {
+   "workload": "box: 30 days x 50x50 cells, across the change",
+   "approach": "concat",
+   "shape": [
+    30,
+    50,
+    50
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.028,
+   "seconds_min": 0.027,
+   "store_gets": 35,
+   "store_megabytes": 0.77
+  },
+  {
+   "workload": "box: 30 days x 50x50 cells, across the change",
+   "approach": "switch",
+   "shape": [
+    30,
+    50,
+    50
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.033,
+   "seconds_min": 0.032,
+   "store_gets": 33,
+   "store_megabytes": 0.77
+  },
+  {
+   "workload": "box: 30 days x 50x50 cells, across the change",
+   "approach": "separate",
+   "shape": [
+    30,
+    50,
+    50
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.035,
+   "seconds_min": 0.034,
+   "store_gets": 36,
+   "store_megabytes": 0.77
+  },
+  {
+   "workload": "box: 30 days x 50x50 cells, across the change",
+   "approach": "files",
+   "shape": [
+    30,
+    50,
+    50
+   ],
+   "equal_to_files": true,
+   "seconds_median": 5.778,
+   "seconds_min": 5.748,
+   "store_gets": null,
+   "store_megabytes": null
+  },
+  {
+   "workload": "series: 10 years at one cell, across the change",
+   "approach": "concat",
+   "shape": [
+    3650
+   ],
+   "equal_to_files": true,
+   "seconds_median": 2.173,
+   "seconds_min": 2.167,
+   "store_gets": 3655,
+   "store_megabytes": 94.89
+  },
+  {
+   "workload": "series: 10 years at one cell, across the change",
+   "approach": "switch",
+   "shape": [
+    3650
+   ],
+   "equal_to_files": true,
+   "seconds_median": 2.591,
+   "seconds_min": 2.576,
+   "store_gets": 3653,
+   "store_megabytes": 94.88
+  },
+  {
+   "workload": "series: 10 years at one cell, across the change",
+   "approach": "separate",
+   "shape": [
+    3650
+   ],
+   "equal_to_files": true,
+   "seconds_median": 2.336,
+   "seconds_min": 2.334,
+   "store_gets": 3656,
+   "store_megabytes": 94.88
+  },
+  {
+   "workload": "series: 10 years at one cell, across the change",
+   "approach": "files",
+   "shape": [
+    3650
+   ],
+   "equal_to_files": true,
+   "seconds_median": 25.555,
+   "seconds_min": 25.169,
+   "store_gets": null,
+   "store_megabytes": null
+  },
+  {
+   "workload": "series: every day at one cell",
+   "approach": "concat",
+   "shape": [
+    27740
+   ],
+   "equal_to_files": true,
+   "seconds_median": 13.612,
+   "seconds_min": 13.601,
+   "store_gets": 27745,
+   "store_megabytes": 653.3
+  },
+  {
+   "workload": "series: every day at one cell",
+   "approach": "switch",
+   "shape": [
+    27740
+   ],
+   "equal_to_files": true,
+   "seconds_median": 15.69,
+   "seconds_min": 15.667,
+   "store_gets": 27743,
+   "store_megabytes": 653.3
+  },
+  {
+   "workload": "series: every day at one cell",
+   "approach": "separate",
+   "shape": [
+    27740
+   ],
+   "equal_to_files": true,
+   "seconds_median": 13.871,
+   "seconds_min": 13.865,
+   "store_gets": 27746,
+   "store_megabytes": 653.3
+  },
+  {
+   "workload": "series: every day at one cell",
+   "approach": "files",
+   "shape": [
+    27740
+   ],
+   "equal_to_files": true,
+   "seconds_median": 174.58,
+   "seconds_min": 166.757,
+   "store_gets": null,
+   "store_megabytes": null
+  }
+ ]
+}

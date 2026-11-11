@@ -1,0 +1,102 @@
+{
+ "switch (same chunk shape)": {
+  "chunks_stored_per_granule": [
+   19,
+   20,
+   24
+  ],
+  "chunks_per_granule": [
+   32,
+   32,
+   32
+  ],
+  "runs": {
+   "before: one fill value, one sentinel": {
+    "strategy": "switch",
+    "cases": 3,
+    "array_fill": -9999.0,
+    "array_sentinel": -9999.0,
+    "raw_cells_wrong": 1200,
+    "masked_cells_wrong": 1328,
+    "cells": 5760,
+    "granules_with_own_fill": 0,
+    "granules_remapped": 0,
+    "partial_reads_equal": true
+   },
+   "per-granule fill only": {
+    "strategy": "switch",
+    "cases": 3,
+    "array_fill": -9999.0,
+    "array_sentinel": -9999.0,
+    "raw_cells_wrong": 0,
+    "masked_cells_wrong": 128,
+    "cells": 5760,
+    "granules_with_own_fill": 2,
+    "granules_remapped": 0,
+    "partial_reads_equal": true
+   },
+   "per-granule fill and sentinel remap": {
+    "strategy": "switch",
+    "cases": 3,
+    "array_fill": -9999.0,
+    "array_sentinel": -9999.0,
+    "raw_cells_wrong": null,
+    "masked_cells_wrong": 0,
+    "cells": 5760,
+    "granules_with_own_fill": 2,
+    "granules_remapped": 2,
+    "partial_reads_equal": true
+   }
+  }
+ },
+ "shards (chunk shape changes)": {
+  "chunks_stored_per_granule": [
+   19,
+   10,
+   24
+  ],
+  "chunks_per_granule": [
+   32,
+   16,
+   32
+  ],
+  "runs": {
+   "before: one fill value, one sentinel": {
+    "strategy": "shards",
+    "cases": 3,
+    "array_fill": -9999.0,
+    "array_sentinel": -9999.0,
+    "raw_cells_wrong": 1200,
+    "masked_cells_wrong": 1334,
+    "cells": 5760,
+    "granules_with_own_fill": 0,
+    "granules_remapped": 0,
+    "partial_reads_equal": true
+   },
+   "per-granule fill only": {
+    "strategy": "shards",
+    "cases": 3,
+    "array_fill": -9999.0,
+    "array_sentinel": -9999.0,
+    "raw_cells_wrong": 0,
+    "masked_cells_wrong": 134,
+    "cells": 5760,
+    "granules_with_own_fill": 2,
+    "granules_remapped": 0,
+    "partial_reads_equal": true
+   },
+   "per-granule fill and sentinel remap": {
+    "strategy": "shards",
+    "cases": 3,
+    "array_fill": -9999.0,
+    "array_sentinel": -9999.0,
+    "raw_cells_wrong": null,
+    "masked_cells_wrong": 0,
+    "cells": 5760,
+    "granules_with_own_fill": 2,
+    "granules_remapped": 2,
+    "partial_reads_equal": true
+   }
+  }
+ }
+}

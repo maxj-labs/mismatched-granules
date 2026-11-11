@@ -1,0 +1,45 @@
+{
+ "collection": "Daymet_NA_dayl",
+ "granules_in_record": 46,
+ "variable": "dayl",
+ "granules_used": 46,
+ "parse_seconds": 665.0,
+ "parse_failures": 0,
+ "first_failures": [],
+ "metadata_requests": 27624,
+ "metadata_megabytes": 974.8,
+ "layouts": {
+  "[[1, 1000, 1000], [\"bytes\", \"numcodecs.zlib\"], \"float32\"]": 40,
+  "[[10, 300, 300], [\"bytes\", \"numcodecs.shuffle\", \"numcodecs.zlib\"], \"float32\"]": 6
+ },
+ "distinct_layouts": 2,
+ "pieces": 7,
+ "strategy": "shards",
+ "cases": 2,
+ "references": 15138,
+ "source_chunks": 1213038,
+ "shape": [
+  16790,
+  8075,
+  7814
+ ],
+ "plan_seconds": 3.7,
+ "notes": {
+  "distinct_chunk_shapes": "[(1, 1000, 1000), (10, 300, 300)]",
+  "distinct_codec_chains": "2",
+  "distinct_data_types": "['float32']",
+  "pieces_with_their_own_fill": "0",
+  "shard_shape": "[10, 3000, 3000]"
+ },
+ "write_seconds": 0.4,
+ "refs_refused": null,
+ "zarr_json_bytes": 1422,
+ "store_megabytes": 2.22,
+ "layout_changes_at_granule": [
+  40
+ ],
+ "granules_checked": 7,
+ "cells_checked": 21,
+ "cells_equal": 21,
+ "check_megabytes": 22.1
+}

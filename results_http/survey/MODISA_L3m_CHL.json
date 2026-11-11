@@ -1,0 +1,221 @@
+{
+ "collection": "MODISA_L3m_CHL",
+ "granules": [
+  "AQUA_MODIS.20201230.L3m.DAY.CHL.chlor_a.4km.nc",
+  "AQUA_MODIS.20201231.L3m.DAY.CHL.chlor_a.4km.nc",
+  "AQUA_MODIS.20210101.L3m.DAY.CHL.chlor_a.4km.nc",
+  "AQUA_MODIS.20210102.L3m.DAY.CHL.chlor_a.4km.nc",
+  "AQUA_MODIS.20210103.L3m.DAY.CHL.chlor_a.4km.nc",
+  "AQUA_MODIS.20210104.L3m.DAY.CHL.chlor_a.4km.nc"
+ ],
+ "variables": {
+  "chlor_a": {
+   "joined_along": "a new axis (one step per granule)",
+   "per_granule": [
+    {
+     "shape": [
+      4320,
+      8640
+     ],
+     "chunks": [
+      44,
+      87
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "shape": [
+      4320,
+      8640
+     ],
+     "chunks": [
+      44,
+      87
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "shape": [
+      4320,
+      8640
+     ],
+     "chunks": [
+      44,
+      87
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "shape": [
+      4320,
+      8640
+     ],
+     "chunks": [
+      512,
+      1024
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "shape": [
+      4320,
+      8640
+     ],
+     "chunks": [
+      512,
+      1024
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "shape": [
+      4320,
+      8640
+     ],
+     "chunks": [
+      512,
+      1024
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    }
+   ],
+   "plain_virtualizarr": "ValueError: Cannot concatenate arrays with inconsistent chunk shapes: (1, 512, 1024) vs (1, 44, 87) .Requires ZEP003 (Variable-length Chunks).",
+   "strategy": "shards",
+   "shape": [
+    6,
+    4320,
+    8640
+   ],
+   "cases": 2,
+   "references": 6,
+   "source_chunks": 29943,
+   "zarr_json_bytes": 1319,
+   "notes": {
+    "distinct_chunk_shapes": [
+     [
+      1,
+      44,
+      87
+     ],
+     [
+      1,
+      512,
+      1024
+     ]
+    ],
+    "distinct_codec_chains": 1,
+    "granules_ending_in_a_cut_chunk": 0,
+    "fill_values": [
+     "np.float32(-32767.0)",
+     "np.float32(0.0)"
+    ],
+    "missing_source_chunks": 0,
+    "granules_with_their_own_fill": 0,
+    "granules_with_a_remapped_sentinel": 0,
+    "shard_shape": [
+     1,
+     4320,
+     8640
+    ]
+   },
+   "reads": [
+    {
+     "read": "window across the boundary after granule 1",
+     "cells": 196608,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.278,
+     "zarr_reads": 87,
+     "source_requests": 102,
+     "source_megabytes": 0.17,
+     "per_granule_source_requests": 102,
+     "per_granule_source_megabytes": 0.17
+    },
+    {
+     "read": "window across the boundary after granule 2",
+     "cells": 262144,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.191,
+     "zarr_reads": 68,
+     "source_requests": 79,
+     "source_megabytes": 0.25,
+     "per_granule_source_requests": 79,
+     "per_granule_source_megabytes": 0.25
+    },
+    {
+     "read": "window across the boundary after granule 3",
+     "cells": 262144,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.241,
+     "zarr_reads": 62,
+     "source_requests": 85,
+     "source_megabytes": 0.93,
+     "per_granule_source_requests": 85,
+     "per_granule_source_megabytes": 0.93
+    },
+    {
+     "read": "series along the joined axis at one position",
+     "cells": 6,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.022,
+     "zarr_reads": 12,
+     "source_requests": 6,
+     "source_megabytes": 0.01,
+     "per_granule_source_requests": 6,
+     "per_granule_source_megabytes": 0.01
+    },
+    {
+     "read": "whole first granule",
+     "cells": 37324800,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 422.381,
+     "zarr_reads": 1,
+     "source_requests": 11762,
+     "source_megabytes": 13.72,
+     "per_granule_source_requests": 11762,
+     "per_granule_source_megabytes": 13.72
+    },
+    {
+     "read": "30 scattered points",
+     "cells": 30,
+     "equal_to_files": true,
+     "source_requests": 84,
+     "source_megabytes": 2.38
+    }
+   ],
+   "all_equal": true,
+   "source_requests": 12034,
+   "per_granule_source_requests": 12034,
+   "source_megabytes": 15.08,
+   "per_granule_source_megabytes": 15.08
+  }
+ }
+}

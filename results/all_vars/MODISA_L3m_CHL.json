@@ -1,0 +1,87 @@
+{
+ "summary": {
+  "collection": "MODISA_L3m_CHL",
+  "granules": 6,
+  "variables": 4,
+  "seconds": 9.4,
+  "outcomes": {
+   "equal to files": 4
+  },
+  "joined": 4,
+  "of_which_plain_concat_was_impossible": 1,
+  "strategies": {
+   "shards": 1,
+   "switch": 3
+  },
+  "variables_with_unstored_chunks": 0,
+  "variables_given_their_own_fill": 0,
+  "variables_with_several_data_types": 0,
+  "max_cases": 2
+ },
+ "rows": [
+  {
+   "variable": "chlor_a",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "shards",
+   "cases": 2,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "lat",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": true,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "lon",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": true,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "palette",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "uint8"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": true,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  }
+ ]
+}

@@ -1,0 +1,130 @@
+{
+ "hybrid_build": {
+  "seconds": 0.3,
+  "virtual_refs": 53946,
+  "refs_failed": null,
+  "time_chunks_era2": "74 chunks: [10]*36 + [5], twice",
+  "pieces": [
+   365,
+   730
+  ]
+ },
+ "rows": [
+  {
+   "workload": "box: 30 days x 600x600 cells, across the 2019/2020 chunk-shape change",
+   "approach": "concat, 3 pieces",
+   "shape": [
+    30,
+    600,
+    600
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.184,
+   "store_gets": 55,
+   "store_megabytes": 7.3,
+   "source_requests": 48,
+   "source_megabytes": 7.24
+  },
+  {
+   "workload": "box: 30 days x 600x600 cells, across the 2019/2020 chunk-shape change",
+   "approach": "hybrid, 2 pieces",
+   "shape": [
+    30,
+    600,
+    600
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.175,
+   "store_gets": 53,
+   "store_megabytes": 7.2,
+   "source_requests": 48,
+   "source_megabytes": 7.24
+  },
+  {
+   "workload": "box: 30 days x 600x600 cells, across the 2020/2021 file boundary",
+   "approach": "concat, 3 pieces",
+   "shape": [
+    30,
+    600,
+    600
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.193,
+   "store_gets": 43,
+   "store_megabytes": 5.4,
+   "source_requests": 36,
+   "source_megabytes": 5.42
+  },
+  {
+   "workload": "box: 30 days x 600x600 cells, across the 2020/2021 file boundary",
+   "approach": "hybrid, 2 pieces",
+   "shape": [
+    30,
+    600,
+    600
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.267,
+   "store_gets": 40,
+   "store_megabytes": 5.4,
+   "source_requests": 36,
+   "source_megabytes": 5.42
+  },
+  {
+   "workload": "map: 1 day, whole grid, 2021",
+   "approach": "concat, 3 pieces",
+   "shape": [
+    1,
+    8075,
+    7814
+   ],
+   "equal_to_files": true,
+   "seconds_median": 2.701,
+   "store_gets": 341,
+   "store_megabytes": 34.1,
+   "source_requests": 729,
+   "source_megabytes": 34.07
+  },
+  {
+   "workload": "map: 1 day, whole grid, 2021",
+   "approach": "hybrid, 2 pieces",
+   "shape": [
+    1,
+    8075,
+    7814
+   ],
+   "equal_to_files": true,
+   "seconds_median": 4.796,
+   "store_gets": 733,
+   "store_megabytes": 34.1,
+   "source_requests": 729,
+   "source_megabytes": 34.07
+  },
+  {
+   "workload": "series: every day (1,095) at one cell",
+   "approach": "concat, 3 pieces",
+   "shape": [
+    1095
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.899,
+   "store_gets": 553,
+   "store_megabytes": 54.4,
+   "source_requests": 439,
+   "source_megabytes": 54.23
+  },
+  {
+   "workload": "series: every day (1,095) at one cell",
+   "approach": "hybrid, 2 pieces",
+   "shape": [
+    1095
+   ],
+   "equal_to_files": true,
+   "seconds_median": 1.224,
+   "store_gets": 444,
+   "store_megabytes": 54.2,
+   "source_requests": 439,
+   "source_megabytes": 54.23
+  }
+ ]
+}

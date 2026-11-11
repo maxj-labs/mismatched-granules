@@ -1,0 +1,758 @@
+{
+ "summary": {
+  "collection": "TEMPO_NO2_L2",
+  "granules": 4,
+  "variables": 46,
+  "seconds": 2.5,
+  "outcomes": {
+   "equal to files": 46
+  },
+  "joined": 46,
+  "of_which_plain_concat_was_impossible": 45,
+  "strategies": {
+   "switch": 46
+  },
+  "variables_with_unstored_chunks": 0,
+  "variables_given_their_own_fill": 0,
+  "variables_with_several_data_types": 0,
+  "max_cases": 1
+ },
+ "rows": [
+  {
+   "variable": "geolocation/latitude",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "geolocation/latitude_bounds",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "geolocation/longitude",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "geolocation/longitude_bounds",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "geolocation/relative_azimuth_angle",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "geolocation/solar_azimuth_angle",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "geolocation/solar_zenith_angle",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "geolocation/time",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float64"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "geolocation/viewing_azimuth_angle",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "geolocation/viewing_zenith_angle",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "mirror_step",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "product/main_data_quality_flag",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "product/vertical_column_stratosphere",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float64"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "product/vertical_column_troposphere",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float64"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "product/vertical_column_troposphere_uncertainty",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float64"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "qa_statistics/fit_convergence_flag",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "qa_statistics/fit_rms_residual",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/albedo",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/amf_cloud_fraction",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/amf_cloud_pressure",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/amf_diagnostic_flag",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/amf_stratosphere",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/amf_stratosphere_clear_sky",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/amf_total",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/amf_total_clear_sky",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/amf_troposphere",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/amf_troposphere_clear_sky",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/destriping_correction",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/eff_cloud_fraction",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/fitted_slant_column",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float64"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/fitted_slant_column_uncertainty",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float64"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/fitted_slant_column_uncorrected",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/gas_profile",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 3,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/ground_pixel_quality_flag",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/pbl_height",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/scattering_weights",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 3,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/scattering_weights_clear_sky",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 3,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/snow_ice_fraction",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/surface_pressure",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/temperature_profile",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 3,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/terrain_height",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/tropopause_pressure",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/vertical_column_total",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float64"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/vertical_column_total_uncertainty",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float64"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "support_data/wind_speed",
+   "chunk_shapes": 2,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "xtrack",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 0,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": true,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  }
+ ]
+}

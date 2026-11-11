@@ -1,0 +1,122 @@
+{
+ "pieces": [
+  3,
+  3
+ ],
+ "rows": [
+  {
+   "layout": "one day per shard",
+   "references": 6,
+   "source_chunks": 29943,
+   "files_per_reference": [
+    1
+   ],
+   "shard_shape": [
+    1,
+    4320,
+    8640
+   ],
+   "read": "6-day series at one cell",
+   "equal_to_files": true,
+   "seconds": 0.061,
+   "zarr_reads": 15,
+   "source_requests": 6,
+   "source_megabytes": 1.18
+  },
+  {
+   "layout": "one day per shard",
+   "references": 6,
+   "source_chunks": 29943,
+   "files_per_reference": [
+    1
+   ],
+   "shard_shape": [
+    1,
+    4320,
+    8640
+   ],
+   "read": "6 days x 200x200 cells",
+   "equal_to_files": true,
+   "seconds": 0.085,
+   "zarr_reads": 69,
+   "source_requests": 60,
+   "source_megabytes": 2.17
+  },
+  {
+   "layout": "one day per shard",
+   "references": 6,
+   "source_chunks": 29943,
+   "files_per_reference": [
+    1
+   ],
+   "shard_shape": [
+    1,
+    4320,
+    8640
+   ],
+   "read": "one whole day",
+   "equal_to_files": true,
+   "seconds": 0.28,
+   "zarr_reads": 4,
+   "source_requests": 81,
+   "source_megabytes": 12.54
+  },
+  {
+   "layout": "three days per shard",
+   "references": 2,
+   "source_chunks": 29943,
+   "files_per_reference": [
+    3
+   ],
+   "shard_shape": [
+    3,
+    4320,
+    8640
+   ],
+   "read": "6-day series at one cell",
+   "equal_to_files": true,
+   "seconds": 0.068,
+   "zarr_reads": 11,
+   "source_requests": 6,
+   "source_megabytes": 1.18
+  },
+  {
+   "layout": "three days per shard",
+   "references": 2,
+   "source_chunks": 29943,
+   "files_per_reference": [
+    3
+   ],
+   "shard_shape": [
+    3,
+    4320,
+    8640
+   ],
+   "read": "6 days x 200x200 cells",
+   "equal_to_files": true,
+   "seconds": 0.235,
+   "zarr_reads": 65,
+   "source_requests": 60,
+   "source_megabytes": 2.17
+  },
+  {
+   "layout": "three days per shard",
+   "references": 2,
+   "source_chunks": 29943,
+   "files_per_reference": [
+    3
+   ],
+   "shard_shape": [
+    3,
+    4320,
+    8640
+   ],
+   "read": "one whole day",
+   "equal_to_files": true,
+   "seconds": 0.312,
+   "zarr_reads": 85,
+   "source_requests": 81,
+   "source_megabytes": 12.54
+  }
+ ]
+}

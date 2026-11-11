@@ -1,0 +1,94 @@
+{
+ "short_name": "ATL08",
+ "hits": 440625,
+ "samples": [
+  {
+   "granule": "ATL08_20181014001049_02350102_007_01.h5",
+   "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL08/007/2018/10/14/ATL08_20181014001049_02350102_007_01.h5",
+   "start": "2018-10-14",
+   "size_mb": 16.8,
+   "n_datasets": 152,
+   "layouts": {
+    "gt1l/signal_photons/classed_pc_indx": {
+     "shape": [
+      9048
+     ],
+     "chunks": [
+      100000
+     ],
+     "dtype": "int32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 36192
+    }
+   },
+   "requests": 3,
+   "mb_read": 3.1
+  },
+  {
+   "granule": "ATL08_20220927203343_01081714_007_01.h5",
+   "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL08/007/2022/09/27/ATL08_20220927203343_01081714_007_01.h5",
+   "start": "2022-09-27",
+   "size_mb": 16.8,
+   "n_datasets": 90,
+   "layouts": {
+    "gt1l/signal_photons/classed_pc_indx": {
+     "shape": [
+      21202
+     ],
+     "chunks": [
+      100000
+     ],
+     "dtype": "int32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 84808
+    }
+   },
+   "requests": 3,
+   "mb_read": 3.1
+  },
+  {
+   "granule": "ATL08_20260924222013_01843312_007_01.h5_KOiFgTqo",
+   "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL08/007/2026/09/24/ATL08_20260924222013_01843312_007_01.h5",
+   "start": "2026-09-24",
+   "size_mb": 117.4,
+   "n_datasets": 588,
+   "layouts": {
+    "gt1l/land_segments/canopy/h_canopy": {
+     "shape": [
+      8021
+     ],
+     "chunks": [
+      10000
+     ],
+     "dtype": "float32",
+     "filters": [
+      "deflate"
+     ],
+     "nbytes": 32084
+    },
+    "gt1l/signal_photons/classed_pc_indx": {
+     "shape": [
+      1882536
+     ],
+     "chunks": [
+      100000
+     ],
+     "dtype": "int32",
+     "filters": [
+      "shuffle",
+      "deflate"
+     ],
+     "nbytes": 7530144
+    }
+   },
+   "requests": 3,
+   "mb_read": 3.1
+  }
+ ]
+}

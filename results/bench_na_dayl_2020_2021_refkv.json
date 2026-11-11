@@ -1,0 +1,55 @@
+{
+ "versions": {
+  "zarr": "3.4.2",
+  "virtualizarr": "2.8.0",
+  "refkv": "0.2.0"
+ },
+ "years": [
+  2020,
+  2021
+ ],
+ "parse_seconds": 1.0,
+ "build_seconds": 2.2,
+ "feasible": true,
+ "store_bytes": 8531068,
+ "zarr_json_bytes": 1274,
+ "cases": [
+  [
+   "crop",
+   "bytes",
+   "numcodecs.shuffle",
+   "numcodecs.zlib"
+  ]
+ ],
+ "chunk_grid": "rectilinear",
+ "zarr_chunk_grid_cells": 53946,
+ "default_dask_chunks": 53946,
+ "rows": [
+  {
+   "workload": "box: 30 days x 600x600 cells, across the file boundary",
+   "approach": "refkv switch",
+   "shape": [
+    30,
+    600,
+    600
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.533,
+   "seconds_min": 0.501,
+   "store_gets": 39,
+   "store_megabytes": 5.21
+  },
+  {
+   "workload": "series: every day at one cell",
+   "approach": "refkv switch",
+   "shape": [
+    730
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.727,
+   "seconds_min": 0.679,
+   "store_gets": 77,
+   "store_megabytes": 11.1
+  }
+ ]
+}

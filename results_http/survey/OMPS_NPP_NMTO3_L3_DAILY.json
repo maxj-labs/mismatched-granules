@@ -1,0 +1,201 @@
+{
+ "collection": "OMPS_NPP_NMTO3_L3_DAILY",
+ "granules": [
+  "OMPS-NPP_NMTO3-L3-DAILY_v2.1_2017m0328_2017m0330t031411.h5",
+  "OMPS-NPP_NMTO3-L3-DAILY_v2.1_2017m0329_2017m0331t030835.h5",
+  "OMPS-NPP_NMTO3-L3-DAILY_v2.1_2017m0330_2017m0403t143041.h5",
+  "OMPS-NPP_NMTO3-L3-DAILY_v2.1_2017m0331_2017m0406t065404.h5",
+  "OMPS-NPP_NMTO3-L3-DAILY_v2.1_2017m0401_2017m0406t065345.h5",
+  "OMPS-NPP_NMTO3-L3-DAILY_v2.1_2017m0402_2017m0406t065341.h5"
+ ],
+ "variables": {
+  "ColumnAmountO3": {
+   "joined_along": "a new axis (one step per granule)",
+   "per_granule": [
+    {
+     "shape": [
+      180,
+      360
+     ],
+     "chunks": [
+      180,
+      360
+     ],
+     "codecs": [
+      "bytes"
+     ]
+    },
+    {
+     "shape": [
+      180,
+      360
+     ],
+     "chunks": [
+      180,
+      360
+     ],
+     "codecs": [
+      "bytes"
+     ]
+    },
+    {
+     "shape": [
+      180,
+      360
+     ],
+     "chunks": [
+      180,
+      360
+     ],
+     "codecs": [
+      "bytes"
+     ]
+    },
+    {
+     "shape": [
+      180,
+      360
+     ],
+     "chunks": [
+      180,
+      360
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "shape": [
+      180,
+      360
+     ],
+     "chunks": [
+      180,
+      360
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "shape": [
+      180,
+      360
+     ],
+     "chunks": [
+      180,
+      360
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.zlib"
+     ]
+    }
+   ],
+   "plain_virtualizarr": "NotImplementedError: The ManifestArray class cannot concatenate arrays which were stored using different codecs, But found codecs (BytesCodec(endian='little'),) vs (BytesC",
+   "strategy": "switch",
+   "shape": [
+    6,
+    180,
+    360
+   ],
+   "cases": 2,
+   "references": 6,
+   "source_chunks": 6,
+   "zarr_json_bytes": 755,
+   "notes": {
+    "distinct_chunk_shapes": [
+     [
+      1,
+      180,
+      360
+     ]
+    ],
+    "distinct_codec_chains": 2,
+    "granules_ending_in_a_cut_chunk": 0,
+    "fill_values": [
+     "np.float32(-1.2676506e+30)"
+    ],
+    "missing_source_chunks": 0,
+    "granules_with_their_own_fill": 0,
+    "granules_with_a_remapped_sentinel": 0
+   },
+   "reads": [
+    {
+     "read": "window across the boundary after granule 1",
+     "cells": 138240,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.017,
+     "zarr_reads": 3,
+     "source_requests": 15,
+     "source_megabytes": 0.78,
+     "per_granule_source_requests": 15,
+     "per_granule_source_megabytes": 0.78
+    },
+    {
+     "read": "window across the boundary after granule 2",
+     "cells": 184320,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.061,
+     "zarr_reads": 4,
+     "source_requests": 20,
+     "source_megabytes": 0.97,
+     "per_granule_source_requests": 20,
+     "per_granule_source_megabytes": 0.97
+    },
+    {
+     "read": "window across the boundary after granule 3",
+     "cells": 184320,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.068,
+     "zarr_reads": 4,
+     "source_requests": 20,
+     "source_megabytes": 0.91,
+     "per_granule_source_requests": 20,
+     "per_granule_source_megabytes": 0.91
+    },
+    {
+     "read": "series along the joined axis at one position",
+     "cells": 6,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.066,
+     "zarr_reads": 6,
+     "source_requests": 30,
+     "source_megabytes": 1.36,
+     "per_granule_source_requests": 30,
+     "per_granule_source_megabytes": 1.36
+    },
+    {
+     "read": "whole first granule",
+     "cells": 64800,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.051,
+     "zarr_reads": 1,
+     "source_requests": 5,
+     "source_megabytes": 0.26,
+     "per_granule_source_requests": 5,
+     "per_granule_source_megabytes": 0.26
+    },
+    {
+     "read": "30 scattered points",
+     "cells": 30,
+     "equal_to_files": true,
+     "source_requests": 30,
+     "source_megabytes": 1.36
+    }
+   ],
+   "all_equal": true,
+   "source_requests": 90,
+   "per_granule_source_requests": 90,
+   "source_megabytes": 4.28,
+   "per_granule_source_megabytes": 4.28
+  }
+ }
+}

@@ -1,0 +1,4507 @@
+{
+ "summary": {
+  "collection": "GPM_2ADPR",
+  "granules": 2,
+  "variables": 281,
+  "seconds": 63.4,
+  "outcomes": {
+   "not a numeric array": 1,
+   "equal to files": 280
+  },
+  "joined": 280,
+  "of_which_plain_concat_was_impossible": 280,
+  "strategies": {
+   "switch": 280
+  },
+  "variables_with_unstored_chunks": 0,
+  "variables_given_their_own_fill": 0,
+  "variables_with_several_data_types": 0,
+  "max_cases": 1
+ },
+ "rows": [
+  {
+   "variable": "AlgorithmRuntimeInfo",
+   "outcome": "not a numeric array"
+  },
+  {
+   "variable": "FS/CSF/binBBBottom",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/CSF/binBBPeak",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/CSF/binBBTop",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/CSF/binDFRmMLBottom",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/CSF/binDFRmMLTop",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/CSF/binHeavyIcePrecipBottom",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/CSF/binHeavyIcePrecipTop",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/CSF/flagAnvil",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/CSF/flagBB",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/CSF/flagHail",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/CSF/flagHeavyIcePrecip",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/CSF/flagMLquality",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "uint8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/CSF/flagShallowRain",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/CSF/heightBB",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/CSF/nHeavyIcePrecip",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "uint8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/CSF/qualityBB",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/CSF/qualityTypePrecip",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/CSF/typePrecip",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/CSF/widthBB",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/DSD/binNode",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/DSD/paramRDm",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/DSD/phase",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "uint8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/Experimental/binMixedPhaseTop",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/Experimental/flagGraupelHail",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "uint8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/Experimental/flagSurfaceSnowfall",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "uint8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/Experimental/precipRateESurface2",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/Experimental/precipRateESurface2Status",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "uint8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/Experimental/seaIceConcentration",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/Experimental/sigmaZeroProfile",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/Experimental/surfaceSnowfallIndex",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/FLG/flagEcho",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/FLG/flagScanPattern",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/FLG/flagSensor",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/FLG/qualityData",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/FLG/qualityFlag",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/Latitude",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/Longitude",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/PRE/adjustFactor",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/PRE/binClutterFreeBottom",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/PRE/binMirrorImageL2",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/PRE/binRealSurface",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/PRE/binStormTop",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/PRE/echoCountRealSurface",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "uint8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/PRE/elevation",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/PRE/ellipsoidBinOffset",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/PRE/flagPrecip",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/PRE/flagSigmaZeroSaturation",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "uint8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/PRE/height",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/PRE/heightStormTop",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/PRE/landSurfaceType",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/PRE/localZenithAngle",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/PRE/sigmaZeroMeasured",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/PRE/snRatioAtRealSurface",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/PRE/snowIceCover",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/PRE/zFactorMeasured",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/DFRforward1",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/binEchoBottom",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/epsilon",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/flagSLV",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/paramDSD",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/paramNUBF",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/phaseNearSurface",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "uint8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/piaFinal",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/piaOffset",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/precipRate",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/precipRateAve24",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/precipRateESurface",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/precipRateNearSurface",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/precipWater",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/precipWaterIntegrated",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/qualitySLV",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/sigmaZeroCorrected",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/zFactorFinal",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/zFactorFinalESurface",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SLV/zFactorFinalNearSurface",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SRT/PIAalt",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SRT/PIAdw",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SRT/PIAhb",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SRT/PIAhybrid",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SRT/PIAweight",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SRT/PIAweightHY",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SRT/RFactorAlt",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SRT/pathAtten",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SRT/piaExp",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SRT/refScanID",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SRT/reliabFactor",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SRT/reliabFactorHY",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SRT/reliabFlag",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SRT/reliabFlagHY",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SRT/stddevEff",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SRT/stddevHY",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/SRT/zeta",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/ScanTime/DayOfMonth",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/ScanTime/DayOfYear",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/ScanTime/Hour",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/ScanTime/MilliSecond",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/ScanTime/Minute",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/ScanTime/Month",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/ScanTime/Second",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/ScanTime/SecondOfDay",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float64"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/ScanTime/Year",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/TRG/MSindex",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/TRG/MSindexKa",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/TRG/MSindexKu",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/TRG/MSkneeDFRindex",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/TRG/MSslopesKa",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/TRG/MSslopesKu",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/TRG/MSsurfPeakIndexKa",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/TRG/MSsurfPeakIndexKu",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/TRG/NUBFindex",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/VER/airTemperature",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/VER/attenuationNP",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/VER/binZeroDeg",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/VER/binZeroDegSecondary",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/VER/flagInversion",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/VER/heightZeroDeg",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/VER/piaNP",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/VER/piaNPrainFree",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/VER/sigmaZeroNPCorrected",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/navigation/dprAlt",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/navigation/greenHourAng",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/navigation/scAlt",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/navigation/scAttPitchGeoc",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/navigation/scAttPitchGeod",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/navigation/scAttRollGeoc",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/navigation/scAttRollGeod",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/navigation/scAttYawGeoc",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/navigation/scAttYawGeod",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/navigation/scHeadingGround",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/navigation/scHeadingOrbital",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/navigation/scLat",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/navigation/scLon",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/navigation/scPos",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/navigation/scVel",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/navigation/timeMidScan",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float64"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/navigation/timeMidScanOffset",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float64"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/scanStatus/FractionalGranuleNumber",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float64"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/scanStatus/SCorientation",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/scanStatus/acsModeMidScan",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/scanStatus/dataQuality",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/scanStatus/dataWarning",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/scanStatus/geoError",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/scanStatus/geoWarning",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/scanStatus/limitErrorFlag",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/scanStatus/missing",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/scanStatus/modeStatus",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/scanStatus/operationalMode",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/scanStatus/pointingStatus",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/scanStatus/targetSelectionMidScan",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "FS/sunLocalTime",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/CSF/binBBBottom",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/CSF/binBBPeak",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/CSF/binBBTop",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/CSF/binDFRmMLBottom",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/CSF/binDFRmMLTop",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/CSF/flagBB",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/CSF/flagHeavyIcePrecip",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/CSF/flagMLquality",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "uint8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/CSF/flagShallowRain",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/CSF/heightBB",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/CSF/qualityBB",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/CSF/qualityTypePrecip",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/CSF/typePrecip",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/CSF/widthBB",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/DSD/binNode",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/DSD/paramRDm",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/DSD/phase",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "uint8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/Experimental/precipRateESurface2",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/Experimental/precipRateESurface2Status",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "uint8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/Experimental/seaIceConcentration",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/Experimental/sigmaZeroProfile",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/FLG/flagEcho",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/FLG/flagScanPattern",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/FLG/flagSensor",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/FLG/qualityData",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/FLG/qualityFlag",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 1,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/Latitude",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/Longitude",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/PRE/adjustFactor",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/PRE/binClutterFreeBottom",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/PRE/binMirrorImageL2",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/PRE/binRealSurface",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/PRE/binStormTop",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/PRE/echoCountRealSurface",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "uint8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/PRE/elevation",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/PRE/ellipsoidBinOffset",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/PRE/flagPrecip",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/PRE/flagSigmaZeroSaturation",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "uint8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/PRE/height",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/PRE/heightStormTop",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/PRE/landSurfaceType",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/PRE/localZenithAngle",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/PRE/sigmaZeroMeasured",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/PRE/snRatioAtRealSurface",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/PRE/snowIceCover",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/PRE/zFactorMeasured",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SLV/binEchoBottom",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SLV/epsilon",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SLV/flagSLV",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SLV/paramDSD",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SLV/paramNUBF",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SLV/phaseNearSurface",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "uint8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SLV/piaFinal",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SLV/piaOffset",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SLV/precipRate",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SLV/precipRateAve24",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SLV/precipRateESurface",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SLV/precipRateNearSurface",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SLV/precipWater",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SLV/precipWaterIntegrated",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SLV/qualitySLV",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SLV/sigmaZeroCorrected",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SLV/zFactorFinal",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SLV/zFactorFinalESurface",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SLV/zFactorFinalNearSurface",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SRT/PIAalt",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SRT/PIAdw",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SRT/PIAhb",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SRT/PIAhybrid",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SRT/PIAweight",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SRT/PIAweightHY",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SRT/RFactorAlt",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SRT/pathAtten",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SRT/refScanID",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SRT/reliabFactor",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SRT/reliabFactorHY",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SRT/reliabFlag",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SRT/reliabFlagHY",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SRT/stddevEff",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SRT/stddevHY",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/SRT/zeta",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/ScanTime/DayOfMonth",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/ScanTime/DayOfYear",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/ScanTime/Hour",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/ScanTime/MilliSecond",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/ScanTime/Minute",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/ScanTime/Month",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/ScanTime/Second",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/ScanTime/SecondOfDay",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float64"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/ScanTime/Year",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/VER/airTemperature",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/VER/attenuationNP",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/VER/binZeroDeg",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/VER/binZeroDegSecondary",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/VER/flagInversion",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/VER/heightZeroDeg",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/VER/piaNP",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/VER/piaNPrainFree",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/VER/sigmaZeroNPCorrected",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/navigation/dprAlt",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/navigation/greenHourAng",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/navigation/scAlt",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/navigation/scAttPitchGeoc",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/navigation/scAttPitchGeod",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/navigation/scAttRollGeoc",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/navigation/scAttRollGeod",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/navigation/scAttYawGeoc",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/navigation/scAttYawGeod",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/navigation/scHeadingGround",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/navigation/scHeadingOrbital",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/navigation/scLat",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/navigation/scLon",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/navigation/scPos",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/navigation/scVel",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/navigation/timeMidScan",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float64"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/navigation/timeMidScanOffset",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float64"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/scanStatus/FractionalGranuleNumber",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float64"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/scanStatus/SCorientation",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/scanStatus/acsModeMidScan",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/scanStatus/dataQuality",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/scanStatus/dataWarning",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/scanStatus/geoError",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/scanStatus/geoWarning",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/scanStatus/limitErrorFlag",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/scanStatus/missing",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/scanStatus/modeStatus",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/scanStatus/operationalMode",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/scanStatus/pointingStatus",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int16"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/scanStatus/targetSelectionMidScan",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "int8"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  },
+  {
+   "variable": "HS/sunLocalTime",
+   "chunk_shapes": 1,
+   "codec_chains": 1,
+   "data_types": [
+    "float32"
+   ],
+   "granules_cut": 1,
+   "unstored_chunks": 0,
+   "fill_values": 2,
+   "plain_concat_possible": false,
+   "strategy": "switch",
+   "cases": 1,
+   "own_fill_cases": 0,
+   "outcome": "equal to files"
+  }
+ ]
+}

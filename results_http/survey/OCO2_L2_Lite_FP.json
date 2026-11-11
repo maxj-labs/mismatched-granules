@@ -1,0 +1,292 @@
+{
+ "collection": "OCO2_L2_Lite_FP",
+ "granules": [
+  "oco2_LtCO2_190821_B11210Ar_241025185130s.nc4",
+  "oco2_LtCO2_190822_B11210Ar_240910235723s.nc4",
+  "oco2_LtCO2_190823_B11210Ar_240910235743s.nc4"
+ ],
+ "variables": {
+  "xco2": {
+   "joined_along": "the first axis",
+   "per_granule": [
+    {
+     "shape": [
+      166372
+     ],
+     "chunks": [
+      166372
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "shape": [
+      164778
+     ],
+     "chunks": [
+      164778
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "shape": [
+      135908
+     ],
+     "chunks": [
+      135908
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    }
+   ],
+   "plain_virtualizarr": "ValueError: Cannot concatenate arrays with inconsistent chunk shapes: (164778,) vs (166372,) .Requires ZEP003 (Variable-length Chunks).",
+   "strategy": "switch",
+   "shape": [
+    467058
+   ],
+   "cases": 1,
+   "references": 3,
+   "source_chunks": 3,
+   "zarr_json_bytes": 682,
+   "notes": {
+    "distinct_chunk_shapes": [
+     [
+      135908
+     ],
+     [
+      164778
+     ],
+     [
+      166372
+     ]
+    ],
+    "distinct_codec_chains": 1,
+    "granules_ending_in_a_cut_chunk": 0,
+    "fill_values": [
+     "np.float32(9.96921e+36)"
+    ],
+    "missing_source_chunks": 0,
+    "granules_with_their_own_fill": 0,
+    "granules_with_a_remapped_sentinel": 0
+   },
+   "reads": [
+    {
+     "read": "window across the boundary after granule 1",
+     "cells": 4,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.018,
+     "zarr_reads": 2,
+     "source_requests": 10,
+     "source_megabytes": 0.72,
+     "per_granule_source_requests": 10,
+     "per_granule_source_megabytes": 0.72
+    },
+    {
+     "read": "window across the boundary after granule 2",
+     "cells": 4,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.049,
+     "zarr_reads": 2,
+     "source_requests": 10,
+     "source_megabytes": 0.66,
+     "per_granule_source_requests": 10,
+     "per_granule_source_megabytes": 0.66
+    },
+    {
+     "read": "series along the joined axis at one position",
+     "cells": 40000,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.027,
+     "zarr_reads": 2,
+     "source_requests": 10,
+     "source_megabytes": 0.72,
+     "per_granule_source_requests": 10,
+     "per_granule_source_megabytes": 0.72
+    },
+    {
+     "read": "whole first granule",
+     "cells": 166372,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.009,
+     "zarr_reads": 1,
+     "source_requests": 5,
+     "source_megabytes": 0.37,
+     "per_granule_source_requests": 5,
+     "per_granule_source_megabytes": 0.37
+    },
+    {
+     "read": "30 scattered points",
+     "cells": 30,
+     "equal_to_files": true,
+     "source_requests": 15,
+     "source_megabytes": 1.02
+    }
+   ],
+   "all_equal": true,
+   "source_requests": 35,
+   "per_granule_source_requests": 35,
+   "source_megabytes": 2.47,
+   "per_granule_source_megabytes": 2.47
+  },
+  "co2_profile_apriori": {
+   "joined_along": "the first axis",
+   "per_granule": [
+    {
+     "shape": [
+      166372,
+      20
+     ],
+     "chunks": [
+      83186,
+      10
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "shape": [
+      164778,
+      20
+     ],
+     "chunks": [
+      82389,
+      10
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    },
+    {
+     "shape": [
+      135908,
+      20
+     ],
+     "chunks": [
+      67954,
+      10
+     ],
+     "codecs": [
+      "bytes",
+      "numcodecs.shuffle",
+      "numcodecs.zlib"
+     ]
+    }
+   ],
+   "plain_virtualizarr": "ValueError: Cannot concatenate arrays with inconsistent chunk shapes: (82389, 10) vs (83186, 10) .Requires ZEP003 (Variable-length Chunks).",
+   "strategy": "switch",
+   "shape": [
+    467058,
+    20
+   ],
+   "cases": 1,
+   "references": 12,
+   "source_chunks": 12,
+   "zarr_json_bytes": 713,
+   "notes": {
+    "distinct_chunk_shapes": [
+     [
+      67954,
+      10
+     ],
+     [
+      82389,
+      10
+     ],
+     [
+      83186,
+      10
+     ]
+    ],
+    "distinct_codec_chains": 1,
+    "granules_ending_in_a_cut_chunk": 0,
+    "fill_values": [
+     "np.float32(9.96921e+36)"
+    ],
+    "missing_source_chunks": 0,
+    "granules_with_their_own_fill": 0,
+    "granules_with_a_remapped_sentinel": 0
+   },
+   "reads": [
+    {
+     "read": "window across the boundary after granule 1",
+     "cells": 80,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.032,
+     "zarr_reads": 4,
+     "source_requests": 20,
+     "source_megabytes": 4.14,
+     "per_granule_source_requests": 20,
+     "per_granule_source_megabytes": 4.14
+    },
+    {
+     "read": "window across the boundary after granule 2",
+     "cells": 80,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.03,
+     "zarr_reads": 4,
+     "source_requests": 20,
+     "source_megabytes": 3.83,
+     "per_granule_source_requests": 20,
+     "per_granule_source_megabytes": 3.83
+    },
+    {
+     "read": "series along the joined axis at one position",
+     "cells": 40000,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.018,
+     "zarr_reads": 2,
+     "source_requests": 10,
+     "source_megabytes": 2.07,
+     "per_granule_source_requests": 10,
+     "per_granule_source_megabytes": 2.07
+    },
+    {
+     "read": "whole first granule",
+     "cells": 3327440,
+     "equal_to_files": true,
+     "per_granule_equal": true,
+     "seconds": 0.034,
+     "zarr_reads": 4,
+     "source_requests": 20,
+     "source_megabytes": 4.22,
+     "per_granule_source_requests": 20,
+     "per_granule_source_megabytes": 4.22
+    },
+    {
+     "read": "30 scattered points",
+     "cells": 30,
+     "equal_to_files": true,
+     "source_requests": 55,
+     "source_megabytes": 10.77
+    }
+   ],
+   "all_equal": true,
+   "source_requests": 70,
+   "per_granule_source_requests": 70,
+   "source_megabytes": 14.26,
+   "per_granule_source_megabytes": 14.26
+  }
+ }
+}
