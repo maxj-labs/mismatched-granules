@@ -1,0 +1,44 @@
+{
+ "collection": "OMPS_NPP_NMTO3_L3_DAILY",
+ "granules_in_record": 5126,
+ "variable": "ColumnAmountO3",
+ "granules_used": 302,
+ "parse_seconds": 210.9,
+ "parse_failures": 0,
+ "first_failures": [],
+ "metadata_requests": 7432,
+ "metadata_megabytes": 479.0,
+ "layouts": {
+  "[[1, 180, 360], [\"bytes\", \"numcodecs.zlib\"], \"float32\"]": 205,
+  "[[1, 180, 360], [\"bytes\"], \"float32\"]": 97
+ },
+ "distinct_layouts": 2,
+ "pieces": 2,
+ "strategy": "switch",
+ "cases": 2,
+ "references": 302,
+ "source_chunks": 302,
+ "shape": [
+  302,
+  180,
+  360
+ ],
+ "plan_seconds": 0.0,
+ "notes": {
+  "distinct_chunk_shapes": "[(1, 180, 360)]",
+  "distinct_codec_chains": "2",
+  "distinct_data_types": "['float32']",
+  "pieces_with_their_own_fill": "0"
+ },
+ "write_seconds": 0.0,
+ "refs_refused": null,
+ "zarr_json_bytes": 762,
+ "store_megabytes": 0.01,
+ "layout_changes_at_granule": [
+  97
+ ],
+ "granules_checked": 8,
+ "cells_checked": 24,
+ "cells_equal": 24,
+ "check_megabytes": 11.4
+}
