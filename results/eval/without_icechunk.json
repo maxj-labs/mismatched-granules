@@ -1,0 +1,48 @@
+{
+ "reference_format": "Kerchunk JSON, read with fsspec's reference filesystem",
+ "cells": {
+  "switch_position|codec_eras": {
+   "outcome": "equal"
+  },
+  "switch_key|codec_eras": {
+   "outcome": "not expressible",
+   "why": "a chunk is a literal followed by one or more byte ranges; a Kerchunk reference is one or the other"
+  },
+  "switch_position|padded_last_chunk": {
+   "outcome": "equal"
+  },
+  "switch_key|padded_last_chunk": {
+   "outcome": "not expressible",
+   "why": "a chunk is a literal followed by one or more byte ranges; a Kerchunk reference is one or the other"
+  },
+  "switch_position|packing_per_file": {
+   "outcome": "equal"
+  },
+  "switch_key|packing_per_file": {
+   "outcome": "not expressible",
+   "why": "a chunk is a literal followed by one or more byte ranges; a Kerchunk reference is one or the other"
+  },
+  "switch_position|data_types": {
+   "outcome": "equal"
+  },
+  "switch_key|data_types": {
+   "outcome": "not expressible",
+   "why": "a chunk is a literal followed by one or more byte ranges; a Kerchunk reference is one or the other"
+  },
+  "switch_position|chunk_shape_change": {
+   "outcome": "not expressible",
+   "why": "a chunk is a literal followed by one or more byte ranges; a Kerchunk reference is one or the other"
+  },
+  "switch_key|chunk_shape_change": {
+   "outcome": "not expressible",
+   "why": "a chunk is a literal followed by one or more byte ranges; a Kerchunk reference is one or the other"
+  },
+  "switch_position|layouts_alternate": {
+   "outcome": "equal"
+  },
+  "switch_key|layouts_alternate": {
+   "outcome": "not expressible",
+   "why": "a chunk is a literal followed by one or more byte ranges; a Kerchunk reference is one or the other"
+  }
+ }
+}

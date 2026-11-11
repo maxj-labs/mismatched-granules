@@ -1,0 +1,94 @@
+{
+ "versions": {
+  "zarr": "3.4.2",
+  "virtualizarr": "2.8.0",
+  "refkv": "0.2.0"
+ },
+ "years": [
+  2014,
+  2025
+ ],
+ "parse_seconds": 1.9,
+ "build_seconds": 0.1,
+ "feasible": true,
+ "store_bytes": 749412,
+ "zarr_json_bytes": 14089,
+ "codecs": [
+  [
+   "crop",
+   "bytes",
+   "numcodecs.zlib"
+  ],
+  [
+   "crop",
+   "bytes",
+   "numcodecs.shuffle",
+   "numcodecs.zlib"
+  ]
+ ],
+ "chunk_grid": "rectilinear",
+ "zarr_chunk_grid_cells": 4380,
+ "default_dask_chunks": 4380,
+ "rows": [
+  {
+   "source_requests": 2,
+   "source_megabytes": 0.05,
+   "workload": "map: 2 days, whole grid, across the 2020 change",
+   "approach": "refkv switch",
+   "shape": [
+    2,
+    231,
+    364
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.087,
+   "seconds_min": 0.052,
+   "store_gets": 5,
+   "store_megabytes": 0.06
+  },
+  {
+   "source_requests": 30,
+   "source_megabytes": 0.76,
+   "workload": "box: 30 days x 50x50 cells, across the change",
+   "approach": "refkv switch",
+   "shape": [
+    30,
+    50,
+    50
+   ],
+   "equal_to_files": true,
+   "seconds_median": 0.273,
+   "seconds_min": 0.242,
+   "store_gets": 33,
+   "store_megabytes": 0.78
+  },
+  {
+   "source_requests": 3650,
+   "source_megabytes": 94.88,
+   "workload": "series: 10 years at one cell, across the change",
+   "approach": "refkv switch",
+   "shape": [
+    3650
+   ],
+   "equal_to_files": true,
+   "seconds_median": 28.6,
+   "seconds_min": 28.52,
+   "store_gets": 3653,
+   "store_megabytes": 94.93
+  },
+  {
+   "source_requests": 4380,
+   "source_megabytes": 113.96,
+   "workload": "series: every day at one cell",
+   "approach": "refkv switch",
+   "shape": [
+    4380
+   ],
+   "equal_to_files": true,
+   "seconds_median": 34.198,
+   "seconds_min": 34.158,
+   "store_gets": 4383,
+   "store_megabytes": 114.01
+  }
+ ]
+}

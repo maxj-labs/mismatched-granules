@@ -23,6 +23,7 @@ released VirtualiZarr, released refkv; no Icechunk.
 
 import importlib.util
 import json
+import os
 import statistics
 import sys
 import time
@@ -75,6 +76,19 @@ t0 = time.time()
 registry = ObjectStoreRegistry({f"file://{DATA}": LocalStore(prefix=DATA)})
 vdss = [vz.open_virtual_dataset(f"file://{p}", registry=registry, parser=HDFParser(), loadable_variables=["time", "x", "y"]) for p in paths]
 report["parse_seconds"] = round(time.time() - t0, 1)
+# BENCH_HTTP=http://127.0.0.1:<port>/ points the references at range_server.py, which counts requests
+HTTP = os.environ.get("BENCH_HTTP")
+OUT = HERE / ("results_http" if HTTP else "results")
+if HTTP:
+    from compare_util import reset_source, source_stats
+
+    vdss = [v.vz.rename_paths(lambda p: p.replace(f"file://{DATA}/", HTTP)) for v in vdss]
+    from refkv.policy import Policy
+
+    # refkv's readers refuse loopback hosts unless told otherwise; the test server is one
+    OPEN = {"policy": Policy(allow_private_hosts=True)}
+else:
+    OPEN = {}
 SUFFIX = "refkv" if ARM == "switch" else f"refkv_{ARM}"
 archive = HERE / "stores" / f"{name}_{first}_{last}_{SUFFIX}.vzip"
 archive.parent.mkdir(exist_ok=True)
@@ -109,13 +123,13 @@ try:
         store = refkv.ReferenceStore(mapping, sources)
     else:
         store = demo.combine(vdss, name=var, dim="time")
-    store.save(str(archive))
+    store.save(str(archive), **OPEN)
     report["build_seconds"] = round(time.time() - t0, 1)
     report["feasible"] = True
 except Exception as err:
     report["feasible"] = False
     report["why"] = f"{type(err).__name__}: {err}"
-    (HERE / "results" / f"{name}_{first}_{last}_{SUFFIX}.json").write_text(json.dumps(report, indent=1))
+    (OUT / f"{name}_{first}_{last}_{SUFFIX}.json").write_text(json.dumps(report, indent=1))
     print(json.dumps(report, indent=1))
     sys.exit(0)
 report["store_bytes"] = archive.stat().st_size
@@ -163,21 +177,24 @@ with zarr.config.set({"array.rectilinear_chunks": True}):
         times = []
         for _ in range(2 if "every day" in workload else 5):
             Counting.gets = Counting.nbytes = 0
+            if HTTP:
+                reset_source()
             t0 = time.perf_counter()
-            arr = zarr.open_array(Counting(refkv.zarr.store(refkv.open(str(archive)))), path=var, mode="r")
+            arr = zarr.open_array(Counting(refkv.zarr.store(refkv.open(str(archive), **OPEN))), path=var, mode="r")
             got = arr[sel]
             times.append(time.perf_counter() - t0)
-        rows.append({"workload": workload, "approach": f"refkv {ARM}", "shape": list(got.shape),
+            source = source_stats() if HTTP else {}
+        rows.append({**source, "workload": workload, "approach": f"refkv {ARM}", "shape": list(got.shape),
                      "equal_to_files": bool(np.array_equal(got, want)), "seconds_median": round(statistics.median(times), 3),
                      "seconds_min": round(min(times), 3), "store_gets": Counting.gets, "store_megabytes": round(Counting.nbytes / 1e6, 2)})
         print(json.dumps(rows[-1]), flush=True)
-    arr = zarr.open_array(refkv.zarr.store(refkv.open(str(archive))), path=var, mode="r")
+    arr = zarr.open_array(refkv.zarr.store(refkv.open(str(archive), **OPEN)), path=var, mode="r")
     report["zarr_chunk_grid_cells"] = int(np.prod(arr.cdata_shape)) if hasattr(arr, "cdata_shape") else None
     try:
-        ds = xr.open_zarr(refkv.zarr.store(refkv.open(str(archive))), consolidated=False, chunks={})
+        ds = xr.open_zarr(refkv.zarr.store(refkv.open(str(archive), **OPEN)), consolidated=False, chunks={})
         report["default_dask_chunks"] = int(ds[var].data.npartitions)
     except Exception as err:
         report["default_dask_chunks"] = f"{type(err).__name__}: {str(err)[:120]}"
 report["rows"] = rows
-(HERE / "results" / f"{name}_{first}_{last}_{SUFFIX}.json").write_text(json.dumps(report, indent=1))
+(OUT / f"{name}_{first}_{last}_{SUFFIX}.json").write_text(json.dumps(report, indent=1))
 print(json.dumps({k: v for k, v in report.items() if k != "rows"}, indent=1))

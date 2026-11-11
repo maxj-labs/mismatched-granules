@@ -1,0 +1,2589 @@
+{
+ "switch_position|codec_eras": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_key|codec_eras": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_case_id|codec_eras": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_key_parameters|codec_eras": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_index_prefix|codec_eras": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "IndexError: list index out of range"
+  }
+ },
+ "switch_sidecar|codec_eras": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_store_context|codec_eras": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "AttributeError: 'IcechunkStore' object has no attribute 'get_chunk_context'"
+  }
+ },
+ "conditional_codec|codec_eras": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  }
+ },
+ "array_concat|codec_eras": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "zarr_reference|codec_eras": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "materialize_odd_chunks|codec_eras": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "native_copy|codec_eras": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_position|file_lengths": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_key|file_lengths": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_case_id|file_lengths": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_key_parameters|file_lengths": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_index_prefix|file_lengths": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "IndexError: list index out of range"
+  }
+ },
+ "switch_sidecar|file_lengths": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_store_context|file_lengths": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "AttributeError: 'IcechunkStore' object has no attribute 'get_chunk_context'"
+  }
+ },
+ "conditional_codec|file_lengths": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  }
+ },
+ "array_concat|file_lengths": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "zarr_reference|file_lengths": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "grid_encoded_shapes|file_lengths": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "domain_convention|file_lengths": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "materialize_odd_chunks|file_lengths": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "native_copy|file_lengths": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_position|padded_last_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_key|padded_last_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_case_id|padded_last_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_key_parameters|padded_last_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_index_prefix|padded_last_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "IndexError: list index out of range"
+  }
+ },
+ "switch_sidecar|padded_last_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_store_context|padded_last_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "AttributeError: 'IcechunkStore' object has no attribute 'get_chunk_context'"
+  }
+ },
+ "array_concat|padded_last_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "zarr_reference|padded_last_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "grid_encoded_shapes|padded_last_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "ValueError: cannot reshape array of size 2880 into shape (2,24,30)"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "ValueError: cannot reshape array of size 2880 into shape (2,24,30)"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "ValueError: cannot reshape array of size 2880 into shape (2,24,30)"
+  }
+ },
+ "domain_convention|padded_last_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "WRONG VALUES",
+   "detail": "reads without error as shape (36, 24, 30); the data's shape is (30, 24, 30)"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "WRONG VALUES",
+   "detail": "reads without error as shape (36, 24, 30); the data's shape is (30, 24, 30)"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "WRONG VALUES",
+   "detail": "reads without error as shape (36, 24, 30); the data's shape is (30, 24, 30)"
+  }
+ },
+ "materialize_odd_chunks|padded_last_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "native_copy|padded_last_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_position|packing_per_file": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_key|packing_per_file": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_case_id|packing_per_file": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_key_parameters|packing_per_file": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_index_prefix|packing_per_file": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "IndexError: list index out of range"
+  }
+ },
+ "switch_sidecar|packing_per_file": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_store_context|packing_per_file": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "AttributeError: 'IcechunkStore' object has no attribute 'get_chunk_context'"
+  }
+ },
+ "array_concat|packing_per_file": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "zarr_reference|packing_per_file": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "native_copy|packing_per_file": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_position|data_types": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_key|data_types": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_case_id|data_types": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_key_parameters|data_types": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_index_prefix|data_types": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "IndexError: list index out of range"
+  }
+ },
+ "switch_sidecar|data_types": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_store_context|data_types": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "AttributeError: 'IcechunkStore' object has no attribute 'get_chunk_context'"
+  }
+ },
+ "array_concat|data_types": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "zarr_reference|data_types": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "materialize_odd_chunks|data_types": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "native_copy|data_types": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_position|chunk_shape_change": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_key|chunk_shape_change": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_case_id|chunk_shape_change": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_key_parameters|chunk_shape_change": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_index_prefix|chunk_shape_change": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_sidecar|chunk_shape_change": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_store_context|chunk_shape_change": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "AttributeError: 'IcechunkStore' object has no attribute 'get_chunk_context'"
+  }
+ },
+ "array_concat|chunk_shape_change": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "zarr_reference|chunk_shape_change": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "materialize_odd_chunks|chunk_shape_change": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "native_copy|chunk_shape_change": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_position|fill_value_differs": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_key|fill_value_differs": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_case_id|fill_value_differs": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_index_prefix|fill_value_differs": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "IndexError: list index out of range"
+  }
+ },
+ "switch_sidecar|fill_value_differs": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_store_context|fill_value_differs": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "AttributeError: 'IcechunkStore' object has no attribute 'get_chunk_context'"
+  }
+ },
+ "array_concat|fill_value_differs": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "zarr_reference|fill_value_differs": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "materialize_odd_chunks|fill_value_differs": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "native_copy|fill_value_differs": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_position|variable_absent": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_key|variable_absent": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_case_id|variable_absent": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_key_parameters|variable_absent": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_index_prefix|variable_absent": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "IndexError: list index out of range"
+  }
+ },
+ "switch_sidecar|variable_absent": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_store_context|variable_absent": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "AttributeError: 'IcechunkStore' object has no attribute 'get_chunk_context'"
+  }
+ },
+ "conditional_codec|variable_absent": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  }
+ },
+ "array_concat|variable_absent": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "zarr_reference|variable_absent": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "grid_encoded_shapes|variable_absent": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "domain_convention|variable_absent": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "materialize_odd_chunks|variable_absent": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "native_copy|variable_absent": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_position|layouts_alternate": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_key|layouts_alternate": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_case_id|layouts_alternate": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_key_parameters|layouts_alternate": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_index_prefix|layouts_alternate": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "IndexError: list index out of range"
+  }
+ },
+ "switch_sidecar|layouts_alternate": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_store_context|layouts_alternate": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "AttributeError: 'IcechunkStore' object has no attribute 'get_chunk_context'"
+  }
+ },
+ "conditional_codec|layouts_alternate": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  }
+ },
+ "array_concat|layouts_alternate": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "zarr_reference|layouts_alternate": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "materialize_odd_chunks|layouts_alternate": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "native_copy|layouts_alternate": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_position|packing_per_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_key|packing_per_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_case_id|packing_per_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_key_parameters|packing_per_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "switch_index_prefix|packing_per_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "IndexError: list index out of range"
+  }
+ },
+ "switch_sidecar|packing_per_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "switch_store_context|packing_per_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "AttributeError: 'IcechunkStore' object has no attribute 'get_chunk_context'"
+  }
+ },
+ "array_concat|packing_per_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'array_concat' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or instal"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "zarr_reference|packing_per_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'zarr_reference' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or inst"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ },
+ "native_copy|packing_per_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "reads correctly"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "reads correctly"
+  }
+ }
+}

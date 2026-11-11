@@ -1,0 +1,38 @@
+{
+ "tensorstore": "?",
+ "runs": [
+  {
+   "layers": 1000,
+   "spec_bytes": 328613,
+   "bytes_per_layer": 329,
+   "write_seconds": 8.16,
+   "open_seconds": 0.023,
+   "read_all_seconds": 0.04,
+   "microseconds_per_layer": 42,
+   "one_layer_milliseconds": 0.34,
+   "equal": true
+  },
+  {
+   "layers": 4000,
+   "spec_bytes": 1327613,
+   "bytes_per_layer": 332,
+   "write_seconds": 31.95,
+   "open_seconds": 0.054,
+   "read_all_seconds": 0.1,
+   "microseconds_per_layer": 25,
+   "one_layer_milliseconds": 0.68,
+   "equal": true
+  },
+  {
+   "layers": 16000,
+   "spec_bytes": 5347614,
+   "bytes_per_layer": 334,
+   "write_seconds": 132.29,
+   "open_seconds": 0.236,
+   "read_all_seconds": 0.4,
+   "microseconds_per_layer": 25,
+   "one_layer_milliseconds": 2.72,
+   "equal": true
+  }
+ ]
+}

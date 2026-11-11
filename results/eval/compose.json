@@ -1,0 +1,142 @@
+{
+ "operation": "drop the first chunks along the joined axis; codec configuration untouched",
+ "by_inspection": {
+  "array_concat": "the joined array has no chunks of its own; dropping part of it means editing the codec's list of pieces, and only whole pieces can go",
+  "zarr_reference": "one chunk per piece: whole pieces can be dropped as chunks, part of a piece cannot",
+  "materialize_odd_chunks": "an ordinary array: nothing beyond the manifest",
+  "native_copy": "an ordinary array: nothing beyond the manifest",
+  "separate_files": "not a stored array"
+ },
+ "cells": {
+  "switch_position|codec_eras": {
+   "outcome": "needs its own metadata rewritten",
+   "why": "error: Error -3 while decompressing data: incorrect header check"
+  },
+  "switch_key|codec_eras": {
+   "outcome": "composes as it stands"
+  },
+  "switch_case_id|codec_eras": {
+   "outcome": "composes as it stands"
+  },
+  "switch_key_parameters|codec_eras": {
+   "outcome": "composes as it stands"
+  },
+  "switch_index_prefix|codec_eras": {
+   "outcome": "needs its own metadata rewritten",
+   "why": "error: Error -3 while decompressing data: incorrect header check"
+  },
+  "switch_sidecar|codec_eras": {
+   "outcome": "needs its own metadata rewritten",
+   "why": "error: Error -3 while decompressing data: incorrect header check"
+  },
+  "switch_store_context|codec_eras": {
+   "outcome": "composes as it stands"
+  },
+  "conditional_codec|codec_eras": {
+   "outcome": "composes as it stands"
+  },
+  "switch_position|padded_last_chunk": {
+   "outcome": "composes as it stands"
+  },
+  "switch_key|padded_last_chunk": {
+   "outcome": "composes as it stands"
+  },
+  "switch_case_id|padded_last_chunk": {
+   "outcome": "composes as it stands"
+  },
+  "switch_key_parameters|padded_last_chunk": {
+   "outcome": "composes as it stands"
+  },
+  "switch_index_prefix|padded_last_chunk": {
+   "outcome": "composes as it stands"
+  },
+  "switch_sidecar|padded_last_chunk": {
+   "outcome": "composes as it stands"
+  },
+  "switch_store_context|padded_last_chunk": {
+   "outcome": "composes as it stands"
+  },
+  "grid_encoded_shapes|padded_last_chunk": {
+   "outcome": "composes as it stands"
+  },
+  "domain_convention|padded_last_chunk": {
+   "outcome": "needs its own metadata rewritten",
+   "why": "the declared domain still lists the dropped chunks' ranges"
+  },
+  "switch_position|chunk_shape_change": {
+   "outcome": "needs its own metadata rewritten",
+   "why": "error: Error -5 while decompressing data: incomplete or truncated stream"
+  },
+  "switch_key|chunk_shape_change": {
+   "outcome": "composes as it stands"
+  },
+  "switch_case_id|chunk_shape_change": {
+   "outcome": "composes as it stands"
+  },
+  "switch_key_parameters|chunk_shape_change": {
+   "outcome": "composes as it stands"
+  },
+  "switch_index_prefix|chunk_shape_change": {
+   "outcome": "needs its own metadata rewritten",
+   "why": "error: Error -5 while decompressing data: incomplete or truncated stream"
+  },
+  "switch_sidecar|chunk_shape_change": {
+   "outcome": "needs its own metadata rewritten",
+   "why": "error: Error -5 while decompressing data: incomplete or truncated stream"
+  },
+  "switch_store_context|chunk_shape_change": {
+   "outcome": "composes as it stands"
+  },
+  "switch_position|layouts_alternate": {
+   "outcome": "needs its own metadata rewritten",
+   "why": "reads without error but the values are wrong"
+  },
+  "switch_key|layouts_alternate": {
+   "outcome": "composes as it stands"
+  },
+  "switch_case_id|layouts_alternate": {
+   "outcome": "composes as it stands"
+  },
+  "switch_key_parameters|layouts_alternate": {
+   "outcome": "composes as it stands"
+  },
+  "switch_index_prefix|layouts_alternate": {
+   "outcome": "needs its own metadata rewritten",
+   "why": "reads without error but the values are wrong"
+  },
+  "switch_sidecar|layouts_alternate": {
+   "outcome": "needs its own metadata rewritten",
+   "why": "reads without error but the values are wrong"
+  },
+  "switch_store_context|layouts_alternate": {
+   "outcome": "composes as it stands"
+  },
+  "conditional_codec|layouts_alternate": {
+   "outcome": "composes as it stands"
+  },
+  "switch_position|packing_per_file": {
+   "outcome": "needs its own metadata rewritten",
+   "why": "reads without error but the values are wrong"
+  },
+  "switch_key|packing_per_file": {
+   "outcome": "composes as it stands"
+  },
+  "switch_case_id|packing_per_file": {
+   "outcome": "composes as it stands"
+  },
+  "switch_key_parameters|packing_per_file": {
+   "outcome": "composes as it stands"
+  },
+  "switch_index_prefix|packing_per_file": {
+   "outcome": "needs its own metadata rewritten",
+   "why": "reads without error but the values are wrong"
+  },
+  "switch_sidecar|packing_per_file": {
+   "outcome": "needs its own metadata rewritten",
+   "why": "reads without error but the values are wrong"
+  },
+  "switch_store_context|packing_per_file": {
+   "outcome": "composes as it stands"
+  }
+ }
+}
