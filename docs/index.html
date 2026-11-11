@@ -120,7 +120,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   <div class="eyebrow">Proposal for Zarr, Icechunk and VirtualiZarr</div>
   <h1>One array from granules that don't match</h1>
   <p class="lede">Many NASA collections cannot be virtualized into a single Zarr array because their files change compression, chunk shape or chunk boundaries partway through the record. Three separable changes fix this. They are built as prototype branches and were checked on seven collections: every read matched the source files.</p>
-  <p class="byline">Max Jones, Development Seed · 11 November 2026 · Experiments and write-up prepared with Claude Code. Code: <a href="https://github.com/maxj-labs/mismatched-granules">maxj-labs/mismatched-granules</a>. These are prototypes, not pull requests; the open issues are listed at the end.</p>
+  <p class="byline">Max Jones, Development Seed · 10 November 2026 · Experiments and write-up prepared with Claude Code. Code: <a href="https://github.com/maxj-labs/mismatched-granules">maxj-labs/mismatched-granules</a>. These are prototypes, not pull requests; the open issues are listed at the end.</p>
 
   <div class="claims">
     <div class="claim">
@@ -143,10 +143,10 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 
 <section>
   <div class="stats">
-    <div class="stat"><b>1,200</b><span>numeric variables, in sampled granules of 6 collections, joined into one array each; plain concat was impossible for 1,054</span></div>
+    <div class="stat"><b>1,200</b><span>numeric variables joined into one array each, from 2 to 6 sampled granules of 6 collections; plain concat was impossible for 1,054</span></div>
     <div class="stat"><b>0</b><span>cells that differ from the source files, in every read tested</span></div>
-    <div class="stat"><b>1.00×</b><span>requests and bytes reaching the source, against reading granule by granule</span></div>
-    <div class="stat"><b>80×</b><span>fewer manifest references for 46 years of Daymet North America (1,213,038 chunks, 15,138 references)</span></div>
+    <div class="stat"><b>1.00×</b><span>requests and bytes reaching the source against reading granule by granule, for the 11 variables where this was counted</span></div>
+    <div class="stat"><b>80×</b><span>fewer manifest references for 46 years of Daymet North America (1,213,038 chunks, 15,138 references); on a three-year test the store was 3× smaller</span></div>
   </div>
 </section>
 
@@ -170,7 +170,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
     </tbody>
   </table>
   </div>
-  <p class="note">Change points were located by binary search over each record using metadata-only range requests (14–15 probes per collection).</p>
+  <p class="note">Change points were located by binary search over each record using metadata-only range requests (14–15 probes per collection). The collections were picked from 86 graded for virtualizability, by public access counts and by whether a few granules could be downloaded. They are not a random sample.</p>
 </section>
 
 <section>
@@ -285,7 +285,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   <h3>Virtual shards cost the same as plain chunks, when ranges are not merged</h3>
   <div class="figure">
     <h3>Requests reaching the source, relative to reading the same selection chunk by chunk · Daymet North America, 2019–2021</h3>
-    <div class="legend"><span><i style="background:var(--series-2)"></i>Virtual shards, zarr's default range merging</span><span><i style="background:var(--series-1)"></i>Virtual shards as the planner writes them (no merging)</span><span>The axis line is 1.0×: the chunk-by-chunk baseline</span></div>
+    <div class="legend"><span><i style="background:var(--series-2)"></i>Virtual shards, zarr's default range merging</span><span><i style="background:var(--series-1)"></i>Virtual shards as the planner writes them (no merging)</span><span>Bars start at zero; 1.00× is the chunk-by-chunk baseline</span></div>
     <div class="bars" id="bars"></div>
     <p class="note">zarr merges byte ranges of a shard that lie within 1 MiB of each other. In a virtual shard, neighbours in the layout are separate source chunks, so merging fetches chunks nobody asked for. The planner turns merging off per case, so readers need no setting. With parts fetched concurrently, a whole-grid map took 2.8 s from shards against 4.8 s chunk by chunk, at 20 ms per request.</p>
   </div>
@@ -353,11 +353,13 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
         <li><b>Codecs that depend on position.</b> Passing chunk coordinates to a codec is the least composable option raised in zarr-specs#399. It is used here because it needs nothing from the store.</li>
         <li><b>Appending.</b> A planned array cannot be appended to or written by region yet, which forward-processing pipelines need.</li>
         <li><b>Names.</b> <code>switch</code> is also the name of the header-based codec in refkv PR #73. One of them should change.</li>
+        <li><b>Read-only.</b> The switch codec has no encoder, so these arrays cannot be written through Zarr, and another implementation has nothing to test an encoder against.</li>
       </ul>
     </div>
     <div>
       <h3>Limits of the evidence</h3>
       <ul>
+        <li>Only zarr-python reads these arrays. No other Zarr implementation was tried.</li>
         <li>Nothing was measured against S3. Source requests were counted at a local HTTP server; timings are local.</li>
         <li>Complete records for Daymet only. MODIS-Aqua and OMPS are samples across their records; GPM, ATL08, TEMPO and OCO-2 are a few granules each.</li>
         <li>Manifest size for shards that span a whole map: MODIS-Aqua needs about 60 KB of manifest per day, most of it the shard index.</li>
@@ -368,7 +370,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
     </div>
   </div>
   <hr>
-  <p class="note">Related discussions: zarr-specs#399 (varying codec parameters per chunk), zarr-specs#288 (virtual concatenation), zarr-extensions#74 and PR #75 (encoded chunk shapes), the merged <span class="mono">conditional</span> codec, NASA-IMPACT/veda-odd#498, VirtualiZarr#1111, and refkv PR #73, whose <span class="mono">switch</span> and <span class="mono">crop</span> codecs were run unmodified as one of the arms. Scripts, result files and this page's source are in <a href="https://github.com/maxj-labs/mismatched-granules">maxj-labs/mismatched-granules</a>.</p>
+  <p class="note">Related discussions: <a href="https://github.com/zarr-developers/zarr-specs/issues/399">zarr-specs#399</a> (varying codec parameters per chunk), <a href="https://github.com/zarr-developers/zarr-specs/issues/288">zarr-specs#288</a> (virtual concatenation), <a href="https://github.com/zarr-developers/zarr-extensions/issues/74">zarr-extensions#74</a> and <a href="https://github.com/zarr-developers/zarr-extensions/pull/75">PR #75</a> (encoded chunk shapes), the merged <a href="https://github.com/zarr-developers/zarr-extensions/tree/main/codecs/conditional"><span class="mono">conditional</span> codec</a>, <a href="https://github.com/NASA-IMPACT/veda-odd/issues/498">NASA-IMPACT/veda-odd#498</a>, <a href="https://github.com/zarr-developers/VirtualiZarr/issues/1111">VirtualiZarr#1111</a>, and <a href="https://github.com/d-v-b/refkv/pull/73">refkv PR #73</a>, whose <span class="mono">switch</span> and <span class="mono">crop</span> codecs were run unmodified as one of the arms. Scripts, result files and this page's source are in <a href="https://github.com/maxj-labs/mismatched-granules">maxj-labs/mismatched-granules</a>.</p>
 </section>
 
 </div>
