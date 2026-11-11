@@ -7,7 +7,7 @@ which GitHub Pages serves from the main branch's /docs folder.
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent.parent
-PAGES = {"index.html": HERE / "brief" / "index.html", "evaluation.html": HERE / "evaluation" / "index.html"}
+PAGES = {"index.html": HERE / "brief" / "index.html", "evaluation.html": HERE / "evaluation" / "index.html", "storybook.html": HERE / "storybook" / "index.html"}
 HEAD = """<!doctype html>
 <html lang="en">
 <head>
@@ -21,7 +21,7 @@ HEAD = """<!doctype html>
 for name, source in PAGES.items():
     content = source.read_text()
     # the title, font link and styles at the top of the page belong in the head
-    split = content.index('<div class="wrap">')
+    split = content.index('<div class="wrap"')
     head = HEAD.replace("</head>", content[:split] + "</head>")
     (HERE / "docs" / name).write_text(head + content[split:] + "\n</body>\n</html>\n")
     print("wrote docs/" + name)

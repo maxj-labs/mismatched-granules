@@ -1,0 +1,317 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Mismatched Granules Storybook</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@500;600&display=swap">
+<style>
+/* Layout: one reading column for argument, wider bands for tables and figures; evidence sits directly under each claim. */
+:root {
+  --bg: #f7f8f6;
+  --surface: #ffffff;
+  --ink: #14181a;
+  --ink-2: #4a5357;
+  --ink-3: #737d81;
+  --rule: #dde2e0;
+  --accent: #0f6b62;
+  --accent-soft: #e2f0ed;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --good: #1f7a3d;
+  --warn: #a15c00;
+  --bad: #b3261e;
+  --display: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111516; --surface: #1a2022; --ink: #eef1f0; --ink-2: #b9c2c1; --ink-3: #8a9594;
+    --rule: #2c3537; --accent: #5cc4b6; --accent-soft: #17302d;
+    --series-1: #3987e5; --series-2: #d95926; --good: #6cc98a; --warn: #e0a24a; --bad: #ef8a80;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111516; --surface: #1a2022; --ink: #eef1f0; --ink-2: #b9c2c1; --ink-3: #8a9594;
+  --rule: #2c3537; --accent: #5cc4b6; --accent-soft: #17302d;
+  --series-1: #3987e5; --series-2: #d95926; --good: #6cc98a; --warn: #e0a24a; --bad: #ef8a80;
+  color-scheme: dark;
+}
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 1040px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 72px; display: flex; flex-direction: column; gap: 56px; }
+section { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.prose { max-width: 68ch; display: flex; flex-direction: column; gap: 14px; }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(30px, 5vw, 46px); line-height: 1.08; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--display); font-weight: 600; font-size: 25px; line-height: 1.2; letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+h3 { font-size: 16px; font-weight: 600; margin: 0; }
+p { margin: 0; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+code { font-family: var(--mono); font-size: 0.88em; background: var(--accent-soft); padding: 1px 5px; border-radius: 4px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.lede { font-size: 19px; color: var(--ink-2); max-width: 64ch; }
+.byline { font-size: 13px; color: var(--ink-3); }
+.claims { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); }
+.claim { padding: 18px 20px 4px 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.claim + .claim { padding-left: 20px; border-left: 1px solid var(--rule); }
+.claim .who { font-family: var(--mono); font-size: 12px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; }
+.claim .what { font-weight: 600; font-size: 17px; line-height: 1.3; }
+.claim .why { font-size: 14px; color: var(--ink-2); }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.stat { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.stat b { font-family: var(--display); font-weight: 600; font-size: 34px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 13.5px; color: var(--ink-2); }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 8px 12px 8px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-weight: 600; font-size: 12.5px; color: var(--ink-2); border-bottom: 1px solid var(--ink-3); white-space: nowrap; }
+td.n, th.n { text-align: right; padding-right: 16px; white-space: nowrap; }
+td .mono, .mono { font-family: var(--mono); font-size: 0.9em; }
+.tag { display: inline-block; font-size: 12px; font-weight: 500; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--rule); white-space: nowrap; }
+.tag.sw { color: var(--accent); border-color: var(--accent); }
+.tag.sh { color: var(--warn); border-color: var(--warn); }
+.yes { color: var(--good); font-weight: 600; }
+.no { color: var(--bad); font-weight: 600; }
+.note { font-size: 13.5px; color: var(--ink-3); max-width: 78ch; }
+.figure { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.figure h3 { font-size: 15px; }
+.legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--ink-2); }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.bars { display: grid; grid-template-columns: minmax(120px, 230px) minmax(0, 1fr); gap: 10px 14px; align-items: center; font-size: 13.5px; }
+.bars .label { color: var(--ink-2); line-height: 1.3; }
+.track { position: relative; display: flex; flex-direction: column; gap: 2px; padding: 2px 0; border-left: 1px solid var(--ink-3); }
+.bar { height: 13px; border-radius: 0 4px 4px 0; position: relative; min-width: 2px; }
+.bar.a { background: var(--series-1); }
+.bar.b { background: var(--series-2); }
+.bar span { position: absolute; left: calc(100% + 6px); top: -3px; font-size: 12px; color: var(--ink-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.bar:hover, .bar:focus-visible { filter: brightness(1.12); }
+#tip { position: fixed; z-index: 20; pointer-events: none; background: var(--ink); color: var(--bg); font-size: 12.5px; padding: 6px 9px; border-radius: 6px; max-width: 260px; line-height: 1.35; }
+.shard { display: flex; flex-direction: column; gap: 8px; font-family: var(--mono); font-size: 12px; }
+.shard .row { display: flex; gap: 2px; min-width: 520px; }
+.shard .cell { padding: 9px 6px; text-align: center; border-radius: 4px; border: 1px solid var(--rule); background: var(--bg); color: var(--ink-2); flex: 1 1 0; min-width: 0; }
+.shard .cell.lit { background: var(--accent-soft); border-color: var(--accent); color: var(--ink); flex: 1.7 1 0; }
+.shard .cell.src { border-style: dashed; }
+.shard .cap { color: var(--ink-3); font-family: var(--body); font-size: 13px; }
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.two > div { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 7px; }
+li { padding-left: 2px; }
+pre { margin: 0; font-family: var(--mono); font-size: 12.5px; line-height: 1.55; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 16px; overflow-x: auto; }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+@media (max-width: 760px) {
+  .claims { grid-template-columns: 1fr; }
+  .claim + .claim { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .two { grid-template-columns: 1fr; }
+  .bars { grid-template-columns: 1fr; gap: 4px 0; }
+  .bars .track { margin-bottom: 10px; margin-right: 64px; }
+}
+
+.paths { display: flex; gap: 0; border-bottom: 2px solid var(--ink); flex-wrap: wrap; }
+.paths button { font: inherit; font-family: var(--display); font-weight: 600; font-size: 17px; padding: 12px 20px 10px; background: none; border: 0; border-bottom: 4px solid transparent; margin-bottom: -2px; color: var(--ink-3); cursor: pointer; }
+.paths button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+.book { display: grid; grid-template-columns: minmax(230px, 320px) minmax(0, 1fr); gap: 36px; align-items: start; }
+.picker { display: flex; flex-direction: column; gap: 18px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); max-height: calc(100vh - 24px); overflow-y: auto; padding-right: 4px; }
+.picker h3 { font-family: var(--mono); font-size: 11.5px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.picker .group { display: flex; flex-direction: column; gap: 6px; }
+.pick { font: inherit; font-size: 14.5px; line-height: 1.35; text-align: left; padding: 9px 12px; background: var(--surface); color: var(--ink); border: 1px solid var(--rule); border-radius: 6px; cursor: pointer; }
+.pick:hover { border-color: var(--ink-3); }
+.pick[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); font-weight: 500; }
+.story { display: flex; flex-direction: column; gap: 26px; min-width: 0; }
+.story > header { display: flex; flex-direction: column; gap: 8px; }
+.story h2 { font-size: 28px; }
+.story .how { font-size: 17px; color: var(--ink-2); max-width: 62ch; }
+.beat { display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid var(--rule); }
+.beat > h3 { font-family: var(--display); font-size: 19px; font-weight: 600; display: flex; gap: 10px; align-items: baseline; }
+.beat > h3 .mark { font-family: var(--mono); font-size: 15px; width: 1.2em; flex: none; }
+.beat.good > h3 .mark { color: var(--good); }
+.beat.bad > h3 .mark { color: var(--bad); }
+.beat.cost > h3 .mark, .beat.warn > h3 .mark { color: var(--warn); }
+.beat ul { max-width: 70ch; }
+.beat li b { font-weight: 600; }
+.beat .why { display: block; color: var(--ink-2); font-size: 14px; }
+.beat p { max-width: 70ch; }
+.verdicts { display: flex; flex-direction: column; gap: 0; }
+.verdict { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 4px 6px; padding: 11px 0; border-bottom: 1px solid var(--rule); }
+.verdict .mark { font-family: var(--mono); font-weight: 600; }
+.verdict.good .mark { color: var(--good); } .verdict.bad .mark { color: var(--bad); } .verdict.partial .mark { color: var(--warn); }
+.verdict .who { font-weight: 500; }
+.verdict .who button { font: inherit; font-weight: 500; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-align: left; text-decoration: underline; text-underline-offset: 3px; }
+.verdict .because { grid-column: 2; color: var(--ink-2); font-size: 14px; }
+.count { font-family: var(--mono); font-size: 13px; color: var(--ink-3); font-weight: 400; margin-left: auto; white-space: nowrap; }
+.start { color: var(--ink-2); font-size: 17px; max-width: 56ch; padding-top: 8px; }
+@media (max-width: 820px) {
+  .book { grid-template-columns: 1fr; gap: 22px; }
+  .picker { position: static; max-height: none; overflow: visible; }
+  .picker .group { flex-direction: row; flex-wrap: wrap; }
+  .story h2 { font-size: 23px; }
+  .paths button { font-size: 15px; padding: 10px 12px 8px; }
+}
+</style>
+
+<div class="wrap" style="gap: 32px">
+<header>
+  <section>
+    <div class="eyebrow">Storybook &middot; 11 November 2026</div>
+    <h1>Choose, and See What Follows</h1>
+    <p class="lede">Fourteen ways to make one Zarr array from granules that disagree. Pick the one you would build and read its consequences, or start from your data and see which ones serve it.</p>
+    <p class="byline">Every verdict is computed from the runs behind <a href="https://maxj-labs.github.io/mismatched-granules/evaluation.html">Every Option, Tested</a>: ten small test records, two worst cases at 16,000 chunks, and Daymet. Only zarr-python read these arrays, and nothing ran against S3. Prepared with Claude.</p>
+  </section>
+</header>
+
+<div class="paths" role="tablist" aria-label="Two ways in">
+  <button type="button" role="tab" data-path="choice" id="tab-choice" aria-selected="true">Start from an implementation</button>
+  <button type="button" role="tab" data-path="subject" id="tab-subject" aria-selected="false">Start from a use case</button>
+</div>
+
+<div class="book">
+  <nav class="picker" id="picker" aria-label="Choices"></nav>
+  <article class="story" id="story" aria-live="polite"></article>
+</div>
+</div>
+
+<script type="application/json" id="data">{"options": {"switch_key_parameters": {"name": "Case table \u00b7 key and numbers in each reference", "group": "A table of cases", "how": "The array's codec holds a short table of ways a chunk can be encoded. Every chunk reference begins with a key naming its case, followed by any numbers that are that chunk's own (a scale and offset, say).", "takes": ["A new codec in every Zarr reader", "Icechunk references that are a literal followed by byte ranges"], "tested": "Built here on Icechunk as an evaluation codec. It is refkv PR #73's design, and refkv itself was also run.", "cases": {"codec_eras": {"ok": true, "why": ""}, "file_lengths": {"ok": true, "why": ""}, "padded_last_chunk": {"ok": true, "why": ""}, "chunk_shape_change": {"ok": true, "why": ""}, "data_types": {"ok": true, "why": ""}, "packing_per_file": {"ok": true, "why": ""}, "packing_per_chunk": {"ok": true, "why": ""}, "layouts_alternate": {"ok": true, "why": ""}, "fill_value_differs": {"ok": true, "why": ""}, "variable_absent": {"ok": true, "why": ""}}, "costs": [], "warnings": [], "good": ["On twelve years of Daymet Puerto Rico it made the same 4,380 source requests as every other option for a full time series, in 31 s at zarr-python's default concurrency.", "It read Daymet North America across the 2020 chunk-shape change with every value equal to the files.", "Dropping the first chunks of the array, with nothing else rewritten, still read correctly in 5 of 5 trials."], "scale": {"alternate": {"ok": true, "notes": [], "zarr_json": "964 B", "manifest": "210 KB"}, "packed": {"ok": true, "notes": [], "zarr_json": "923 B", "manifest": "328 KB"}}, "released": {"verdict": "no", "text": "Released zarr-python refuses it with a clear error (unknown codec). Nobody reads wrong data, and nobody reads it without the new codec."}, "compose": {"verdict": "good", "text": "Dropping the first chunks of the array, with nothing else rewritten, still read correctly in 5 of 5 trials."}, "kerchunk": {"verdict": "bad", "text": "No: every reference is a literal followed by a byte range. (By inspection, not a run.)"}}, "switch_key": {"name": "Case table \u00b7 key in each reference", "group": "A table of cases", "how": "As above, without the per-chunk numbers: each reference begins with a key naming its case.", "takes": ["A new codec in every Zarr reader", "Icechunk references that are a literal followed by byte ranges"], "tested": "Built in the zarr-python, Icechunk and VirtualiZarr branches.", "cases": {"codec_eras": {"ok": true, "why": ""}, "file_lengths": {"ok": true, "why": ""}, "padded_last_chunk": {"ok": true, "why": ""}, "chunk_shape_change": {"ok": true, "why": ""}, "data_types": {"ok": true, "why": ""}, "packing_per_file": {"ok": true, "why": ""}, "packing_per_chunk": {"ok": true, "why": ""}, "layouts_alternate": {"ok": true, "why": ""}, "fill_value_differs": {"ok": true, "why": ""}, "variable_absent": {"ok": true, "why": ""}}, "costs": ["With 16,000 chunks where every chunk is packed its own way: zarr.json grows to 6.2 MB, read at every open."], "warnings": [], "good": ["On twelve years of Daymet Puerto Rico it made the same 4,380 source requests as every other option for a full time series, in 30 s at zarr-python's default concurrency.", "It read Daymet North America across the 2020 chunk-shape change with every value equal to the files.", "Dropping the first chunks of the array, with nothing else rewritten, still read correctly in 5 of 5 trials."], "scale": {"alternate": {"ok": true, "notes": [], "zarr_json": "945 B", "manifest": "210 KB"}, "packed": {"ok": true, "notes": ["zarr.json grows to 6.2 MB, read at every open"], "zarr_json": "6.2 MB", "manifest": "358 KB"}}, "released": {"verdict": "no", "text": "Released zarr-python refuses it with a clear error (unknown codec). Nobody reads wrong data, and nobody reads it without the new codec."}, "compose": {"verdict": "good", "text": "Dropping the first chunks of the array, with nothing else rewritten, still read correctly in 5 of 5 trials."}, "kerchunk": {"verdict": "bad", "text": "It cannot be written as Kerchunk references: every chunk is a literal followed by a byte range, and a Kerchunk reference is one or the other."}}, "switch_case_id": {"name": "Case table \u00b7 1-byte case number in each reference", "group": "A table of cases", "how": "The same idea with the smallest possible key: one byte that numbers the case.", "takes": ["A new codec in every Zarr reader", "Icechunk references that are a literal followed by byte ranges"], "tested": "Built, as the key mode with 1-byte keys. This is the per-chunk variant of NASA-IMPACT/veda-odd#498.", "cases": {"codec_eras": {"ok": true, "why": ""}, "file_lengths": {"ok": true, "why": ""}, "padded_last_chunk": {"ok": true, "why": ""}, "chunk_shape_change": {"ok": true, "why": ""}, "data_types": {"ok": true, "why": ""}, "packing_per_file": {"ok": true, "why": ""}, "packing_per_chunk": {"ok": true, "why": ""}, "layouts_alternate": {"ok": true, "why": ""}, "fill_value_differs": {"ok": true, "why": ""}, "variable_absent": {"ok": true, "why": ""}}, "costs": ["One byte numbers at most 256 cases. A record where every chunk is packed its own way cannot be described at all."], "warnings": [], "good": ["On twelve years of Daymet Puerto Rico it made the same 4,380 source requests as every other option for a full time series, in 31 s at zarr-python's default concurrency.", "It read Daymet North America across the 2020 chunk-shape change with every value equal to the files.", "Dropping the first chunks of the array, with nothing else rewritten, still read correctly in 5 of 5 trials."], "scale": {"alternate": {"ok": true, "notes": [], "zarr_json": "923 B", "manifest": "206 KB"}, "packed": {"ok": false, "why": "more than 256 cases do not fit a 1-byte case number"}}, "released": {"verdict": "no", "text": "Released zarr-python refuses it with a clear error (unknown codec). Nobody reads wrong data, and nobody reads it without the new codec."}, "compose": {"verdict": "good", "text": "Dropping the first chunks of the array, with nothing else rewritten, still read correctly in 5 of 5 trials."}, "kerchunk": {"verdict": "bad", "text": "No: every reference is a literal followed by a byte range. (By inspection, not a run.)"}}, "switch_position": {"name": "Case table \u00b7 case found from the chunk's position", "group": "A table of cases", "how": "The table is run-length encoded along the joined axis in zarr.json. Nothing is stored per chunk; the codec is told which chunk it is decoding.", "takes": ["A new codec in every Zarr reader", "Zarr readers must tell a codec the chunk's coordinates", "Icechunk change only when the chunk shape changes (virtual shards)"], "tested": "Built in the zarr-python and VirtualiZarr branches.", "cases": {"codec_eras": {"ok": true, "why": ""}, "file_lengths": {"ok": true, "why": ""}, "padded_last_chunk": {"ok": true, "why": ""}, "chunk_shape_change": {"ok": true, "why": ""}, "data_types": {"ok": true, "why": ""}, "packing_per_file": {"ok": true, "why": ""}, "packing_per_chunk": {"ok": true, "why": ""}, "layouts_alternate": {"ok": true, "why": ""}, "fill_value_differs": {"ok": true, "why": ""}, "variable_absent": {"ok": true, "why": ""}}, "costs": ["With 16,000 chunks where two layouts alternate chunk by chunk: zarr.json grows to 3.5 MB, read at every open.", "With 16,000 chunks where every chunk is packed its own way: zarr.json grows to 6.0 MB, read at every open."], "warnings": ["Dropping the first chunks of the array, with nothing else rewritten, read correctly in only 1 of 5 trials. In 2 of them it returned wrong values with no error. Every tool that reorders chunks must also rewrite this option's own table."], "good": ["On twelve years of Daymet Puerto Rico it made the same 4,380 source requests as every other option for a full time series, in 30 s at zarr-python's default concurrency.", "It read Daymet North America across the 2020 chunk-shape change with every value equal to the files.", "Once a reader has the codec, released Icechunk serves it in 9 of 10 cases. The exception is a chunk-shape change, which needs the Icechunk change."], "scale": {"alternate": {"ok": true, "notes": ["zarr.json grows to 3.5 MB, read at every open"], "zarr_json": "3.5 MB", "manifest": "171 KB"}, "packed": {"ok": true, "notes": ["zarr.json grows to 6.0 MB, read at every open"], "zarr_json": "6.0 MB", "manifest": "168 KB"}}, "released": {"verdict": "no", "text": "Released zarr-python refuses it with a clear error (unknown codec). Nobody reads wrong data, and nobody reads it without the new codec."}, "compose": {"verdict": "bad", "text": "Dropping the first chunks of the array, with nothing else rewritten, read correctly in only 1 of 5 trials. In 2 of them it returned wrong values with no error. Every tool that reorders chunks must also rewrite this option's own table."}, "kerchunk": {"verdict": "partial", "text": "As Kerchunk references it read correctly in 5 of 6 cases; the exception is a chunk-shape change."}}, "switch_store_context": {"name": "Case table \u00b7 the store answers a context call", "group": "A table of cases", "how": "The store gains a method that returns a chunk's context (its case and numbers) beside its bytes. This is the &ldquo;Zarr v3.2&rdquo; design of zarr-specs#399.", "takes": ["A new codec in every Zarr reader", "A new method on the Zarr store interface, and a spec change", "Somewhere in the Icechunk manifest to keep the context"], "tested": "Emulated: a Python wrapper around the store answers the call.", "cases": {"codec_eras": {"ok": true, "why": ""}, "file_lengths": {"ok": true, "why": ""}, "padded_last_chunk": {"ok": true, "why": ""}, "chunk_shape_change": {"ok": true, "why": ""}, "data_types": {"ok": true, "why": ""}, "packing_per_file": {"ok": true, "why": ""}, "packing_per_chunk": {"ok": true, "why": ""}, "layouts_alternate": {"ok": true, "why": ""}, "fill_value_differs": {"ok": true, "why": ""}, "variable_absent": {"ok": true, "why": ""}}, "costs": [], "warnings": ["This option was emulated in Python, not built into Icechunk or zarr-python. A real implementation could behave differently, on speed above all."], "good": ["On twelve years of Daymet Puerto Rico it made the same 4,380 source requests as every other option for a full time series, in 30 s at zarr-python's default concurrency.", "It read Daymet North America across the 2020 chunk-shape change with every value equal to the files.", "Dropping the first chunks of the array, with nothing else rewritten, still read correctly in 5 of 5 trials."], "scale": {"alternate": {"ok": true, "notes": [], "zarr_json": "887 B", "manifest": "171 KB"}, "packed": {"ok": true, "notes": [], "zarr_json": "873 B", "manifest": "168 KB"}}, "released": {"verdict": "no", "text": "Released zarr-python refuses it with a clear error (unknown codec). Nobody reads wrong data, and nobody reads it without the new codec."}, "compose": {"verdict": "good", "text": "Dropping the first chunks of the array, with nothing else rewritten, still read correctly in 5 of 5 trials."}, "kerchunk": {"verdict": "bad", "text": "No: the store itself must answer the context call. (By inspection, not a run.)"}}, "switch_sidecar": {"name": "Case table \u00b7 the codec reads a side array", "group": "A table of cases", "how": "A second array in the store lists the case of every chunk. The codec reads it itself.", "takes": ["A new codec that does its own I/O, in every Zarr reader", "Zarr readers must tell a codec the chunk's coordinates", "Icechunk change only when the chunk shape changes"], "tested": "Built as an evaluation codec.", "cases": {"codec_eras": {"ok": true, "why": ""}, "file_lengths": {"ok": true, "why": ""}, "padded_last_chunk": {"ok": true, "why": ""}, "chunk_shape_change": {"ok": true, "why": ""}, "data_types": {"ok": true, "why": ""}, "packing_per_file": {"ok": true, "why": ""}, "packing_per_chunk": {"ok": true, "why": ""}, "layouts_alternate": {"ok": true, "why": ""}, "fill_value_differs": {"ok": true, "why": ""}, "variable_absent": {"ok": true, "why": ""}}, "costs": ["With 16,000 chunks where every chunk is packed its own way: zarr.json grows to 5.8 MB, read at every open."], "warnings": ["Dropping the first chunks of the array, with nothing else rewritten, read correctly in only 1 of 5 trials. In 2 of them it returned wrong values with no error. Every tool that reorders chunks must also rewrite this option's own table."], "good": ["On twelve years of Daymet Puerto Rico it made the same 4,380 source requests as every other option for a full time series, in 30 s at zarr-python's default concurrency.", "It read Daymet North America across the 2020 chunk-shape change with every value equal to the files.", "Once a reader has the codec, released Icechunk serves it in 9 of 10 cases. The exception is a chunk-shape change, which needs the Icechunk change."], "scale": {"alternate": {"ok": true, "notes": [], "zarr_json": "920 B", "manifest": "171 KB"}, "packed": {"ok": true, "notes": ["zarr.json grows to 5.8 MB, read at every open"], "zarr_json": "5.8 MB", "manifest": "168 KB"}}, "released": {"verdict": "no", "text": "Released zarr-python refuses it with a clear error (unknown codec). Nobody reads wrong data, and nobody reads it without the new codec."}, "compose": {"verdict": "bad", "text": "Dropping the first chunks of the array, with nothing else rewritten, read correctly in only 1 of 5 trials. In 2 of them it returned wrong values with no error. Every tool that reorders chunks must also rewrite this option's own table."}, "kerchunk": {"verdict": "good", "text": "Yes: its references are plain byte ranges, plus one more array. (By inspection, not a run.)"}}, "switch_index_prefix": {"name": "Case table \u00b7 the store prepends the chunk's index", "group": "A table of cases", "how": "On every read the store puts the chunk's grid index in front of its bytes, and the codec looks the case up from that.", "takes": ["A new codec in every Zarr reader", "Icechunk must prepend the index for these arrays and no others"], "tested": "Emulated: a Python wrapper around the store prepends the index.", "cases": {"codec_eras": {"ok": true, "why": ""}, "file_lengths": {"ok": true, "why": ""}, "padded_last_chunk": {"ok": true, "why": ""}, "chunk_shape_change": {"ok": true, "why": ""}, "data_types": {"ok": true, "why": ""}, "packing_per_file": {"ok": true, "why": ""}, "packing_per_chunk": {"ok": true, "why": ""}, "layouts_alternate": {"ok": true, "why": ""}, "fill_value_differs": {"ok": true, "why": ""}, "variable_absent": {"ok": true, "why": ""}}, "costs": ["With 16,000 chunks where two layouts alternate chunk by chunk: zarr.json grows to 3.5 MB, read at every open.", "With 16,000 chunks where every chunk is packed its own way: zarr.json grows to 6.0 MB, read at every open."], "warnings": ["Dropping the first chunks of the array, with nothing else rewritten, read correctly in only 1 of 5 trials. In 2 of them it returned wrong values with no error. Every tool that reorders chunks must also rewrite this option's own table.", "This option was emulated in Python, not built into Icechunk or zarr-python. A real implementation could behave differently, on speed above all."], "good": ["On twelve years of Daymet Puerto Rico it made the same 4,380 source requests as every other option for a full time series, in 30 s at zarr-python's default concurrency.", "It read Daymet North America across the 2020 chunk-shape change with every value equal to the files."], "scale": {"alternate": {"ok": true, "notes": ["zarr.json grows to 3.5 MB, read at every open"], "zarr_json": "3.5 MB", "manifest": "171 KB"}, "packed": {"ok": true, "notes": ["zarr.json grows to 6.0 MB, read at every open"], "zarr_json": "6.0 MB", "manifest": "168 KB"}}, "released": {"verdict": "no", "text": "Released zarr-python refuses it with a clear error (unknown codec). Nobody reads wrong data, and nobody reads it without the new codec."}, "compose": {"verdict": "bad", "text": "Dropping the first chunks of the array, with nothing else rewritten, read correctly in only 1 of 5 trials. In 2 of them it returned wrong values with no error. Every tool that reorders chunks must also rewrite this option's own table."}, "kerchunk": {"verdict": "bad", "text": "No: the store itself must prepend the index. (By inspection, not a run.)"}}, "conditional_codec": {"name": "The conditional codec", "group": "A narrower codec", "how": "zarr-extensions' conditional codec: a one-byte header in front of each chunk says which of a list of compressors to apply.", "takes": ["The conditional codec in every Zarr reader", "Icechunk references that are a literal followed by a byte range"], "tested": "Built from my reading of the merged spec.", "cases": {"codec_eras": {"ok": true, "why": ""}, "file_lengths": {"ok": true, "why": ""}, "padded_last_chunk": {"ok": false, "why": "chunks are stored larger than their place in the grid, and a bytes-to-bytes codec cannot crop"}, "chunk_shape_change": {"ok": false, "why": "the chunk shape changes, and a bytes-to-bytes codec cannot change what a chunk decodes to"}, "data_types": {"ok": false, "why": "the files differ before the bytes stage (data type or packing), which a bytes-to-bytes codec cannot vary"}, "packing_per_file": {"ok": false, "why": "the files differ before the bytes stage (data type or packing), which a bytes-to-bytes codec cannot vary"}, "packing_per_chunk": {"ok": false, "why": "the files differ before the bytes stage (data type or packing), which a bytes-to-bytes codec cannot vary"}, "layouts_alternate": {"ok": true, "why": ""}, "fill_value_differs": {"ok": false, "why": "a bytes-to-bytes codec cannot give a run of chunks its own fill value"}, "variable_absent": {"ok": true, "why": ""}}, "costs": [], "warnings": [], "good": ["On twelve years of Daymet Puerto Rico it made the same 4,380 source requests as every other option for a full time series, in 31 s at zarr-python's default concurrency.", "Dropping the first chunks of the array, with nothing else rewritten, still read correctly in 2 of 2 trials."], "scale": {"alternate": {"ok": true, "notes": [], "zarr_json": "665 B", "manifest": "206 KB"}, "packed": {"ok": false, "why": "the files differ before the bytes stage (data type or packing), which a bytes-to-bytes codec cannot vary"}}, "released": {"verdict": "no", "text": "Released zarr-python refuses it with a clear error (unknown codec). Nobody reads wrong data, and nobody reads it without the new codec."}, "compose": {"verdict": "good", "text": "Dropping the first chunks of the array, with nothing else rewritten, still read correctly in 2 of 2 trials."}, "kerchunk": {"verdict": "bad", "text": "No: every reference is a literal followed by a byte range. (By inspection, not a run.)"}}, "array_concat": {"name": "Array concatenation", "group": "Keep each file's array", "how": "Each file stays an array of its own. One more array lists them in its codec and reads through to them.", "takes": ["A codec that opens other arrays, in every Zarr reader", "Nothing from the store"], "tested": "Built in the zarr-python and VirtualiZarr branches.", "cases": {"codec_eras": {"ok": true, "why": ""}, "file_lengths": {"ok": true, "why": ""}, "padded_last_chunk": {"ok": true, "why": ""}, "chunk_shape_change": {"ok": true, "why": ""}, "data_types": {"ok": true, "why": ""}, "packing_per_file": {"ok": true, "why": ""}, "packing_per_chunk": {"ok": true, "why": ""}, "layouts_alternate": {"ok": true, "why": ""}, "fill_value_differs": {"ok": true, "why": ""}, "variable_absent": {"ok": true, "why": ""}}, "costs": ["With 16,000 chunks where two layouts alternate chunk by chunk: zarr.json grows to 677 KB, read at every open; manifests of 3.9 MB, 19&times; the smallest; 59 s to write, against about 6 s; 3.8 ms of overhead per chunk read, against about 0.5 ms.", "With 16,000 chunks where every chunk is packed its own way: zarr.json grows to 677 KB, read at every open; manifests of 3.9 MB, 18&times; the smallest; 64 s to write, against about 6 s; 4.2 ms of overhead per chunk read, against about 0.5 ms."], "warnings": [], "good": ["On twelve years of Daymet Puerto Rico it made the same 4,380 source requests as every other option for a full time series, in 30 s at zarr-python's default concurrency.", "It read Daymet North America across the 2020 chunk-shape change with every value equal to the files.", "Once a reader has the codec, released Icechunk serves it: no store change is needed."], "scale": {"alternate": {"ok": true, "notes": ["zarr.json grows to 677 KB, read at every open", "manifests of 3.9 MB, 19&times; the smallest", "59 s to write, against about 6 s", "3.8 ms of overhead per chunk read, against about 0.5 ms"], "zarr_json": "677 KB", "manifest": "3.9 MB"}, "packed": {"ok": true, "notes": ["zarr.json grows to 677 KB, read at every open", "manifests of 3.9 MB, 18&times; the smallest", "64 s to write, against about 6 s", "4.2 ms of overhead per chunk read, against about 0.5 ms"], "zarr_json": "677 KB", "manifest": "3.9 MB"}}, "released": {"verdict": "no", "text": "Released zarr-python refuses it with a clear error (unknown codec). Nobody reads wrong data, and nobody reads it without the new codec."}, "compose": {"verdict": "partial", "text": "The joined array has no chunks of its own; dropping part of it means editing the codec's list of pieces, and only whole pieces can go. (By inspection, not a run.)"}, "kerchunk": {"verdict": "good", "text": "Yes: each file's array uses plain byte ranges. (By inspection, not a run.)"}}, "zarr_reference": {"name": "A reference to an array in each chunk", "group": "Keep each file's array", "how": "Each file stays an array of its own. The joined array has one chunk per file, and that chunk's bytes are a reference to the file's array.", "takes": ["A codec that opens other arrays, in every Zarr reader", "Nothing from the store"], "tested": "Built as an evaluation codec.", "cases": {"codec_eras": {"ok": true, "why": ""}, "file_lengths": {"ok": true, "why": ""}, "padded_last_chunk": {"ok": true, "why": ""}, "chunk_shape_change": {"ok": true, "why": ""}, "data_types": {"ok": true, "why": ""}, "packing_per_file": {"ok": true, "why": ""}, "packing_per_chunk": {"ok": true, "why": ""}, "layouts_alternate": {"ok": true, "why": ""}, "fill_value_differs": {"ok": true, "why": ""}, "variable_absent": {"ok": true, "why": ""}}, "costs": ["With 16,000 chunks where two layouts alternate chunk by chunk: manifests of 4.0 MB, 19&times; the smallest; 64 s to write, against about 6 s; 1.5 ms of overhead per chunk read, against about 0.5 ms.", "With 16,000 chunks where every chunk is packed its own way: manifests of 4.0 MB, 19&times; the smallest; 69 s to write, against about 6 s; 2.0 ms of overhead per chunk read, against about 0.5 ms."], "warnings": [], "good": ["On twelve years of Daymet Puerto Rico it made the same 4,380 source requests as every other option for a full time series, in 5 s at zarr-python's default concurrency.", "It read Daymet North America across the 2020 chunk-shape change with every value equal to the files.", "Once a reader has the codec, released Icechunk serves it: no store change is needed."], "scale": {"alternate": {"ok": true, "notes": ["manifests of 4.0 MB, 19&times; the smallest", "64 s to write, against about 6 s", "1.5 ms of overhead per chunk read, against about 0.5 ms"], "zarr_json": "455 B", "manifest": "4.0 MB"}, "packed": {"ok": true, "notes": ["manifests of 4.0 MB, 19&times; the smallest", "69 s to write, against about 6 s", "2.0 ms of overhead per chunk read, against about 0.5 ms"], "zarr_json": "457 B", "manifest": "4.0 MB"}}, "released": {"verdict": "no", "text": "Released zarr-python refuses it with a clear error (unknown codec). Nobody reads wrong data, and nobody reads it without the new codec."}, "compose": {"verdict": "partial", "text": "One chunk per piece: whole pieces can be dropped as chunks, part of a piece cannot. (By inspection, not a run.)"}, "kerchunk": {"verdict": "good", "text": "Yes: plain byte ranges, plus one small inline chunk per file. (By inspection, not a run.)"}}, "grid_encoded_shapes": {"name": "Encoded chunk shapes in the chunk grid", "group": "Change the grid, not the codec", "how": "The chunk grid states how large each chunk is stored, beside how much of it counts.", "takes": ["A change to the rectilinear chunk grid, in every Zarr reader"], "tested": "Emulated: declared in an attribute and read by a patched grid.", "cases": {"codec_eras": {"ok": false, "why": "the files' codec chains differ; a chunk grid with encoded chunk shapes keeps one chain for the array"}, "file_lengths": {"ok": true, "why": ""}, "padded_last_chunk": {"ok": true, "why": ""}, "chunk_shape_change": {"ok": false, "why": "the chunk shape changes; a chunk grid with encoded chunk shapes keeps one codec chain and one inner chunk shape"}, "data_types": {"ok": false, "why": "the files' codec chains differ; a chunk grid with encoded chunk shapes keeps one chain for the array"}, "packing_per_file": {"ok": false, "why": "the files' codec chains differ; a chunk grid with encoded chunk shapes keeps one chain for the array"}, "packing_per_chunk": {"ok": false, "why": "the files' codec chains differ; a chunk grid with encoded chunk shapes keeps one chain for the array"}, "layouts_alternate": {"ok": false, "why": "the files' codec chains differ; a chunk grid with encoded chunk shapes keeps one chain for the array"}, "fill_value_differs": {"ok": false, "why": "the files' fill values differ; a chunk grid with encoded chunk shapes keeps one fill value"}, "variable_absent": {"ok": true, "why": ""}}, "costs": [], "warnings": ["This option was emulated in Python, not built into Icechunk or zarr-python. A real implementation could behave differently, on speed above all."], "good": ["Dropping the first chunks of the array, with nothing else rewritten, still read correctly in 1 of 1 trials."], "scale": {}, "released": {"verdict": "no", "text": "Released zarr-python read 2 of 3 stores and refused the rest with an unrelated reshape error."}, "compose": {"verdict": "good", "text": "Dropping the first chunks of the array, with nothing else rewritten, still read correctly in 1 of 1 trials."}, "kerchunk": {"verdict": "good", "text": "Yes: its references are plain byte ranges. (By inspection, not a run.)"}}, "domain_convention": {"name": "A declared valid domain", "group": "Change the grid, not the codec", "how": "The array is stored with the files' padding in it. An attribute says which ranges are data.", "takes": ["A convention every reader must follow to see the right array"], "tested": "Built as a reader-side helper.", "cases": {"codec_eras": {"ok": false, "why": "the files' codec chains differ; a declared domain keeps one chain for the array"}, "file_lengths": {"ok": true, "why": ""}, "padded_last_chunk": {"ok": true, "why": ""}, "chunk_shape_change": {"ok": false, "why": "the chunk shape changes; a declared domain keeps one codec chain and one inner chunk shape"}, "data_types": {"ok": false, "why": "the files' codec chains differ; a declared domain keeps one chain for the array"}, "packing_per_file": {"ok": false, "why": "the files' codec chains differ; a declared domain keeps one chain for the array"}, "packing_per_chunk": {"ok": false, "why": "the files' codec chains differ; a declared domain keeps one chain for the array"}, "layouts_alternate": {"ok": false, "why": "the files' codec chains differ; a declared domain keeps one chain for the array"}, "fill_value_differs": {"ok": false, "why": "the files' fill values differ; a declared domain keeps one fill value"}, "variable_absent": {"ok": true, "why": ""}}, "costs": [], "warnings": ["A reader without the convention returns an array of the wrong shape, with the padding in it, and no error.", "Dropping the first chunks of the array, with nothing else rewritten, read correctly in only 0 of 1 trials. Every tool that reorders chunks must also rewrite this option's own table."], "good": [], "scale": {}, "released": {"verdict": "bad", "text": "A reader without the convention returns an array of the wrong shape, with the padding in it, and no error."}, "compose": {"verdict": "bad", "text": "Dropping the first chunks of the array, with nothing else rewritten, read correctly in only 0 of 1 trials. Every tool that reorders chunks must also rewrite this option's own table."}, "kerchunk": {"verdict": "good", "text": "Yes: its references are plain byte ranges. (By inspection, not a run.)"}}, "materialize_odd_chunks": {"name": "Store the awkward chunks again as native chunks", "group": "Copy some data", "how": "The array takes the commonest layout. Every chunk that does not fit it is decoded and written again as an ordinary chunk.", "takes": ["Nothing new: released zarr-python and Icechunk read it"], "tested": "Built, for any chunk that does not fit the commonest layout.", "cases": {"codec_eras": {"ok": true, "why": "", "cost": "67% of the data is stored a second time", "heavy": true}, "file_lengths": {"ok": true, "why": ""}, "padded_last_chunk": {"ok": true, "why": "", "cost": "20% of the data is stored a second time", "heavy": false}, "chunk_shape_change": {"ok": true, "why": "", "cost": "50% of the data is stored a second time", "heavy": true}, "data_types": {"ok": true, "why": "", "cost": "50% of the data is stored a second time", "heavy": true}, "packing_per_file": {"ok": false, "why": "every file packs or narrows its values in its own way, so no file's chain can hold the others' values: all would be copied"}, "packing_per_chunk": {"ok": false, "why": "every file packs or narrows its values in its own way, so no file's chain can hold the others' values: all would be copied"}, "layouts_alternate": {"ok": true, "why": "", "cost": "50% of the data is stored a second time", "heavy": true}, "fill_value_differs": {"ok": true, "why": "", "cost": "50% of the data is stored a second time", "heavy": true}, "variable_absent": {"ok": true, "why": ""}}, "costs": [], "warnings": [], "good": ["Released zarr-python and Icechunk read it correctly as it is."], "scale": {}, "released": {"verdict": "good", "text": "Released zarr-python and Icechunk read it correctly as it is."}, "compose": {"verdict": "good", "text": "It is an ordinary array, so manifest tools handle it like any other. (By inspection, not a run.)"}, "kerchunk": {"verdict": "bad", "text": "No: the copied chunks need a store to live in. (By inspection, not a run.)"}}, "native_copy": {"name": "Copy everything to native Zarr", "group": "Copy some data", "how": "Not virtual at all: read every value and write a new array.", "takes": ["Nothing new", "Storage and compute for a full second copy"], "tested": "Built.", "cases": {"codec_eras": {"ok": true, "why": "", "cost": "100% of the data is stored a second time", "heavy": true}, "file_lengths": {"ok": true, "why": "", "cost": "100% of the data is stored a second time", "heavy": true}, "padded_last_chunk": {"ok": true, "why": "", "cost": "100% of the data is stored a second time", "heavy": true}, "chunk_shape_change": {"ok": true, "why": "", "cost": "100% of the data is stored a second time", "heavy": true}, "data_types": {"ok": true, "why": "", "cost": "100% of the data is stored a second time", "heavy": true}, "packing_per_file": {"ok": true, "why": "", "cost": "100% of the data is stored a second time", "heavy": true}, "packing_per_chunk": {"ok": true, "why": "", "cost": "100% of the data is stored a second time", "heavy": true}, "layouts_alternate": {"ok": true, "why": "", "cost": "100% of the data is stored a second time", "heavy": true}, "fill_value_differs": {"ok": true, "why": "", "cost": "100% of the data is stored a second time", "heavy": true}, "variable_absent": {"ok": true, "why": "", "cost": "100% of the data is stored a second time", "heavy": true}}, "costs": ["All of the data is stored a second time, and must be rewritten whenever the source is reprocessed."], "warnings": [], "good": ["Released zarr-python and Icechunk read it correctly as it is."], "scale": {"alternate": {"ok": true, "notes": [], "zarr_json": "496 B", "manifest": "42.2 KB"}, "packed": {"ok": true, "notes": [], "zarr_json": "496 B", "manifest": "44.9 KB"}}, "released": {"verdict": "good", "text": "Released zarr-python and Icechunk read it correctly as it is."}, "compose": {"verdict": "good", "text": "It is an ordinary array, so manifest tools handle it like any other. (By inspection, not a run.)"}, "kerchunk": {"verdict": "bad", "text": "No: it is a store of native chunks. (By inspection, not a run.)"}}}, "cases": {"codec_eras": {"name": "The compression changed partway through the record", "example": "Daymet Puerto Rico added a shuffle filter in 2020. zarr-specs#399 cites GOES-16, with four eras."}, "file_lengths": {"name": "Files have different lengths", "example": "Monthly files of 31, 28 and 31 days, each stored as one chunk."}, "padded_last_chunk": {"name": "Each file's last chunk is stored whole", "example": "HDF5 and netCDF4 pad the final chunk. Daymet North America from 2020: 365 days in chunks of 10."}, "chunk_shape_change": {"name": "The chunk shape changed", "example": "Daymet North America went from 1 &times; 1000 &times; 1000 to 10 &times; 300 &times; 300 in 2020."}, "data_types": {"name": "The data type changed", "example": "int16 files followed by float32 files. Raised in zarr-specs#399."}, "packing_per_file": {"name": "Every file has its own scale and offset", "example": "zarr-specs#399 cites BOM BARPA, where each file is packed with its own scale_factor and add_offset."}, "packing_per_chunk": {"name": "Every chunk has its own scale and offset", "example": "How GRIB packs each message. The worst case for anything that lists cases in metadata."}, "layouts_alternate": {"name": "Two layouts alternate from file to file", "example": "A record where reprocessed and original granules are interleaved. Constructed for this test."}, "fill_value_differs": {"name": "Files declare different fill values and leave chunks unwritten", "example": "Constructed for this test. No sampled NASA granule had it."}, "variable_absent": {"name": "A file does not have the variable", "example": "Seen in the sampled NASA granules, where some lack a variable the others carry."}}, "needs": {"need_released_readers": {"name": "It must read with software people already have", "detail": "Released zarr-python and released Icechunk, with nothing new installed."}, "need_manifest_ops": {"name": "Tools must be able to slice or shift the array", "detail": "A manifest tool drops or moves chunks without knowing anything about the codec."}, "need_no_icechunk": {"name": "It must work without Icechunk", "detail": "Stored as Kerchunk references, which are either inline bytes or one byte range."}, "need_many_granules": {"name": "The record is tens of thousands of small granules", "detail": "16,000 one-chunk pieces, in the two worst cases: layouts that alternate, and every chunk packed its own way."}}}</script>
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const el = (tag, cls, html) => { const n = document.createElement(tag); if (cls) n.className = cls; if (html !== undefined) n.innerHTML = html; return n; };
+const slug = (k) => k.replace(/_/g, '-');
+const unslug = (s) => s.replace(/-/g, '_');
+const state = { path: 'choice', choice: null, subject: null };
+const picker = document.getElementById('picker'), story = document.getElementById('story');
+
+function beat(kind, mark, title, count) {
+  const b = el('section', 'beat ' + kind);
+  const h = el('h3', '', `<span class="mark" aria-hidden="true">${mark}</span><span>${title}</span>` + (count ? `<span class="count">${count}</span>` : ''));
+  b.append(h); return b;
+}
+function list(items) { const ul = el('ul'); items.forEach((i) => ul.append(el('li', '', i))); return ul; }
+
+function renderChoice(key) {
+  const o = D.options[key];
+  story.replaceChildren();
+  const head = el('header');
+  head.append(el('div', 'eyebrow', 'You chose'), el('h2', '', o.name), el('p', 'how', o.how));
+  story.append(head);
+  const ok = Object.keys(D.cases).filter((c) => o.cases[c].ok && !o.cases[c].heavy);
+  const heavy = Object.keys(D.cases).filter((c) => o.cases[c].ok && o.cases[c].heavy);
+  const no = Object.keys(D.cases).filter((c) => !o.cases[c].ok);
+  const all = ok.length + heavy.length;
+  const g = beat('good', '&#10003;', all === 10 ? 'Good news: you can describe every case tested' : `Good news: you can describe ${all} of the 10 cases tested`, `${all} / 10`);
+  g.append(list(ok.concat(heavy).map((c) => `<b>${D.cases[c].name}.</b>` + (o.cases[c].cost ? `<span class="why">${o.cases[c].cost}.</span>` : ''))));
+  if (o.good.length) g.append(list(o.good));
+  story.append(g);
+  if (no.length) {
+    const b = beat('bad', '&#10007;', 'Bad news: these cannot be described at all', `${no.length} / 10`);
+    b.append(list(no.map((c) => `<b>${D.cases[c].name}.</b><span class="why">${o.cases[c].why[0].toUpperCase() + o.cases[c].why.slice(1)}.</span>`)));
+    story.append(b);
+  }
+  const costs = o.costs.concat(heavy.map((c) => `${D.cases[c].name}: ${o.cases[c].cost}.`));
+  if (costs.length) { const c = beat('cost', '!', 'Bad news: these get expensive'); c.append(list(costs)); story.append(c); }
+  else { const c = beat('good', '&#10003;', 'Nothing got expensive'); c.append(el('p', '', 'With 16,000 chunks in both worst cases, <code>zarr.json</code> stayed under 1 KB, the manifests stayed small, and the per-chunk overhead matched the best option.')); if (o.scale.alternate && o.scale.alternate.ok) story.append(c); }
+  if (o.warnings.length) { const w = beat('warn', '!', 'Watch out'); w.append(list(o.warnings)); story.append(w); }
+  const t = beat('', '', 'What it takes'); t.append(list(o.takes));
+  t.append(el('p', '', `<b>Readers people already have.</b> ${o.released.text}`));
+  t.append(el('p', '', `<b>Without Icechunk.</b> ${o.kerchunk.text}`));
+  if (o.compose.verdict === 'partial') t.append(el('p', '', `<b>Manifest tools.</b> ${o.compose.text}`));
+  t.append(el('p', 'note', `How it was tested: ${o.tested}`));
+  story.append(t);
+}
+
+function verdictFor(key, subject) {
+  const o = D.options[key];
+  if (D.cases[subject]) {
+    const c = o.cases[subject];
+    if (!c.ok) return ['bad', c.why[0].toUpperCase() + c.why.slice(1) + '.'];
+    if (c.cost) return [c.heavy ? 'partial' : 'good', c.cost[0].toUpperCase() + c.cost.slice(1) + '.'];
+    const s = subject === 'packing_per_chunk' ? o.scale.packed : subject === 'layouts_alternate' ? o.scale.alternate : null;
+    if (s && s.ok && s.notes.length) return ['partial', 'It works on a small record. At 16,000 chunks: ' + s.notes.join('; ') + '.'];
+    if (s && !s.ok) return ['partial', 'It works on the small test record but not at 16,000 chunks: ' + s.why + '.'];
+    return ['good', s && s.ok ? `Still small at 16,000 chunks: ${s.zarr_json} of zarr.json, ${s.manifest} of manifests.` : ''];
+  }
+  if (subject === 'need_released_readers') return [o.released.verdict === 'good' ? 'good' : 'bad', o.released.text];
+  if (subject === 'need_manifest_ops') return [o.compose.verdict, o.compose.text];
+  if (subject === 'need_no_icechunk') return [o.kerchunk.verdict, o.kerchunk.text];
+  const a = o.scale.alternate, p = o.scale.packed;
+  if (!a && !p) return ['bad', 'Not run at this size: it describes neither worst case, or copies the data.'];
+  const parts = [], bad = [];
+  [['layouts alternate', a], ['every chunk is packed its own way', p]].forEach(([label, s]) => {
+    if (!s) return;
+    if (!s.ok) bad.push(`cannot describe the case where ${label}`);
+    else if (s.notes.length) parts.push(`where ${label}: ${s.notes.join('; ')}`);
+  });
+  if (!parts.length && !bad.length) return ['good', `zarr.json stays at ${p.zarr_json} and manifests at ${p.manifest} in the harder of the two.`];
+  return [bad.length && !parts.length && bad.length === 2 ? 'bad' : 'partial', (bad.concat(parts).join('. ') + '.').replace(/^./, (m) => m.toUpperCase())];
+}
+
+function renderSubject(key) {
+  const s = D.cases[key] || D.needs[key];
+  story.replaceChildren();
+  const head = el('header');
+  head.append(el('div', 'eyebrow', D.cases[key] ? 'Your data looks like this' : 'You need this'), el('h2', '', s.name), el('p', 'how', s.example || s.detail));
+  story.append(head);
+  const groups = { good: [], partial: [], bad: [] };
+  Object.keys(D.options).forEach((k) => { const [v, because] = verdictFor(k, key); groups[v].push([k, because]); });
+  const titles = { good: ['good', '&#10003;', 'These handle it'], partial: ['cost', '!', 'These handle it, at a cost'], bad: ['bad', '&#10007;', 'These do not'] };
+  ['good', 'partial', 'bad'].forEach((v) => {
+    if (!groups[v].length) return;
+    const b = beat(...titles[v], `${groups[v].length} / ${Object.keys(D.options).length}`);
+    const box = el('div', 'verdicts');
+    groups[v].forEach(([k, because]) => {
+      const row = el('div', 'verdict ' + v);
+      const who = el('div', 'who'); const link = el('button', '', D.options[k].name); link.type = 'button';
+      link.addEventListener('click', () => go('choice', k)); who.append(link);
+      row.append(el('span', 'mark', v === 'good' ? '&#10003;' : v === 'bad' ? '&#10007;' : '!'), who);
+      if (because) row.append(el('div', 'because', because));
+      box.append(row);
+    });
+    b.append(box); story.append(b);
+  });
+}
+
+function renderPicker() {
+  picker.replaceChildren();
+  const add = (title, entries, current, path) => {
+    const g = el('div', 'group-wrap'); g.append(el('h3', '', title));
+    const box = el('div', 'group');
+    entries.forEach(([k, name]) => { const b = el('button', 'pick', name); b.type = 'button'; b.setAttribute('aria-pressed', String(k === current)); b.addEventListener('click', () => go(path, k)); box.append(b); });
+    g.append(box); picker.append(g);
+    g.style.display = 'flex'; g.style.flexDirection = 'column'; g.style.gap = '8px';
+  };
+  if (state.path === 'choice') {
+    const byGroup = {};
+    Object.entries(D.options).forEach(([k, o]) => (byGroup[o.group] = byGroup[o.group] || []).push([k, o.name.replace('Case table · ', '')]));
+    Object.entries(byGroup).forEach(([g, entries]) => add(g, entries, state.choice, 'choice'));
+  } else {
+    add('How the granules disagree', Object.entries(D.cases).map(([k, c]) => [k, c.name]), state.subject, 'subject');
+    add('What you need from the result', Object.entries(D.needs).map(([k, c]) => [k, c.name]), state.subject, 'subject');
+  }
+}
+
+function render() {
+  document.querySelectorAll('.paths button').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.path === state.path)));
+  renderPicker();
+  const key = state.path === 'choice' ? state.choice : state.subject;
+  if (!key) { story.replaceChildren(el('p', 'start', state.path === 'choice' ? 'Pick an implementation to see what follows from choosing it: what you can support, what you cannot, and what gets expensive.' : 'Pick a way your granules disagree, or something you need from the result, to see which implementations serve it.')); return; }
+  (state.path === 'choice' ? renderChoice : renderSubject)(key);
+}
+
+function go(path, key, quiet) {
+  state.path = path;
+  if (key) state[path === 'choice' ? 'choice' : 'subject'] = key;
+  const k = path === 'choice' ? state.choice : state.subject;
+  const hash = k ? (path === 'choice' ? 'choice-' : 'case-') + slug(k) : (path === 'choice' ? 'by-choice' : 'by-case');
+  if (!quiet && location.hash.slice(1) !== hash) { try { history.replaceState(null, '', '#' + hash); } catch (e) { location.hash = hash; } }
+  render();
+  if (key && !quiet && window.matchMedia('(max-width: 820px)').matches) story.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+}
+
+function fromHash() {
+  const h = location.hash.slice(1);
+  if (h.startsWith('choice-') && D.options[unslug(h.slice(7))]) return go('choice', unslug(h.slice(7)), true);
+  if (h.startsWith('case-') && (D.cases[unslug(h.slice(5))] || D.needs[unslug(h.slice(5))])) return go('subject', unslug(h.slice(5)), true);
+  if (h === 'by-case') return go('subject', null, true);
+  if (!state.choice) state.choice = 'switch_key_parameters';
+  go('choice', null, true);
+}
+document.querySelectorAll('.paths button').forEach((b) => b.addEventListener('click', () => go(b.dataset.path)));
+window.addEventListener('hashchange', fromHash);
+fromHash();
+</script>
