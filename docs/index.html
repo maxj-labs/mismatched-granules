@@ -8,7 +8,11 @@
 .sitenav a{color:var(--ink-2);text-decoration:none}
 .sitenav a:hover{color:var(--ink);text-decoration:underline}
 .sitenav a[aria-current="page"]{color:var(--ink);font-weight:600}
-.sitenav .repo{margin-left:auto}</style>
+.sitenav .repo{margin-left:auto}
+h2,h3{scroll-margin-top:16px}
+.anchor{margin-left:.4em;color:var(--ink-3);text-decoration:none;font-weight:400;opacity:0}
+h2:hover .anchor,h3:hover .anchor,.anchor:focus{opacity:1}
+@media (hover:none){.anchor{opacity:.5}}</style>
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>Mismatched Granules</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@500;600&display=swap">
@@ -158,7 +162,7 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
 </header>
 
 <section>
-  <h2>The problem, in one example</h2>
+  <h2 id="the-problem-in-one-example">The problem, in one example<a class="anchor" href="#the-problem-in-one-example" aria-label="Link to this section">#</a></h2>
   <div class="prose">
     <p>Daymet publishes one netCDF file per year. Through 2019 each day's chunk was compressed one way; from 2020 a shuffle filter was added. A Zarr array applies the same codecs to every chunk, so the years cannot be presented as a single array without copying the data.</p>
     <p>Every proposed fix lets one array hold chunks stored in more than one <em>layout</em>: a combination of compression, chunk shape, data type and fill value. The fixes differ in how a reader learns which layout a given chunk has.</p>
@@ -166,16 +170,16 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
 </section>
 
 <section>
-  <h2>Two places to keep that answer</h2>
+  <h2 id="two-places-to-keep-that-answer">Two places to keep that answer<a class="anchor" href="#two-places-to-keep-that-answer" aria-label="Link to this section">#</a></h2>
   <div class="designs">
     <div class="design">
-      <h3>In the array's metadata, by position</h3>
+      <h3 id="in-the-array-s-metadata-by-position">In the array's metadata, by position<a class="anchor" href="#in-the-array-s-metadata-by-position" aria-label="Link to this section">#</a></h3>
       <div class="meta">chunks 0&ndash;2: layout A &nbsp;&middot;&nbsp; chunks 3&ndash;5: layout B</div>
       <div class="strip"><span>2017</span><span>2018</span><span>2019</span><span class="b">2020</span><span class="b">2021</span><span class="b">2022</span></div>
       <p>The array's metadata lists which run of chunks has which layout. Nothing is stored with the chunks. Released Icechunk can hold it unless the chunk shape changes, and so can Kerchunk references.</p>
     </div>
     <div class="design">
-      <h3>With each chunk, as a key in its reference</h3>
+      <h3 id="with-each-chunk-as-a-key-in-its-reference">With each chunk, as a key in its reference<a class="anchor" href="#with-each-chunk-as-a-key-in-its-reference" aria-label="Link to this section">#</a></h3>
       <div class="meta">layouts: A, B</div>
       <div class="strip"><span><b>A</b>2017</span><span><b>A</b>2018</span><span><b>A</b>2019</span><span class="b"><b>B</b>2020</span><span class="b"><b>B</b>2021</span><span class="b"><b>B</b>2022</span></div>
       <p>Each chunk's reference starts with a few bytes naming its layout, so the key moves wherever the reference moves. It needs a new kind of Icechunk reference (a literal followed by byte ranges), which exists only on a branch, and it cannot be written as Kerchunk references.</p>
@@ -191,7 +195,7 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
 </section>
 
 <section>
-  <h2>What happens when the store is edited</h2>
+  <h2 id="what-happens-when-the-store-is-edited">What happens when the store is edited<a class="anchor" href="#what-happens-when-the-store-is-edited" aria-label="Link to this section">#</a></h2>
   <div class="prose">
     <p>All four designs read every test case correctly when the array is built in one go. They differ once the store is edited. Each edit below changes only the chunk references of the files involved and updates nothing else: not the table of layouts, and not the list of pieces. That is what a general-purpose tool that does not know the design would do.</p>
   </div>
@@ -205,7 +209,7 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
 </section>
 
 <section>
-  <h2>See it happen</h2>
+  <h2 id="see-it-happen">See it happen<a class="anchor" href="#see-it-happen" aria-label="Link to this section">#</a></h2>
   <div class="prose"><p><a href="https://github.com/maxj-labs/mismatched-granules/blob/main/examples/reproduce.py">examples/reproduce.py</a> writes six chunks in two layouts, then makes two edits. It is 72 lines, runs in memory and needs only the zarr-python branch. The two layouts differ only in byte order and nothing is compressed, so a chunk read with the wrong layout cannot fail to decode: the worst case for a silent error.</p></div>
 <pre>as built: six chunks, two eras
   by position: correct
@@ -223,7 +227,7 @@ edit 2: chunk 1 is replaced by a reprocessed copy, now big-endian like the newer
 </section>
 
 <section>
-  <h2>How often do NASA records change away from the end?</h2>
+  <h2 id="how-often-do-nasa-records-change-away-from-the-end">How often do NASA records change away from the end?<a class="anchor" href="#how-often-do-nasa-records-change-away-from-the-end" aria-label="Link to this section">#</a></h2>
   <div class="prose">
     <p>If records only ever grew at the end, appending would be the only edit that matters. To check, I looked at 26 collections in NASA's public metadata catalogue (CMR): the seven sampled for <a href="brief.html">Real Collections and Virtual Shards</a> and nineteen other well-known ones that I chose. For each file the catalogue gives the time its data covers and the time the file was produced. A file is <em>late</em> when it was produced at least a day after a file holding newer data. A store kept up to date would have had to insert, backfill or replace it.</p>
   </div>
@@ -236,7 +240,7 @@ edit 2: chunk 1 is replaced by a reprocessed copy, now big-endian like the newer
 </section>
 
 <section>
-  <h2>What to choose</h2>
+  <h2 id="what-to-choose">What to choose<a class="anchor" href="#what-to-choose" aria-label="Link to this section">#</a></h2>
   <div class="prose">
     <p class="ask">After the store is built, will anything insert, backfill, replace or drop files without also rewriting the array's table of layouts?</p>
     <ul>
@@ -251,28 +255,28 @@ edit 2: chunk 1 is replaced by a reprocessed copy, now big-endian like the newer
 </section>
 
 <section>
-  <h2>Go deeper</h2>
+  <h2 id="go-deeper">Go deeper<a class="anchor" href="#go-deeper" aria-label="Link to this section">#</a></h2>
   <div class="cards">
     <div class="card">
       <div class="kind">Interactive</div>
-      <h3><a href="storybook.html">Storybook</a></h3>
+      <h3 id="storybook"><a href="storybook.html">Storybook</a><a class="anchor" href="#storybook" aria-label="Link to this section">#</a></h3>
       <p>Pick an option and read what follows from choosing it, or pick the way your granules disagree and see which options handle it.</p>
     </div>
     <div class="card">
       <div class="kind">The evidence</div>
-      <h3><a href="evaluation.html">Every Option, Tested</a></h3>
+      <h3 id="every-option-tested"><a href="evaluation.html">Every Option, Tested</a><a class="anchor" href="#every-option-tested" aria-label="Link to this section">#</a></h3>
       <p>Sixteen options from the public discussions, run against ten test cases, seven kinds of edit, two worst cases at 16,000 chunks, and Daymet. Includes how each was built and the limits of the tests.</p>
     </div>
     <div class="card">
       <div class="kind">Real data</div>
-      <h3><a href="brief.html">Real Collections and Virtual Shards</a></h3>
+      <h3 id="real-collections-and-virtual-shards"><a href="brief.html">Real Collections and Virtual Shards</a><a class="anchor" href="#real-collections-and-virtual-shards" aria-label="Link to this section">#</a></h3>
       <p>How seven NASA collections disagree, results from joining every numeric variable sampled, how virtual shards work, and what each library would take on.</p>
     </div>
   </div>
 </section>
 
 <section>
-  <h2>Code</h2>
+  <h2 id="code">Code<a class="anchor" href="#code" aria-label="Link to this section">#</a></h2>
   <div class="scroll">
   <table>
     <thead><tr><th>Where</th><th>What</th></tr></thead>

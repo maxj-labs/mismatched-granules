@@ -4,6 +4,8 @@ from the main branch, and put the same navigation at the top of every page.
     python brief/build_pages.py
 """
 
+import html
+import re
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent.parent
@@ -23,7 +25,11 @@ HEAD = """<!doctype html>
 .sitenav a{color:var(--ink-2);text-decoration:none}
 .sitenav a:hover{color:var(--ink);text-decoration:underline}
 .sitenav a[aria-current="page"]{color:var(--ink);font-weight:600}
-.sitenav .repo{margin-left:auto}</style>
+.sitenav .repo{margin-left:auto}
+h2,h3{scroll-margin-top:16px}
+.anchor{margin-left:.4em;color:var(--ink-3);text-decoration:none;font-weight:400;opacity:0}
+h2:hover .anchor,h3:hover .anchor,.anchor:focus{opacity:1}
+@media (hover:none){.anchor{opacity:.5}}</style>
 </head>
 <body>
 """
@@ -39,13 +45,38 @@ def nav(current: str) -> str:
     return f'<nav class="sitenav" aria-label="Pages">{links}{repo}</nav>'
 
 
+def anchors(body: str) -> str:
+    """Give every h2 and h3 an id made from its text, and a link to itself, so sections can be linked to."""
+    used: set[str] = set(re.findall(r'id="([^"]+)"', body))
+
+    def add(m: re.Match) -> str:
+        level, attrs, inner = m.groups()
+        if "id=" in attrs:
+            return m.group(0)
+        text = html.unescape(re.sub("<[^>]+>", "", inner))
+        words = re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-").split("-")
+        slug = ""
+        for w in words:  # whole words, up to about sixty characters
+            if slug and len(slug) + len(w) + 1 > 60:
+                break
+            slug = f"{slug}-{w}" if slug else w
+        base, n = slug or "section", 2
+        slug = base
+        while slug in used:
+            slug, n = f"{base}-{n}", n + 1
+        used.add(slug)
+        return f'<h{level}{attrs} id="{slug}">{inner}<a class="anchor" href="#{slug}" aria-label="Link to this section">#</a></h{level}>'
+
+    return re.sub(r"<h([23])([^>]*)>(.*?)</h\1>", add, body, flags=re.S)
+
+
 (HERE / "docs").mkdir(exist_ok=True)
 for name, (source, _) in PAGES.items():
     content = source.read_text()
     # the title, font link and styles at the top of the page belong in the head
     split = content.index('<div class="wrap"')
     head = HEAD.replace("</head>", content[:split] + "</head>")
-    body = content[split:]
+    body = anchors(content[split:])
     opening = body[: body.index(">") + 1]
     (HERE / "docs" / name).write_text(head + opening + nav(name) + body[len(opening):] + "\n</body>\n</html>\n")
     print("wrote docs/" + name)
