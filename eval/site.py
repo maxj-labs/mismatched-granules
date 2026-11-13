@@ -216,7 +216,7 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
 </header>
 
 <section>
-  <h2>The problem, in one example</h2>
+  <h2 id="problem">The problem, in one example</h2>
   <div class="prose">
     <p>Daymet publishes one netCDF file per year. Through 2019 each day's chunk was compressed one way; from 2020 a shuffle filter was added. A Zarr array applies the same codecs to every chunk, so the years cannot be presented as a single array without copying the data.</p>
     <p>Every proposed fix lets one array hold chunks stored in more than one <em>layout</em>: a combination of compression, chunk shape, data type and fill value. The fixes differ in how a reader learns which layout a given chunk has.</p>
@@ -224,7 +224,7 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
 </section>
 
 <section>
-  <h2>Two places to keep that answer</h2>
+  <h2 id="designs">Two places to keep that answer</h2>
   <div class="designs">
     <div class="design">
       <h3>In the array's metadata, by position</h3>
@@ -249,7 +249,7 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
 </section>
 
 <section>
-  <h2>What happens when the store is edited</h2>
+  <h2 id="edits">What happens when the store is edited</h2>
   <div class="prose">
     <p>All four designs read every test case correctly when the array is built in one go. They differ once the store is edited. Each edit below changes only the chunk references of the files involved and updates nothing else: not the table of layouts, and not the list of pieces. That is what a general-purpose tool that does not know the design would do.</p>
   </div>
@@ -263,13 +263,13 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
 </section>
 
 <section>
-  <h2>See it happen</h2>
+  <h2 id="demo">See it happen</h2>
   <div class="prose"><p><a href="https://github.com/maxj-labs/mismatched-granules/blob/main/examples/reproduce.py">examples/reproduce.py</a> writes six chunks in two layouts, then makes two edits. It is {DEMO_LINES} lines, runs in memory and needs only the zarr-python branch. The two layouts differ only in byte order and nothing is compressed, so a chunk read with the wrong layout cannot fail to decode: the worst case for a silent error.</p></div>
 <pre>{e(DEMO.strip())}</pre>
 </section>
 
 <section>
-  <h2>How often do NASA records change away from the end?</h2>
+  <h2 id="survey">How often do NASA records change away from the end?</h2>
   <div class="prose">
     <p>If records only ever grew at the end, appending would be the only edit that matters. To check, I looked at {n} collections in NASA's public metadata catalogue (CMR): the seven sampled for <a href="brief.html">Real Collections and Virtual Shards</a> and nineteen other well-known ones that I chose. For each file the catalogue gives the time its data covers and the time the file was produced. A file is <em>late</em> when it was produced at least a day after a file holding newer data. A store kept up to date would have had to insert, backfill or replace it.</p>
   </div>
@@ -281,7 +281,7 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
 </section>
 
 <section>
-  <h2>What to choose</h2>
+  <h2 id="choose">What to choose</h2>
   <div class="prose">
     <p class="ask">After the store is built, will anything insert, backfill, replace or drop files without also rewriting the array's table of layouts?</p>
     <ul>
@@ -296,7 +296,7 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
 </section>
 
 <section>
-  <h2>Go deeper</h2>
+  <h2 id="more">Go deeper</h2>
   <div class="cards">
     <div class="card">
       <div class="kind">Interactive</div>
@@ -317,7 +317,7 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
 </section>
 
 <section>
-  <h2>Code</h2>
+  <h2 id="code">Code</h2>
   <div class="scroll">
   <table>
     <thead><tr><th>Where</th><th>What</th></tr></thead>

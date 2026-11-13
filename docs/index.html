@@ -12,7 +12,10 @@
 h2,h3{scroll-margin-top:16px}
 .anchor{margin-left:.4em;color:var(--ink-3);text-decoration:none;font-weight:400;opacity:0}
 h2:hover .anchor,h3:hover .anchor,.anchor:focus{opacity:1}
-@media (hover:none){.anchor{opacity:.5}}</style>
+@media (hover:none){.anchor{opacity:.5}}
+.toc{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:baseline;font-size:13px;color:var(--ink-3)}
+.toc a{color:var(--ink-2);text-decoration:none}
+.toc a:hover{color:var(--ink);text-decoration:underline}</style>
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>Mismatched Granules</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@500;600&display=swap">
@@ -151,7 +154,7 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
 
 </head>
 <body>
-<div class="wrap"><nav class="sitenav" aria-label="Pages"><a href="./" aria-current="page">Overview</a><a href="storybook.html">Storybook</a><a href="evaluation.html">Every option, tested</a><a href="brief.html">Real collections</a><a class="repo" href="https://github.com/maxj-labs/mismatched-granules">Repository</a></nav>
+<div class="wrap"><nav class="sitenav" aria-label="Pages"><a href="./" aria-current="page">Overview</a><a href="storybook.html">Storybook</a><a href="evaluation.html">Every option, tested</a><a href="brief.html">Real collections</a><a class="repo" href="https://github.com/maxj-labs/mismatched-granules">Repository</a></nav><nav class="toc" aria-label="On this page"><span>On this page</span><a href="#problem">The problem, in one example</a><a href="#designs">Two places to keep that answer</a><a href="#edits">What happens when the store is edited</a><a href="#demo">See it happen</a><a href="#survey">How often do NASA records change away from the end</a><a href="#choose">What to choose</a><a href="#more">Go deeper</a><a href="#code">Code</a></nav>
 <header>
   <section>
     <div class="eyebrow">maxj-labs / mismatched-granules</div>
@@ -162,7 +165,7 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
 </header>
 
 <section>
-  <h2 id="the-problem-in-one-example">The problem, in one example<a class="anchor" href="#the-problem-in-one-example" aria-label="Link to this section">#</a></h2>
+  <h2 id="problem"><span id="the-problem-in-one-example"></span>The problem, in one example<a class="anchor" href="#problem" aria-label="Link to this section">#</a></h2>
   <div class="prose">
     <p>Daymet publishes one netCDF file per year. Through 2019 each day's chunk was compressed one way; from 2020 a shuffle filter was added. A Zarr array applies the same codecs to every chunk, so the years cannot be presented as a single array without copying the data.</p>
     <p>Every proposed fix lets one array hold chunks stored in more than one <em>layout</em>: a combination of compression, chunk shape, data type and fill value. The fixes differ in how a reader learns which layout a given chunk has.</p>
@@ -170,7 +173,7 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
 </section>
 
 <section>
-  <h2 id="two-places-to-keep-that-answer">Two places to keep that answer<a class="anchor" href="#two-places-to-keep-that-answer" aria-label="Link to this section">#</a></h2>
+  <h2 id="designs"><span id="two-places-to-keep-that-answer"></span>Two places to keep that answer<a class="anchor" href="#designs" aria-label="Link to this section">#</a></h2>
   <div class="designs">
     <div class="design">
       <h3 id="in-the-array-s-metadata-by-position">In the array's metadata, by position<a class="anchor" href="#in-the-array-s-metadata-by-position" aria-label="Link to this section">#</a></h3>
@@ -195,7 +198,7 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
 </section>
 
 <section>
-  <h2 id="what-happens-when-the-store-is-edited">What happens when the store is edited<a class="anchor" href="#what-happens-when-the-store-is-edited" aria-label="Link to this section">#</a></h2>
+  <h2 id="edits"><span id="what-happens-when-the-store-is-edited"></span>What happens when the store is edited<a class="anchor" href="#edits" aria-label="Link to this section">#</a></h2>
   <div class="prose">
     <p>All four designs read every test case correctly when the array is built in one go. They differ once the store is edited. Each edit below changes only the chunk references of the files involved and updates nothing else: not the table of layouts, and not the list of pieces. That is what a general-purpose tool that does not know the design would do.</p>
   </div>
@@ -209,7 +212,7 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
 </section>
 
 <section>
-  <h2 id="see-it-happen">See it happen<a class="anchor" href="#see-it-happen" aria-label="Link to this section">#</a></h2>
+  <h2 id="demo"><span id="see-it-happen"></span>See it happen<a class="anchor" href="#demo" aria-label="Link to this section">#</a></h2>
   <div class="prose"><p><a href="https://github.com/maxj-labs/mismatched-granules/blob/main/examples/reproduce.py">examples/reproduce.py</a> writes six chunks in two layouts, then makes two edits. It is 72 lines, runs in memory and needs only the zarr-python branch. The two layouts differ only in byte order and nothing is compressed, so a chunk read with the wrong layout cannot fail to decode: the worst case for a silent error.</p></div>
 <pre>as built: six chunks, two eras
   by position: correct
@@ -227,7 +230,7 @@ edit 2: chunk 1 is replaced by a reprocessed copy, now big-endian like the newer
 </section>
 
 <section>
-  <h2 id="how-often-do-nasa-records-change-away-from-the-end">How often do NASA records change away from the end?<a class="anchor" href="#how-often-do-nasa-records-change-away-from-the-end" aria-label="Link to this section">#</a></h2>
+  <h2 id="survey"><span id="how-often-do-nasa-records-change-away-from-the-end"></span>How often do NASA records change away from the end?<a class="anchor" href="#survey" aria-label="Link to this section">#</a></h2>
   <div class="prose">
     <p>If records only ever grew at the end, appending would be the only edit that matters. To check, I looked at 26 collections in NASA's public metadata catalogue (CMR): the seven sampled for <a href="brief.html">Real Collections and Virtual Shards</a> and nineteen other well-known ones that I chose. For each file the catalogue gives the time its data covers and the time the file was produced. A file is <em>late</em> when it was produced at least a day after a file holding newer data. A store kept up to date would have had to insert, backfill or replace it.</p>
   </div>
@@ -240,7 +243,7 @@ edit 2: chunk 1 is replaced by a reprocessed copy, now big-endian like the newer
 </section>
 
 <section>
-  <h2 id="what-to-choose">What to choose<a class="anchor" href="#what-to-choose" aria-label="Link to this section">#</a></h2>
+  <h2 id="choose"><span id="what-to-choose"></span>What to choose<a class="anchor" href="#choose" aria-label="Link to this section">#</a></h2>
   <div class="prose">
     <p class="ask">After the store is built, will anything insert, backfill, replace or drop files without also rewriting the array's table of layouts?</p>
     <ul>
@@ -255,7 +258,7 @@ edit 2: chunk 1 is replaced by a reprocessed copy, now big-endian like the newer
 </section>
 
 <section>
-  <h2 id="go-deeper">Go deeper<a class="anchor" href="#go-deeper" aria-label="Link to this section">#</a></h2>
+  <h2 id="more"><span id="go-deeper"></span>Go deeper<a class="anchor" href="#more" aria-label="Link to this section">#</a></h2>
   <div class="cards">
     <div class="card">
       <div class="kind">Interactive</div>

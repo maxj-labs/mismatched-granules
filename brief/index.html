@@ -125,7 +125,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 </section>
 
 <section>
-  <h2>How real collections disagree</h2>
+  <h2 id="collections">How real collections disagree</h2>
   <div class="prose">
     <p>A Zarr array has one chunk grid, one set of codecs and one fill value. Archives written over twenty years do not. Among widely used collections graded as hard to virtualize, three causes recur: the compression changes, chunks are padded or cut short at the end of a granule, or the chunk shape itself changes.</p>
   </div>
@@ -148,7 +148,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 </section>
 
 <section>
-  <h2>What the layout table holds</h2>
+  <h2 id="layout-table">What the layout table holds</h2>
   <div class="two">
     <div>
       <p>The array stays an ordinary Zarr array with one reference per source chunk, on a rectilinear grid. Its single codec holds a short table of layouts. Each layout names:</p>
@@ -179,8 +179,8 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   </div>
 </section>
 
-<section id="virtual-shards">
-  <h2>Virtual shards: when the chunk shape changes</h2>
+<section>
+  <h2 id="virtual-shards">Virtual shards: when the chunk shape changes</h2>
   <div class="prose">
     <p>When the chunk <em>shape</em> changes, no chunk grid fits both layouts. The answer is to make each Zarr chunk a shard: a larger block, sized to a common multiple of the two chunk shapes, that holds the source chunks of either era. The shard is never written. Its reference lists a small index followed by the byte ranges of the source chunks, and Zarr's existing <code>sharding_indexed</code> codec reads it by byte range.</p>
   </div>
@@ -206,7 +206,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 </section>
 
 <section>
-  <h2>Results on real granules</h2>
+  <h2 id="results">Results on real granules</h2>
 
   <h3>Eleven variables, checked closely</h3>
   <div class="scroll">
@@ -261,7 +261,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 </section>
 
 <section>
-  <h2>What each project would take on</h2>
+  <h2 id="projects">What each project would take on</h2>
   <div class="scroll">
   <table>
     <thead><tr><th>Project</th><th>Change</th><th>Prototype</th><th>Tests run</th></tr></thead>
@@ -276,7 +276,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 </section>
 
 <section>
-  <h2>Open issues and limits</h2>
+  <h2 id="open-issues">Open issues and limits</h2>
   <div class="two">
     <div>
       <h3>Design questions these prototypes do not settle</h3>

@@ -99,7 +99,7 @@ def render(g: dict) -> str:
 </section>
 
 <section>
-  <h2>The options</h2>
+  <h2 id="options">The options</h2>
   <div class="prose"><p>Taken from zarr-specs#399 and #288, zarr-extensions#74 and PR&nbsp;#75, NASA-IMPACT/veda-odd#498, VirtualiZarr#1111 and refkv PR&nbsp;#73. Seven of them are the same codec. It holds a table of <em>layouts</em> (the discussions call them cases): the ways a chunk in this array can be stored. The seven differ only in how a reader learns which layout a chunk has. They share one planner and one encoding of the table, so differences between their rows come from that choice alone.</p></div>
   {g["options_table"]()}
   <div class="prose">
@@ -115,7 +115,7 @@ def render(g: dict) -> str:
 </section>
 
 <section>
-  <h2>Can it describe the files?</h2>
+  <h2 id="test-cases">Can it describe the files?</h2>
   <div class="prose"><p>Each of the ten test cases is a small set of netCDF4 or HDF5 files that disagree in one way real granules do. An option passes a test case when every read (the whole array, a window across each file boundary, single cells, one row along the joined axis) equals a direct read of the files.</p></div>
   {g["matrix_table"]()}
   <div class="key"><span><span class="yes">&#10003;</span> every read equals the files</span><span><span class="dash">&ndash;</span> the option cannot describe these files</span><span><span class="no">&#10007;</span> reads differ from the files</span></div>
@@ -135,7 +135,7 @@ def render(g: dict) -> str:
 </section>
 
 <section>
-  <h2>Readers without the new codecs, and stores other than Icechunk</h2>
+  <h2 id="readers">Readers without the new codecs, and stores other than Icechunk</h2>
   <div class="prose"><p>Every store that passed above was opened by two more readers: released zarr-python 3.4.2 with released Icechunk, and zarr-python with the new codecs but released Icechunk. &ldquo;Refuses&rdquo; means the reader raises an error and returns no data.</p></div>
   {g["readers_table"]()}
   <div class="prose">
@@ -146,7 +146,7 @@ def render(g: dict) -> str:
 </section>
 
 <section>
-  <h2>Edits to a stored array</h2>
+  <h2 id="edits">Edits to a stored array</h2>
   <div class="prose">
     <p>zarr-specs#399 asks that a solution keep working when a tool edits the manifest (that it &ldquo;compose with manifest-level operations&rdquo;). Seven kinds of edit were tested:</p>
     <ul>
@@ -167,7 +167,7 @@ def render(g: dict) -> str:
 </section>
 
 <section>
-  <h2>Worst cases</h2>
+  <h2 id="worst-cases">Worst cases</h2>
   <div class="prose"><p>16,000 one-chunk pieces, cut from real netCDF files so that planners and writers see what 16,000 single-chunk granules would give them. Everything is on local disk. Times are the median of three runs on a newly opened array. Repeats of the same read differed by up to {g["spread"]() * 100:.0f}% of the median, so smaller differences mean nothing. A figure is highlighted when it is at least three times the smallest in its column among the options that keep the array virtual.</p></div>
   {g["scaling_table"]()}
   <div class="prose">
@@ -180,7 +180,7 @@ def render(g: dict) -> str:
 </section>
 
 <section>
-  <h2>Real granules</h2>
+  <h2 id="real-granules">Real granules</h2>
   <div class="prose"><p>Ten of the options on Daymet, read through a local HTTP server that counts requests and waits 20 ms on each. Every read starts from a new session.</p></div>
   <h3>Daymet Puerto Rico, {pr["years"][0]}&ndash;{pr["years"][1]}: {pr["shape"][0]:,} daily chunks, compression changes in 2020</h3>
   {g["perf_table"]("pr")}
@@ -198,7 +198,7 @@ def render(g: dict) -> str:
 </section>
 
 <section>
-  <h2>Reading the results</h2>
+  <h2 id="reading">Reading the results</h2>
   <div class="prose">
     <p>The tests do not produce a single winner. They show two workable designs for the layout table, and a trade-off between them.</p>
     <ul>
@@ -213,7 +213,7 @@ def render(g: dict) -> str:
 </section>
 
 <section>
-  <h2>Limits of this evaluation</h2>
+  <h2 id="limits">Limits of this evaluation</h2>
   <div class="two">
     <div>
       <ul>

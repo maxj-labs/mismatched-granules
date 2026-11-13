@@ -12,7 +12,10 @@
 h2,h3{scroll-margin-top:16px}
 .anchor{margin-left:.4em;color:var(--ink-3);text-decoration:none;font-weight:400;opacity:0}
 h2:hover .anchor,h3:hover .anchor,.anchor:focus{opacity:1}
-@media (hover:none){.anchor{opacity:.5}}</style>
+@media (hover:none){.anchor{opacity:.5}}
+.toc{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:baseline;font-size:13px;color:var(--ink-3)}
+.toc a{color:var(--ink-2);text-decoration:none}
+.toc a:hover{color:var(--ink);text-decoration:underline}</style>
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>Real Collections and Virtual Shards</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@500;600&display=swap">
@@ -123,7 +126,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 
 </head>
 <body>
-<div class="wrap"><nav class="sitenav" aria-label="Pages"><a href="./">Overview</a><a href="storybook.html">Storybook</a><a href="evaluation.html">Every option, tested</a><a href="brief.html" aria-current="page">Real collections</a><a class="repo" href="https://github.com/maxj-labs/mismatched-granules">Repository</a></nav>
+<div class="wrap"><nav class="sitenav" aria-label="Pages"><a href="./">Overview</a><a href="storybook.html">Storybook</a><a href="evaluation.html">Every option, tested</a><a href="brief.html" aria-current="page">Real collections</a><a class="repo" href="https://github.com/maxj-labs/mismatched-granules">Repository</a></nav><nav class="toc" aria-label="On this page"><span>On this page</span><a href="#collections">How real collections disagree</a><a href="#layout-table">What the layout table holds</a><a href="#virtual-shards">Virtual shards</a><a href="#results">Results on real granules</a><a href="#projects">What each project would take on</a><a href="#open-issues">Open issues and limits</a></nav>
 
 <section>
   <div class="eyebrow">Evidence from NASA collections &middot; revised 13 November 2026</div>
@@ -142,7 +145,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 </section>
 
 <section>
-  <h2 id="how-real-collections-disagree">How real collections disagree<a class="anchor" href="#how-real-collections-disagree" aria-label="Link to this section">#</a></h2>
+  <h2 id="collections"><span id="how-real-collections-disagree"></span>How real collections disagree<a class="anchor" href="#collections" aria-label="Link to this section">#</a></h2>
   <div class="prose">
     <p>A Zarr array has one chunk grid, one set of codecs and one fill value. Archives written over twenty years do not. Among widely used collections graded as hard to virtualize, three causes recur: the compression changes, chunks are padded or cut short at the end of a granule, or the chunk shape itself changes.</p>
   </div>
@@ -165,7 +168,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 </section>
 
 <section>
-  <h2 id="what-the-layout-table-holds">What the layout table holds<a class="anchor" href="#what-the-layout-table-holds" aria-label="Link to this section">#</a></h2>
+  <h2 id="layout-table"><span id="what-the-layout-table-holds"></span>What the layout table holds<a class="anchor" href="#layout-table" aria-label="Link to this section">#</a></h2>
   <div class="two">
     <div>
       <p>The array stays an ordinary Zarr array with one reference per source chunk, on a rectilinear grid. Its single codec holds a short table of layouts. Each layout names:</p>
@@ -196,8 +199,8 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   </div>
 </section>
 
-<section id="virtual-shards">
-  <h2 id="virtual-shards-when-the-chunk-shape-changes">Virtual shards: when the chunk shape changes<a class="anchor" href="#virtual-shards-when-the-chunk-shape-changes" aria-label="Link to this section">#</a></h2>
+<section>
+  <h2 id="virtual-shards"><span id="virtual-shards-when-the-chunk-shape-changes"></span>Virtual shards: when the chunk shape changes<a class="anchor" href="#virtual-shards" aria-label="Link to this section">#</a></h2>
   <div class="prose">
     <p>When the chunk <em>shape</em> changes, no chunk grid fits both layouts. The answer is to make each Zarr chunk a shard: a larger block, sized to a common multiple of the two chunk shapes, that holds the source chunks of either era. The shard is never written. Its reference lists a small index followed by the byte ranges of the source chunks, and Zarr's existing <code>sharding_indexed</code> codec reads it by byte range.</p>
   </div>
@@ -223,7 +226,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 </section>
 
 <section>
-  <h2 id="results-on-real-granules">Results on real granules<a class="anchor" href="#results-on-real-granules" aria-label="Link to this section">#</a></h2>
+  <h2 id="results"><span id="results-on-real-granules"></span>Results on real granules<a class="anchor" href="#results" aria-label="Link to this section">#</a></h2>
 
   <h3 id="eleven-variables-checked-closely">Eleven variables, checked closely<a class="anchor" href="#eleven-variables-checked-closely" aria-label="Link to this section">#</a></h3>
   <div class="scroll">
@@ -278,7 +281,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 </section>
 
 <section>
-  <h2 id="what-each-project-would-take-on">What each project would take on<a class="anchor" href="#what-each-project-would-take-on" aria-label="Link to this section">#</a></h2>
+  <h2 id="projects"><span id="what-each-project-would-take-on"></span>What each project would take on<a class="anchor" href="#projects" aria-label="Link to this section">#</a></h2>
   <div class="scroll">
   <table>
     <thead><tr><th>Project</th><th>Change</th><th>Prototype</th><th>Tests run</th></tr></thead>
@@ -293,7 +296,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 </section>
 
 <section>
-  <h2 id="open-issues-and-limits">Open issues and limits<a class="anchor" href="#open-issues-and-limits" aria-label="Link to this section">#</a></h2>
+  <h2 id="open-issues"><span id="open-issues-and-limits"></span>Open issues and limits<a class="anchor" href="#open-issues" aria-label="Link to this section">#</a></h2>
   <div class="two">
     <div>
       <h3 id="design-questions-these-prototypes-do-not-settle">Design questions these prototypes do not settle<a class="anchor" href="#design-questions-these-prototypes-do-not-settle" aria-label="Link to this section">#</a></h3>
