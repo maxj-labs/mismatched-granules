@@ -30,13 +30,13 @@ REFKV = json.loads(p.read_text()) if (p := HERE.parent / "results_http" / "bench
 
 MONO = '<span class="mono">{}</span>'
 LABEL = {
-    "switch_position": "Case table · case found from position",
-    "switch_key": "Case table · 8-byte key in each reference",
-    "switch_case_id": "Case table · 1-byte case number in each reference",
-    "switch_key_parameters": "Case table · key and numbers in each reference",
-    "switch_index_prefix": "Case table · store prepends the chunk index",
-    "switch_sidecar": "Case table · codec reads side arrays",
-    "switch_store_context": "Case table · store answers a context call",
+    "switch_position": "Layout table · found by position",
+    "switch_key": "Layout table · 8-byte key in each reference",
+    "switch_case_id": "Layout table · 1-byte number in each reference",
+    "switch_key_parameters": "Layout table · key and numbers in each reference",
+    "switch_index_prefix": "Layout table · store prepends the chunk index",
+    "switch_sidecar": "Layout table · codec reads side arrays",
+    "switch_store_context": "Layout table · store answers a context call",
     "conditional_codec": MONO.format("conditional") + " codec",
     "conditional_with_grid_shapes": MONO.format("conditional") + " + encoded chunk shapes",
     "array_concat": "Array concatenation codec",
@@ -50,8 +50,8 @@ LABEL = {
 SOURCE = {
     "switch_position": ("zarr-specs#399 design 2 with a run-length table (TomNicholas, ghidalgo3); chunk coordinates in " + MONO.format("ArraySpec") + " (astrofrog)", "Built: zarr-python and VirtualiZarr branches"),
     "switch_key": ("zarr-specs#399: inline bytes in front of the chunk, read by the codec (d-v-b, jbms)", "Built: all three branches"),
-    "switch_case_id": ("NASA-IMPACT/veda-odd#498: a per-chunk variant in the manifest", "Built: the key mode with 1-byte keys"),
-    "switch_key_parameters": ("refkv PR #73 (d-v-b): cases as templates, numbers carried per chunk", "Built here on Icechunk as an evaluation codec; refkv itself run on Daymet"),
+    "switch_case_id": ("NASA-IMPACT/veda-odd#498: a per-chunk variant in the manifest", "Built: the key design with 1-byte keys"),
+    "switch_key_parameters": ("refkv PR #73 (d-v-b): layouts as templates, numbers carried per chunk", "Built here on Icechunk as an evaluation codec; refkv itself run on Daymet"),
     "switch_index_prefix": ("zarr-specs#399 design 2.1 as first written; veda-odd#498 step 3", "Built: an Icechunk branch prepends the index for arrays that ask; evaluation codec"),
     "switch_sidecar": ("zarr-specs#399 design 2.2, " + MONO.format("ChunkContextFetcherCodec"), "Built as an evaluation codec that reads two more arrays"),
     "switch_store_context": ("zarr-specs#399 design 3, &ldquo;Zarr v3.2&rdquo;: " + MONO.format("Store.get_context"), "Emulated: a Python wrapper answers the call from a table indexed by position"),
@@ -108,7 +108,11 @@ def options_table() -> str:
 def matrix_table() -> str:
     head = "".join(f'<th class="c" title="{e(MATRIX["cases"][c])}">{CASE_LABEL[c]}</th>' for c in CASES)
     body = ""
+    table = [a for a in ARMS if a.startswith("switch_")]
+    together = len({tuple(cell(a, c).get("outcome") for c in CASES) for a in table}) == 1 and not any(cell(a, c).get("copied_fraction") for a in table for c in CASES)
     for a in ARMS:
+        if together and a in table[1:]:
+            continue
         tds = ""
         for c in CASES:
             x = cell(a, c)
@@ -122,8 +126,9 @@ def matrix_table() -> str:
                 tds += f'<td class="c"><span class="dash" title="{e(x.get("why", ""))}">&ndash;</span></td>'
             else:
                 tds += f'<td class="c"><span class="no" title="{e(x.get("why", ""))}">&#10007;</span></td>'
-        body += f'<tr><td>{LABEL[a]}</td>{tds}<td class="n">{count(a)} of {len(CASES)}</td></tr>'
-    return f"""<div class="scroll"><table class="grid"><thead><tr><th>Option</th>{head}<th class="n">Described</th></tr></thead><tbody>{body}</tbody></table></div>"""
+        name = f"Layout table · all {len(table)} variants" if together and a == table[0] else LABEL[a]
+        body += f'<tr><td>{name}</td>{tds}<td class="n">{count(a)} of {len(CASES)}</td></tr>'
+    return f"""<div class="scroll"><table class="grid"><thead><tr><th>Option</th>{head}<th class="n">Passed</th></tr></thead><tbody>{body}</tbody></table></div>"""
 
 
 def reasons_list() -> str:
@@ -138,8 +143,14 @@ def reasons_list() -> str:
                 why = ("xarray fills the file that lacks the variable with NaN; the stores return the fill value the other files declare, which is the convention this test compares against"
                        if a == "separate_files" else "reads did not equal the files: " + x.get("why", "")[:120])
                 seen.setdefault((a, why), []).append(CASE_LABEL[c].lower())
-    items = "".join(f"<li><b>{plain(a)}</b>, {', '.join(cs)}: {e(why)}.</li>" for (a, why), cs in seen.items())
-    return f"<ul>{items}</ul>"
+    failing = {a for a, _ in seen}
+    assert failing == {"conditional_codec", "conditional_with_grid_shapes", "grid_encoded_shapes", "domain_convention", "materialize_odd_chunks", "separate_files"}, failing
+    return """<ul>
+<li><b>The conditional codec</b> works on bytes. It can switch compressors, but it cannot crop a padded chunk, and it cannot change the data type, packing, chunk shape or fill value. Adding encoded chunk shapes fixes the cropping only.</li>
+<li><b>Encoded chunk shapes and the declared valid domain</b> deal with padding only. The array still has one set of codecs, one inner chunk shape and one fill value.</li>
+<li><b>Copying the chunks that do not fit</b> has nothing to keep when every file or chunk packs its values differently: all of the data would be copied.</li>
+<li><b>open_mfdataset</b> fills a file that lacks the variable with NaN. The stores return the fill value the other files declare, which is what this test expects.</li>
+</ul>"""
 
 
 # ------------------------------------------------------------------ readers without the feature; without Icechunk
@@ -155,30 +166,23 @@ def reader_cell(arm: str, reader: str) -> str:
         return ""
     n = len(outcomes)
     parts = []
-    for outcome, cls, word in (("WRONG VALUES", "no", "wrong values, no error"), ("reads correctly", "", "reads"), ("refuses", "yes", "refuses"), ("probe failed", "dash", "probe failed")):
+    for outcome, cls, some, every in (("WRONG VALUES", "no", "wrong with no error", "wrong values with no error"), ("reads correctly", "", "read correctly", "reads correctly"),
+                                      ("refuses", "yes", "refused", "refuses"), ("probe failed", "dash", "probe failed", "probe failed")):
         k = outcomes.count(outcome)
         if k:
-            text = f"{word} {k}" if k < n else (word if outcome != "reads correctly" else "reads correctly")
+            text = f"{k} {some}" if k < n else every
             parts.append(f'<span class="{cls}">{text}</span>' if cls else text)
-    return ", ".join(parts) + (f' <span class="sub0">of {n}</span>' if len(parts) > 1 else "")
-
-
-def kerchunk_cell(arm: str) -> str:
-    runs = [v["outcome"] for k, v in KERCHUNK.get("cells", {}).items() if k.startswith(arm + "|")]
-    if not runs:
-        return '<span class="dash">not run</span>'
-    ok = runs.count("equal")
-    return f'{"<span class=yes>" if ok == len(runs) else ""}{ok} of {len(runs)}{"</span>" if ok == len(runs) else ""}'
+    return ", ".join(parts)
 
 
 def readers_table() -> str:
     body = ""
     for a in VIRTUAL:
-        body += (f"<tr><td>{LABEL[a]}</td><td class=\"n\">{count(a)} of {len(CASES)}</td>"
+        body += (f"<tr><td>{LABEL[a]}</td><td class=\"n\">{count(a)}</td>"
                  f"<td>{reader_cell(a, 'released zarr-python, released Icechunk')}</td>"
-                 f"<td>{reader_cell(a, 'zarr-python with the codecs, released Icechunk')}</td><td class=\"n\">{kerchunk_cell(a)}</td></tr>")
-    return f"""<div class="scroll"><table><thead><tr><th>Option</th><th class="n">Cases described</th><th>Released zarr-python and Icechunk</th>
-<th>Codecs installed, released Icechunk</th><th class="n">Read as Kerchunk references</th></tr></thead><tbody>{body}</tbody></table></div>"""
+                 f"<td>{reader_cell(a, 'zarr-python with the codecs, released Icechunk')}</td></tr>")
+    return f"""<div class="scroll"><table><thead><tr><th>Option</th><th class="n">Stores opened</th><th>Released zarr-python, released Icechunk</th>
+<th>zarr-python with the new codecs, released Icechunk</th></tr></thead><tbody>{body}</tbody></table></div>"""
 
 
 # ------------------------------------------------------------------ composition
@@ -188,10 +192,10 @@ ADDING = ("append a file", "insert a file", "prepend a file")
 DROPPING = ("drop first chunk", "drop first file", "drop last chunk")
 REPLACING = ("replace a file",)
 COMPOSE_COLUMNS = [  # (heading, operations, how the arriving file relates to the array)
-    ("Drop chunks, front or end", DROPPING, None),
-    ("Add a file, layout already in the array", ADDING, "already in the array"),
-    ("Add a file, layout new to the array", ADDING, "new to the array"),
-    ("Replace a file, layout already in the array", REPLACING, "already in the array"),
+    ("Drop chunks from the front or the end", DROPPING, None),
+    ("Add a file in a layout the array has", ADDING, "already in the array"),
+    ("Add a file in a new layout", ADDING, "new to the array"),
+    ("Replace a file, in a layout the array has", REPLACING, "already in the array"),
     ("Add or replace a file that changes how the others are described", ADDING + REPLACING, "changes how existing files are described"),
 ]
 
@@ -216,13 +220,17 @@ def compose_cell(arm: str, operations: tuple, layout: str | None = None) -> str:
     if not n:
         return ""
     if c["composes"] == n:
-        return f'<span class="yes">&#10003;</span> {n} of {n}'
-    parts = [f'{c["composes"]} of {n}']
+        return f'<span class="yes">&#10003; {"all " if n > 1 else ""}{n} correct</span>'
+    if c["fails with an error"] == n:
+        return f'{"all " if n > 1 else ""}{n} refused'
+    parts = []
     if c["wrong values, no error"]:
-        parts.append(f'<span class="no">{c["wrong values, no error"]} wrong, no error</span>')
+        parts.append(f'<span class="no">&#10007; {c["wrong values, no error"]} wrong</span>')
+    if c["composes"]:
+        parts.append(f'{c["composes"]} correct')
     if c["fails with an error"]:
-        parts.append(f'{c["fails with an error"]} error')
-    return "; ".join(parts)
+        parts.append(f'{c["fails with an error"]} refused')
+    return ", ".join(parts)
 
 
 def compose_table() -> str:
@@ -230,7 +238,7 @@ def compose_table() -> str:
     body = ""
     for a in VIRTUAL:
         if a in COMPOSE.get("ordinary_arrays", []):
-            body += f'<tr><td>{LABEL[a]}</td><td colspan="{len(COMPOSE_COLUMNS)}" class="sub0">an ordinary array: nothing beside the manifest to go stale (not run)</td></tr>'
+            body += f'<tr><td>{LABEL[a]}</td><td colspan="{len(COMPOSE_COLUMNS)}" class="sub0">an ordinary Zarr array, with nothing extra to keep in step with the references (not run)</td></tr>'
         elif any(k.startswith(a + "|") for k in COMPOSE.get("cells", {})):
             body += f"<tr><td>{LABEL[a]}</td>" + "".join(f"<td>{compose_cell(a, ops, layout)}</td>" for _, ops, layout in COMPOSE_COLUMNS) + "</tr>"
     return f"""<div class="scroll"><table><thead><tr><th>Option</th>{head}</tr></thead><tbody>{body}</tbody></table></div>"""
@@ -269,7 +277,7 @@ def scaling_table() -> str:
                 hot = a != "native_copy" and v >= 3 * best(kind, field) and not (field == "open_seconds" and v < 0.1)
                 tds += f'<td class="n{" hot" if hot else ""}">{fmt(v)}</td>'
         body += f"<tr><td>{LABEL[a]}</td>{tds}</tr>"
-    cols = '<th class="n">zarr.json as read</th><th class="n">Stored, all but chunk data</th><th class="n">Open</th><th class="n">Write</th><th class="n">Read all, per chunk</th>'
+    cols = '<th class="n">zarr.json</th><th class="n">All metadata, stored</th><th class="n">Open</th><th class="n">Write</th><th class="n">Read, per chunk</th>'
     return f"""<div class="scroll"><table><thead>
 <tr><th></th><th class="n" colspan="{len(fields)}">Two layouts alternating chunk by chunk</th><th class="n" colspan="{len(fields)}">Every chunk packed its own way</th></tr>
 <tr><th>Option</th>{cols}{cols}</tr></thead><tbody>{body}</tbody></table></div>"""
@@ -304,7 +312,7 @@ def perf_table(which: str, whole_record_series: bool = False) -> str:
     for r in reads:
         s = r.split(":")[0] + ":" + r.split(":")[1].split(",")[0]
         if whole_record_series and "10 years" in r:
-            s = "series: one cell, the whole record again"
+            s = "series: every day at one cell (repeat)"
         short.append(s)
     head = "".join(f'<th class="n" title="{e(r)}">{e(s)}</th>' for r, s in zip(reads, short))
     body = ""
@@ -328,7 +336,7 @@ def perf_table(which: str, whole_record_series: bool = False) -> str:
     runs = sorted({x["runs"] for v in perf["arms"].values() for x in v.get("reads", {}).values()})
     return f"""<div class="scroll"><table><thead><tr><th>Option</th>{head}<th class="n">Source requests</th><th class="n">Manifests</th></tr></thead>
 <tbody>{body}</tbody></table></div>
-<p class="note">Requests reaching the source, in column order, by position: {requests}. &ldquo;Same&rdquo; means the same count for every read. Each time is the median of {' or '.join(str(r) for r in runs)} runs (a read is repeated until three runs or a minute has passed).</p>"""
+<p class="note">Source requests for the four reads, left to right: {requests}. &ldquo;Same&rdquo; means the option made exactly that many for every read. Times are the median of {' or '.join(str(r) for r in runs)} runs.</p>"""
 
 
 def seconds(which: str, arm: str, read: str = "series: every day at one cell") -> float:
@@ -348,8 +356,8 @@ def tensorstore_sentence() -> str:
     if not runs:
         return ""
     last = runs[-1]
-    return (f"TensorStore's stack driver, with {last['layers']:,} one-chunk native arrays as layers: a {size(last['spec_bytes'])} spec "
-            f"({last['bytes_per_layer']} bytes per layer), {last['open_seconds']:.2f} s to open, {last['microseconds_per_layer'] / 1000:.2f} ms per layer to read everything.")
+    return (f"TensorStore's stack driver, given {last['layers']:,} one-chunk native arrays as layers, opened in {last['open_seconds']:.2f} s and read everything "
+            f"at {last['microseconds_per_layer'] / 1000:.2f} ms per layer, from a {size(last['spec_bytes'])} spec.")
 
 
 if __name__ == "__main__":

@@ -126,12 +126,13 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   <h1>One array from granules that don't match</h1>
   <p class="lede">Many NASA collections cannot be virtualized into a single Zarr array because their files change compression, chunk shape or chunk boundaries partway through the record. Three separable changes fix this. They are built as prototype branches and were checked on seven collections: every read matched the source files.</p>
   <p class="byline">Max Jones, Development Seed · 10 November 2026 · Experiments and write-up prepared with Claude Code. Code: <a href="https://github.com/maxj-labs/mismatched-granules">maxj-labs/mismatched-granules</a>. These are prototypes, not pull requests; the open issues are listed at the end.</p>
+  <p class="byline"><b>This is the first write-up, kept as background.</b> The <a href="https://maxj-labs.github.io/mismatched-granules/">overview</a> and <a href="https://maxj-labs.github.io/mismatched-granules/evaluation.html">Every Option, Tested</a> came later, tested more options, and found no single winner between position and key. Where they disagree with this page, they are right. They call an entry in the <code>switch</code> codec's table a &ldquo;layout&rdquo;; this page calls it a &ldquo;case&rdquo;.</p>
 
   <div class="claims">
     <div class="claim">
       <div class="who">Zarr / zarr-python</div>
       <div class="what">A <code>switch</code> codec that finds each chunk's case by its position or by a key</div>
-      <div class="why">Picks a codec chain per run of chunks, crops chunks stored larger than their place in the grid, and carries a fill value per run. By position it is enough for 5 of 7 collections with released Icechunk; by key it composes.</div>
+      <div class="why">Picks a codec chain per run of chunks, crops chunks stored larger than their place in the grid, and carries a fill value per run. By position it is enough for 5 of 7 collections with released Icechunk; by key it also survives edits to the store.</div>
     </div>
     <div class="claim">
       <div class="who">Icechunk</div>
@@ -336,7 +337,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 
 <section>
   <h2>Why this and not the alternatives</h2>
-  <div class="prose"><p>Since this section was written, every option raised in the public discussions has been run against the same cases, manifest operations and granules: see <a href="https://maxj-labs.github.io/mismatched-granules/evaluation.html">Every Option, Tested</a>. It finds no single winner between position and key, and sets out what each costs. Where this page and that one disagree, that one is right.</p></div>
+  <div class="prose"><p>Since this section was written, every option raised in the public discussions has been run against the same test cases, edits and granules: see <a href="https://maxj-labs.github.io/mismatched-granules/evaluation.html">Every Option, Tested</a>. It finds no single winner between position and key, and sets out what each costs.</p></div>
   <div class="two">
     <div>
       <h3>Array concatenation as the main route</h3>

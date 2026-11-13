@@ -27,49 +27,49 @@ PERF = {"pr": load("perf_pr_tmin.json"), "na": load("perf_na_dayl.json")}
 
 # name, group, how it works, what it takes, how it was tested
 OPTIONS = {
-    "switch_key_parameters": ("Case table · key and numbers in each reference", "A table of cases",
-        "The array's codec holds a short table of ways a chunk can be encoded. Every chunk reference begins with a key naming its case, followed by any numbers that are that chunk's own (a scale and offset, say).",
-        ["A new codec in every Zarr reader", "Icechunk references that are a literal followed by byte ranges"], "Built here on Icechunk as an evaluation codec. It is refkv PR #73's design, and refkv itself was also run."),
-    "switch_key": ("Case table · key in each reference", "A table of cases",
-        "As above, without the per-chunk numbers: each reference begins with a key naming its case.",
-        ["A new codec in every Zarr reader", "Icechunk references that are a literal followed by byte ranges"], "Built in the zarr-python, Icechunk and VirtualiZarr branches."),
-    "switch_case_id": ("Case table · 1-byte case number in each reference", "A table of cases",
-        "The same idea with the shortest key: one byte that numbers the case. The key's length is a setting; this is its smallest value.",
-        ["A new codec in every Zarr reader", "Icechunk references that are a literal followed by byte ranges"], "Built, as the key mode with 1-byte keys. This is the per-chunk variant of NASA-IMPACT/veda-odd#498."),
-    "switch_position": ("Case table · case found from the chunk's position", "A table of cases",
-        "The table is in zarr.json: each case once, then which case each run of chunks along the joined axis uses. Nothing is stored per chunk; the codec is told which chunk it is decoding.",
+    "switch_key_parameters": ("Layout table · key and numbers in each reference", "A table of layouts",
+        "The array's codec holds a short table of layouts: the ways a chunk in this array can be stored. Every chunk reference begins with a key naming its layout, followed by any numbers that are that chunk's own (a scale and offset, say).",
+        ["A new codec in every Zarr reader", "A new kind of Icechunk reference: a literal followed by byte ranges"], "Built here on Icechunk as an evaluation codec. It is refkv PR #73's design, and refkv itself was also run."),
+    "switch_key": ("Layout table · 8-byte key in each reference", "A table of layouts",
+        "The array's codec holds a short table of layouts: the ways a chunk in this array can be stored. Every chunk reference begins with an 8-byte key, a hash of its layout.",
+        ["A new codec in every Zarr reader", "A new kind of Icechunk reference: a literal followed by byte ranges"], "Built in the zarr-python, Icechunk and VirtualiZarr branches."),
+    "switch_case_id": ("Layout table · 1-byte number in each reference", "A table of layouts",
+        "The same as a key in each reference, with the shortest key: one byte that numbers the layout. The key's length is a setting; this is its smallest value.",
+        ["A new codec in every Zarr reader", "A new kind of Icechunk reference: a literal followed by byte ranges"], "Built, as the key design with 1-byte keys. This is the per-chunk variant of NASA-IMPACT/veda-odd#498."),
+    "switch_position": ("Layout table · found by position", "A table of layouts",
+        "The array's codec holds a short table of layouts, and zarr.json also lists which layout each run of chunks along the joined axis uses. Nothing is stored per chunk; the codec is told which chunk it is decoding.",
         ["A new codec in every Zarr reader", "Zarr readers must tell a codec the chunk's coordinates", "Icechunk change only when the chunk shape changes (virtual shards)"], "Built in the zarr-python and VirtualiZarr branches."),
-    "switch_store_context": ("Case table · the store answers a context call", "A table of cases",
-        "The store gains a method that returns a chunk's context (its case and numbers) beside its bytes. This is the &ldquo;Zarr v3.2&rdquo; design of zarr-specs#399.",
+    "switch_store_context": ("Layout table · store answers a context call", "A table of layouts",
+        "The store gains a method that returns a chunk's context (its layout and numbers) beside its bytes. This is the &ldquo;Zarr v3.2&rdquo; design of zarr-specs#399.",
         ["A new codec in every Zarr reader", "A new method on the Zarr store interface, and a spec change", "Somewhere in the Icechunk manifest to keep the context"], "Emulated: a Python wrapper around the store answers the call from a table indexed by position."),
-    "switch_sidecar": ("Case table · the codec reads side arrays", "A table of cases",
-        "Two more arrays in the store list every chunk's case and its numbers. The codec reads them itself.",
+    "switch_sidecar": ("Layout table · codec reads side arrays", "A table of layouts",
+        "Two more arrays in the store list every chunk's layout and its numbers. The codec reads them itself.",
         ["A new codec that does its own I/O, in every Zarr reader", "Zarr readers must tell a codec the chunk's coordinates", "Icechunk change only when the chunk shape changes"], "Built as an evaluation codec."),
-    "switch_index_prefix": ("Case table · the store prepends the chunk's index", "A table of cases",
-        "On every read the store puts the chunk's grid index in front of its bytes, and the codec looks the case up from that.",
+    "switch_index_prefix": ("Layout table · store prepends the chunk index", "A table of layouts",
+        "On every read the store puts the chunk's grid index in front of its bytes, and the codec looks the layout up from that.",
         ["A new codec in every Zarr reader", "Icechunk must prepend the index for these arrays and no others"], "Built: an Icechunk branch prepends the index for arrays whose codec asks."),
-    "conditional_codec": ("The conditional codec", "A narrower codec",
+    "conditional_codec": ("conditional codec", "A narrower codec",
         "zarr-extensions' conditional codec: a one-byte header in front of each chunk says which of a list of compressors to apply.",
-        ["The conditional codec in every Zarr reader", "Icechunk references that are a literal followed by a byte range"], "Built from my reading of the merged spec."),
-    "conditional_with_grid_shapes": ("The conditional codec with encoded chunk shapes", "A narrower codec",
+        ["The conditional codec in every Zarr reader", "A new kind of Icechunk reference: a literal followed by a byte range"], "Built from my reading of the merged spec."),
+    "conditional_with_grid_shapes": ("conditional + encoded chunk shapes", "A narrower codec",
         "Two narrow proposals used together: conditional picks the compressors, and the chunk grid states how large each chunk is stored so padded chunks can be cropped.",
-        ["The conditional codec and a change to the rectilinear chunk grid, in every Zarr reader", "Icechunk references that are a literal followed by a byte range"], "Built from the two proposals; the grid part is emulated."),
-    "array_concat": ("Array concatenation", "Keep each file's array",
+        ["The conditional codec and a change to the rectilinear chunk grid, in every Zarr reader", "A new kind of Icechunk reference: a literal followed by a byte range"], "Built from the two proposals; the grid part is emulated."),
+    "array_concat": ("Array concatenation codec", "Keep each file's array",
         "Each file stays an array of its own. One more array lists them in its codec and reads through to them.",
         ["A codec that opens other arrays, in every Zarr reader", "Nothing from the store"], "Built in the zarr-python and VirtualiZarr branches."),
-    "zarr_reference": ("A reference to an array in each chunk", "Keep each file's array",
+    "zarr_reference": ("Reference-per-chunk codec", "Keep each file's array",
         "Each file stays an array of its own. The joined array has one chunk per file, and that chunk's bytes are a reference to the file's array.",
         ["A codec that opens other arrays, in every Zarr reader", "Nothing from the store"], "Built as an evaluation codec."),
-    "grid_encoded_shapes": ("Encoded chunk shapes in the chunk grid", "Change the grid, not the codec",
+    "grid_encoded_shapes": ("Encoded chunk shapes in the grid", "Change the grid, not the codec",
         "The chunk grid states how large each chunk is stored, beside how much of it counts.",
         ["A change to the rectilinear chunk grid, in every Zarr reader"], "Emulated: declared in an attribute and read by a patched grid."),
-    "domain_convention": ("A declared valid domain", "Change the grid, not the codec",
+    "domain_convention": ("Declared valid domain", "Change the grid, not the codec",
         "The array is stored with the files' padding in it. An attribute says which ranges are data.",
         ["A convention every reader must follow to see the right array"], "Built as a reader-side helper."),
-    "materialize_odd_chunks": ("Store the awkward chunks again as native chunks", "Copy some data",
+    "materialize_odd_chunks": ("Copy the chunks that do not fit", "Copy data",
         "The array takes the commonest layout. Every chunk that does not fit it is decoded and written again as an ordinary chunk.",
         ["Nothing new: released zarr-python and Icechunk read it"], "Built, for any chunk that does not fit the commonest layout."),
-    "native_copy": ("Copy everything to native Zarr", "Copy some data",
+    "native_copy": ("Copy everything to native Zarr", "Copy data",
         "Not virtual at all: read every value and write a new array.",
         ["Nothing new", "Storage and compute for a full second copy"], "Built."),
 }
@@ -80,14 +80,14 @@ CASES = {
     "chunk_shape_change": ("The chunk shape changed", "Daymet North America went from 1 &times; 1000 &times; 1000 to 10 &times; 300 &times; 300 in 2020."),
     "data_types": ("The data type changed", "int16 files followed by float32 files. Raised in zarr-specs#399."),
     "packing_per_file": ("Every file has its own scale and offset", "zarr-specs#399 cites BOM BARPA, where each file is packed with its own scale_factor and add_offset."),
-    "packing_per_chunk": ("Every chunk has its own scale and offset", "How GRIB packs each message. The worst case for anything that lists cases in metadata."),
+    "packing_per_chunk": ("Every chunk has its own scale and offset", "How GRIB packs each message. The worst case for anything that lists layouts in metadata."),
     "layouts_alternate": ("Two layouts alternate from file to file", "A record where reprocessed and original granules are interleaved. Constructed for this test."),
     "fill_value_differs": ("Files declare different fill values and leave chunks unwritten", "Constructed for this test. No sampled NASA granule had it."),
     "variable_absent": ("A file does not have the variable", "Seen in the sampled NASA granules, where some lack a variable the others carry."),
 }
 NEEDS = {
     "need_released_readers": ("It must read with software people already have", "Released zarr-python and released Icechunk, with nothing new installed."),
-    "need_manifest_ops": ("We insert, backfill or drop files after the store is built", "Files are appended, inserted, backfilled or dropped by editing the stored references, with a tool that may not know the option's own bookkeeping."),
+    "need_manifest_ops": ("We insert, backfill, replace or drop files after the store is built", "Files are added, replaced or dropped by editing the stored references, with a tool that updates nothing else the option keeps (a table, a list of pieces, a side array)."),
     "need_no_icechunk": ("It must work without Icechunk", "Stored as Kerchunk references, which are either inline bytes or one byte range."),
     "need_many_granules": ("The record is tens of thousands of small granules", "16,000 one-chunk pieces, in the two worst cases: layouts that alternate, and every chunk packed its own way."),
 }
@@ -121,7 +121,7 @@ FIELDS = {  # what is compared between options in the worst cases, and how it is
     "microseconds_per_chunk": lambda v, b: f"{v / 1000:.1f} ms per chunk to read everything, {v / b:.0f}&times; the quickest",
     "open_seconds": lambda v, b: f"{v:.2f} s to open, because zarr.json is {{doc}}",
 }
-RULE = "three or more times the best of the options that keep the array virtual, in the same worst case"
+RULE = "at least three times the best option that keeps the array virtual, in the same worst case"
 
 
 def build() -> dict:
@@ -147,7 +147,7 @@ def build() -> dict:
             if rec["outcome"] != "equal":
                 why = rec.get("why", "")
                 if arm == "switch_case_id":
-                    why += "; a longer key (two bytes number 65,536 cases) would"
+                    why = "one byte numbers at most 256 layouts, and this case has 16,000; a longer key would work (two bytes number 65,536)"
                 scale[kind] = {"ok": False, "why": why}
                 continue
             notes = []
@@ -160,7 +160,7 @@ def build() -> dict:
                 o["costs"].append(f"With 16,000 chunks where {label}: " + "; ".join(notes) + ".")
         o["scale"] = scale
         if arm == "switch_case_id":
-            o["costs"].append("One byte numbers at most 256 cases, so a record with more distinct cases than that needs a longer key. Key length is a setting: two bytes number 65,536 cases, and the 8-byte option has no practical limit.")
+            o["costs"].append("One byte numbers at most 256 layouts, so a record with more distinct layouts needs a longer key. Key length is a setting: two bytes number 65,536, and the 8-byte option has no practical limit.")
         if arm == "native_copy":
             o["costs"].append("All of the data is stored a second time, and must be rewritten whenever the source is reprocessed.")
         # real data
@@ -184,7 +184,7 @@ def build() -> dict:
             o["released"] = {"verdict": "good", "text": "Released zarr-python and Icechunk read it correctly as it is."}
             o["good"].append(o["released"]["text"])
         elif all(s == "refuses" for s in stock):
-            o["released"] = {"verdict": "bad", "text": "Released zarr-python refuses it with a clear error (unknown codec). Nobody reads wrong data, and nobody reads it without the new codec."}
+            o["released"] = {"verdict": "bad", "text": "Released zarr-python refuses it with a clear error (unknown codec). Nobody reads wrong data, but nobody can read it without the new codec."}
         else:
             o["released"] = {"verdict": "partial", "text": f"Released zarr-python read {stock.count('reads correctly')} of {len(stock)} stores and refused the rest with an unrelated reshape error."}
         if knows and all(k == "reads correctly" for k in knows) and o["released"]["verdict"] != "good":
@@ -193,7 +193,7 @@ def build() -> dict:
             o["good"].append(f"Once a reader has the codec, released Icechunk serves it in {knows.count('reads correctly')} of {len(knows)} cases; the rest need the Icechunk change.")
         # operations on the manifest
         if arm in COMPOSE["ordinary_arrays"]:
-            o["compose"] = {"verdict": "good", "text": "It is an ordinary array, so there is nothing beside the manifest to go stale. (By inspection, not a run.)"}
+            o["compose"] = {"verdict": "good", "text": "It is an ordinary Zarr array, with nothing extra to keep in step with the references. (By inspection, not a run.)"}
         else:
             cells = {k: v for k, v in COMPOSE["cells"].items() if k.startswith(arm + "|") and v["outcome"] != "not applicable"}
 
@@ -209,12 +209,14 @@ def build() -> dict:
                     return ""
                 if ok == n:
                     return f" {what}: read correctly in all {n} trials."
-                text = f" {what}: read correctly in {ok} of {n}"
+                if errors == n:
+                    return f" {what}: raised an error in all {n} trials."
+                parts = [f"read correctly in {ok} of {n} trials"] if ok else []
                 if wrong:
-                    text += f", returned wrong values with no error in {wrong}"
+                    parts.append(f"returned wrong values with no error in {wrong}{'' if ok else f' of {n} trials'}")
                 if errors:
-                    text += f", failed with an error in {errors}"
-                return text + "."
+                    parts.append(f"raised an error in {errors}")
+                return f" {what}: " + ", ".join(parts) + "."
 
             adding = ("append a file", "insert a file", "prepend a file")
             drops = tally(lambda op, v: op.startswith("drop"))
@@ -222,7 +224,7 @@ def build() -> dict:
             new = tally(lambda op, v: op in adding and v.get("layout") == "new to the array")
             swapped = tally(lambda op, v: op == "replace a file" and v.get("layout") == "already in the array")
             replanned = tally(lambda op, v: v.get("layout") == "changes how existing files are described")
-            text = ("A writer added, replaced or dropped files and rewrote nothing else the array has."
+            text = ("Each edit changed only the references of the files involved and updated nothing else."
                     + say("Dropping chunks from the front or the end", drops)
                     + say("Adding a file (appended, inserted or backfilled) whose layout the array already has", known)
                     + say("Replacing a file with another of the same length, in a layout the array has", swapped)
@@ -232,22 +234,22 @@ def build() -> dict:
             everyday = [c for c in (drops, known, swapped) if c[0]]
             if silent:
                 verdict = "bad"
-                text += " A silent wrong read is the outcome to avoid."
+                text += " Wrong values with no error are the outcome to avoid."
             elif all(c[1] == c[0] for c in everyday):
                 verdict = "good"
                 if new[0] and new[1] < new[0]:
-                    text += " A new layout must be added to its table first; until then reads are refused."
+                    text += " A new layout must be added to its table first; until then reads raise an error."
             elif not any(c[1] for c in everyday):
                 verdict = "bad"
-                text += " It never returned wrong values, but nothing works until what it keeps for itself is rewritten."
+                text += " It never returned wrong values, but no edit works until its own table or list is rewritten too."
             else:
                 verdict = "partial"
-                text += " Where it failed, it refused loudly; what it keeps for itself must be rewritten by every tool that edits the store."
+                text += " Where it failed it raised an error. Every tool that edits the store must also rewrite what the option keeps for itself."
             o["compose"] = {"verdict": verdict, "text": text}
             if arm == "zarr_reference":
                 o["compose"]["text"] += " Its chunks are whole files, so it cannot drop less than a file."
             if arm == "switch_position":
-                o["compose"]["text"] += " The codec checks that its table covers the array, which is why edits that add or remove chunks are refused; a replaced file of the same length cannot be checked."
+                o["compose"]["text"] += " The codec checks that its table covers the array, which is why edits that add or remove chunks raise an error. A replaced file of the same length cannot be checked."
             if arm == "switch_store_context":
                 o["compose"]["text"] += " This is the emulation, whose table is indexed by position; a store that kept the context with each reference would carry it along, and that was not tested."
             if arm in ("grid_encoded_shapes", "conditional_with_grid_shapes"):
@@ -339,23 +341,23 @@ function renderChoice(key) {
   const o = D.options[key];
   story.replaceChildren();
   const head = el('header');
-  head.append(el('div', 'eyebrow', 'You chose'), el('h2', '', o.name), el('p', 'how', o.how));
+  head.append(el('div', 'eyebrow', 'Option'), el('h2', '', o.name), el('p', 'how', o.how));
   story.append(head);
   const ok = Object.keys(D.cases).filter((c) => o.cases[c].ok && !o.cases[c].heavy);
   const heavy = Object.keys(D.cases).filter((c) => o.cases[c].ok && o.cases[c].heavy);
   const no = Object.keys(D.cases).filter((c) => !o.cases[c].ok);
   const all = ok.length + heavy.length;
-  const g = beat('good', '&#10003;', all === 10 ? 'Good news: you can describe every case tested' : `Good news: you can describe ${all} of the 10 cases tested`, `${all} / 10`);
+  const g = beat('good', '&#10003;', all === 10 ? 'It can describe all 10 test cases' : `It can describe ${all} of the 10 test cases`, `${all} / 10`);
   g.append(list(ok.concat(heavy).map((c) => `<b>${D.cases[c].name}.</b>` + (o.cases[c].cost ? `<span class="why">${o.cases[c].cost}.</span>` : ''))));
   if (o.good.length) g.append(list(o.good));
   story.append(g);
   if (no.length) {
-    const b = beat('bad', '&#10007;', 'Bad news: these cannot be described at all', `${no.length} / 10`);
+    const b = beat('bad', '&#10007;', 'It cannot describe these', `${no.length} / 10`);
     b.append(list(no.map((c) => `<b>${D.cases[c].name}.</b><span class="why">${o.cases[c].why[0].toUpperCase() + o.cases[c].why.slice(1)}.</span>`)));
     story.append(b);
   }
   const costs = o.costs.concat(heavy.map((c) => `${D.cases[c].name}: ${o.cases[c].cost}.`));
-  if (costs.length) { const c = beat('cost', '!', 'Bad news: these get expensive'); c.append(list(costs)); story.append(c); }
+  if (costs.length) { const c = beat('cost', '!', 'Where it gets expensive'); c.append(list(costs)); story.append(c); }
   else {
     const ran = ['alternate', 'packed'].filter((k) => o.scale[k]);
     const could = ran.filter((k) => o.scale[k].ok);
@@ -404,7 +406,7 @@ function renderSubject(key) {
   const s = D.cases[key] || D.needs[key];
   story.replaceChildren();
   const head = el('header');
-  head.append(el('div', 'eyebrow', D.cases[key] ? 'Your data looks like this' : 'You need this'), el('h2', '', s.name), el('p', 'how', s.example || s.detail));
+  head.append(el('div', 'eyebrow', D.cases[key] ? 'Your files' : 'Your requirement'), el('h2', '', s.name), el('p', 'how', s.example || s.detail));
   story.append(head);
   const groups = { good: [], partial: [], bad: [] };
   Object.keys(D.options).forEach((k) => { const [v, because] = verdictFor(k, key); groups[v].push([k, because]); });
@@ -436,11 +438,11 @@ function renderPicker() {
   };
   if (state.path === 'choice') {
     const byGroup = {};
-    Object.entries(D.options).forEach(([k, o]) => (byGroup[o.group] = byGroup[o.group] || []).push([k, o.name.replace('Case table · ', '')]));
+    Object.entries(D.options).forEach(([k, o]) => (byGroup[o.group] = byGroup[o.group] || []).push([k, o.name.replace('Layout table · ', '')]));
     Object.entries(byGroup).forEach(([g, entries]) => add(g, entries, state.choice, 'choice'));
   } else {
-    add('How the granules disagree', Object.entries(D.cases).map(([k, c]) => [k, c.name]), state.subject, 'subject');
-    add('What you need from the result', Object.entries(D.needs).map(([k, c]) => [k, c.name]), state.subject, 'subject');
+    add('How your files disagree', Object.entries(D.cases).map(([k, c]) => [k, c.name]), state.subject, 'subject');
+    add('What you need', Object.entries(D.needs).map(([k, c]) => [k, c.name]), state.subject, 'subject');
   }
 }
 
@@ -448,7 +450,7 @@ function render() {
   document.querySelectorAll('.paths button').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.path === state.path)));
   renderPicker();
   const key = state.path === 'choice' ? state.choice : state.subject;
-  if (!key) { story.replaceChildren(el('p', 'start', state.path === 'choice' ? 'Pick an implementation to see what follows from choosing it: what you can support, what you cannot, and what gets expensive.' : 'Pick a way your granules disagree, or something you need from the result, to see which implementations serve it.')); return; }
+  if (!key) { story.replaceChildren(el('p', 'start', state.path === 'choice' ? 'Pick an option to see what follows from choosing it: which files it can describe, which it cannot, and where it gets expensive.' : 'Pick a way your files disagree, or something you need, to see which options handle it.')); return; }
   (state.path === 'choice' ? renderChoice : renderSubject)(key);
 }
 
@@ -487,14 +489,14 @@ def render() -> str:
   <section>
     <div class="eyebrow">Storybook &middot; revised 13 November 2026</div>
     <h1>Choose, and See What Follows</h1>
-    <p class="lede">{len(OPTIONS)} ways to make one Zarr array from granules that disagree. Pick the one you would build and read its consequences, or start from your data and see which ones serve it.</p>
-    <p class="byline">&ldquo;Expensive&rdquo; has one meaning here: {RULE}. Every verdict is computed from the runs behind <a href="https://maxj-labs.github.io/mismatched-granules/evaluation.html">Every Option, Tested</a>: ten small test records, two worst cases at 16,000 chunks, and Daymet. Only zarr-python read these arrays, and nothing ran against S3. Prepared with Claude.</p>
+    <p class="lede">{len(OPTIONS)} ways to make one Zarr array from granules that disagree. Pick an option and read what follows from choosing it, or start from your files and see which options handle them.</p>
+    <p class="byline">Every verdict is computed from the runs behind <a href="evaluation.html">Every Option, Tested</a>: ten small test cases, two worst cases at 16,000 chunks, and Daymet. &ldquo;Expensive&rdquo; means {RULE}. Only zarr-python read these arrays, and nothing ran against S3. Prepared with Claude.</p>
   </section>
 </header>
 
 <div class="paths" role="tablist" aria-label="Two ways in">
-  <button type="button" role="tab" data-path="choice" id="tab-choice" aria-selected="true">Start from an implementation</button>
-  <button type="button" role="tab" data-path="subject" id="tab-subject" aria-selected="false">Start from a use case</button>
+  <button type="button" role="tab" data-path="choice" id="tab-choice" aria-selected="true">Start from an option</button>
+  <button type="button" role="tab" data-path="subject" id="tab-subject" aria-selected="false">Start from your files</button>
 </div>
 
 <div class="book">
