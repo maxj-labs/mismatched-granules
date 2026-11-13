@@ -29,6 +29,7 @@ from common import RESULTS, NotExpressible, registry, same
 
 ARMS = ["switch_position", "switch_key", "switch_case_id", "switch_key_parameters", "switch_index_prefix", "switch_sidecar",
         "switch_store_context", "conditional_codec", "array_concat", "zarr_reference", "native_copy"]
+REPEATS = 3  # every timing is the median of this many, each on a newly opened array
 
 
 def source(name: str, n: int, dtype: str, **compression) -> tuple[ManifestArray, np.ndarray]:
@@ -98,16 +99,24 @@ def measure(kind: str, n: int) -> dict:
             rec.update(outcome="error", why=f"{type(err).__name__}: {str(err)[:200]}")
             continue
         rec["build_seconds"] = round(time.perf_counter() - t0, 2)
-        rec.update({k: built.info[k] for k in ("zarr_json_bytes", "manifest_bytes", "store_bytes", "native_chunk_bytes")})
-        t0 = time.perf_counter()
-        array = built.reopen()
-        rec["open_seconds"] = round(time.perf_counter() - t0, 3)
-        t0 = time.perf_counter()
-        some = [array[int(i)] for i in picks]
-        rec["one_chunk_milliseconds"] = round((time.perf_counter() - t0) / len(picks) * 1e3, 2)
-        t0 = time.perf_counter()
-        everything = array[...]
-        rec["read_all_seconds"] = round(time.perf_counter() - t0, 2)
+        rec.update({k: built.info[k] for k in ("zarr_json_bytes", "metadata_bytes", "manifest_bytes", "virtual_bytes", "store_bytes", "native_chunk_bytes")})
+        opens, ones, alls = [], [], []
+        for _ in range(REPEATS):
+            t0 = time.perf_counter()
+            array = built.reopen()
+            opens.append(time.perf_counter() - t0)
+            t0 = time.perf_counter()
+            some = [array[int(i)] for i in picks]
+            ones.append((time.perf_counter() - t0) / len(picks))
+            array = built.reopen()
+            t0 = time.perf_counter()
+            everything = array[...]
+            alls.append(time.perf_counter() - t0)
+        rec["open_seconds"] = round(float(np.median(opens)), 4)
+        rec["one_chunk_milliseconds"] = round(float(np.median(ones)) * 1e3, 2)
+        rec["read_all_seconds"] = round(float(np.median(alls)), 3)
+        rec["read_all_spread"] = round((max(alls) - min(alls)) / float(np.median(alls)), 2)
+        # wall time to read every chunk, divided by the number of chunks; chunks are read ten at a time
         rec["microseconds_per_chunk"] = round(rec["read_all_seconds"] / n * 1e6)
         ok = same(case, everything, case.truth) and all(same(case, s, case.truth[int(i)]) for s, i in zip(some, picks))
         rec["outcome"] = "equal" if ok else "differs"

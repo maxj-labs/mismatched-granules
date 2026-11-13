@@ -51,8 +51,8 @@ def _fill_parameters(codecs_json: str, values: tuple[float, ...]) -> str:
 class SwitchXCodec(ArrayBytesCodec, ArrayBytesCodecPartialDecodeMixin):
     """`config_json`: {"select", "cases", "axis", "ndim", "sidecar", "key_bytes"}.
 
-    Cases are listed once each. `index_prefix` cases carry `chunks` (a run-length table
-    along `axis`); the other modes name a case by its place in the list, or by `key`.
+    Cases are listed once each. `index_prefix` adds `runs`, [case, chunks] pairs along
+    `axis`; the other modes name a case by its place in the list, or by `key`.
     """
 
     config_json: str
@@ -81,12 +81,14 @@ class SwitchXCodec(ArrayBytesCodec, ArrayBytesCodecPartialDecodeMixin):
                 cases=[{"key": i.to_bytes(4, "big").hex(), **{k: v for k, v in c.items() if k not in ("chunks", "key", "parameters")}}
                        for i, c in enumerate(cases)],
             )
-            ends, total = [], 0
-            for c in cases:
-                total += c.get("chunks", 0)
+            # `runs`: [case, chunks] pairs along the axis, each case listed once in `cases`
+            ends, run_case, total = [], [], 0
+            for i, n in config.get("runs", []):
+                total += n
                 ends.append(total)
+                run_case.append(i)
             state = {
-                "config": config, "inner": inner, "ends": ends,
+                "config": config, "inner": inner, "ends": ends, "run_case": run_case, "numbers": None,
                 "by_key": {bytes.fromhex(c["key"]): i for i, c in enumerate(cases) if "key" in c},
                 "parameters": [c.get("parameters", 0) for c in cases],
                 "table": None,
@@ -105,17 +107,24 @@ class SwitchXCodec(ArrayBytesCodec, ArrayBytesCodecPartialDecodeMixin):
             if head is None:
                 return None
             coords = np.frombuffer(head.to_bytes(), dtype="<u8")
-            return bisect_right(state["ends"], int(coords[config["axis"]])), n, ()
+            return state["run_case"][bisect_right(state["ends"], int(coords[config["axis"]]))], n, ()
         if select == "sidecar":
             if state["table"] is None:
                 array_path = byte_getter.path.rsplit("/c/", 1)[0]
                 sidecar = await zarr.api.asynchronous.open_array(store=byte_getter.store, path=array_path + config["sidecar"], mode="r")
                 state["table"] = np.asarray(await sidecar.getitem(Ellipsis))
+                if config.get("sidecar_parameters"):
+                    numbers = await zarr.api.asynchronous.open_array(store=byte_getter.store, path=array_path + config["sidecar_parameters"], mode="r")
+                    state["numbers"] = np.asarray(await numbers.getitem(Ellipsis))
             assert chunk_spec.chunk_coords is not None
-            return int(state["table"][chunk_spec.chunk_coords[config["axis"]]]), 0, ()
+            i = chunk_spec.chunk_coords[config["axis"]]
+            index = int(state["table"][i])
+            n = state["parameters"][index]
+            return index, 0, tuple(state["numbers"][i, :n].tolist()) if n else ()
         if select == "context":
             context = await byte_getter.store.get_chunk_context(byte_getter.path)
-            return int.from_bytes(context[:4], "little"), 0, tuple(np.frombuffer(context[4:], dtype="<f8").tolist())
+            index = int.from_bytes(context[:4], "little")
+            return index, 0, tuple(np.frombuffer(context[4:], dtype="<f8").tolist()[: state["parameters"][index]])
         if select == "key_parameters":
             k = config.get("key_bytes", 8)
             head = await byte_getter.get(proto, RangeByteRequest(0, k))

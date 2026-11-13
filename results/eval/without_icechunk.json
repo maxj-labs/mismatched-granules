@@ -8,6 +8,13 @@
    "outcome": "not expressible",
    "why": "a chunk is a literal followed by one or more byte ranges; a Kerchunk reference is one or the other"
   },
+  "switch_position|file_lengths": {
+   "outcome": "equal"
+  },
+  "switch_key|file_lengths": {
+   "outcome": "not expressible",
+   "why": "a chunk is a literal followed by one or more byte ranges; a Kerchunk reference is one or the other"
+  },
   "switch_position|padded_last_chunk": {
    "outcome": "equal"
   },
@@ -37,10 +44,31 @@
    "outcome": "not expressible",
    "why": "a chunk is a literal followed by one or more byte ranges; a Kerchunk reference is one or the other"
   },
+  "switch_position|fill_value_differs": {
+   "outcome": "equal"
+  },
+  "switch_key|fill_value_differs": {
+   "outcome": "not expressible",
+   "why": "a chunk is a literal followed by one or more byte ranges; a Kerchunk reference is one or the other"
+  },
+  "switch_position|variable_absent": {
+   "outcome": "equal"
+  },
+  "switch_key|variable_absent": {
+   "outcome": "not expressible",
+   "why": "a chunk is a literal followed by one or more byte ranges; a Kerchunk reference is one or the other"
+  },
   "switch_position|layouts_alternate": {
    "outcome": "equal"
   },
   "switch_key|layouts_alternate": {
+   "outcome": "not expressible",
+   "why": "a chunk is a literal followed by one or more byte ranges; a Kerchunk reference is one or the other"
+  },
+  "switch_position|packing_per_chunk": {
+   "outcome": "equal"
+  },
+  "switch_key|packing_per_chunk": {
    "outcome": "not expressible",
    "why": "a chunk is a literal followed by one or more byte ranges; a Kerchunk reference is one or the other"
   }

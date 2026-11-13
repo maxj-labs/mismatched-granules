@@ -1,142 +1,618 @@
 {
- "operation": "drop the first chunks along the joined axis; codec configuration untouched",
- "by_inspection": {
-  "array_concat": "the joined array has no chunks of its own; dropping part of it means editing the codec's list of pieces, and only whole pieces can go",
-  "zarr_reference": "one chunk per piece: whole pieces can be dropped as chunks, part of a piece cannot",
-  "materialize_odd_chunks": "an ordinary array: nothing beyond the manifest",
-  "native_copy": "an ordinary array: nothing beyond the manifest",
-  "separate_files": "not a stored array"
- },
+ "operations": [
+  "drop first chunk",
+  "drop first file",
+  "drop last chunk"
+ ],
+ "ordinary_arrays": [
+  "materialize_odd_chunks",
+  "native_copy"
+ ],
  "cells": {
-  "switch_position|codec_eras": {
-   "outcome": "needs its own metadata rewritten",
+  "switch_position|codec_eras|drop first chunk": {
+   "outcome": "fails with an error",
    "why": "error: Error -3 while decompressing data: incorrect header check"
   },
-  "switch_key|codec_eras": {
-   "outcome": "composes as it stands"
-  },
-  "switch_case_id|codec_eras": {
-   "outcome": "composes as it stands"
-  },
-  "switch_key_parameters|codec_eras": {
-   "outcome": "composes as it stands"
-  },
-  "switch_index_prefix|codec_eras": {
-   "outcome": "needs its own metadata rewritten",
+  "switch_position|codec_eras|drop first file": {
+   "outcome": "fails with an error",
    "why": "error: Error -3 while decompressing data: incorrect header check"
   },
-  "switch_sidecar|codec_eras": {
-   "outcome": "needs its own metadata rewritten",
+  "switch_position|codec_eras|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_key|codec_eras|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_key|codec_eras|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_key|codec_eras|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_case_id|codec_eras|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_case_id|codec_eras|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_case_id|codec_eras|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_key_parameters|codec_eras|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_key_parameters|codec_eras|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_key_parameters|codec_eras|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_index_prefix|codec_eras|drop first chunk": {
+   "outcome": "fails with an error",
    "why": "error: Error -3 while decompressing data: incorrect header check"
   },
-  "switch_store_context|codec_eras": {
-   "outcome": "composes as it stands"
+  "switch_index_prefix|codec_eras|drop first file": {
+   "outcome": "fails with an error",
+   "why": "error: Error -3 while decompressing data: incorrect header check"
   },
-  "conditional_codec|codec_eras": {
-   "outcome": "composes as it stands"
+  "switch_index_prefix|codec_eras|drop last chunk": {
+   "outcome": "composes"
   },
-  "switch_position|padded_last_chunk": {
-   "outcome": "composes as it stands"
+  "switch_sidecar|codec_eras|drop first chunk": {
+   "outcome": "fails with an error",
+   "why": "error: Error -3 while decompressing data: incorrect header check"
   },
-  "switch_key|padded_last_chunk": {
-   "outcome": "composes as it stands"
+  "switch_sidecar|codec_eras|drop first file": {
+   "outcome": "fails with an error",
+   "why": "error: Error -3 while decompressing data: incorrect header check"
   },
-  "switch_case_id|padded_last_chunk": {
-   "outcome": "composes as it stands"
+  "switch_sidecar|codec_eras|drop last chunk": {
+   "outcome": "composes"
   },
-  "switch_key_parameters|padded_last_chunk": {
-   "outcome": "composes as it stands"
+  "switch_store_context|codec_eras|drop first chunk": {
+   "outcome": "fails with an error",
+   "why": "error: Error -3 while decompressing data: incorrect header check"
   },
-  "switch_index_prefix|padded_last_chunk": {
-   "outcome": "composes as it stands"
+  "switch_store_context|codec_eras|drop first file": {
+   "outcome": "fails with an error",
+   "why": "error: Error -3 while decompressing data: incorrect header check"
   },
-  "switch_sidecar|padded_last_chunk": {
-   "outcome": "composes as it stands"
+  "switch_store_context|codec_eras|drop last chunk": {
+   "outcome": "composes"
   },
-  "switch_store_context|padded_last_chunk": {
-   "outcome": "composes as it stands"
+  "conditional_codec|codec_eras|drop first chunk": {
+   "outcome": "composes"
   },
-  "grid_encoded_shapes|padded_last_chunk": {
-   "outcome": "composes as it stands"
+  "conditional_codec|codec_eras|drop first file": {
+   "outcome": "composes"
   },
-  "domain_convention|padded_last_chunk": {
-   "outcome": "needs its own metadata rewritten",
-   "why": "the declared domain still lists the dropped chunks' ranges"
+  "conditional_codec|codec_eras|drop last chunk": {
+   "outcome": "composes"
   },
-  "switch_position|chunk_shape_change": {
-   "outcome": "needs its own metadata rewritten",
+  "conditional_with_grid_shapes|codec_eras|drop first chunk": {
+   "outcome": "composes"
+  },
+  "conditional_with_grid_shapes|codec_eras|drop first file": {
+   "outcome": "composes"
+  },
+  "conditional_with_grid_shapes|codec_eras|drop last chunk": {
+   "outcome": "composes"
+  },
+  "array_concat|codec_eras|drop first chunk": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 18, but the array has length 17 along axis 0."
+  },
+  "array_concat|codec_eras|drop first file": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 18, but the array has length 12 along axis 0."
+  },
+  "array_concat|codec_eras|drop last chunk": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 18, but the array has length 17 along axis 0."
+  },
+  "zarr_reference|codec_eras|drop first chunk": {
+   "outcome": "composes"
+  },
+  "zarr_reference|codec_eras|drop first file": {
+   "outcome": "composes"
+  },
+  "zarr_reference|codec_eras|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_position|padded_last_chunk|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_position|padded_last_chunk|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_position|padded_last_chunk|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_key|padded_last_chunk|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_key|padded_last_chunk|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_key|padded_last_chunk|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_case_id|padded_last_chunk|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_case_id|padded_last_chunk|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_case_id|padded_last_chunk|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_key_parameters|padded_last_chunk|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_key_parameters|padded_last_chunk|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_key_parameters|padded_last_chunk|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_index_prefix|padded_last_chunk|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_index_prefix|padded_last_chunk|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_index_prefix|padded_last_chunk|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_sidecar|padded_last_chunk|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_sidecar|padded_last_chunk|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_sidecar|padded_last_chunk|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_store_context|padded_last_chunk|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_store_context|padded_last_chunk|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_store_context|padded_last_chunk|drop last chunk": {
+   "outcome": "composes"
+  },
+  "conditional_with_grid_shapes|padded_last_chunk|drop first chunk": {
+   "outcome": "composes"
+  },
+  "conditional_with_grid_shapes|padded_last_chunk|drop first file": {
+   "outcome": "composes"
+  },
+  "conditional_with_grid_shapes|padded_last_chunk|drop last chunk": {
+   "outcome": "composes"
+  },
+  "array_concat|padded_last_chunk|drop first chunk": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 30, but the array has length 26 along axis 0."
+  },
+  "array_concat|padded_last_chunk|drop first file": {
+   "outcome": "not applicable",
+   "why": "no chunk boundary falls at the end of the first file"
+  },
+  "array_concat|padded_last_chunk|drop last chunk": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 30, but the array has length 28 along axis 0."
+  },
+  "zarr_reference|padded_last_chunk|drop first chunk": {
+   "outcome": "composes"
+  },
+  "zarr_reference|padded_last_chunk|drop first file": {
+   "outcome": "composes"
+  },
+  "zarr_reference|padded_last_chunk|drop last chunk": {
+   "outcome": "composes"
+  },
+  "grid_encoded_shapes|padded_last_chunk|drop first chunk": {
+   "outcome": "composes"
+  },
+  "grid_encoded_shapes|padded_last_chunk|drop first file": {
+   "outcome": "composes"
+  },
+  "grid_encoded_shapes|padded_last_chunk|drop last chunk": {
+   "outcome": "composes"
+  },
+  "domain_convention|padded_last_chunk|drop first chunk": {
+   "outcome": "wrong values, no error",
+   "why": "the wrong shape"
+  },
+  "domain_convention|padded_last_chunk|drop first file": {
+   "outcome": "not applicable",
+   "why": "no chunk boundary falls at the end of the first file"
+  },
+  "domain_convention|padded_last_chunk|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_position|chunk_shape_change|drop first chunk": {
+   "outcome": "fails with an error",
+   "why": "error: Error -5 while decompressing data: incomplete or truncated stream"
+  },
+  "switch_position|chunk_shape_change|drop first file": {
+   "outcome": "fails with an error",
    "why": "ValueError: cannot reshape array of size 320 into shape (1,12,15)"
   },
-  "switch_key|chunk_shape_change": {
-   "outcome": "composes as it stands"
+  "switch_position|chunk_shape_change|drop last chunk": {
+   "outcome": "composes"
   },
-  "switch_case_id|chunk_shape_change": {
-   "outcome": "composes as it stands"
+  "switch_key|chunk_shape_change|drop first chunk": {
+   "outcome": "composes"
   },
-  "switch_key_parameters|chunk_shape_change": {
-   "outcome": "composes as it stands"
+  "switch_key|chunk_shape_change|drop first file": {
+   "outcome": "composes"
   },
-  "switch_index_prefix|chunk_shape_change": {
-   "outcome": "needs its own metadata rewritten",
+  "switch_key|chunk_shape_change|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_case_id|chunk_shape_change|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_case_id|chunk_shape_change|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_case_id|chunk_shape_change|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_key_parameters|chunk_shape_change|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_key_parameters|chunk_shape_change|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_key_parameters|chunk_shape_change|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_index_prefix|chunk_shape_change|drop first chunk": {
+   "outcome": "fails with an error",
    "why": "error: Error -5 while decompressing data: incomplete or truncated stream"
   },
-  "switch_sidecar|chunk_shape_change": {
-   "outcome": "needs its own metadata rewritten",
+  "switch_index_prefix|chunk_shape_change|drop first file": {
+   "outcome": "fails with an error",
    "why": "error: Error -5 while decompressing data: incomplete or truncated stream"
   },
-  "switch_store_context|chunk_shape_change": {
-   "outcome": "composes as it stands"
+  "switch_index_prefix|chunk_shape_change|drop last chunk": {
+   "outcome": "composes"
   },
-  "switch_position|layouts_alternate": {
-   "outcome": "needs its own metadata rewritten",
-   "why": "reads without error but the values are wrong"
+  "switch_sidecar|chunk_shape_change|drop first chunk": {
+   "outcome": "fails with an error",
+   "why": "error: Error -5 while decompressing data: incomplete or truncated stream"
   },
-  "switch_key|layouts_alternate": {
-   "outcome": "composes as it stands"
+  "switch_sidecar|chunk_shape_change|drop first file": {
+   "outcome": "fails with an error",
+   "why": "ValueError: cannot reshape array of size 320 into shape (1,12,15)"
   },
-  "switch_case_id|layouts_alternate": {
-   "outcome": "composes as it stands"
+  "switch_sidecar|chunk_shape_change|drop last chunk": {
+   "outcome": "composes"
   },
-  "switch_key_parameters|layouts_alternate": {
-   "outcome": "composes as it stands"
+  "switch_store_context|chunk_shape_change|drop first chunk": {
+   "outcome": "fails with an error",
+   "why": "error: Error -5 while decompressing data: incomplete or truncated stream"
   },
-  "switch_index_prefix|layouts_alternate": {
-   "outcome": "needs its own metadata rewritten",
-   "why": "reads without error but the values are wrong"
+  "switch_store_context|chunk_shape_change|drop first file": {
+   "outcome": "fails with an error",
+   "why": "error: Error -5 while decompressing data: incomplete or truncated stream"
   },
-  "switch_sidecar|layouts_alternate": {
-   "outcome": "needs its own metadata rewritten",
-   "why": "reads without error but the values are wrong"
+  "switch_store_context|chunk_shape_change|drop last chunk": {
+   "outcome": "composes"
   },
-  "switch_store_context|layouts_alternate": {
-   "outcome": "composes as it stands"
+  "array_concat|chunk_shape_change|drop first chunk": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 16, but the array has length 12 along axis 0."
   },
-  "conditional_codec|layouts_alternate": {
-   "outcome": "composes as it stands"
+  "array_concat|chunk_shape_change|drop first file": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 16, but the array has length 8 along axis 0."
   },
-  "switch_position|packing_per_file": {
-   "outcome": "needs its own metadata rewritten",
-   "why": "reads without error but the values are wrong"
+  "array_concat|chunk_shape_change|drop last chunk": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 16, but the array has length 12 along axis 0."
   },
-  "switch_key|packing_per_file": {
-   "outcome": "composes as it stands"
+  "zarr_reference|chunk_shape_change|drop first chunk": {
+   "outcome": "composes"
   },
-  "switch_case_id|packing_per_file": {
-   "outcome": "composes as it stands"
+  "zarr_reference|chunk_shape_change|drop first file": {
+   "outcome": "composes"
   },
-  "switch_key_parameters|packing_per_file": {
-   "outcome": "composes as it stands"
+  "zarr_reference|chunk_shape_change|drop last chunk": {
+   "outcome": "composes"
   },
-  "switch_index_prefix|packing_per_file": {
-   "outcome": "needs its own metadata rewritten",
-   "why": "reads without error but the values are wrong"
+  "switch_position|layouts_alternate|drop first chunk": {
+   "outcome": "wrong values, no error",
+   "why": "7920 of 16560 cells differ"
   },
-  "switch_sidecar|packing_per_file": {
-   "outcome": "needs its own metadata rewritten",
-   "why": "reads without error but the values are wrong"
+  "switch_position|layouts_alternate|drop first file": {
+   "outcome": "wrong values, no error",
+   "why": "15840 of 15840 cells differ"
   },
-  "switch_store_context|packing_per_file": {
-   "outcome": "composes as it stands"
+  "switch_position|layouts_alternate|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_key|layouts_alternate|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_key|layouts_alternate|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_key|layouts_alternate|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_case_id|layouts_alternate|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_case_id|layouts_alternate|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_case_id|layouts_alternate|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_key_parameters|layouts_alternate|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_key_parameters|layouts_alternate|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_key_parameters|layouts_alternate|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_index_prefix|layouts_alternate|drop first chunk": {
+   "outcome": "wrong values, no error",
+   "why": "7920 of 16560 cells differ"
+  },
+  "switch_index_prefix|layouts_alternate|drop first file": {
+   "outcome": "wrong values, no error",
+   "why": "15840 of 15840 cells differ"
+  },
+  "switch_index_prefix|layouts_alternate|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_sidecar|layouts_alternate|drop first chunk": {
+   "outcome": "wrong values, no error",
+   "why": "7920 of 16560 cells differ"
+  },
+  "switch_sidecar|layouts_alternate|drop first file": {
+   "outcome": "wrong values, no error",
+   "why": "15840 of 15840 cells differ"
+  },
+  "switch_sidecar|layouts_alternate|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_store_context|layouts_alternate|drop first chunk": {
+   "outcome": "wrong values, no error",
+   "why": "7920 of 16560 cells differ"
+  },
+  "switch_store_context|layouts_alternate|drop first file": {
+   "outcome": "wrong values, no error",
+   "why": "15840 of 15840 cells differ"
+  },
+  "switch_store_context|layouts_alternate|drop last chunk": {
+   "outcome": "composes"
+  },
+  "conditional_codec|layouts_alternate|drop first chunk": {
+   "outcome": "composes"
+  },
+  "conditional_codec|layouts_alternate|drop first file": {
+   "outcome": "composes"
+  },
+  "conditional_codec|layouts_alternate|drop last chunk": {
+   "outcome": "composes"
+  },
+  "conditional_with_grid_shapes|layouts_alternate|drop first chunk": {
+   "outcome": "composes"
+  },
+  "conditional_with_grid_shapes|layouts_alternate|drop first file": {
+   "outcome": "composes"
+  },
+  "conditional_with_grid_shapes|layouts_alternate|drop last chunk": {
+   "outcome": "composes"
+  },
+  "array_concat|layouts_alternate|drop first chunk": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 24, but the array has length 23 along axis 0."
+  },
+  "array_concat|layouts_alternate|drop first file": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 24, but the array has length 22 along axis 0."
+  },
+  "array_concat|layouts_alternate|drop last chunk": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 24, but the array has length 23 along axis 0."
+  },
+  "zarr_reference|layouts_alternate|drop first chunk": {
+   "outcome": "composes"
+  },
+  "zarr_reference|layouts_alternate|drop first file": {
+   "outcome": "composes"
+  },
+  "zarr_reference|layouts_alternate|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_position|packing_per_file|drop first chunk": {
+   "outcome": "wrong values, no error",
+   "why": "1440 of 12240 cells differ"
+  },
+  "switch_position|packing_per_file|drop first file": {
+   "outcome": "wrong values, no error",
+   "why": "8640 of 8640 cells differ"
+  },
+  "switch_position|packing_per_file|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_key|packing_per_file|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_key|packing_per_file|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_key|packing_per_file|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_case_id|packing_per_file|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_case_id|packing_per_file|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_case_id|packing_per_file|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_key_parameters|packing_per_file|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_key_parameters|packing_per_file|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_key_parameters|packing_per_file|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_index_prefix|packing_per_file|drop first chunk": {
+   "outcome": "wrong values, no error",
+   "why": "1440 of 12240 cells differ"
+  },
+  "switch_index_prefix|packing_per_file|drop first file": {
+   "outcome": "wrong values, no error",
+   "why": "8640 of 8640 cells differ"
+  },
+  "switch_index_prefix|packing_per_file|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_sidecar|packing_per_file|drop first chunk": {
+   "outcome": "wrong values, no error",
+   "why": "1440 of 12240 cells differ"
+  },
+  "switch_sidecar|packing_per_file|drop first file": {
+   "outcome": "wrong values, no error",
+   "why": "8640 of 8640 cells differ"
+  },
+  "switch_sidecar|packing_per_file|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_store_context|packing_per_file|drop first chunk": {
+   "outcome": "wrong values, no error",
+   "why": "1440 of 12240 cells differ"
+  },
+  "switch_store_context|packing_per_file|drop first file": {
+   "outcome": "wrong values, no error",
+   "why": "8640 of 8640 cells differ"
+  },
+  "switch_store_context|packing_per_file|drop last chunk": {
+   "outcome": "composes"
+  },
+  "array_concat|packing_per_file|drop first chunk": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 18, but the array has length 17 along axis 0."
+  },
+  "array_concat|packing_per_file|drop first file": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 18, but the array has length 12 along axis 0."
+  },
+  "array_concat|packing_per_file|drop last chunk": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 18, but the array has length 17 along axis 0."
+  },
+  "zarr_reference|packing_per_file|drop first chunk": {
+   "outcome": "composes"
+  },
+  "zarr_reference|packing_per_file|drop first file": {
+   "outcome": "composes"
+  },
+  "zarr_reference|packing_per_file|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_position|fill_value_differs|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_position|fill_value_differs|drop first file": {
+   "outcome": "wrong values, no error",
+   "why": "2880 of 5760 cells differ"
+  },
+  "switch_position|fill_value_differs|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_key|fill_value_differs|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_key|fill_value_differs|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_key|fill_value_differs|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_case_id|fill_value_differs|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_case_id|fill_value_differs|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_case_id|fill_value_differs|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_key_parameters|fill_value_differs|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_key_parameters|fill_value_differs|drop first file": {
+   "outcome": "composes"
+  },
+  "switch_key_parameters|fill_value_differs|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_index_prefix|fill_value_differs|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_index_prefix|fill_value_differs|drop first file": {
+   "outcome": "wrong values, no error",
+   "why": "2880 of 5760 cells differ"
+  },
+  "switch_index_prefix|fill_value_differs|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_sidecar|fill_value_differs|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_sidecar|fill_value_differs|drop first file": {
+   "outcome": "wrong values, no error",
+   "why": "2880 of 5760 cells differ"
+  },
+  "switch_sidecar|fill_value_differs|drop last chunk": {
+   "outcome": "composes"
+  },
+  "switch_store_context|fill_value_differs|drop first chunk": {
+   "outcome": "composes"
+  },
+  "switch_store_context|fill_value_differs|drop first file": {
+   "outcome": "wrong values, no error",
+   "why": "2880 of 5760 cells differ"
+  },
+  "switch_store_context|fill_value_differs|drop last chunk": {
+   "outcome": "composes"
+  },
+  "array_concat|fill_value_differs|drop first chunk": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 16, but the array has length 14 along axis 0."
+  },
+  "array_concat|fill_value_differs|drop first file": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 16, but the array has length 8 along axis 0."
+  },
+  "array_concat|fill_value_differs|drop last chunk": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 16, but the array has length 14 along axis 0."
+  },
+  "zarr_reference|fill_value_differs|drop first chunk": {
+   "outcome": "composes"
+  },
+  "zarr_reference|fill_value_differs|drop first file": {
+   "outcome": "composes"
+  },
+  "zarr_reference|fill_value_differs|drop last chunk": {
+   "outcome": "composes"
   }
  }
 }

@@ -1,6 +1,10 @@
 """Every option, as a function that turns a case's files into something readable.
 
 An option raises NotExpressible, with the reason, when it has no way to describe a case.
+
+All the case-table options share one planner (VirtualiZarr's `plan_joined_array`) and one
+way of writing a case down: each distinct case once. They differ only in where a chunk's
+case, and any numbers of its own, are kept.
 """
 
 from __future__ import annotations
@@ -23,35 +27,50 @@ from zarr.core.metadata.v3 import ArrayV3Metadata
 import xcodecs
 from cases import Case
 from common import Built, NotExpressible, new_repo, open_store, store_bytes
-from xcodecs import ContextStore, DomainView, IndexPrefixStore, SwitchXCodec, ZarrReferenceCodec
+from xcodecs import ContextStore, DomainView, SwitchXCodec, ZarrReferenceCodec
 
 assert _icechunk_takes_parts(), "the evaluation needs the Icechunk branch (references with a prefix and several ranges)"
 DIMS = ("time", "y", "x")
 
+# compose.py sets these to drop chunks from the ends of what is written, as an operation
+# on the manifest that knows nothing about the option would: the array's shape and chunk
+# grid lose the chunks and the remaining references move up. Nothing an option keeps for
+# itself (a codec's configuration, a side array, a list of pieces, an attribute) changes.
+DROP_FIRST = 0
+DROP_LAST = 0
+_window: tuple[int, int] = (0, 0)  # the chunks along the joined axis that are kept: (first, count)
 
-def _plan(pieces: list[ManifestArray], select: str = "position") -> JoinedArrayPlan:
+
+def _plan(pieces: list[ManifestArray], select: str = "position", key_bytes: int = 8) -> JoinedArrayPlan:
     try:
-        return plan_joined_array(pieces, axis=0, select=select)
+        return plan_joined_array(pieces, axis=0, select=select, key_bytes=key_bytes)
     except NotImplementedError as err:
         raise NotExpressible(str(err)) from None
 
 
-# compose.py sets this to drop leading chunks from what is written, as an operation on
-# the manifest that knows nothing about the codec would.
-DROP_CHUNKS = 0
+def _dropped(shape: tuple, grid: list) -> tuple[tuple, list]:
+    """The shape and grid after the drop, along axis 0. Records which chunks are kept."""
+    global _window
+    edges = list(grid[0])
+    kept = edges[DROP_FIRST : len(edges) - DROP_LAST]
+    _window = (DROP_FIRST, len(kept))
+    if not (DROP_FIRST or DROP_LAST):
+        return tuple(shape), grid
+    covered = min(shape[0], sum(edges[: len(edges) - DROP_LAST])) - sum(edges[:DROP_FIRST])
+    return (covered, *shape[1:]), [kept, *grid[1:]]
+
+
+def _kept(entries: list[dict]) -> list[dict]:
+    """References or literal chunks after the drop: those of kept chunks, moved up."""
+    first, count = _window
+    if not (DROP_FIRST or DROP_LAST):
+        return entries
+    return [{**e, "index": [e["index"][0] - first, *e["index"][1:]]} for e in entries if first <= e["index"][0] < first + count]
 
 
 def _refs(store: Any, name: str, refs: list[dict]) -> None:
-    if DROP_CHUNKS and name == "v":
-        refs = [{**r, "index": [r["index"][0] - DROP_CHUNKS, *r["index"][1:]]} for r in refs if r["index"][0] >= DROP_CHUNKS]
-    failed = store.set_virtual_refs(name, [icechunk.VirtualChunkSpec(**r) for r in refs], validate_containers=True)
+    failed = store.set_virtual_refs(name, [icechunk.VirtualChunkSpec(**r) for r in (_kept(refs) if name == "v" else refs)], validate_containers=True)
     assert not failed, failed
-
-
-def _dropped(shape: tuple, grid: list) -> tuple[tuple, list]:
-    if not DROP_CHUNKS:
-        return tuple(shape), grid
-    return (shape[0] - sum(grid[0][:DROP_CHUNKS]), *shape[1:]), [grid[0][DROP_CHUNKS:], *grid[1:]]
 
 
 def _literals(store: Any, pieces: list[ManifestArray], header: Callable[[int], bytes] | None = None) -> None:
@@ -60,8 +79,7 @@ def _literals(store: Any, pieces: list[ManifestArray], header: Callable[[int], b
     literals = _plan(pieces, select="key").literals
     if header is not None:
         literals = [{"index": lit["index"], "data": header(lit["index"][0]) + lit["data"][8:]} for lit in literals]
-    literals = [{**lit, "index": [lit["index"][0] - DROP_CHUNKS, *lit["index"][1:]]} for lit in literals if lit["index"][0] >= DROP_CHUNKS]
-    _write_literals(store, "v", literals)
+    _write_literals(store, "v", _kept(literals))
 
 
 def _create(store: Any, name: str, plan: JoinedArrayPlan, serializer: Any, **kwargs: Any) -> zarr.Array:
@@ -84,8 +102,8 @@ def _finish(arm: str, case: Case, repo: Any, path: Any, wrap: Callable[[Any], An
 
 
 def _per_chunk_case(plan: JoinedArrayPlan) -> tuple[list[dict], list[int]]:
-    """The plan's run-length table as a list of distinct cases and, for every chunk along
-    the joined axis, the case it uses."""
+    """The plan's table as a list of distinct cases and, for every chunk along the joined
+    axis, the case it uses."""
     distinct: list[dict] = []
     seen: dict[str, int] = {}
     ids: list[int] = []
@@ -99,47 +117,14 @@ def _per_chunk_case(plan: JoinedArrayPlan) -> tuple[list[dict], list[int]]:
     return distinct, ids
 
 
-# ------------------------------------------------------------------ the switch codec, by how the case is found
-
-
-def switch_position(case: Case, pieces: list[ManifestArray]) -> Built:
-    """A case table in zarr.json, run-length encoded along the joined axis; the codec is told the chunk's position."""
-    plan = _plan(pieces)
-    repo, path = new_repo("switch_position", case.name)
-    session = repo.writable_session("main")
-    _create(session.store, "v", plan, SwitchCodec(axis=0, cases=plan.cases))
-    _refs(session.store, "v", plan.refs)
-    session.commit("x")
-    return _finish("switch_position", case, repo, path, strategy=plan.strategy, cases=len(plan.cases))
-
-
-def switch_key(case: Case, pieces: list[ManifestArray]) -> Built:
-    """Every reference carries an 8-byte key, the hash of its case; the codec reads the key."""
-    plan = _plan(pieces, select="key")
-    repo, path = new_repo("switch_key", case.name)
-    session = repo.writable_session("main")
-    _create(session.store, "v", plan, SwitchCodec(select="key", key_bytes=plan.key_bytes, cases=plan.cases))
-    _refs(session.store, "v", plan.refs)
-    _literals(session.store, pieces)
-    session.commit("x")
-    return _finish("switch_key", case, repo, path, strategy=plan.strategy, cases=len(plan.cases))
-
-
-def switch_case_id(case: Case, pieces: list[ManifestArray]) -> Built:
-    """Every reference carries a 1-byte case number (the per-chunk variant id of veda-odd#498)."""
-    plan = _plan(pieces)
-    distinct, ids = _per_chunk_case(plan)
-    if len(distinct) > 256:
-        raise NotExpressible("more than 256 cases do not fit a 1-byte case number")
-    cases = [{"key": f"{i:02x}", **c} for i, c in enumerate(distinct)]
-    refs = [{**r, "prefix": bytes([ids[r["index"][0]]]) + r.get("prefix", b"")} for r in plan.refs]
-    repo, path = new_repo("switch_case_id", case.name)
-    session = repo.writable_session("main")
-    _create(session.store, "v", plan, SwitchCodec(select="key", key_bytes=1, cases=cases))
-    _refs(session.store, "v", refs)
-    _literals(session.store, pieces, lambda chunk: bytes([ids[chunk]]))
-    session.commit("x")
-    return _finish("switch_case_id", case, repo, path, strategy=plan.strategy, cases=len(cases))
+def _runs(ids: list[int]) -> list[list[int]]:
+    runs: list[list[int]] = []
+    for i in ids:
+        if runs and runs[-1][0] == i:
+            runs[-1][1] += 1
+        else:
+            runs.append([i, 1])
+    return runs
 
 
 def _templates(distinct: list[dict]) -> tuple[list[dict], list[int], list[tuple[float, ...]]]:
@@ -169,6 +154,44 @@ def _templates(distinct: list[dict]) -> tuple[list[dict], list[int], list[tuple[
     return templates, which, values
 
 
+# ------------------------------------------------------------------ the case table, by where a chunk's case is kept
+
+
+def switch_position(case: Case, pieces: list[ManifestArray]) -> Built:
+    """The case table is in zarr.json with the runs of chunks each case covers; the codec is told the chunk's position."""
+    plan = _plan(pieces)
+    repo, path = new_repo("switch_position", case.name)
+    session = repo.writable_session("main")
+    _create(session.store, "v", plan, SwitchCodec(axis=0, cases=plan.cases))
+    _refs(session.store, "v", plan.refs)
+    session.commit("x")
+    return _finish("switch_position", case, repo, path, strategy=plan.strategy, cases=len(_per_chunk_case(plan)[0]))
+
+
+def switch_key(case: Case, pieces: list[ManifestArray]) -> Built:
+    """Every reference carries an 8-byte key, the hash of its case; the codec reads the key."""
+    plan = _plan(pieces, select="key")
+    repo, path = new_repo("switch_key", case.name)
+    session = repo.writable_session("main")
+    _create(session.store, "v", plan, SwitchCodec(select="key", key_bytes=plan.key_bytes, cases=plan.cases))
+    _refs(session.store, "v", plan.refs)
+    _write_literals(session.store, "v", _kept(plan.literals))
+    session.commit("x")
+    return _finish("switch_key", case, repo, path, strategy=plan.strategy, cases=len(plan.cases))
+
+
+def switch_case_id(case: Case, pieces: list[ManifestArray]) -> Built:
+    """Every reference carries a 1-byte case number (the per-chunk variant id of veda-odd#498)."""
+    plan = _plan(pieces, select="key", key_bytes=1)
+    repo, path = new_repo("switch_case_id", case.name)
+    session = repo.writable_session("main")
+    _create(session.store, "v", plan, SwitchCodec(select="key", key_bytes=1, cases=plan.cases))
+    _refs(session.store, "v", plan.refs)
+    _write_literals(session.store, "v", _kept(plan.literals))
+    session.commit("x")
+    return _finish("switch_case_id", case, repo, path, strategy=plan.strategy, cases=len(plan.cases))
+
+
 def switch_key_parameters(case: Case, pieces: list[ManifestArray]) -> Built:
     """A key, then the numbers that fill in the case's open parameters (refkv PR #73's design, on Icechunk)."""
     plan = _plan(pieces)
@@ -194,21 +217,21 @@ def switch_key_parameters(case: Case, pieces: list[ManifestArray]) -> Built:
 def switch_index_prefix(case: Case, pieces: list[ManifestArray]) -> Built:
     """The store puts the chunk's grid index in front of its bytes (zarr-specs#399 design 2.1); the table is as for position."""
     plan = _plan(pieces)
+    distinct, ids = _per_chunk_case(plan)
     repo, path = new_repo("switch_index_prefix", case.name)
     session = repo.writable_session("main")
-    config = {"select": "index_prefix", "axis": 0, "ndim": 3, "cases": plan.cases}
+    config = {"select": "index_prefix", "axis": 0, "ndim": 3, "cases": distinct, "runs": _runs(ids)}
     _create(session.store, "v", plan, SwitchXCodec(config_json=json.dumps(config)))
     _refs(session.store, "v", plan.refs)
     session.commit("x")
-    # Icechunk itself prepends the index (the branch does so for arrays whose metadata
-    # names this mode); xcodecs.IndexPrefixStore is the Python stand-in used before that.
-    return _finish("switch_index_prefix", case, repo, path, strategy=plan.strategy, cases=len(plan.cases))
+    # Icechunk itself prepends the index, for arrays whose codec asks (feat/chunk-index-prefix)
+    return _finish("switch_index_prefix", case, repo, path, strategy=plan.strategy, cases=len(distinct))
 
 
-def _write_sidecar(store: Any, plan: JoinedArrayPlan) -> tuple[list[dict], bool]:
+def _write_tables(store: Any, plan: JoinedArrayPlan) -> tuple[list[dict], bool]:
+    """Two more arrays beside `v`: every chunk's case, and every chunk's own numbers."""
     distinct, ids = _per_chunk_case(plan)
     templates, which, values = _templates(distinct)
-    ids = ids[DROP_CHUNKS:]  # held by the store with each reference, so a manifest operation carries it along
     table = zarr.create_array(store, name="v__cases", shape=(len(ids),), chunks=(max(1, len(ids)),), dtype="uint32", fill_value=0)
     table[:] = np.array([which[d] for d in ids], dtype="uint32")
     width = max((len(v) for v in values), default=0)
@@ -219,19 +242,16 @@ def _write_sidecar(store: Any, plan: JoinedArrayPlan) -> tuple[list[dict], bool]
 
 
 def switch_sidecar(case: Case, pieces: list[ManifestArray]) -> Built:
-    """The codec itself reads each chunk's case from another array in the store (design 2.2, ChunkContextFetcherCodec)."""
+    """The codec itself reads each chunk's case and numbers from other arrays in the store (design 2.2, ChunkContextFetcherCodec)."""
     plan = _plan(pieces)
     repo, path = new_repo("switch_sidecar", case.name)
     session = repo.writable_session("main")
-    distinct, ids = _per_chunk_case(plan)
-    # parameters would need a second sidecar read by the codec; cases are kept whole here
-    table = zarr.create_array(session.store, name="v__cases", shape=(len(ids),), chunks=(len(ids),), dtype="uint32", fill_value=0)
-    table[:] = np.array(ids, dtype="uint32")
-    config = {"select": "sidecar", "axis": 0, "sidecar": "__cases", "cases": distinct}
+    templates, has_parameters = _write_tables(session.store, plan)
+    config = {"select": "sidecar", "axis": 0, "sidecar": "__cases", "sidecar_parameters": "__parameters" if has_parameters else None, "cases": templates}
     _create(session.store, "v", plan, SwitchXCodec(config_json=json.dumps(config)))
     _refs(session.store, "v", plan.refs)
     session.commit("x")
-    return _finish("switch_sidecar", case, repo, path, strategy=plan.strategy, cases=len(distinct), extra_arrays=1)
+    return _finish("switch_sidecar", case, repo, path, strategy=plan.strategy, cases=len(templates), extra_arrays=1 + has_parameters)
 
 
 def switch_store_context(case: Case, pieces: list[ManifestArray]) -> Built:
@@ -239,7 +259,7 @@ def switch_store_context(case: Case, pieces: list[ManifestArray]) -> Built:
     plan = _plan(pieces)
     repo, path = new_repo("switch_store_context", case.name)
     session = repo.writable_session("main")
-    templates, has_parameters = _write_sidecar(session.store, plan)
+    templates, has_parameters = _write_tables(session.store, plan)
     config = {"select": "context", "cases": templates}
     _create(session.store, "v", plan, SwitchXCodec(config_json=json.dumps(config)))
     _refs(session.store, "v", plan.refs)
@@ -249,8 +269,10 @@ def switch_store_context(case: Case, pieces: list[ManifestArray]) -> Built:
                    strategy=plan.strategy, cases=len(templates), needs_store_wrapper=True)
 
 
-def conditional_codec(case: Case, pieces: list[ManifestArray]) -> Built:
-    """zarr-extensions `conditional`: a bytes-to-bytes codec whose 1-byte header says which of its codecs to apply."""
+# ------------------------------------------------------------------ the conditional codec, alone and with a grid that crops
+
+
+def _conditional(arm: str, case: Case, pieces: list[ManifestArray], crop_in_grid: bool) -> Built:
     from header_codecs import ConditionalCodec  # noqa: F401  (registers the codec)
 
     plan = _plan(pieces)
@@ -263,7 +285,7 @@ def conditional_codec(case: Case, pieces: list[ManifestArray]) -> Built:
     for d in distinct:
         if "fill_value" in d:
             raise NotExpressible("a bytes-to-bytes codec cannot give a run of chunks its own fill value")
-        if d.get("encoded_chunk_shape") and d["encoded_chunk_shape"][0] is not None:
+        if not crop_in_grid and d.get("encoded_chunk_shape") and d["encoded_chunk_shape"][0] is not None:
             raise NotExpressible("chunks are stored larger than their place in the grid, and a bytes-to-bytes codec cannot crop")
     head = json.loads(next(iter(heads)))
     tails = [[c for c in d["codecs"] if c not in head] for d in distinct]
@@ -277,15 +299,27 @@ def conditional_codec(case: Case, pieces: list[ManifestArray]) -> Built:
             raise NotExpressible("the files apply the same filters in different orders")
     masks = [sum(1 << union.index(c) for c in t) for t in tails]
     refs = [{**r, "prefix": bytes([masks[ids[r["index"][0]]]])} for r in plan.refs]
-    repo, path = new_repo("conditional_codec", case.name)
+    encoded = _encoded_sizes(plan)
+    padded = crop_in_grid and encoded != plan.chunk_grid[0]
+    if padded:
+        xcodecs.enable_grid_encoded_chunk_shapes()
+    repo, path = new_repo(arm, case.name)
     session = repo.writable_session("main")
-    arr = _create(session.store, "v", plan, "auto")
-    meta = json.loads(json.dumps(arr.metadata.to_dict(), default=str))
-    meta["codecs"] = [*head, {"name": "conditional", "configuration": {"codecs": union, "header_bits": 8}}]
-    zarr.core.sync.sync(session.store.set("v/zarr.json", zarr.core.buffer.default_buffer_prototype().buffer.from_bytes(json.dumps(meta).encode())))
+    chain = [*head, {"name": "conditional", "configuration": {"codecs": union, "header_bits": 8}}]
+    _plain_array(session, plan, chain, plan.chunk_grid, plan.shape, {"encoded_chunk_shapes": [encoded, None, None]} if padded else {})
     _refs(session.store, "v", refs)
     session.commit("x")
-    return _finish("conditional_codec", case, repo, path, cases=len(set(masks)))
+    return _finish(arm, case, repo, path, cases=len(set(masks)))
+
+
+def conditional_codec(case: Case, pieces: list[ManifestArray]) -> Built:
+    """zarr-extensions `conditional`: a bytes-to-bytes codec whose 1-byte header says which of its codecs to apply."""
+    return _conditional("conditional_codec", case, pieces, crop_in_grid=False)
+
+
+def conditional_with_grid_shapes(case: Case, pieces: list[ManifestArray]) -> Built:
+    """Two narrow proposals together: `conditional` for the compressors, encoded chunk shapes in the grid for padded chunks."""
+    return _conditional("conditional_with_grid_shapes", case, pieces, crop_in_grid=True)
 
 
 # ------------------------------------------------------------------ array concatenation
@@ -324,8 +358,11 @@ def array_concat(case: Case, pieces: list[ManifestArray]) -> Built:
     session = repo.writable_session("main")
     root = _write_pieces(session, pieces)
     cma = ConcatenatedManifestArray(pieces, axis=0)
+    chunks = _reported_chunks(cma)
+    n = -(-cma.shape[0] // chunks[0])
+    shape, _ = _dropped(cma.shape, [[chunks[0]] * n, None, None])
     root.require_array(
-        name="v", shape=cma.shape, chunks=_reported_chunks(cma), dtype=pieces[0].dtype, filters=None, compressors=None,
+        name="v", shape=shape, chunks=chunks, dtype=pieces[0].dtype, filters=None, compressors=None,
         serializer=ArrayConcatCodec(axis=0, pieces=[{"path": f"../_pieces/v/{i}", "size": p.shape[0]} for i, p in enumerate(pieces)]),
         dimension_names=DIMS, fill_value=pieces[0].metadata.fill_value,
     )
@@ -339,12 +376,14 @@ def zarr_reference(case: Case, pieces: list[ManifestArray]) -> Built:
     repo, path = new_repo("zarr_reference", case.name)
     session = repo.writable_session("main")
     _write_pieces(session, pieces)
-    shape = (sum(p.shape[0] for p in pieces), *pieces[0].shape[1:])
-    zarr.create_array(session.store, name="v", shape=shape, chunks=[[p.shape[0] for p in pieces], [shape[1]], [shape[2]]], dtype=pieces[0].dtype,
+    full = (sum(p.shape[0] for p in pieces), *pieces[0].shape[1:])
+    shape, grid = _dropped(full, [[p.shape[0] for p in pieces], [full[1]], [full[2]]])
+    zarr.create_array(session.store, name="v", shape=shape, chunks=grid, dtype=pieces[0].dtype,
                       fill_value=pieces[0].metadata.fill_value, serializer=ZarrReferenceCodec(), compressors=None, filters=None, dimension_names=DIMS)
     proto = zarr.core.buffer.default_buffer_prototype()
-    for i in range(len(pieces)):
-        zarr.core.sync.sync(session.store.set(f"v/c/{i}/0/0", proto.buffer.from_bytes(json.dumps({"path": f"../_pieces/v/{i}"}).encode())))
+    for entry in _kept([{"index": [i, 0, 0], "piece": i} for i in range(len(pieces))]):
+        key = "v/c/" + "/".join(str(i) for i in entry["index"])
+        zarr.core.sync.sync(session.store.set(key, proto.buffer.from_bytes(json.dumps({"path": f"../_pieces/v/{entry['piece']}"}).encode())))
     session.commit("x")
     return _finish("zarr_reference", case, repo, path, extra_arrays=len(pieces))
 
@@ -530,5 +569,6 @@ def separate_files(case: Case, pieces: list[ManifestArray]) -> Built:
 
 ARMS: dict[str, Callable[[Case, list[ManifestArray]], Built]] = {f.__name__: f for f in (
     switch_position, switch_key, switch_case_id, switch_key_parameters, switch_index_prefix, switch_sidecar, switch_store_context,
-    conditional_codec, array_concat, zarr_reference, grid_encoded_shapes, domain_convention, materialize_odd_chunks, native_copy, separate_files,
+    conditional_codec, conditional_with_grid_shapes, array_concat, zarr_reference, grid_encoded_shapes, domain_convention,
+    materialize_odd_chunks, native_copy, separate_files,
 )}

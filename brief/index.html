@@ -109,7 +109,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 <div class="wrap">
 
 <section>
-  <div class="eyebrow">Proposal for Zarr, Icechunk and VirtualiZarr</div>
+  <div class="eyebrow">Proposal for Zarr, Icechunk and VirtualiZarr &middot; revised 13 November 2026</div>
   <h1>One array from granules that don't match</h1>
   <p class="lede">Many NASA collections cannot be virtualized into a single Zarr array because their files change compression, chunk shape or chunk boundaries partway through the record. Three separable changes fix this. They are built as prototype branches and were checked on seven collections: every read matched the source files.</p>
   <p class="byline">Max Jones, Development Seed · 10 November 2026 · Experiments and write-up prepared with Claude Code. Code: <a href="https://github.com/maxj-labs/mismatched-granules">maxj-labs/mismatched-granules</a>. These are prototypes, not pull requests; the open issues are listed at the end.</p>
@@ -216,8 +216,8 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   </div>
   <p class="note">Both arrays written by VirtualiZarr from the same files; every read equals the files and moves the same bytes. The Puerto Rico manifest grows 7% with keys (1.51 to 1.62 MB); the North America one, already dominated by shard indexes, 0.2%.</p>
   <div class="prose">
-    <p><b>Worst cases.</b> With layouts alternating every chunk, the position table needs one case per chunk: 4.2 MB of <code>zarr.json</code> for 20,000 chunks. The key table needs one case per distinct layout: 0.9 KB for two layouts, 23 KB for a hundred. Decoding costs about 0.26 ms per chunk in either mode whatever the table's length, against 0.05 ms for a plain array with one chain; that fixed difference is the codec decoding chunks one at a time. A record where every chunk has a layout of its own is past what a case table should hold in either mode (about 220 bytes of metadata per chunk).</p>
-    <p><b>What key selection cannot do.</b> A chunk that stores nothing has no reference to carry a key, so a fill value per run of granules needs position. And it cannot encode: nothing tells the codec which case a new chunk belongs to.</p>
+    <p><b>Worst cases</b> for both ways of finding the case, at 16,000 chunks, are measured in <a href="https://maxj-labs.github.io/mismatched-granules/evaluation.html">Every Option, Tested</a>. In short: by position the table costs a pair of integers per run of chunks; a key alone needs one case per distinct layout; and where every chunk has numbers of its own, those numbers belong in the reference beside the key.</p>
+    <p><b>What key selection cannot do.</b> It cannot encode: nothing tells the codec which case a new chunk belongs to. A run of unwritten chunks can keep a fill value of its own: each is stored as its case's key and nothing else.</p>
   </div>
 </section>
 
@@ -323,7 +323,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 
 <section>
   <h2>Why this and not the alternatives</h2>
-  <div class="prose"><p>Since this section was written, every option raised in the public discussions (fifteen in all) has been run against the same ten cases, requirements and granules: see <a href="https://maxj-labs.github.io/mismatched-granules/evaluation.html">Every Option, Tested</a>. Its results favour carrying each chunk's case in its reference over finding it by position, more strongly than the summary below does.</p></div>
+  <div class="prose"><p>Since this section was written, every option raised in the public discussions has been run against the same cases, manifest operations and granules: see <a href="https://maxj-labs.github.io/mismatched-granules/evaluation.html">Every Option, Tested</a>. It finds no single winner between position and key, and sets out what each costs. Where this page and that one disagree, that one is right.</p></div>
   <div class="two">
     <div>
       <h3>Array concatenation as the main route</h3>
@@ -335,7 +335,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
     </div>
   </div>
   <div class="prose">
-    <p><b>Position or key.</b> Position needs nothing from the store, so it works with released Icechunk for every collection whose chunk shape is stable, and it is the only mode that handles a per-run fill value or encodes. Key selection composes, survives layouts that come and go, and makes appending a union. Since virtual shards need the Icechunk change anyway, key selection costs nothing further once that lands. A reasonable outcome is one codec with both modes, with position as what ships first.</p>
+    <p><b>Position or key.</b> Position needs nothing from the store where the chunk shape is stable, reads as Kerchunk references, and can encode. Its table is indexed by position, so a tool that drops or moves leading chunks must rewrite it; in the evaluation, tools that did not got errors or, in some cases, wrong values with no error. A key travels with its reference and survived those operations untouched, at the price of the Icechunk change and larger manifests. Which matters more depends on whether codec-agnostic tools will rewrite these manifests.</p>
     <p><b>The same tax applies to the switch codec.</b> Any reader that wants these arrays must implement it, in every language. It is smaller than a concatenation codec and does no I/O of its own except through sharding, but it is still a new codec, and it depends on the rectilinear chunk grid, which zarr-python still gates behind a setting.</p>
   </div>
 </section>
@@ -347,9 +347,9 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
     <thead><tr><th>Project</th><th>Change</th><th>Prototype</th><th>Tests run</th></tr></thead>
     <tbody>
       <tr><td>zarr-extensions</td><td>Specify <span class="mono">switch</span>: cases found by position (run-length encoded along an axis) or by a key in front of the chunk; per-case codecs, encoded chunk shape, fill value, range merging</td><td>Not drafted as a spec</td><td></td></tr>
-      <tr><td>zarr-python</td><td><span class="mono">switch</span> codec; chunk coordinates passed to codecs that ask; <span class="mono">array_concat</span> codec</td><td><a href="https://github.com/maxj-labs/zarr-python/tree/feat/array-concat-codec">feat/array-concat-codec</a>, about 840 lines</td><td>40 new; all 3,944 codec, array and metadata tests pass</td></tr>
-      <tr><td>Icechunk</td><td>Virtual reference = optional literal + ranges of one or more objects, read by range, parts fetched concurrently; bare integers in rectilinear grids</td><td><a href="https://github.com/maxj-labs/icechunk/tree/feat/virtual-ref-prefix">feat/virtual-ref-prefix</a>, about 420 lines of Rust</td><td>3 new; 391 unit, 119 integration and 253 Python tests pass</td></tr>
-      <tr><td>VirtualiZarr</td><td><span class="mono">set_options(mismatched_concat="pieces")</span>; a planner that picks switch or shards; data type changes; stacking; absent variables; appending; <span class="mono">switch_select="key"</span></td><td><a href="https://github.com/maxj-labs/VirtualiZarr/tree/feat/concat-mismatched-arrays">feat/concat-mismatched-arrays</a>, about 1,110 lines</td><td>11 new; 8 run with released Icechunk, all with the modified one</td></tr>
+      <tr><td>zarr-python</td><td><span class="mono">switch</span> codec, by position or by key; chunk coordinates passed to codecs that ask; <span class="mono">array_concat</span> codec</td><td><a href="https://github.com/maxj-labs/zarr-python/tree/feat/array-concat-codec">feat/array-concat-codec</a>, about 880 lines</td><td>42 new; all 3,946 codec, array and metadata tests pass</td></tr>
+      <tr><td>Icechunk</td><td>Virtual reference = optional literal + ranges of one or more objects, read by range, parts fetched concurrently; bare integers in rectilinear grids</td><td><a href="https://github.com/maxj-labs/icechunk/tree/feat/virtual-ref-prefix">feat/virtual-ref-prefix</a>, about 420 lines of Rust</td><td>3 new; 391 unit and 119 integration tests pass</td></tr>
+      <tr><td>VirtualiZarr</td><td><span class="mono">set_options(mismatched_concat="pieces")</span>; a planner that picks switch or shards; data type changes; stacking; absent variables; appending; key selection and key length</td><td><a href="https://github.com/maxj-labs/VirtualiZarr/tree/feat/concat-mismatched-arrays">feat/concat-mismatched-arrays</a>, about 1,190 lines</td><td>16 new; 10 run with released Icechunk, all with the modified one</td></tr>
     </tbody>
   </table>
   </div>
@@ -365,7 +365,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
         <li><b>Checksums.</b> A timestamp checksum is now applied to every object a reference reads. An ETag still covers the first object only.</li>
         <li><b>Region writes.</b> Appending along the joined axis works when the new granules fit the existing grid or shards. Writing by region, or appending a layout that does not fit, still means planning the array again.</li>
         <li><b>Codecs that depend on position.</b> Passing chunk coordinates to a codec is the least composable option raised in zarr-specs#399. Key selection avoids it, at the price of needing the store change.</li>
-        <li><b>Per-chunk overhead.</b> The codec decodes chunks one at a time, about 0.2 ms more per chunk than a plain array. That is invisible next to a network request and would show on local reads of very small chunks.</li>
+        <li><b>Per-chunk overhead.</b> The codec decodes chunks one at a time, which costs a fraction of a millisecond per chunk more than a plain array. That is invisible next to a network request and would show on local reads of very small chunks.</li>
         <li><b>Names.</b> <code>switch</code> is also the name of the header-based codec in refkv PR #73. One of them should change.</li>
         <li><b>Encoding.</b> Position selection encodes, so these arrays can be written through Zarr. Key selection is read-only.</li>
       </ul>

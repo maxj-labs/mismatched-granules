@@ -132,18 +132,18 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
       <div class="kind">Start here if you are deciding</div>
       <h2><a href="storybook.html">Storybook</a></h2>
       <p>Pick an implementation and read what follows from choosing it: what you can support, what you cannot, what gets expensive. Or pick the way your granules disagree and see which implementations serve it.</p>
-      <p class="for">Interactive. Fourteen options, ten use cases, four requirements.</p>
+      <p class="for">Interactive. Fifteen options, ten use cases, four requirements.</p>
     </div>
     <div class="card">
       <div class="kind">The evidence</div>
       <h2><a href="evaluation.html">Every Option, Tested</a></h2>
-      <p>Fifteen mechanisms from the public discussions, each run against the same ten cases, the requirements in zarr-specs#399, two worst cases at 16,000 chunks, and Daymet behind a server that counts requests.</p>
+      <p>Sixteen options from the public discussions, each run against the same ten cases; subsets against three manifest operations, two worst cases at 16,000 chunks, and Daymet behind a server that counts requests.</p>
       <p class="for">Tables, with how each option was built or emulated and the limits of the test.</p>
     </div>
     <div class="card">
       <div class="kind">The original proposal</div>
       <h2><a href="brief.html">One Array from Mismatched Granules</a></h2>
-      <p>The case for a switch codec and for virtual shards, with results from Daymet and six other NASA collections. Written before the full evaluation, which favours carrying each chunk's case in its reference more strongly than this page does.</p>
+      <p>The case for a switch codec and for virtual shards, with results from Daymet and six other NASA collections. Written before the full evaluation; where the two disagree, the evaluation is right.</p>
       <p class="for">For Icechunk, Zarr and VirtualiZarr developers.</p>
     </div>
   </div>
@@ -153,10 +153,11 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   <h2>What the evaluation found</h2>
   <div class="prose">
     <ul>
-      <li><b>A table of cases, with each chunk's case carried in its own reference,</b> described every case tested, survived a manifest operation untouched, and stayed small in both worst cases. It needs Icechunk references that are a literal followed by byte ranges.</li>
-      <li><b>The same table found from the chunk's position</b> needs no store change, but returns wrong values, sometimes without an error, when a tool drops chunks without rewriting the table.</li>
+      <li><b>No single winner.</b> Two designs for a table of cases both work, and trade against each other.</li>
+      <li><b>Keeping a chunk's case in its reference</b> was the only kind that kept reading correctly when a tool dropped leading chunks without knowing the codec. It needs Icechunk references that are a literal followed by byte ranges, and cannot be stored as Kerchunk references.</li>
+      <li><b>Finding the case from the chunk's position</b> needs no store change where the chunk shape is stable, but its table must be rewritten whenever leading chunks move; where it was not, reads failed or, in some cases, returned wrong values with no error.</li>
       <li><b>Array concatenation</b> describes everything and reads with released Icechunk, at a cost that grows with the number of pieces.</li>
-      <li><b>The options do not differ on speed.</b> zarr-python's concurrency setting changes read times far more than the choice between them.</li>
+      <li><b>The case-table options did not differ on speed.</b> zarr-python's concurrency setting changed read times far more than the choice between them.</li>
     </ul>
   </div>
 </section>
@@ -169,7 +170,8 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
     <tbody>
       <tr><td><a href="https://github.com/maxj-labs/mismatched-granules">maxj-labs/mismatched-granules</a></td><td>Benchmark and evaluation scripts, result files, and the source of these pages</td></tr>
       <tr><td><a href="https://github.com/maxj-labs/zarr-python/tree/feat/array-concat-codec">zarr-python branch</a></td><td>The <span class="mono">switch</span> and <span class="mono">array_concat</span> codecs; chunk coordinates passed to codecs that ask</td></tr>
-      <tr><td><a href="https://github.com/maxj-labs/icechunk/tree/feat/virtual-ref-prefix">Icechunk branch</a></td><td>Virtual references made of a literal and several byte ranges; a store that prepends the chunk index</td></tr>
+      <tr><td><a href="https://github.com/maxj-labs/icechunk/tree/feat/virtual-ref-prefix">Icechunk branch</a></td><td>Virtual references made of a literal and several byte ranges</td></tr>
+      <tr><td><a href="https://github.com/maxj-labs/icechunk/tree/feat/chunk-index-prefix">Icechunk branch, index prefix</a></td><td>On top of the first: a store that prepends the chunk index, built only to evaluate that proposal</td></tr>
       <tr><td><a href="https://github.com/maxj-labs/VirtualiZarr/tree/feat/concat-mismatched-arrays">VirtualiZarr branch</a></td><td>A concat that plans one array from mismatched files, and writes and appends it</td></tr>
     </tbody>
   </table>

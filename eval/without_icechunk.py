@@ -23,7 +23,7 @@ PLANNED = {
     "switch_position": lambda plan: zarr.codecs.SwitchCodec(axis=0, cases=plan.cases),
     "switch_key": lambda plan: zarr.codecs.SwitchCodec(select="key", key_bytes=plan.key_bytes, cases=plan.cases),
 }
-CASES = ["codec_eras", "padded_last_chunk", "packing_per_file", "data_types", "chunk_shape_change", "layouts_alternate"]
+CASES = list(cases_module.build())
 
 
 def kerchunk(plan, serializer) -> dict:

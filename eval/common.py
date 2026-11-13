@@ -26,6 +26,7 @@ zarr.config.set({"array.rectilinear_chunks": True})
 STORES = HERE / "stores"
 RESULTS = HERE.parent / "results" / "eval"
 PREFIX = f"file://{DATA}/"
+STORE_SUFFIX = ""  # compose.py writes its altered arrays beside the matrix's, not over them
 CHUNK_STORE = None  # perf.py points both at an HTTP server that counts requests
 registry = ObjectStoreRegistry({"file://": LocalStore()})
 
@@ -47,7 +48,7 @@ class Built:
 
 
 def new_repo(arm: str, case: str) -> tuple[icechunk.Repository, Path]:
-    path = STORES / arm / case
+    path = STORES / (arm + STORE_SUFFIX) / case
     shutil.rmtree(path, ignore_errors=True)
     path.parent.mkdir(parents=True, exist_ok=True)
     config = icechunk.RepositoryConfig.default()
@@ -70,7 +71,11 @@ def store_bytes(path: Path) -> dict:
     def total(sub: str) -> int:
         return sum(f.stat().st_size for f in (path / sub).rglob("*") if f.is_file())
 
-    return {"manifest_bytes": total("manifests"), "native_chunk_bytes": total("chunks"), "store_bytes": total("")}
+    # `metadata_bytes`: the snapshots, which hold every array's zarr.json, as stored (compressed).
+    # `virtual_bytes`: everything the store keeps that is not chunk data.
+    native = total("chunks")
+    return {"manifest_bytes": total("manifests"), "metadata_bytes": total("snapshots"), "native_chunk_bytes": native,
+            "store_bytes": total(""), "virtual_bytes": total("") - native}
 
 
 def pieces_of(case: Case) -> list[ManifestArray]:

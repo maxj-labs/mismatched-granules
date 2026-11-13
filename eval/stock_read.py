@@ -22,6 +22,8 @@ import os
 
 if os.environ.get("EVAL_KNOWS_CODECS"):  # a reader with the codecs but not the store change
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "bench"))
+    import header_codecs  # noqa: F401  (the conditional codec)
     import xcodecs  # noqa: F401
 else:
     assert "daymet-virtual" not in zarr.__file__, "this must run with released zarr-python"

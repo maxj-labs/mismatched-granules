@@ -37,20 +37,23 @@ OPTIONS = {
         "The same idea with the shortest key: one byte that numbers the case. The key's length is a setting; this is its smallest value.",
         ["A new codec in every Zarr reader", "Icechunk references that are a literal followed by byte ranges"], "Built, as the key mode with 1-byte keys. This is the per-chunk variant of NASA-IMPACT/veda-odd#498."),
     "switch_position": ("Case table · case found from the chunk's position", "A table of cases",
-        "The table is run-length encoded along the joined axis in zarr.json. Nothing is stored per chunk; the codec is told which chunk it is decoding.",
+        "The table is in zarr.json: each case once, then which case each run of chunks along the joined axis uses. Nothing is stored per chunk; the codec is told which chunk it is decoding.",
         ["A new codec in every Zarr reader", "Zarr readers must tell a codec the chunk's coordinates", "Icechunk change only when the chunk shape changes (virtual shards)"], "Built in the zarr-python and VirtualiZarr branches."),
     "switch_store_context": ("Case table · the store answers a context call", "A table of cases",
         "The store gains a method that returns a chunk's context (its case and numbers) beside its bytes. This is the &ldquo;Zarr v3.2&rdquo; design of zarr-specs#399.",
-        ["A new codec in every Zarr reader", "A new method on the Zarr store interface, and a spec change", "Somewhere in the Icechunk manifest to keep the context"], "Emulated: a Python wrapper around the store answers the call."),
-    "switch_sidecar": ("Case table · the codec reads a side array", "A table of cases",
-        "A second array in the store lists the case of every chunk. The codec reads it itself.",
+        ["A new codec in every Zarr reader", "A new method on the Zarr store interface, and a spec change", "Somewhere in the Icechunk manifest to keep the context"], "Emulated: a Python wrapper around the store answers the call from a table indexed by position."),
+    "switch_sidecar": ("Case table · the codec reads side arrays", "A table of cases",
+        "Two more arrays in the store list every chunk's case and its numbers. The codec reads them itself.",
         ["A new codec that does its own I/O, in every Zarr reader", "Zarr readers must tell a codec the chunk's coordinates", "Icechunk change only when the chunk shape changes"], "Built as an evaluation codec."),
     "switch_index_prefix": ("Case table · the store prepends the chunk's index", "A table of cases",
         "On every read the store puts the chunk's grid index in front of its bytes, and the codec looks the case up from that.",
-        ["A new codec in every Zarr reader", "Icechunk must prepend the index for these arrays and no others"], "Built: the Icechunk branch prepends the index for arrays whose metadata asks. First run as a Python emulation, with the same results."),
+        ["A new codec in every Zarr reader", "Icechunk must prepend the index for these arrays and no others"], "Built: an Icechunk branch prepends the index for arrays whose codec asks."),
     "conditional_codec": ("The conditional codec", "A narrower codec",
         "zarr-extensions' conditional codec: a one-byte header in front of each chunk says which of a list of compressors to apply.",
         ["The conditional codec in every Zarr reader", "Icechunk references that are a literal followed by a byte range"], "Built from my reading of the merged spec."),
+    "conditional_with_grid_shapes": ("The conditional codec with encoded chunk shapes", "A narrower codec",
+        "Two narrow proposals used together: conditional picks the compressors, and the chunk grid states how large each chunk is stored so padded chunks can be cropped.",
+        ["The conditional codec and a change to the rectilinear chunk grid, in every Zarr reader", "Icechunk references that are a literal followed by a byte range"], "Built from the two proposals; the grid part is emulated."),
     "array_concat": ("Array concatenation", "Keep each file's array",
         "Each file stays an array of its own. One more array lists them in its codec and reads through to them.",
         ["A codec that opens other arrays, in every Zarr reader", "Nothing from the store"], "Built in the zarr-python and VirtualiZarr branches."),
@@ -89,7 +92,7 @@ NEEDS = {
     "need_many_granules": ("The record is tens of thousands of small granules", "16,000 one-chunk pieces, in the two worst cases: layouts that alternate, and every chunk packed its own way."),
 }
 PLAIN_REFS = {  # by inspection, where no Kerchunk run exists
-    "switch_sidecar": (True, "its references are plain byte ranges, plus one more array"),
+    "switch_sidecar": (None, "its references are plain byte ranges plus two more arrays, except where the chunk shape changes, which needs a literal followed by ranges"),
     "array_concat": (True, "each file's array uses plain byte ranges"),
     "zarr_reference": (True, "plain byte ranges, plus one small inline chunk per file"),
     "grid_encoded_shapes": (True, "its references are plain byte ranges"),
@@ -97,9 +100,10 @@ PLAIN_REFS = {  # by inspection, where no Kerchunk run exists
     "switch_case_id": (False, "every reference is a literal followed by a byte range"),
     "switch_key_parameters": (False, "every reference is a literal followed by a byte range"),
     "conditional_codec": (False, "every reference is a literal followed by a byte range"),
+    "conditional_with_grid_shapes": (False, "every reference is a literal followed by a byte range"),
     "switch_index_prefix": (False, "the store itself must prepend the index"),
     "switch_store_context": (False, "the store itself must answer the context call"),
-    "materialize_odd_chunks": (False, "the copied chunks need a store to live in"),
+    "materialize_odd_chunks": (None, "the copied chunks would have to sit inline in the reference file, which is practical only while they are few and small"),
     "native_copy": (False, "it is a store of native chunks"),
 }
 
@@ -111,9 +115,19 @@ def size(n: float) -> str:
     return f"{n:.0f} B"
 
 
+FIELDS = {  # what is compared between options in the worst cases, and how it is said
+    "virtual_bytes": lambda v, b: f"{size(v)} stored beside the chunk data, {v / b:.0f}&times; the smallest",
+    "build_seconds": lambda v, b: f"{v:.0f} s to write, {v / b:.0f}&times; the quickest",
+    "microseconds_per_chunk": lambda v, b: f"{v / 1000:.1f} ms per chunk to read everything, {v / b:.0f}&times; the quickest",
+    "open_seconds": lambda v, b: f"{v:.2f} s to open, because zarr.json is {{doc}}",
+}
+RULE = "three or more times the best of the options that keep the array virtual, in the same worst case"
+
+
 def build() -> dict:
-    data: dict = {"options": {}, "cases": {}, "needs": {}}
-    base = SCALING["alternate|16000"]["switch_key"]
+    data: dict = {"options": {}, "cases": {}, "needs": {}, "rule": RULE}
+    best = {kind: {f: min(v[f] for a, v in SCALING[f"{kind}|16000"].items() if a != "native_copy" and v.get("outcome") == "equal") for f in FIELDS}
+            for kind in ("alternate", "packed")}
     for arm, (name, group, how, takes, tested) in OPTIONS.items():
         o: dict = {"name": name, "group": group, "how": how, "takes": takes, "tested": tested, "cases": {}, "costs": [], "warnings": [], "good": []}
         for case in CASES:
@@ -122,9 +136,9 @@ def build() -> dict:
             copied = cell.get("copied_fraction")
             if entry["ok"] and copied:
                 entry["cost"] = f"{copied * 100:.0f}% of the data is stored a second time"
-                entry["heavy"] = copied >= 0.5
+                entry["heavy"] = True  # any copying is a cost; the page gives the fraction
             o["cases"][case] = entry
-        # growth with the number of chunks
+        # growth with the number of chunks, against the best option in the same worst case
         scale = {}
         for kind, label in (("alternate", "two layouts alternate chunk by chunk"), ("packed", "every chunk is packed its own way")):
             rec = SCALING[f"{kind}|16000"].get(arm)
@@ -137,30 +151,30 @@ def build() -> dict:
                 scale[kind] = {"ok": False, "why": why}
                 continue
             notes = []
-            if rec["zarr_json_bytes"] >= 100_000:
-                notes.append(f"zarr.json grows to {size(rec['zarr_json_bytes'])}, read at every open")
-            if rec["manifest_bytes"] >= 1_000_000:
-                notes.append(f"manifests of {size(rec['manifest_bytes'])}, {rec['manifest_bytes'] / base['manifest_bytes']:.0f}&times; the smallest")
-            if rec["build_seconds"] >= 30:
-                notes.append(f"{rec['build_seconds']:.0f} s to write, against about {base['build_seconds']:.0f} s")
-            if rec["microseconds_per_chunk"] >= 1500:
-                notes.append(f"{rec['microseconds_per_chunk'] / 1000:.1f} ms of overhead per chunk read, against about {base['microseconds_per_chunk'] / 1000:.1f} ms")
-            scale[kind] = {"ok": True, "notes": notes, "zarr_json": size(rec["zarr_json_bytes"]), "manifest": size(rec["manifest_bytes"])}
+            for f, say in FIELDS.items():
+                v, b = rec[f], best[kind][f]
+                if arm != "native_copy" and v >= 3 * b and not (f == "open_seconds" and v < 0.1):
+                    notes.append(say(v, b).replace("{doc}", size(rec["zarr_json_bytes"])))
+            scale[kind] = {"ok": True, "notes": notes, "zarr_json": size(rec["zarr_json_bytes"]), "stored": size(rec["virtual_bytes"])}
             if notes:
                 o["costs"].append(f"With 16,000 chunks where {label}: " + "; ".join(notes) + ".")
         o["scale"] = scale
         if arm == "switch_case_id":
-            o["costs"].append("One byte numbers at most 256 cases, so a record with more distinct cases than that needs a longer key. Key length is a setting: two bytes number 65,536 cases, and the 8-byte option above has no practical limit.")
+            o["costs"].append("One byte numbers at most 256 cases, so a record with more distinct cases than that needs a longer key. Key length is a setting: two bytes number 65,536 cases, and the 8-byte option has no practical limit.")
         if arm == "native_copy":
             o["costs"].append("All of the data is stored a second time, and must be rewritten whenever the source is reprocessed.")
         # real data
-        if arm in PERF["pr"]["arms"] and PERF["pr"]["arms"][arm].get("outcome") == "equal":
-            series = PERF["pr"]["arms"][arm]["reads"]["series: every day at one cell"]
-            o["good"].append(f"On twelve years of Daymet Puerto Rico it made the same {series['source_requests']:,} source requests as every other option for a full time series, in {series['seconds']:.0f} s at zarr-python's default concurrency.")
+        pr = PERF["pr"]["arms"].get(arm, {})
+        if pr.get("outcome") == "equal":
+            series = pr["reads"]["series: every day at one cell"]
+            ref = PERF["pr"]["arms"]["switch_position"]["reads"]["series: every day at one cell"]
+            same_requests = series["source_requests"] == ref["source_requests"]
+            o["good"].append(f"On twelve years of Daymet Puerto Rico a full time series took {series['seconds']:.0f} s and {series['source_requests']:,} source requests"
+                             + (", the same requests as every other option." if same_requests else "."))
         na = PERF["na"]["arms"].get(arm, {})
         if na.get("outcome") == "equal":
             o["good"].append("It read Daymet North America across the 2020 chunk-shape change with every value equal to the files.")
-        # unaware readers
+        # readers without the feature
         stock = [v["released zarr-python, released Icechunk"]["outcome"] for k, v in UNAWARE.items() if k.startswith(arm + "|")]
         knows = [v["zarr-python with the codecs, released Icechunk"]["outcome"] for k, v in UNAWARE.items() if k.startswith(arm + "|")]
         if "WRONG VALUES" in stock:
@@ -170,31 +184,46 @@ def build() -> dict:
             o["released"] = {"verdict": "good", "text": "Released zarr-python and Icechunk read it correctly as it is."}
             o["good"].append(o["released"]["text"])
         elif all(s == "refuses" for s in stock):
-            o["released"] = {"verdict": "no", "text": "Released zarr-python refuses it with a clear error (unknown codec). Nobody reads wrong data, and nobody reads it without the new codec."}
+            o["released"] = {"verdict": "bad", "text": "Released zarr-python refuses it with a clear error (unknown codec). Nobody reads wrong data, and nobody reads it without the new codec."}
         else:
-            o["released"] = {"verdict": "no", "text": f"Released zarr-python read {stock.count('reads correctly')} of {len(stock)} stores and refused the rest with an unrelated reshape error."}
-        if arm.startswith("switch") or arm in ("array_concat", "zarr_reference", "conditional_codec"):
-            if all(k == "reads correctly" for k in knows):
-                o["good"].append("Once a reader has the codec, released Icechunk serves it: no store change is needed.")
-            elif arm in ("switch_position", "switch_sidecar"):
-                o["good"].append(f"Once a reader has the codec, released Icechunk serves it in {knows.count('reads correctly')} of {len(knows)} cases. The exception is a chunk-shape change, which needs the Icechunk change.")
-        # composition
-        if arm in COMPOSE["by_inspection"]:
-            text = COMPOSE["by_inspection"][arm]
-            ordinary = text.startswith("an ordinary array")
-            o["compose"] = {"verdict": "good" if ordinary else "partial", "text": ("It is an ordinary array, so manifest tools handle it like any other." if ordinary else text[0].upper() + text[1:] + ".") + " (By inspection, not a run.)"}
+            o["released"] = {"verdict": "partial", "text": f"Released zarr-python read {stock.count('reads correctly')} of {len(stock)} stores and refused the rest with an unrelated reshape error."}
+        if knows and all(k == "reads correctly" for k in knows) and o["released"]["verdict"] != "good":
+            o["good"].append("Once a reader has the codec, released Icechunk serves it: no store change is needed.")
+        elif knows and "reads correctly" in knows and "WRONG VALUES" not in knows and o["released"]["verdict"] == "bad":
+            o["good"].append(f"Once a reader has the codec, released Icechunk serves it in {knows.count('reads correctly')} of {len(knows)} cases; the rest need the Icechunk change.")
+        # operations on the manifest
+        if arm in COMPOSE["ordinary_arrays"]:
+            o["compose"] = {"verdict": "good", "text": "It is an ordinary array, so there is nothing beside the manifest to go stale. (By inspection, not a run.)"}
         else:
-            cells = [v for k, v in COMPOSE["cells"].items() if k.startswith(arm + "|")]
-            good = sum(v["outcome"] == "composes as it stands" for v in cells)
-            silent = sum("values are wrong" in v.get("why", "") for v in cells)
-            if good == len(cells):
-                o["compose"] = {"verdict": "good", "text": f"Dropping the first chunks of the array, with nothing else rewritten, still read correctly in {good} of {len(cells)} trials."}
+            cells = {k: v for k, v in COMPOSE["cells"].items() if k.startswith(arm + "|") and v["outcome"] != "not applicable"}
+            n = len(cells)
+            good = sum(v["outcome"] == "composes" for v in cells.values())
+            silent = sum(v["outcome"] == "wrong values, no error" for v in cells.values())
+            errors = n - good - silent
+            front = [v for k, v in cells.items() if "first" in k]
+            front_good = sum(v["outcome"] == "composes" for v in front)
+            if good == n:
+                o["compose"] = {"verdict": "good", "text": f"Chunks were dropped from the front and the end of the array with nothing else rewritten, and it read correctly in all {n} trials."}
             else:
-                tail = f" In {silent} of them it returned wrong values with no error." if silent else ""
-                o["compose"] = {"verdict": "bad", "text": f"Dropping the first chunks of the array, with nothing else rewritten, read correctly in only {good} of {len(cells)} trials.{tail} Every tool that reorders chunks must also rewrite this option's own table."}
-        if o["compose"]["verdict"] == "bad":
+                text = f"Chunks were dropped from the front and the end of the array with nothing else rewritten. It read correctly in {good} of {n} trials"
+                text += f" ({front_good} of {len(front)} when the chunks came off the front)."
+                if silent:
+                    text += f" In {silent} it returned wrong values with no error."
+                if errors:
+                    text += f" In {errors} it failed with an error."
+                text += " Every tool that drops or moves chunks must also rewrite what this option keeps for itself."
+                if not silent:
+                    text += " It never returned wrong values: it refuses."
+                o["compose"] = {"verdict": "bad" if silent or not good else "partial", "text": text}
+            if arm == "zarr_reference":
+                o["compose"]["text"] += " Its chunks are whole files, so it cannot drop less than a file."
+            if arm == "switch_store_context":
+                o["compose"]["text"] += " This is the emulation, whose table is indexed by position; a store that kept the context with each reference would carry it along, and that was not tested."
+            if arm in ("grid_encoded_shapes", "conditional_with_grid_shapes"):
+                o["compose"]["text"] += " The encoded sizes sit in an attribute here; the proposal puts them in the chunk grid, which such a tool rewrites."
+        if o["compose"]["verdict"] != "good":
             o["warnings"].append(o["compose"]["text"])
-        elif o["compose"]["verdict"] == "good" and arm not in ("materialize_odd_chunks", "native_copy"):
+        elif arm not in COMPOSE["ordinary_arrays"]:
             o["good"].append(o["compose"]["text"])
         # without Icechunk
         runs = [v for k, v in KERCHUNK["cells"].items() if k.startswith(arm + "|")]
@@ -206,9 +235,9 @@ def build() -> dict:
                 o["kerchunk"] = {"verdict": "bad", "text": "It cannot be written as Kerchunk references: every chunk is a literal followed by a byte range, and a Kerchunk reference is one or the other."}
         else:
             fits, why = PLAIN_REFS[arm]
-            o["kerchunk"] = {"verdict": "good" if fits else "bad", "text": ("Yes: " if fits else "No: ") + why + ". (By inspection, not a run.)"}
-        if "Emulated" in tested:
-            o["warnings"].append("This option was emulated in Python, not built into Icechunk or zarr-python. A real implementation could behave differently, on speed above all.")
+            o["kerchunk"] = {"verdict": {True: "good", False: "bad", None: "partial"}[fits], "text": {True: "Yes: ", False: "No: ", None: "In part: "}[fits] + why + ". (By inspection, not a run.)"}
+        if "mulated" in tested:
+            o["warnings"].append("This option was emulated in Python, in whole or in part, not built into Icechunk or zarr-python. A real implementation could behave differently.")
         data["options"][arm] = o
     for case, (name, example) in CASES.items():
         data["cases"][case] = {"name": name, "example": example}
@@ -296,12 +325,20 @@ function renderChoice(key) {
   }
   const costs = o.costs.concat(heavy.map((c) => `${D.cases[c].name}: ${o.cases[c].cost}.`));
   if (costs.length) { const c = beat('cost', '!', 'Bad news: these get expensive'); c.append(list(costs)); story.append(c); }
-  else { const c = beat('good', '&#10003;', 'Nothing got expensive'); c.append(el('p', '', 'With 16,000 chunks in both worst cases, <code>zarr.json</code> stayed under 1 KB, the manifests stayed small, and the per-chunk overhead matched the best option.')); if (o.scale.alternate && o.scale.alternate.ok) story.append(c); }
+  else {
+    const ran = ['alternate', 'packed'].filter((k) => o.scale[k]);
+    const could = ran.filter((k) => o.scale[k].ok);
+    if (could.length) {
+      const c = beat('good', '&#10003;', 'Nothing stood out as expensive');
+      const which = could.length === 2 ? 'both worst cases' : (could[0] === 'alternate' ? 'the worst case where two layouts alternate' : 'the worst case where every chunk is packed its own way');
+      c.append(el('p', '', `With 16,000 chunks in ${which}, its stored size, write time, open time and read time were all within three times the best option's.` + (could.length < ran.length ? ' It cannot describe the other worst case at all.' : '')));
+      story.append(c);
+    }
+  }
   if (o.warnings.length) { const w = beat('warn', '!', 'Watch out'); w.append(list(o.warnings)); story.append(w); }
   const t = beat('', '', 'What it takes'); t.append(list(o.takes));
   t.append(el('p', '', `<b>Readers people already have.</b> ${o.released.text}`));
   t.append(el('p', '', `<b>Without Icechunk.</b> ${o.kerchunk.text}`));
-  if (o.compose.verdict === 'partial') t.append(el('p', '', `<b>Manifest tools.</b> ${o.compose.text}`));
   t.append(el('p', 'note', `How it was tested: ${o.tested}`));
   story.append(t);
 }
@@ -315,9 +352,9 @@ function verdictFor(key, subject) {
     const s = subject === 'packing_per_chunk' ? o.scale.packed : subject === 'layouts_alternate' ? o.scale.alternate : null;
     if (s && s.ok && s.notes.length) return ['partial', 'It works on a small record. At 16,000 chunks: ' + s.notes.join('; ') + '.'];
     if (s && !s.ok) return ['partial', 'It works on the small test record but not at 16,000 chunks: ' + s.why + '.'];
-    return ['good', s && s.ok ? `Still small at 16,000 chunks: ${s.zarr_json} of zarr.json, ${s.manifest} of manifests.` : ''];
+    return ['good', s && s.ok ? `At 16,000 chunks: ${s.zarr_json} of zarr.json to read, ${s.stored} stored beside the chunk data.` : ''];
   }
-  if (subject === 'need_released_readers') return [o.released.verdict === 'good' ? 'good' : 'bad', o.released.text];
+  if (subject === 'need_released_readers') return [o.released.verdict, o.released.text];
   if (subject === 'need_manifest_ops') return [o.compose.verdict, o.compose.text];
   if (subject === 'need_no_icechunk') return [o.kerchunk.verdict, o.kerchunk.text];
   const a = o.scale.alternate, p = o.scale.packed;
@@ -328,7 +365,7 @@ function verdictFor(key, subject) {
     if (!s.ok) bad.push(`cannot describe the case where ${label}`);
     else if (s.notes.length) parts.push(`where ${label}: ${s.notes.join('; ')}`);
   });
-  if (!parts.length && !bad.length) return ['good', `zarr.json stays at ${p.zarr_json} and manifests at ${p.manifest} in the harder of the two.`];
+  if (!parts.length && !bad.length) return ['good', `Within three times the best option on every measure. In the harder case: ${p.zarr_json} of zarr.json to read, ${p.stored} stored beside the chunk data.`];
   return [bad.length && !parts.length && bad.length === 2 ? 'bad' : 'partial', (bad.concat(parts).join('. ') + '.').replace(/^./, (m) => m.toUpperCase())];
 }
 
@@ -417,10 +454,10 @@ def render() -> str:
 <div class="wrap" style="gap: 32px">
 <header>
   <section>
-    <div class="eyebrow">Storybook &middot; 11 November 2026</div>
+    <div class="eyebrow">Storybook &middot; revised 13 November 2026</div>
     <h1>Choose, and See What Follows</h1>
-    <p class="lede">Fourteen ways to make one Zarr array from granules that disagree. Pick the one you would build and read its consequences, or start from your data and see which ones serve it.</p>
-    <p class="byline">Every verdict is computed from the runs behind <a href="https://maxj-labs.github.io/mismatched-granules/evaluation.html">Every Option, Tested</a>: ten small test records, two worst cases at 16,000 chunks, and Daymet. Only zarr-python read these arrays, and nothing ran against S3. Prepared with Claude.</p>
+    <p class="lede">{len(OPTIONS)} ways to make one Zarr array from granules that disagree. Pick the one you would build and read its consequences, or start from your data and see which ones serve it.</p>
+    <p class="byline">&ldquo;Expensive&rdquo; has one meaning here: {RULE}. Every verdict is computed from the runs behind <a href="https://maxj-labs.github.io/mismatched-granules/evaluation.html">Every Option, Tested</a>: ten small test records, two worst cases at 16,000 chunks, and Daymet. Only zarr-python read these arrays, and nothing ran against S3. Prepared with Claude.</p>
   </section>
 </header>
 

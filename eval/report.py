@@ -2,8 +2,8 @@
 
     python report.py        # writes ../evaluation/index.html (page content, as the brief is)
 
-Every number and every mark on the page is read from results/eval/*.json; the text
-around them is written here.
+Every number and every mark on the page is read from results/eval/*.json and
+results_http/*.json; the text around them is in page.py.
 """
 
 from __future__ import annotations
@@ -25,40 +25,43 @@ def load(name: str) -> dict:
 
 MATRIX, UNAWARE, COMPOSE, SCALING = load("matrix.json"), load("unaware.json"), load("compose.json"), load("scaling.json")
 KERCHUNK, TS = load("without_icechunk.json"), load("tensorstore_stack.json")
-PERF = {"pr": load("perf_pr_tmin.json"), "na": load("perf_na_dayl.json")}
+PERF = {"pr": load("perf_pr_tmin.json"), "na": load("perf_na_dayl.json"), "pr120": load("perf_pr_tmin_concurrency_120.json")}
 REFKV = json.loads(p.read_text()) if (p := HERE.parent / "results_http" / "bench_pr_tmin_2014_2025_refkv.json").exists() else {}
 
+MONO = '<span class="mono">{}</span>'
 LABEL = {
-    "switch_position": "Switch codec · case by position",
-    "switch_key": "Switch codec · case by key",
-    "switch_case_id": "Switch codec · 1-byte case number",
-    "switch_key_parameters": "Switch codec · key + parameters",
-    "switch_index_prefix": "Switch codec · store prepends the chunk index",
-    "switch_sidecar": "Switch codec · codec reads a side array",
-    "switch_store_context": "Switch codec · store answers a context call",
-    "conditional_codec": "<span class=\"mono\">conditional</span> codec",
+    "switch_position": "Case table · case found from position",
+    "switch_key": "Case table · 8-byte key in each reference",
+    "switch_case_id": "Case table · 1-byte case number in each reference",
+    "switch_key_parameters": "Case table · key and numbers in each reference",
+    "switch_index_prefix": "Case table · store prepends the chunk index",
+    "switch_sidecar": "Case table · codec reads side arrays",
+    "switch_store_context": "Case table · store answers a context call",
+    "conditional_codec": MONO.format("conditional") + " codec",
+    "conditional_with_grid_shapes": MONO.format("conditional") + " + encoded chunk shapes",
     "array_concat": "Array concatenation codec",
     "zarr_reference": "Reference-per-chunk codec",
     "grid_encoded_shapes": "Encoded chunk shapes in the grid",
     "domain_convention": "Declared valid domain",
     "materialize_odd_chunks": "Copy the chunks that do not fit",
     "native_copy": "Copy everything to native Zarr",
-    "separate_files": "No store: <span class=\"mono\">open_mfdataset</span>",
+    "separate_files": "No store: " + MONO.format("open_mfdataset"),
 }
 SOURCE = {
-    "switch_position": ("zarr-specs#399 design 2 with a run-length table (TomNicholas, ghidalgo3); chunk coordinates in <span class=\"mono\">ArraySpec</span> (astrofrog)", "Built: zarr-python and VirtualiZarr branches"),
+    "switch_position": ("zarr-specs#399 design 2 with a run-length table (TomNicholas, ghidalgo3); chunk coordinates in " + MONO.format("ArraySpec") + " (astrofrog)", "Built: zarr-python and VirtualiZarr branches"),
     "switch_key": ("zarr-specs#399: inline bytes in front of the chunk, read by the codec (d-v-b, jbms)", "Built: all three branches"),
     "switch_case_id": ("NASA-IMPACT/veda-odd#498: a per-chunk variant in the manifest", "Built: the key mode with 1-byte keys"),
-    "switch_key_parameters": ("refkv PR #73 (d-v-b): cases as templates, numbers carried per chunk", "Built here on Icechunk as an evaluation codec; also run as released on refkv"),
-    "switch_index_prefix": ("zarr-specs#399 design 2.1 as first written; veda-odd#498 step 3", "Built: the Icechunk branch prepends the index for arrays that ask; the codec is an evaluation codec"),
-    "switch_sidecar": ("zarr-specs#399 design 2.2, <span class=\"mono\">ChunkContextFetcherCodec</span>", "Built as an evaluation codec that reads a second array"),
-    "switch_store_context": ("zarr-specs#399 design 3, &ldquo;Zarr v3.2&rdquo;: <span class=\"mono\">Store.get_context</span>", "Emulated: a store wrapper answers the call; the codec asks it directly, not through <span class=\"mono\">ArraySpec</span>"),
-    "conditional_codec": ("zarr-extensions <span class=\"mono\">conditional</span> (mkitti); HDF5's per-chunk filter mask", "Built: my reading of the merged spec, 1-byte header"),
+    "switch_key_parameters": ("refkv PR #73 (d-v-b): cases as templates, numbers carried per chunk", "Built here on Icechunk as an evaluation codec; refkv itself run on Daymet"),
+    "switch_index_prefix": ("zarr-specs#399 design 2.1 as first written; veda-odd#498 step 3", "Built: an Icechunk branch prepends the index for arrays that ask; evaluation codec"),
+    "switch_sidecar": ("zarr-specs#399 design 2.2, " + MONO.format("ChunkContextFetcherCodec"), "Built as an evaluation codec that reads two more arrays"),
+    "switch_store_context": ("zarr-specs#399 design 3, &ldquo;Zarr v3.2&rdquo;: " + MONO.format("Store.get_context"), "Emulated: a Python wrapper answers the call from a table indexed by position"),
+    "conditional_codec": ("zarr-extensions " + MONO.format("conditional") + " (mkitti); HDF5's per-chunk filter mask", "Built: my reading of the merged spec, 1-byte header"),
+    "conditional_with_grid_shapes": ("The two narrow proposals used together", "Built from the two rows beside it"),
     "array_concat": ("zarr-specs#288 (TomNicholas, 2024); zarr-specs#399 design 1", "Built: zarr-python and VirtualiZarr branches"),
     "zarr_reference": ("zarr-specs#288 (jbms): each chunk of a rectilinear grid is a reference to an array", "Built as an evaluation codec"),
     "grid_encoded_shapes": ("zarr-extensions#74 and PR #75 (TomNicholas)", "Emulated: declared in an attribute, read by a patched chunk grid"),
     "domain_convention": ("zarr-extensions#74 (d-v-b): store the padding, declare the valid domain", "Built as a reader-side helper"),
-    "materialize_odd_chunks": ("VirtualiZarr#1111 (selmanozleyen): store the awkward chunks again as native chunks", "Built, generalised to any chunk that does not fit the commonest layout"),
+    "materialize_odd_chunks": ("VirtualiZarr#1111 (selmanozleyen): store the awkward chunks again as native chunks", "Built, for any chunk that does not fit the commonest layout"),
     "native_copy": ("The alternative to virtualizing at all", "Built"),
     "separate_files": ("What users do today", "Run"),
 }
@@ -69,7 +72,12 @@ CASE_LABEL = {
 }
 ARMS = list(LABEL)
 CASES = list(CASE_LABEL)
+VIRTUAL = [a for a in ARMS if a not in ("native_copy", "separate_files")]
 e = html.escape
+
+
+def plain(arm: str) -> str:
+    return re.sub("<[^>]+>", "", LABEL[arm])
 
 
 def size(n: float | None) -> str:
@@ -89,7 +97,7 @@ def count(arm: str) -> int:
     return sum(cell(arm, c).get("outcome") == "equal" for c in CASES)
 
 
-# ------------------------------------------------------------------ tables
+# ------------------------------------------------------------------ the options, and the matrix
 
 
 def options_table() -> str:
@@ -127,100 +135,172 @@ def reasons_list() -> str:
             if x.get("outcome") == "not expressible":
                 seen.setdefault((a, x["why"]), []).append(CASE_LABEL[c].lower())
             elif x.get("outcome") in ("differs", "error"):
-                why = ("xarray fills the file that lacks the variable with NaN, where the stores return the fill value the other files declare"
+                why = ("xarray fills the file that lacks the variable with NaN; the stores return the fill value the other files declare, which is the convention this test compares against"
                        if a == "separate_files" else "reads did not equal the files: " + x.get("why", "")[:120])
                 seen.setdefault((a, why), []).append(CASE_LABEL[c].lower())
-    items = "".join(f"<li><b>{re.sub('<[^>]+>', '', LABEL[a])}</b>, {', '.join(cs)}: {e(why)}.</li>" for (a, why), cs in seen.items())
+    items = "".join(f"<li><b>{plain(a)}</b>, {', '.join(cs)}: {e(why)}.</li>" for (a, why), cs in seen.items())
     return f"<ul>{items}</ul>"
 
 
-def unaware_summary(arm: str) -> tuple[str, str]:
-    """(what released zarr-python does, what a reader with the codecs but released Icechunk does)"""
-    out = []
-    for reader in ("released zarr-python, released Icechunk", "zarr-python with the codecs, released Icechunk"):
-        outcomes = [v[reader]["outcome"] for k, v in UNAWARE.items() if k.startswith(arm + "|") and reader in v]
-        if not outcomes:
-            out.append("")
-        elif "WRONG VALUES" in outcomes:
-            out.append(f'<span class="no">wrong values, no error</span> ({outcomes.count("WRONG VALUES")} of {len(outcomes)})')
-        elif all(o == "refuses" for o in outcomes):
-            out.append('<span class="yes">refuses</span>')
-        elif all(o == "reads correctly" for o in outcomes):
-            out.append("reads correctly")
-        else:
-            out.append(f'reads {outcomes.count("reads correctly")}, <span class="yes">refuses</span> {outcomes.count("refuses")}')
-    if arm == "switch_store_context":
-        out[1] = '<span class="sub0">not a stored format: it needs new behaviour from the store</span>'
-    return out[0], out[1]
+# ------------------------------------------------------------------ readers without the feature; without Icechunk
 
 
-def compose_summary(arm: str) -> str:
-    if arm in COMPOSE.get("by_inspection", {}):
-        return f'<span class="sub0">{e(COMPOSE["by_inspection"][arm])} &dagger;</span>'
-    cells = [v for k, v in COMPOSE.get("cells", {}).items() if k.startswith(arm + "|")]
-    if not cells:
+def reader_outcomes(arm: str, reader: str) -> list[str]:
+    return [v[reader]["outcome"] for k, v in UNAWARE.items() if k.startswith(arm + "|") and reader in v]
+
+
+def reader_cell(arm: str, reader: str) -> str:
+    outcomes = reader_outcomes(arm, reader)
+    if not outcomes:
         return ""
-    good = sum(v["outcome"] == "composes as it stands" for v in cells)
-    if good == len(cells):
-        return f'<span class="yes">yes</span> ({good} of {len(cells)})'
-    silent = sum("values are wrong" in v.get("why", "") for v in cells)
-    tail = f"; {silent} read wrong values without an error" if silent else ""
-    return f'<span class="no">no</span>: correct in {good} of {len(cells)}{tail}'
+    n = len(outcomes)
+    parts = []
+    for outcome, cls, word in (("WRONG VALUES", "no", "wrong values, no error"), ("reads correctly", "", "reads"), ("refuses", "yes", "refuses"), ("probe failed", "dash", "probe failed")):
+        k = outcomes.count(outcome)
+        if k:
+            text = f"{word} {k}" if k < n else (word if outcome != "reads correctly" else "reads correctly")
+            parts.append(f'<span class="{cls}">{text}</span>' if cls else text)
+    return ", ".join(parts) + (f' <span class="sub0">of {n}</span>' if len(parts) > 1 else "")
 
 
-def scale(arm: str, kind: str, field: str, n: int = 16000) -> float | None:
+def kerchunk_cell(arm: str) -> str:
+    runs = [v["outcome"] for k, v in KERCHUNK.get("cells", {}).items() if k.startswith(arm + "|")]
+    if not runs:
+        return '<span class="dash">not run</span>'
+    ok = runs.count("equal")
+    return f'{"<span class=yes>" if ok == len(runs) else ""}{ok} of {len(runs)}{"</span>" if ok == len(runs) else ""}'
+
+
+def readers_table() -> str:
+    body = ""
+    for a in VIRTUAL:
+        body += (f"<tr><td>{LABEL[a]}</td><td class=\"n\">{count(a)} of {len(CASES)}</td>"
+                 f"<td>{reader_cell(a, 'released zarr-python, released Icechunk')}</td>"
+                 f"<td>{reader_cell(a, 'zarr-python with the codecs, released Icechunk')}</td><td class=\"n\">{kerchunk_cell(a)}</td></tr>")
+    return f"""<div class="scroll"><table><thead><tr><th>Option</th><th class="n">Cases described</th><th>Released zarr-python and Icechunk</th>
+<th>Codecs installed, released Icechunk</th><th class="n">Read as Kerchunk references</th></tr></thead><tbody>{body}</tbody></table></div>"""
+
+
+# ------------------------------------------------------------------ composition
+
+
+def compose_counts(arm: str, operation: str) -> dict:
+    out = {"composes": 0, "wrong values, no error": 0, "fails with an error": 0}
+    for k, v in COMPOSE.get("cells", {}).items():
+        a, _, op = k.split("|")
+        if a == arm and op == operation and v["outcome"] in out:
+            out[v["outcome"]] += 1
+    return out
+
+
+def compose_cell(arm: str, operation: str) -> str:
+    c = compose_counts(arm, operation)
+    n = sum(c.values())
+    if not n:
+        return ""
+    if c["composes"] == n:
+        return f'<span class="yes">&#10003;</span> {n} of {n}'
+    parts = [f'{c["composes"]} of {n}']
+    if c["wrong values, no error"]:
+        parts.append(f'<span class="no">{c["wrong values, no error"]} wrong, no error</span>')
+    if c["fails with an error"]:
+        parts.append(f'{c["fails with an error"]} error')
+    return "; ".join(parts)
+
+
+def compose_table() -> str:
+    ops = COMPOSE.get("operations", [])
+    head = "".join(f"<th>{o[0].upper() + o[1:]}</th>" for o in ops)
+    body = ""
+    for a in VIRTUAL:
+        if a in COMPOSE.get("ordinary_arrays", []):
+            body += f'<tr><td>{LABEL[a]}</td><td colspan="{len(ops)}" class="sub0">an ordinary array: nothing beside the manifest to go stale (not run)</td></tr>'
+        elif any(k.startswith(a + "|") for k in COMPOSE.get("cells", {})):
+            body += f"<tr><td>{LABEL[a]}</td>" + "".join(f"<td>{compose_cell(a, o)}</td>" for o in ops) + "</tr>"
+    return f"""<div class="scroll"><table><thead><tr><th>Option</th>{head}</tr></thead><tbody>{body}</tbody></table></div>"""
+
+
+def compose_total(arm: str) -> dict:
+    out = {"composes": 0, "wrong values, no error": 0, "fails with an error": 0}
+    for op in COMPOSE.get("operations", []):
+        for k, v in compose_counts(arm, op).items():
+            out[k] += v
+    return out
+
+
+# ------------------------------------------------------------------ growth
+
+
+def scale(arm: str, kind: str, field: str, n: int = 16000):
     return SCALING.get(f"{kind}|{n}", {}).get(arm, {}).get(field)
 
 
-def requirements_table() -> str:
-    body = ""
-    for a in ARMS[:-1]:
-        zarr_side, store_side = unaware_summary(a)
-        body += (f"<tr><td>{LABEL[a]}</td><td class=\"n\">{count(a)} of {len(CASES)}</td><td>{zarr_side}</td><td>{store_side}</td>"
-                 f"<td>{compose_summary(a)}</td></tr>")
-    return f"""<div class="scroll"><table><thead><tr><th>Option</th><th class="n">Cases described</th><th>Released zarr-python</th>
-<th>Codecs known, released Icechunk</th><th>Leading chunks dropped, nothing else rewritten</th></tr></thead><tbody>{body}</tbody></table></div>"""
+def best(kind: str, field: str, n: int = 16000) -> float:
+    """The smallest value among the options that keep the array virtual."""
+    return min(v[field] for a, v in SCALING[f"{kind}|{n}"].items() if a != "native_copy" and v.get("outcome") == "equal")
 
 
 def scaling_table() -> str:
     arms = [a for a in ARMS if scale(a, "alternate", "outcome") or scale(a, "packed", "outcome")]
+    fields = [("zarr_json_bytes", size), ("virtual_bytes", size), ("open_seconds", lambda v: f"{v:.2f} s"), ("build_seconds", lambda v: f"{v:.0f} s"),
+              ("microseconds_per_chunk", lambda v: f"{v / 1000:.2f} ms")]
     body = ""
     for a in arms:
         tds = ""
         for kind in ("alternate", "packed"):
             if scale(a, kind, "outcome") != "equal":
-                tds += '<td class="n dashcell" colspan="4">cannot describe it</td>'
+                tds += f'<td class="n dashcell" colspan="{len(fields)}">cannot describe it</td>'
                 continue
-            meta = scale(a, kind, "zarr_json_bytes")
-            tds += (f'<td class="n{" hot" if meta > 100_000 else ""}">{size(meta)}</td><td class="n">{size(scale(a, kind, "manifest_bytes"))}</td>'
-                    f'<td class="n">{scale(a, kind, "build_seconds"):.0f} s</td><td class="n">{scale(a, kind, "microseconds_per_chunk") / 1000:.2f} ms</td>')
+            for field, fmt in fields:
+                v = scale(a, kind, field)
+                hot = a != "native_copy" and v >= 3 * best(kind, field) and not (field == "open_seconds" and v < 0.1)
+                tds += f'<td class="n{" hot" if hot else ""}">{fmt(v)}</td>'
         body += f"<tr><td>{LABEL[a]}</td>{tds}</tr>"
+    cols = '<th class="n">zarr.json as read</th><th class="n">Stored, all but chunk data</th><th class="n">Open</th><th class="n">Write</th><th class="n">Read all, per chunk</th>'
     return f"""<div class="scroll"><table><thead>
-<tr><th></th><th class="n" colspan="4">Two layouts alternating chunk by chunk</th><th class="n" colspan="4">Every chunk packed its own way</th></tr>
-<tr><th>Option</th><th class="n">zarr.json</th><th class="n">Manifests</th><th class="n">Build</th><th class="n">Read, per chunk</th>
-<th class="n">zarr.json</th><th class="n">Manifests</th><th class="n">Build</th><th class="n">Read, per chunk</th></tr></thead><tbody>{body}</tbody></table></div>"""
+<tr><th></th><th class="n" colspan="{len(fields)}">Two layouts alternating chunk by chunk</th><th class="n" colspan="{len(fields)}">Every chunk packed its own way</th></tr>
+<tr><th>Option</th>{cols}{cols}</tr></thead><tbody>{body}</tbody></table></div>"""
 
 
-def growth_note() -> str:
-    def series(arm: str, kind: str) -> str:
-        return " → ".join(size(scale(arm, kind, "zarr_json_bytes", n)) for n in (1000, 4000, 16000))
-
-    return (f"Growth of <code>zarr.json</code> from 1,000 to 4,000 to 16,000 chunks, every chunk packed its own way: by position {series('switch_position', 'packed')}; "
-            f"by key {series('switch_key', 'packed')}; key + parameters {series('switch_key_parameters', 'packed')}; store context {series('switch_store_context', 'packed')}.")
+def spread() -> float:
+    """The largest spread between repeats of the same read, as a fraction of the median."""
+    return max((v.get("read_all_spread", 0) for run in SCALING.values() for v in run.values()), default=0)
 
 
-def perf_table(which: str) -> str:
+def growth(arm: str, kind: str, field: str) -> str:
+    return " → ".join(size(scale(arm, kind, field, n)) for n in (1000, 4000, 16000))
+
+
+def per_chunk(arm: str, kind: str, n: int = 16000) -> float:
+    return scale(arm, kind, "microseconds_per_chunk", n) / 1000
+
+
+# ------------------------------------------------------------------ real granules
+
+
+def perf_reads(which: str) -> list[str]:
+    return list(next(v["reads"] for v in PERF[which]["arms"].values() if v.get("reads")))
+
+
+def perf_table(which: str, whole_record_series: bool = False) -> str:
     perf = PERF[which]
     if not perf:
         return "<p class=\"note\">Not run.</p>"
-    reads = list(next(v["reads"] for v in perf["arms"].values() if v.get("reads")))
-    short = [r.split(":")[0] + ":" + r.split(":")[1].split(",")[0] for r in reads]
+    reads = perf_reads(which)
+    short = []
+    for r in reads:
+        s = r.split(":")[0] + ":" + r.split(":")[1].split(",")[0]
+        if whole_record_series and "10 years" in r:
+            s = "series: one cell, the whole record again"
+        short.append(s)
     head = "".join(f'<th class="n" title="{e(r)}">{e(s)}</th>' for r, s in zip(reads, short))
     body = ""
     base = perf["arms"].get("switch_position", {}).get("reads", {})
     for a, v in perf["arms"].items():
         if v.get("outcome") == "not expressible":
-            body += f'<tr><td>{LABEL[a]}</td><td class="dashcell" colspan="{len(reads) + 3}">cannot describe it: {e(v["why"])}</td></tr>'
+            body += f'<tr><td>{LABEL[a]}</td><td class="dashcell" colspan="{len(reads) + 2}">cannot describe it: {e(v["why"])}</td></tr>'
+            continue
+        if not v.get("reads"):
             continue
         tds = ""
         same_requests = True
@@ -229,21 +309,25 @@ def perf_table(which: str) -> str:
             ok = "" if x["equal_to_files"] else ' <span class="no">&#10007;</span>'
             tds += f'<td class="n">{x["seconds"]:.2f} s{ok}</td>'
             same_requests &= x.get("source_requests") == base.get(r, {}).get("source_requests")
-        req = '<span class="yes">same</span>' if same_requests else "/".join(str(v["reads"][r].get("source_requests")) for r in reads)
-        body += f'<tr><td>{LABEL[a]}</td>{tds}<td class="n">{req}</td><td class="n">{size(v.get("manifest_bytes"))}</td><td class="n">{v.get("build_seconds", 0):.1f} s</td></tr>'
+        req = '<span class="yes">same</span>' if same_requests else " · ".join(f"{v['reads'][r].get('source_requests'):,}" for r in reads)
+        body += f'<tr><td>{LABEL[a]}</td>{tds}<td class="n">{req}</td><td class="n">{size(v.get("manifest_bytes"))}</td></tr>'
     requests = " · ".join(f"{base[r].get('source_requests'):,}" for r in reads) if base else ""
-    return f"""<div class="scroll"><table><thead><tr><th>Option</th>{head}<th class="n">Source requests</th><th class="n">Manifests</th><th class="n">Build</th></tr></thead>
+    runs = sorted({x["runs"] for v in perf["arms"].values() for x in v.get("reads", {}).values()})
+    return f"""<div class="scroll"><table><thead><tr><th>Option</th>{head}<th class="n">Source requests</th><th class="n">Manifests</th></tr></thead>
 <tbody>{body}</tbody></table></div>
-<p class="note">Requests reaching the source for the reads, in column order, by position: {requests}. &ldquo;Same&rdquo; means the same count for every read.</p>"""
+<p class="note">Requests reaching the source, in column order, by position: {requests}. &ldquo;Same&rdquo; means the same count for every read. Each time is the median of {' or '.join(str(r) for r in runs)} runs (a read is repeated until three runs or a minute has passed).</p>"""
 
 
-def kerchunk_sentence() -> str:
-    cells = KERCHUNK.get("cells", {})
-    pos = [v["outcome"] for k, v in cells.items() if k.startswith("switch_position|")]
-    key = [v["outcome"] for k, v in cells.items() if k.startswith("switch_key|")]
-    return (f"As Kerchunk references read through fsspec, position selection read correctly in {pos.count('equal')} of {len(pos)} cases "
-            f"(the exception is the chunk-shape change, which needs virtual shards); key selection in {key.count('equal')} of {len(key)}, "
-            "because a Kerchunk reference is either inline bytes or one byte range, never a literal followed by a range.")
+def seconds(which: str, arm: str, read: str = "series: every day at one cell") -> float:
+    return PERF[which]["arms"][arm]["reads"][read]["seconds"]
+
+
+def requests(which: str, arm: str, read: str = "series: every day at one cell") -> int:
+    return PERF[which]["arms"][arm]["reads"][read]["source_requests"]
+
+
+def manifest(which: str, arm: str) -> int:
+    return PERF[which]["arms"][arm]["manifest_bytes"]
 
 
 def tensorstore_sentence() -> str:

@@ -2,77 +2,126 @@
 
     python compose.py
 
-The operation: drop the first chunks along the joined axis (a chunk-aligned slice, or a
-shift). Only what any manifest tool can do is done: the array's shape and chunk grid lose
-those chunks, and the remaining references move up. The codec's configuration, and any
-table the option keeps elsewhere, are left exactly as they were. If reads still equal
-the files, the option composes with such operations as it stands.
+Three operations, each done the way a manifest tool would: the array's shape and chunk
+grid lose the chunks, and the remaining references move up. Whatever else an option
+keeps (a codec's configuration, a side array, a list of pieces, an attribute) is left
+exactly as it was.
+
+    drop first chunk      the first chunk along the joined axis goes
+    drop first file       every chunk of the first file goes
+    drop last chunk       the last chunk along the joined axis goes
+
+Chunks are counted in each option's own grid, so every option is asked the same three
+things whatever its chunks are. If reads still equal the files, the option composes with
+that operation as it stands. Otherwise it either fails with an error or, worse, returns
+wrong values.
+
+Every option that stores a virtual array is run, with nothing decided in advance. Two
+caveats on reading the results, both about emulations: the store-context option keeps
+its table in a Python wrapper indexed by position, where a store that kept the context
+with each reference would carry it along; and the grid option keeps its encoded sizes in
+an attribute, where the proposal puts them in the chunk grid that such a tool rewrites.
 """
+
+from __future__ import annotations
 
 import json
 
+import h5py
 import numpy as np
+from zarr.core.chunk_grids import ChunkGrid
 
 import arms
 import cases as cases_module
+import common
 from common import RESULTS, NotExpressible, pieces_of, same
 
-TRIALS = {"codec_eras": 4, "padded_last_chunk": 2, "chunk_shape_change": 1, "layouts_alternate": 3, "packing_per_file": 5}
-SKIP = {
-    "array_concat": "the joined array has no chunks of its own; dropping part of it means editing the codec's list of pieces, and only whole pieces can go",
-    "zarr_reference": "one chunk per piece: whole pieces can be dropped as chunks, part of a piece cannot",
-    "materialize_odd_chunks": "an ordinary array: nothing beyond the manifest",
-    "native_copy": "an ordinary array: nothing beyond the manifest",
-    "separate_files": "not a stored array",
-}
+common.STORE_SUFFIX = "__composed"
 
-if __name__ == "__main__":
+TRIALS = ["codec_eras", "padded_last_chunk", "chunk_shape_change", "layouts_alternate", "packing_per_file", "fill_value_differs"]
+ORDINARY = {"materialize_odd_chunks", "native_copy"}  # ordinary arrays: there is nothing beside the manifest to go stale
+OPERATIONS = ["drop first chunk", "drop first file", "drop last chunk"]
+
+
+def edges_of(array) -> list[int]:
+    return [int(n) for n in ChunkGrid.from_metadata(array.metadata).chunk_sizes[0]]
+
+
+def main() -> None:
     all_cases = cases_module.build()
-    report: dict = {"operation": "drop the first chunks along the joined axis; codec configuration untouched", "by_inspection": SKIP, "cells": {}}
-    for name, k in TRIALS.items():
+    report: dict = {"operations": OPERATIONS, "ordinary_arrays": sorted(ORDINARY), "cells": {}}
+    for name in TRIALS:
         case = all_cases[name]
+        first_file = 4 if 0 in case.absent else h5py.File(case.files[0], "r")["v"].shape[0]
         for arm, build in arms.ARMS.items():
-            if arm in SKIP:
+            if arm in ORDINARY or arm == "separate_files":
                 continue
-            arms.DROP_CHUNKS = 0
+            arms.DROP_FIRST = arms.DROP_LAST = 0
             try:
                 whole = build(case, pieces_of(case))
             except NotExpressible:
                 continue
-            grid0 = whole.array.read_chunk_sizes[0] if hasattr(whole.array, "read_chunk_sizes") else None
-            sizes = json.loads(json.dumps(whole.array.metadata.to_dict()["chunk_grid"], default=str))["configuration"]
-            edges = sizes.get("chunk_shapes", [None])[0]
-            arms.DROP_CHUNKS = k
-            cell: dict = {}
-            report["cells"][f"{arm}|{name}"] = cell
-            try:
-                built = build(case, pieces_of(case))
-                dropped = whole.array.shape[0] - built.array.shape[0]
-                want = case.truth[dropped:] if arm != "domain_convention" else None
-                if arm == "domain_convention":
-                    cell["outcome"] = "needs its own metadata rewritten"
-                    cell["why"] = "the declared domain still lists the dropped chunks' ranges"
-                    got = None
-                    try:
-                        got = built.read((slice(None),) * 3)
-                    except Exception as err:
-                        cell["why"] += f" ({type(err).__name__})"
+            edges = edges_of(whole.array)
+            starts = np.concatenate([[0], np.cumsum(edges)])
+            total = whole.array.shape[0] if arm != "domain_convention" else case.truth.shape[0]
+            boundary = int(np.searchsorted(starts, first_file)) if first_file in starts else None
+            for operation in OPERATIONS:
+                cell: dict = {}
+                if operation == "drop first chunk":
+                    first, last = 1, 0
+                elif operation == "drop first file":
+                    if boundary is None or boundary == 0:
+                        cell.update(outcome="not applicable", why="no chunk boundary falls at the end of the first file")
+                        report["cells"][f"{arm}|{name}|{operation}"] = cell
+                        continue
+                    first, last = boundary, 0
+                else:
+                    first, last = 0, 1
+                if first + last >= len(edges):
                     continue
-                got = built.read((slice(None),) * 3)
-                cell["outcome"] = "composes as it stands" if same(case, got, want) else "needs its own metadata rewritten"
-                if cell["outcome"] != "composes as it stands":
-                    cell["why"] = "reads without error but the values are wrong" if np.asarray(got).shape == want.shape else "reads the wrong shape"
-            except Exception as err:
-                cell.update(outcome="needs its own metadata rewritten", why=f"{type(err).__name__}: {str(err)[:160]}")
-            finally:
-                arms.DROP_CHUNKS = 0
+                report["cells"][f"{arm}|{name}|{operation}"] = cell
+                # what the remaining chunks hold, in the files' terms
+                if arm == "domain_convention":  # its grid counts stored sizes; the data behind each chunk is what matters
+                    logical = [b - a for a, b in whole.array.attrs["domain"]]
+                    per_chunk = _logical_per_chunk(edges, whole.array.attrs["domain"])
+                else:
+                    per_chunk = [min(e, max(0, total - int(s))) for e, s in zip(edges, starts)]
+                lo = sum(per_chunk[:first])
+                hi = sum(per_chunk[: len(per_chunk) - last])
+                want = case.truth[lo:hi]
+                arms.DROP_FIRST, arms.DROP_LAST = first, last
+                try:
+                    built = build(case, pieces_of(case))
+                    got = np.asarray(built.read((slice(None),) * 3))
+                    if same(case, got, want):
+                        cell["outcome"] = "composes"
+                    else:
+                        cell["outcome"] = "wrong values, no error"
+                        cell["why"] = "the wrong shape" if got.shape != want.shape else f"{int((~np.isclose(got, want, equal_nan=True)).sum())} of {want.size} cells differ"
+                except Exception as err:
+                    cell.update(outcome="fails with an error", why=f"{type(err).__name__}: {str(err)[:140]}")
+                finally:
+                    arms.DROP_FIRST = arms.DROP_LAST = 0
+    RESULTS.mkdir(parents=True, exist_ok=True)
     (RESULTS / "compose.json").write_text(json.dumps(report, indent=1))
-    names = list(TRIALS)
-    print(" " * 24, *[n[:12].ljust(12) for n in names])
-    for arm in arms.ARMS:
-        row = [report["cells"].get(f"{arm}|{n}", {}).get("outcome", "") for n in names]
-        if any(row):
-            print(arm.ljust(24), *[{"composes as it stands": "ok", "needs its own metadata rewritten": "REWRITE", "": "."}[r].ljust(12) for r in row])
-    for k, c in report["cells"].items():
-        if "why" in c:
-            print(k.ljust(40), c["why"][:150])
+    mark = {"composes": "ok", "wrong values, no error": "WRONG", "fails with an error": "error", "not applicable": "n/a"}
+    for operation in OPERATIONS:
+        print("\n" + operation)
+        print(" " * 30, *[n[:12].ljust(12) for n in TRIALS])
+        for arm in arms.ARMS:
+            row = [report["cells"].get(f"{arm}|{n}|{operation}", {}).get("outcome") for n in TRIALS]
+            if any(row):
+                print(arm.ljust(30), *[(mark[r] if r else ".").ljust(12) for r in row])
+
+
+def _logical_per_chunk(edges: list[int], domain: list[list[int]]) -> list[int]:
+    """For an array stored with its padding: how many valid steps each stored chunk holds."""
+    out, start = [], 0
+    for e in edges:
+        out.append(sum(max(0, min(b, start + e) - max(a, start)) for a, b in domain))
+        start += e
+    return out
+
+
+if __name__ == "__main__":
+    main()

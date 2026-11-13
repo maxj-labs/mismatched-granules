@@ -19,67 +19,89 @@ table.grid th.c { white-space: normal; font-size: 11.5px; line-height: 1.25; min
 ol { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 6px; }
 """
 
+BY_REFERENCE = ["switch_key", "switch_case_id", "switch_key_parameters"]
+BY_POSITION = ["switch_position", "switch_index_prefix", "switch_sidecar", "switch_store_context"]
+CASE_TABLE = ["switch_position", "switch_key", "switch_case_id", "switch_key_parameters", "switch_index_prefix", "switch_sidecar", "switch_store_context"]
+
 
 def render(g: dict) -> str:
     style = BRIEF.read_text()
     head = style[: style.index("</style>")].replace("<title>One Array from Mismatched Granules</title>", "<title>Every Option, Tested</title>")
-    count, scale, size, LABEL, CASES = g["count"], g["scale"], g["size"], g["LABEL"], g["CASES"]
-    full = [a for a in g["ARMS"][:10] if count(a) == len(CASES)]
+    count, scale, size, CASES, plain = g["count"], g["scale"], g["size"], g["CASES"], g["plain"]
+    total, per_chunk, seconds, requests, manifest, growth = g["compose_total"], g["per_chunk"], g["seconds"], g["requests"], g["manifest"], g["growth"]
     cases = "".join(f"<li><b>{g['CASE_LABEL'][c]}.</b> {g['e'](g['MATRIX']['cases'][c][0].upper() + g['MATRIX']['cases'][c][1:])}.</li>" for c in CASES)
-    pr, na = g["PERF"]["pr"], g["PERF"]["na"]
-    refkv = g["REFKV"]
-    refkv_rows = {r["workload"]: r for r in refkv.get("rows", [])}
+    pr, na, pr120 = g["PERF"]["pr"], g["PERF"]["na"], g["PERF"]["pr120"]
+    refkv_rows = {r["workload"]: r for r in g["REFKV"].get("rows", [])}
     long_read = "series: every day at one cell"
-    high = g["load"]("perf_pr_tmin_concurrency_120.json")
+    whole_map = "map: 2 days, whole grid, across the 2020 change"
 
-    def seconds(report: dict, arm: str, read: str = long_read) -> float:
-        return report["arms"][arm]["reads"][read]["seconds"]
+    def trials(arms: list[str], outcome: str) -> int:
+        return sum(total(a)[outcome] for a in arms)
 
-    concat_manifest = scale("array_concat", "alternate", "manifest_bytes") / scale("switch_key", "alternate", "manifest_bytes")
+    def all_trials(arms: list[str]) -> int:
+        return sum(sum(total(a).values()) for a in arms)
+
+    def span(arms: list[str], fn) -> str:
+        values = [fn(a) for a in arms]
+        return f"{min(values):.2f} to {max(values):.2f}"
+
+    table_pr = [a for a in CASE_TABLE if a in pr["arms"] and pr["arms"][a].get("reads")]
+    series = [seconds("pr", a) for a in table_pr]
+    latency = seconds("pr", "switch_position") / requests("pr", "switch_position") * 10 * 1000
+    fast = [a for a in pr120.get("arms", {}) if pr120["arms"][a].get("reads")]
+    fast_table = [seconds("pr120", a) for a in fast if a in CASE_TABLE]
+    stored = {a: scale(a, "packed", "virtual_bytes") for a in CASE_TABLE if scale(a, "packed", "outcome") == "equal"}
+    stored_alt = {a: scale(a, "alternate", "virtual_bytes") for a in CASE_TABLE if scale(a, "alternate", "outcome") == "equal"}
+    doc_small = [a for a in CASE_TABLE if scale(a, "packed", "outcome") == "equal" and scale(a, "packed", "zarr_json_bytes") < 10_000]
+    doc_large = [a for a in CASE_TABLE if scale(a, "packed", "outcome") == "equal" and scale(a, "packed", "zarr_json_bytes") >= 10_000]
+    concat_ratio = [scale("array_concat", "alternate", "microseconds_per_chunk", n) / scale("switch_key", "alternate", "microseconds_per_chunk", n) for n in (1000, 4000, 16000)]
+    kerchunk = {a: [v["outcome"] for k, v in g["KERCHUNK"]["cells"].items() if k.startswith(a + "|")] for a in ("switch_position", "switch_key")}
+    known = "zarr-python with the codecs, released Icechunk"
+
     return f"""{head}{EXTRA_CSS}</style>
 
 <div class="wrap">
 
 <header>
   <section>
-    <div class="eyebrow">Evaluation &middot; 11 November 2026</div>
+    <div class="eyebrow">Evaluation &middot; revised 13 November 2026</div>
     <h1>Every Option, Tested</h1>
-    <p class="lede">The discussions on joining mismatched granules into one Zarr array propose about fifteen different mechanisms. Each was built or emulated and run against the same ten cases, the same requirements and the same real granules. This page reports what each one did.</p>
-    <p class="byline">Companion to <a href="https://maxj-labs.github.io/mismatched-granules/brief.html">One Array from Mismatched Granules</a>. Every mark and number below is generated from result files in <a href="https://github.com/maxj-labs/mismatched-granules">maxj-labs/mismatched-granules</a> (<span class="mono">eval/</span>, <span class="mono">results/eval/</span>). Prepared with Claude; the judgements at the end are its reading of the results.</p>
+    <p class="lede">The discussions on joining mismatched granules into one Zarr array propose about fifteen mechanisms. Each was built or emulated and run against the same ten small cases. Subsets were then run against three manifest operations, two worst cases and real Daymet granules. This page reports what each one did.</p>
+    <p class="byline">Every mark and number in the tables, and every figure quoted in the text, is generated from result files in <a href="https://github.com/maxj-labs/mismatched-granules">maxj-labs/mismatched-granules</a> (<span class="mono">eval/</span>, <span class="mono">results/eval/</span>). Prepared with Claude. This version replaces one whose tests favoured some options over others; what changed is listed at the end.</p>
   </section>
 </header>
 
 <section>
   <div class="claims">
     <div class="claim">
-      <div class="who">Held up best</div>
-      <div class="what">A case table, with each chunk's case carried in its own reference</div>
-      <div class="why">Described {count("switch_key_parameters")} of {len(CASES)} cases, survived a manifest operation untouched, and kept <code>zarr.json</code> at {size(scale("switch_key_parameters", "packed", "zarr_json_bytes"))} with 16,000 chunks each packed differently. Needs the Icechunk change.</div>
+      <div class="who">What separates the options</div>
+      <div class="what">Whether a chunk's case travels with its reference</div>
+      <div class="why">A tool that knows nothing of the codec dropped chunks from the front or the end of each array. Options that keep the case in each reference read correctly in {trials(BY_REFERENCE, "composes")} of {all_trials(BY_REFERENCE)} trials. Options that look it up by position read correctly in {trials(BY_POSITION, "composes")} of {all_trials(BY_POSITION)} (every failure came from dropping at the front), and returned wrong values with no error in {trials(BY_POSITION, "wrong values, no error")}.</div>
     </div>
     <div class="claim">
-      <div class="who">Works today, with a catch</div>
-      <div class="what">The same table, with the case found from the chunk's position</div>
-      <div class="why">Described {count("switch_position")} of {len(CASES)} and needs no store change. A tool that drops chunks without rewriting the table left it reading wrong values, twice without any error.</div>
+      <div class="who">What does not</div>
+      <div class="what">Speed, among the seven case-table options</div>
+      <div class="why">On twelve years of Daymet Puerto Rico they made the same requests and took {min(series):.1f} to {max(series):.1f} s for a full series. Raising zarr-python's concurrency moved that to about {min(fast_table):.0f} s for all of them.</div>
     </div>
     <div class="claim">
-      <div class="who">Most general, most costly</div>
-      <div class="what">Array concatenation</div>
-      <div class="why">Described {count("array_concat")} of {len(CASES)} and reads with released Icechunk. With one piece per chunk its manifests were {concat_manifest:.0f}&times; larger and each chunk took {scale("array_concat", "alternate", "microseconds_per_chunk") / scale("switch_key", "alternate", "microseconds_per_chunk"):.0f}&times; longer to read.</div>
+      <div class="who">What each one needs</div>
+      <div class="what">A store change, or a codec that must be told where it is</div>
+      <div class="why">Keeping the case in the reference needs Icechunk references that are a literal followed by byte ranges, and cannot be stored as Kerchunk references. Finding it by position needs neither, except where the chunk shape changes.</div>
     </div>
   </div>
 </section>
 
 <section>
   <h2>The options</h2>
-  <div class="prose"><p>Taken from zarr-specs#399 and #288, zarr-extensions#74 and PR&nbsp;#75, NASA-IMPACT/veda-odd#498, VirtualiZarr#1111 and refkv PR&nbsp;#73. Seven of them are the same codec, a table of cases, and differ only in how a chunk's case is found; that is the question most of the threads argue about, so each way is tested separately.</p></div>
+  <div class="prose"><p>Taken from zarr-specs#399 and #288, zarr-extensions#74 and PR&nbsp;#75, NASA-IMPACT/veda-odd#498, VirtualiZarr#1111 and refkv PR&nbsp;#73. Seven of them are the same codec, a table of cases, and differ only in where a chunk's case is kept. They share one planner and one way of writing the table down, so their rows differ only by that choice.</p></div>
   {g["options_table"]()}
   <div class="prose">
-    <p><b>Virtual shards</b> (d-v-b, zarr-specs#399) are not a row of their own: every switch option uses them when the chunk shape changes, which is the &ldquo;chunk shape change&rdquo; case below.</p>
+    <p><b>Virtual shards</b> (d-v-b, zarr-specs#399) are not a row of their own: every case-table option uses them when the chunk shape changes, which is the &ldquo;chunk shape change&rdquo; case below.</p>
     <p><b>Proposed but not built.</b></p>
     <ul>
       <li><b>A storage transformer</b> (zarr-specs#399 design 2.3; a generalised transformer chain, mkitti). zarr-python refuses any array that declares one, so there is nothing to run it in.</li>
       <li><b>An &ldquo;array to files&rdquo; codec</b> (jbms). It ends the rule of one key per chunk, which Icechunk, VirtualiZarr and zarr-python all assume. Too large a change to prototype here.</li>
-      <li><b>A union data type</b> (d-v-b). It would let one array hold two data types; it does not address codecs, chunk shapes or padding, and the data-type case is handled by a cast in the chain.</li>
+      <li><b>A union data type</b> (d-v-b). It would let one array hold two data types; it does not address codecs, chunk shapes or padding.</li>
       <li><b>Index transforms as in TensorStore</b> (jbms). TensorStore cannot read virtual references, so its stack driver was only measured for cost on native arrays, below.</li>
     </ul>
   </div>
@@ -90,6 +112,9 @@ def render(g: dict) -> str:
   <div class="prose"><p>Ten small sets of netCDF4 or HDF5 files, each a way real granules disagree. An option passes a case when every read (the whole array, a window across each seam, single cells, one row along the joined axis) equals what the files' own reader returns.</p></div>
   {g["matrix_table"]()}
   <div class="key"><span><span class="yes">&#10003;</span> every read equals the files</span><span><span class="dash">&ndash;</span> the option cannot describe the case (hover for why)</span><span><span class="no">&#10007;</span> reads differ from the files</span></div>
+  <div class="prose">
+    <p><b>How to read this table.</b> The seven case-table rows pass together because they share a planner and a codec that also crops, casts and carries a fill value; they are one result about that bundle, shown seven times. The narrower proposals were written to solve one problem each, so a low count says how much of the whole problem one of them covers, not that it fails at its own job. Two of them used together cover {count("conditional_with_grid_shapes")} of {len(CASES)}. The two copying rows are written from the same values they are compared with, so their marks show only that copying is possible, and how much is copied.</p>
+  </div>
   <div class="two">
     <div>
       <h3>The cases</h3>
@@ -103,55 +128,70 @@ def render(g: dict) -> str:
 </section>
 
 <section>
-  <h2>Against the requirements in zarr-specs#399</h2>
-  <div class="prose"><p>The issue lists what a solution should do: fail safely for readers that do not understand it, compose with operations on the manifest, and work without Icechunk. Each was tested where it could be.</p></div>
-  {g["requirements_table"]()}
+  <h2>Readers that lack the feature, and stores that are not Icechunk</h2>
+  <div class="prose"><p>Every store from the table above was opened by two readers: released zarr-python 3.4.2 with released Icechunk, and zarr-python with the new codecs installed but released Icechunk. The arrays planned by position and by key were also written as Kerchunk references and read through fsspec.</p></div>
+  {g["readers_table"]()}
   <div class="prose">
-    <p><b>Readers without the feature.</b> Every store from the matrix was opened by released zarr-python 3.4.2. All the codec options are refused with <code>UnknownCodecError</code>. The declared domain is the exception: an ordinary reader sees the padding as data and returns an array of the wrong shape with no error. The grid option is refused only by an unrelated reshape error. A reader that has the codecs but released Icechunk refuses every store whose references carry a prefix or several ranges (<code>FormatError</code>), and reads the rest correctly. One refusal is luck: with the index-prepending store, released Icechunk hands the codec chunk bytes with no index in front, and the codec fails only because the bytes it takes for an index point outside its table.</p>
-    <p><b>Composition.</b> The first chunks of each array were dropped the way a manifest tool would: shape and chunk grid shortened, references moved up, the codec's configuration untouched. Options that find the case from something stored with the chunk still read correctly. Options that find it from the chunk's position do not, and in the alternating-layout and packing cases they returned wrong values without an error. A store that kept the context with each reference would carry it along, which is how that row is emulated.</p>
-    <p><b>Without Icechunk.</b> {g["kerchunk_sentence"]()} Concatenation and the side-array option need only plain references. Key selection was also run on refkv as released, which has such references.</p>
-    <p class="note">&dagger; by inspection of how the option stores its data, not by a run.</p>
+    <p><b>Released software.</b> Every codec-based option is refused with <code>UnknownCodecError</code>. The declared domain is the exception: an ordinary reader sees the padding as data and returns an array of the wrong shape with no error. The grid option, where it pads, is refused only by an unrelated reshape error.</p>
+    <p><b>Codecs installed, released Icechunk.</b> Stores whose references carry a prefix or several ranges are refused with <code>FormatError</code>. Position selection reads in {g["reader_outcomes"]("switch_position", known).count("reads correctly")} of {len(g["reader_outcomes"]("switch_position", known))}: it needs the Icechunk change only where the chunk shape changes. The store that prepends an index is refused here by luck, not design: released Icechunk hands the codec bytes with no index in front, and the codec fails because what it takes for an index points outside its table.</p>
+    <p><b>Kerchunk references.</b> Position selection read correctly in {kerchunk["switch_position"].count("equal")} of {len(kerchunk["switch_position"])} cases, the exception being the chunk-shape change. Key selection read in {kerchunk["switch_key"].count("equal")} of {len(kerchunk["switch_key"])}, because a Kerchunk reference is either inline bytes or one byte range, never a literal followed by a range. The other options were not written as Kerchunk references.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Operations on the manifest</h2>
+  <div class="prose"><p>zarr-specs#399 asks that a solution compose with manifest-level operations. Three were run, each the way a tool that knows nothing of the option would do it: the array's shape and chunk grid lose the chunks, and the remaining references move up. Whatever else the option keeps (a codec's configuration, a side array, a list of pieces, an attribute) is left alone. Six of the cases were used; an option was run on those it can describe.</p></div>
+  {g["compose_table"]()}
+  <div class="prose">
+    <p><b>Dropping from the front is what tells the options apart.</b> A case kept in the reference moves with the reference. A table indexed by position does not: the first rows of the table now describe the wrong chunks. Where the misread chunk fails to decompress, the result is an error; where it decompresses to plausible numbers (layouts that differ only in a filter, or in packing), the result is wrong values and no error. Dropping from the end is harmless to every option but concatenation.</p>
+    <p><b>Concatenation refuses rather than misreads.</b> Its codec checks its list of pieces against the array's shape and raises. The reference-per-chunk codec composes because its chunks are whole files, which also means it cannot drop less than a file.</p>
+    <p><b>Three caveats.</b> The store-context row is an emulation whose table is indexed by position; a store that kept the context with each reference would carry it along, and that was not tested. The grid row's encoded sizes sit in an attribute here and in the chunk grid in the proposal, which a manifest tool rewrites anyway; its pass comes from a case where every encoded size is the same. And these are three operations: renaming, concatenating two joined arrays and nesting under another codec were not run.</p>
   </div>
 </section>
 
 <section>
   <h2>Worst cases</h2>
-  <div class="prose"><p>16,000 one-chunk pieces, cut from real netCDF files so that planners and writers see what 16,000 single-chunk granules would give them. Local disk, so the read time is overhead per chunk and not network. The native copy stores eight steps per chunk, so its per-chunk time is not comparable.</p></div>
+  <div class="prose"><p>16,000 one-chunk pieces, cut from real netCDF files so that planners and writers see what 16,000 single-chunk granules would give them. Local disk. Every time is the median of three runs on a newly opened array; repeats of the same read differed by up to {g["spread"]() * 100:.0f}% of the median, so differences smaller than that mean nothing. A figure is marked when it is three or more times the smallest in its column among the options that keep the array virtual.</p></div>
   {g["scaling_table"]()}
   <div class="prose">
-    <p>{g["growth_note"]()}</p>
-    <p>Only two options keep <code>zarr.json</code> flat when every chunk has parameters of its own: carrying the numbers in each reference, and a store that returns them as context. A key alone, like position, then needs one case per chunk listed in <code>zarr.json</code>: it still works, as the 8-byte key row shows with 16,000 cases, but the metadata grows with the record.</p>
-    <p>The key's length is a setting (<code>key_bytes</code>), not a fixed property. One byte numbers 256 cases, which is why that row cannot describe 16,000 chunks each packed differently; two bytes number 65,536, and the default of eight is long enough to use a hash of the case. Length has little effect on size: on Daymet Puerto Rico the manifests were 74.7 KB with 1-byte keys and 76.4 KB with 8-byte keys.</p>
-    <p>Concatenation with one piece per chunk writes one array per piece, which is what makes its manifests and build time grow. {g["tensorstore_sentence"]()} That is the cost of the general design when the layers are native arrays; it says nothing about virtual ones.</p>
+    <p><b>Two sizes for metadata.</b> &ldquo;zarr.json as read&rdquo; is the document a reader parses when it opens the array. &ldquo;Stored&rdquo; is everything the repository keeps apart from chunk data (snapshots and manifests, compressed). They can differ by an order of magnitude, because a long table of similar cases compresses well.</p>
+    <p><b>Where every chunk has numbers of its own,</b> an option that carries those numbers per chunk keeps the document small ({", ".join(plain(a).replace("Case table · ", "") + " " + size(scale(a, "packed", "zarr_json_bytes")) for a in doc_small)}). An option that can only name a case needs one case per chunk ({", ".join(plain(a).replace("Case table · ", "") + " " + size(scale(a, "packed", "zarr_json_bytes")) for a in doc_large)}), and opening the array then takes {min(scale(a, "packed", "open_seconds") for a in doc_large):.2f} to {max(scale(a, "packed", "open_seconds") for a in doc_large):.2f} s. Stored size tells a different story: {", ".join(plain(a).replace("Case table · ", "") + " " + size(v) for a, v in sorted(stored.items(), key=lambda kv: kv[1]))}. This worst case varies exactly the two numbers the templated options parameterise, so it shows the mechanism at its best.</p>
+    <p><b>Where two layouts alternate,</b> each case is written once, so the document is under 1 KB for the options that keep the case with the chunk and {size(scale("switch_position", "alternate", "zarr_json_bytes"))} by position, which adds a pair of integers per run. Stored: {", ".join(plain(a).replace("Case table · ", "") + " " + size(v) for a, v in sorted(stored_alt.items(), key=lambda kv: kv[1]))}. A prefix in every reference makes manifests larger: {size(scale("switch_key_parameters", "packed", "manifest_bytes"))} with a key and two numbers against {size(scale("switch_position", "packed", "manifest_bytes"))} by position.</p>
+    <p><b>Read time per chunk</b> is the wall time to read everything divided by the number of chunks, with ten chunks in flight; it is not the cost of one chunk. The case-table options took {span([a for a in CASE_TABLE if scale(a, "alternate", "outcome") == "equal"], lambda a: per_chunk(a, "alternate"))} ms in the alternating case and {span([a for a in CASE_TABLE if scale(a, "packed", "outcome") == "equal"], lambda a: per_chunk(a, "packed"))} ms in the packed one. The slow end of the packed range is the options with a case per chunk ({per_chunk("switch_position", "packed"):.1f} ms by position, {per_chunk("switch_key", "packed"):.1f} ms by key alone): with 16,000 distinct codec chains the codec rebuilds a chain for nearly every chunk, where the options that carry numbers per chunk took {min(per_chunk(a, "packed") for a in doc_small):.1f} to {max(per_chunk(a, "packed") for a in doc_small):.1f} ms.</p>
+    <p><b>Concatenation with one piece per chunk</b> writes one array per piece, which is what makes its stored size and write time grow. Its read time per chunk also grows with the number of pieces ({", ".join(f"{r:.0f}&times;" for r in concat_ratio)} the key option's at 1,000, 4,000 and 16,000), which points at my implementation of the codec and not at the design: {g["tensorstore_sentence"]()}</p>
   </div>
 </section>
 
 <section>
   <h2>Real granules</h2>
-  <div class="prose"><p>The same options on Daymet, with the source behind an HTTP server that waits 20 ms per request and counts them. Median of three reads, each from a new session.</p></div>
+  <div class="prose"><p>Ten of the options on Daymet, with the source behind a local HTTP server that waits 20 ms per request and counts them. Each read starts from a new session.</p></div>
   <h3>Daymet Puerto Rico, {pr["years"][0]}&ndash;{pr["years"][1]}: {pr["shape"][0]:,} daily chunks, compression changes in 2020</h3>
   {g["perf_table"]("pr")}
-  <h3>Daymet North America, {na["years"][0]}&ndash;{na["years"][1]}: the chunk shape changes in 2020, so every switch option stores virtual shards</h3>
-  {g["perf_table"]("na")}
+  <h3>Daymet North America, {na["years"][0]}&ndash;{na["years"][1]}: the chunk shape changes in 2020, so every case-table option stores virtual shards</h3>
+  {g["perf_table"]("na", True)}
+  <h3>Puerto Rico again, with zarr-python allowed 120 chunks in flight instead of 10</h3>
+  {g["perf_table"]("pr120")}
   <div class="prose">
-    <p><b>The seven ways of finding the case do not differ on speed.</b> They fetch the same chunks and take the same time to within a few percent, on both datasets. Concatenation matched them on Puerto Rico and made slightly more requests on North America (475 against 439 for the series). The reference-per-chunk codec is the outlier in both directions: faster on the Puerto Rico series, for the reason below, and slower on whole North America maps ({seconds(na, "zarr_reference", "map: 2 days, whole grid, across the 2020 change"):.1f} s against {seconds(na, "switch_position", "map: 2 days, whole grid, across the 2020 change"):.1f} s) with the same requests.</p>
-    <p><b>One apparent winner was an artefact.</b> The reference-per-chunk codec read the Puerto Rico series in {seconds(pr, "zarr_reference"):.1f} s against {seconds(pr, "switch_position"):.1f} s. It reads each year through a nested array read, so twelve years ran at once, each with zarr-python's default of ten chunks in flight. With that setting raised to 120 for everyone, position took {seconds(high, "switch_position"):.1f} s, key {seconds(high, "switch_key"):.1f} s, reference {seconds(high, "zarr_reference"):.1f} s and concatenation {seconds(high, "array_concat"):.1f} s. zarr-python's concurrency setting moves these reads by about {seconds(pr, "switch_position") / seconds(high, "switch_position"):.0f}&times;, far more than any choice between the options.</p>
-    <p><b>refkv as released</b> (0.2.0, no Icechunk), on the same Puerto Rico files and server: {refkv_rows[long_read]["seconds_median"]:.1f} s for the whole series with {refkv_rows[long_read]["source_requests"]:,} requests, every read equal to the files.</p>
+    <p><b>What this test can and cannot show.</b> At the default setting a full series took about {latency:.0f} ms per request with ten in flight, well above the server's 20 ms, so the harness itself dominates and differences of a millisecond per chunk are invisible here. It shows that the options make the same requests, and that none adds a round trip.</p>
+    <p><b>The seven case-table options stay close together:</b> for the full Puerto Rico series, within {(max(series) / min(series) - 1) * 100:.0f}% of each other at the default setting and {(max(fast_table) / min(fast_table) - 1) * 100:.0f}% with 120 in flight, which is inside the run-to-run noise of this harness. Concatenation matched them on Puerto Rico at the default setting, took {seconds("pr120", "array_concat"):.1f} s against {seconds("pr120", "switch_position"):.1f} s with 120 in flight, and made more requests on North America ({requests("na", "array_concat"):,} against {requests("na", "switch_position"):,} for the series).</p>
+    <p><b>The reference-per-chunk codec looked {seconds("pr", "switch_position") / seconds("pr", "zarr_reference"):.0f}&times; faster at the default setting.</b> It reads each year through a nested array read, so twelve years ran at once, each with ten chunks in flight. With 120 allowed for everyone it took {seconds("pr120", "zarr_reference"):.1f} s, the same as the rest. On whole North America maps it was slower ({seconds("na", "zarr_reference", whole_map):.1f} s against {seconds("na", "switch_position", whole_map):.1f} s) with the same requests.</p>
+    <p><b>zarr-python's concurrency setting moved these reads by about {seconds("pr", "switch_position") / seconds("pr120", "switch_position"):.0f}&times;,</b> far more than any choice between the options.</p>
+    <p><b>refkv as released</b> (0.2.0, no Icechunk), on the same Puerto Rico files and server at the default setting: {refkv_rows[long_read]["seconds_median"]:.1f} s for the whole series with {refkv_rows[long_read]["source_requests"]:,} requests, every read equal to the files.</p>
   </div>
 </section>
 
 <section>
-  <h2>What this changes</h2>
+  <h2>Reading the results</h2>
   <div class="prose">
-    <p>The earlier brief suggested shipping position selection first and adding key selection later. These results support a different emphasis.</p>
+    <p>The tests do not produce a single winner. They show two workable designs for the case table, and a trade between them.</p>
     <ul>
-      <li><b>Carry the case with the chunk.</b> A key in each reference, followed by any per-chunk numbers, was the only virtual design that described all ten cases, composed with a manifest operation as it stood, and stayed small in both worst cases. This is refkv PR&nbsp;#73's design. It depends on references that are a literal followed by byte ranges, which the Icechunk branch adds and which virtual shards need anyway.</li>
-      <li><b>Treat position as the route that needs no store change, not as the foundation.</b> It reads through released Icechunk and through Kerchunk references. Its table must be rewritten by every tool that reorders chunks, and a tool that does not know to do so can produce silently wrong data.</li>
-      <li><b>A store context call would be as good on these tests.</b> It matched key + parameters wherever it was run, but only as an emulation: it needs a new store method, a spec change and a place in the manifest, none of which exist.</li>
-      <li><b>Keep concatenation as the fallback.</b> It describes everything and needs nothing from the store. Its costs grow with the number of pieces, not chunks, so it is cheap for a few eras and expensive for many small granules.</li>
-      <li><b>The narrow options are narrow.</b> <span class="mono">conditional</span> described {count("conditional_codec")} of {len(CASES)} cases; encoded chunk shapes in the grid and a declared domain {count("grid_encoded_shapes")}; copying the chunks that do not fit {count("materialize_odd_chunks")}, storing half or more of the data again in five of them.</li>
+      <li><b>Keep the case in each reference</b> (a key, with or without per-chunk numbers; this is refkv PR&nbsp;#73's design). It is the only kind that kept reading correctly when leading chunks were dropped by a tool that does not know the codec. It needs Icechunk references that are a literal followed by byte ranges, which virtual shards also need; it cannot be stored as Kerchunk references; and its manifests are larger.</li>
+      <li><b>Find the case from the chunk's position.</b> It needs no store change unless the chunk shape changes, reads through released Icechunk and as Kerchunk references, and stores least. Any tool that drops or moves leading chunks must rewrite its table, and one that does not can produce wrong values with no error.</li>
+      <li><b>If chunks carry numbers of their own</b> (per-file or per-chunk packing), carrying those numbers per chunk keeps what a reader must parse small. Three options did that here: in the reference, in side arrays, and through a store call. Only the first also survived the manifest operations.</li>
+      <li><b>Concatenation</b> describes everything, reads with released Icechunk once the codec is installed, and refuses rather than misreads when the manifest is changed under it. Its costs grow with the number of pieces, so it suits a few eras better than many small granules.</li>
+      <li><b>The narrow proposals</b> each solve part of the problem and can be combined; two of them together covered {count("conditional_with_grid_shapes")} of the {len(CASES)} cases.</li>
     </ul>
-    <p>One gap closed along the way: key selection could not give a run of unwritten chunks its own fill value, because such chunks have no reference. They are now stored as the key alone, and the fill-value case passes.</p>
+    <p>My reading, which the tests inform but do not settle: the deciding question is whether codec-agnostic tools will rewrite these manifests. If they will, the case belongs in the reference. If every tool that touches them can be taught the table, position is simpler and asks less of the store.</p>
   </div>
 </section>
 
@@ -160,20 +200,29 @@ def render(g: dict) -> str:
   <div class="two">
     <div>
       <ul>
-        <li>Two options are emulations, as marked in the first table: the store context call, and encoded chunk shapes in the grid. An implementation inside Icechunk or zarr-python could behave differently, especially on speed. The store that prepends an index was first emulated and then built into the Icechunk branch; its results did not change.</li>
-        <li>The <span class="mono">conditional</span> codec and the key + parameters codec are my implementations of others' designs. refkv itself was run only on Daymet Puerto Rico.</li>
+        <li>Two options are emulations, as marked in the first table: the store context call, and encoded chunk shapes in the grid. Real implementations could behave differently.</li>
+        <li>The <span class="mono">conditional</span> codec and the key-and-numbers codec are my implementations of others' designs. refkv itself was run only on Daymet Puerto Rico.</li>
         <li>Only zarr-python reads any of these arrays.</li>
+        <li>The ten cases are small files written for this test. They show whether an option can describe a situation, not how common it is. The fraction copied by the copying option reflects how the cases were built: 20% for the padded case here, about 1.4% for a year of Daymet North America.</li>
+        <li>The comparison for a file without the variable is a convention: the fill value the other files declare.</li>
       </ul>
     </div>
     <div>
       <ul>
-        <li>The ten cases are small files written for this test. They show whether an option can describe a situation, not how common the situation is.</li>
-        <li>The composition test is one operation. Renaming an array, concatenating two joined arrays and nesting under another codec were not run.</li>
-        <li>Timings are from one machine against a local HTTP server. Nothing ran against S3.</li>
+        <li>Daymet was run for ten options; the Kerchunk test for two; the worst cases for eleven.</li>
+        <li>Timings are from one machine. Nothing ran against S3.</li>
+        <li>How the store knows to prepend an index is a stand-in (it reads a codec option); a real design needs a flag of its own.</li>
+      </ul>
+      <h3>Changed since the first version</h3>
+      <ul>
+        <li>Position's table is written with each case once. It had repeated the codec chain for every run, which made its metadata look {{megabytes}} large.</li>
+        <li>Stored size is reported beside the size of the document, and the side-array option carries per-chunk numbers like the others.</li>
+        <li>The manifest test runs three operations on every option with nothing decided in advance.</li>
+        <li>Timings are medians of three, and the claim that the options do not differ on speed is limited to what the data shows.</li>
       </ul>
     </div>
   </div>
 </section>
 
 </div>
-"""
+""".replace("{megabytes}", "megabytes")

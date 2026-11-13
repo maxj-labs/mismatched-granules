@@ -38,7 +38,8 @@ def probe(job: tuple[str, str, str]) -> tuple[str, str, dict]:
         env["EVAL_KNOWS_CODECS"] = "1"
     done = subprocess.run(cmd, capture_output=True, text=True, env=env, cwd="/")
     lines = [line for line in done.stdout.splitlines() if line.startswith("{")]
-    return key, reader, json.loads(lines[-1]) if lines else {"outcome": "refuses", "detail": "the reader crashed: " + done.stderr.strip().splitlines()[-1][:200]}
+    # no JSON line means the probe itself failed to start: that is a fault of the test, not a refusal
+    return key, reader, json.loads(lines[-1]) if lines else {"outcome": "probe failed", "detail": (done.stderr.strip().splitlines() or ["no output"])[-1][:200]}
 
 
 if __name__ == "__main__":

@@ -48,6 +48,7 @@ def run(names: list[str]) -> dict:
                 cell["read_seconds"] = round(time.perf_counter() - t0, 3)
                 if built.array is not None:
                     cell["data_type"] = str(built.array.dtype)
+                    cell["data_type_matches_files"] = bool(built.array.dtype == case.truth.dtype)
                     cell["shape_seen_by_a_reader"] = list(built.array.shape)
             except Exception as err:
                 cell.update(outcome="error", why=f"read: {type(err).__name__}: {str(err)[:300]}", trace=traceback.format_exc()[-1500:])

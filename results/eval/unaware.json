@@ -178,7 +178,30 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "conditional_with_grid_shapes|codec_eras": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
    "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
   }
  },
  "array_concat|codec_eras": {
@@ -444,7 +467,30 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "conditional_with_grid_shapes|file_lengths": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
    "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
   }
  },
  "array_concat|file_lengths": {
@@ -728,6 +774,29 @@
    "icechunk_takes_parts": false,
    "outcome": "refuses",
    "detail": "AttributeError: 'IcechunkStore' object has no attribute 'get_chunk_context'"
+  }
+ },
+ "conditional_with_grid_shapes|padded_last_chunk": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
   }
  },
  "array_concat|padded_last_chunk": {
@@ -1993,7 +2062,30 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "conditional_with_grid_shapes|variable_absent": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
    "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
   }
  },
  "array_concat|variable_absent": {
@@ -2299,7 +2391,30 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
+  }
+ },
+ "conditional_with_grid_shapes|layouts_alternate": {
+  "released zarr-python, modified Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": true,
+   "outcome": "refuses",
    "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  },
+  "released zarr-python, released Icechunk": {
+   "zarr": "3.4.2",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "UnknownCodecError: An implementation for codec 'conditional' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install"
+  },
+  "zarr-python with the codecs, released Icechunk": {
+   "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
+   "icechunk": "2.3.1",
+   "icechunk_takes_parts": false,
+   "outcome": "refuses",
+   "detail": "FormatError: Invalid Icechunk metadata file: Exactly one of union discriminant (`invalid`) and value (`chunk_id+location+inline`) are present."
   }
  },
  "array_concat|layouts_alternate": {
