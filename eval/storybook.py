@@ -34,7 +34,7 @@ OPTIONS = {
         "As above, without the per-chunk numbers: each reference begins with a key naming its case.",
         ["A new codec in every Zarr reader", "Icechunk references that are a literal followed by byte ranges"], "Built in the zarr-python, Icechunk and VirtualiZarr branches."),
     "switch_case_id": ("Case table · 1-byte case number in each reference", "A table of cases",
-        "The same idea with the smallest possible key: one byte that numbers the case.",
+        "The same idea with the shortest key: one byte that numbers the case. The key's length is a setting; this is its smallest value.",
         ["A new codec in every Zarr reader", "Icechunk references that are a literal followed by byte ranges"], "Built, as the key mode with 1-byte keys. This is the per-chunk variant of NASA-IMPACT/veda-odd#498."),
     "switch_position": ("Case table · case found from the chunk's position", "A table of cases",
         "The table is run-length encoded along the joined axis in zarr.json. Nothing is stored per chunk; the codec is told which chunk it is decoding.",
@@ -131,7 +131,10 @@ def build() -> dict:
             if not rec:
                 continue
             if rec["outcome"] != "equal":
-                scale[kind] = {"ok": False, "why": rec.get("why", "")}
+                why = rec.get("why", "")
+                if arm == "switch_case_id":
+                    why += "; a longer key (two bytes number 65,536 cases) would"
+                scale[kind] = {"ok": False, "why": why}
                 continue
             notes = []
             if rec["zarr_json_bytes"] >= 100_000:
@@ -147,7 +150,7 @@ def build() -> dict:
                 o["costs"].append(f"With 16,000 chunks where {label}: " + "; ".join(notes) + ".")
         o["scale"] = scale
         if arm == "switch_case_id":
-            o["costs"].append("One byte numbers at most 256 cases. A record where every chunk is packed its own way cannot be described at all.")
+            o["costs"].append("One byte numbers at most 256 cases, so a record with more distinct cases than that needs a longer key. Key length is a setting: two bytes number 65,536 cases, and the 8-byte option above has no practical limit.")
         if arm == "native_copy":
             o["costs"].append("All of the data is stored a second time, and must be rewritten whenever the source is reprocessed.")
         # real data

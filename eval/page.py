@@ -120,7 +120,8 @@ def render(g: dict) -> str:
   {g["scaling_table"]()}
   <div class="prose">
     <p>{g["growth_note"]()}</p>
-    <p>Only two options keep <code>zarr.json</code> flat when every chunk has parameters of its own: carrying the numbers in each reference, and a store that returns them as context. A plain key, like position, then needs one case per chunk. The 1-byte case number stops at 256 cases.</p>
+    <p>Only two options keep <code>zarr.json</code> flat when every chunk has parameters of its own: carrying the numbers in each reference, and a store that returns them as context. A key alone, like position, then needs one case per chunk listed in <code>zarr.json</code>: it still works, as the 8-byte key row shows with 16,000 cases, but the metadata grows with the record.</p>
+    <p>The key's length is a setting (<code>key_bytes</code>), not a fixed property. One byte numbers 256 cases, which is why that row cannot describe 16,000 chunks each packed differently; two bytes number 65,536, and the default of eight is long enough to use a hash of the case. Length has little effect on size: on Daymet Puerto Rico the manifests were 74.7 KB with 1-byte keys and 76.4 KB with 8-byte keys.</p>
     <p>Concatenation with one piece per chunk writes one array per piece, which is what makes its manifests and build time grow. {g["tensorstore_sentence"]()} That is the cost of the general design when the layers are native arrays; it says nothing about virtual ones.</p>
   </div>
 </section>
