@@ -49,9 +49,9 @@ LABEL = {
 }
 SOURCE = {
     "switch_position": ("zarr-specs#399 design 2 with a run-length table (TomNicholas, ghidalgo3); chunk coordinates in " + MONO.format("ArraySpec") + " (astrofrog)", "Built: zarr-python and VirtualiZarr branches"),
-    "switch_key": ("zarr-specs#399: inline bytes in front of the chunk, read by the codec (d-v-b, jbms)", "Built: all three branches"),
-    "switch_case_id": ("NASA-IMPACT/veda-odd#498: a per-chunk variant in the manifest", "Built: the key design with 1-byte keys"),
-    "switch_key_parameters": ("refkv PR #73 (d-v-b): layouts as templates, numbers carried per chunk", "Built here on Icechunk as an evaluation codec; refkv itself run on Daymet"),
+    "switch_key": ("zarr-specs#399: inline bytes in front of the chunk, read by the codec (d-v-b, jbms). The key as a hash of the layout's content is refkv PR #73's (d-v-b)", "Built: all three branches"),
+    "switch_case_id": ("NASA-IMPACT/veda-odd#498: a per-chunk variant in the manifest", "Built as an evaluation codec: the byte numbers the layout instead of hashing it, which the real codec refuses"),
+    "switch_key_parameters": ("refkv PR #73 (d-v-b): layouts as templates, numbers carried per chunk", "Built: all three branches, with typed numbers after the key; refkv itself run on Daymet"),
     "switch_index_prefix": ("zarr-specs#399 design 2.1 as first written; veda-odd#498 step 3", "Built: an Icechunk branch prepends the index for arrays that ask; evaluation codec"),
     "switch_sidecar": ("zarr-specs#399 design 2.2, " + MONO.format("ChunkContextFetcherCodec"), "Built as an evaluation codec that reads two more arrays"),
     "switch_store_context": ("zarr-specs#399 design 3, &ldquo;Zarr v3.2&rdquo;: " + MONO.format("Store.get_context"), "Emulated: a Python wrapper answers the call from a table indexed by position"),

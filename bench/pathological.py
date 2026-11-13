@@ -11,7 +11,6 @@ Arms: `plain` (an ordinary array, one chain; the floor), `position`, `key`.
 
 from __future__ import annotations
 
-import hashlib
 import json
 import sys
 import time
@@ -38,7 +37,9 @@ def chain(i: int) -> list[dict]:
 
 
 def key_of(i: int) -> bytes:
-    return hashlib.sha256(json.dumps(chain(i), sort_keys=True).encode()).digest()[:KEY_BYTES]
+    from zarr.codecs.switch import case_key
+
+    return case_key({"codecs": chain(i)}, KEY_BYTES)
 
 
 class Prefixing(WrapperStore[MemoryStore]):

@@ -54,28 +54,28 @@
    "reads": {
     "map: 2 days, whole grid, across the 2020 change": {
      "equal_to_files": true,
-     "seconds": 2.784,
+     "seconds": 3.086,
      "runs": 3,
      "source_requests": 801,
      "source_megabytes": 38.47
     },
     "box: 30 days x 50x50 cells, across the change": {
      "equal_to_files": true,
-     "seconds": 0.107,
+     "seconds": 0.132,
      "runs": 3,
      "source_requests": 34,
      "source_megabytes": 4.84
     },
     "series: 10 years at one cell, across the change": {
      "equal_to_files": true,
-     "seconds": 0.909,
+     "seconds": 0.917,
      "runs": 3,
      "source_requests": 439,
      "source_megabytes": 54.23
     },
     "series: every day at one cell": {
      "equal_to_files": true,
-     "seconds": 0.9,
+     "seconds": 0.906,
      "runs": 3,
      "source_requests": 439,
      "source_megabytes": 54.23
@@ -84,7 +84,7 @@
    "build_seconds": 0.27,
    "zarr_json_bytes": 1464,
    "manifest_bytes": 550364,
-   "store_bytes": 559544,
+   "store_bytes": 559545,
    "strategy": "shards",
    "cases": 2,
    "outcome": "equal"
@@ -93,37 +93,37 @@
    "reads": {
     "map: 2 days, whole grid, across the 2020 change": {
      "equal_to_files": true,
-     "seconds": 2.716,
+     "seconds": 2.726,
      "runs": 3,
      "source_requests": 801,
      "source_megabytes": 38.47
     },
     "box: 30 days x 50x50 cells, across the change": {
      "equal_to_files": true,
-     "seconds": 0.105,
+     "seconds": 0.103,
      "runs": 3,
      "source_requests": 34,
      "source_megabytes": 4.84
     },
     "series: 10 years at one cell, across the change": {
      "equal_to_files": true,
-     "seconds": 0.913,
+     "seconds": 0.905,
      "runs": 3,
      "source_requests": 439,
      "source_megabytes": 54.23
     },
     "series: every day at one cell": {
      "equal_to_files": true,
-     "seconds": 0.9,
+     "seconds": 0.932,
      "runs": 3,
      "source_requests": 439,
      "source_megabytes": 54.23
     }
    },
    "build_seconds": 0.27,
-   "zarr_json_bytes": 1436,
-   "manifest_bytes": 548328,
-   "store_bytes": 557476,
+   "zarr_json_bytes": 1447,
+   "manifest_bytes": 548327,
+   "store_bytes": 557470,
    "strategy": "shards",
    "cases": 2,
    "outcome": "equal"
@@ -132,37 +132,37 @@
    "reads": {
     "map: 2 days, whole grid, across the 2020 change": {
      "equal_to_files": true,
-     "seconds": 2.822,
+     "seconds": 2.709,
      "runs": 3,
      "source_requests": 801,
      "source_megabytes": 38.47
     },
     "box: 30 days x 50x50 cells, across the change": {
      "equal_to_files": true,
-     "seconds": 0.106,
+     "seconds": 0.109,
      "runs": 3,
      "source_requests": 34,
      "source_megabytes": 4.84
     },
     "series: 10 years at one cell, across the change": {
      "equal_to_files": true,
-     "seconds": 0.92,
+     "seconds": 0.935,
      "runs": 3,
      "source_requests": 439,
      "source_megabytes": 54.23
     },
     "series: every day at one cell": {
      "equal_to_files": true,
-     "seconds": 0.911,
+     "seconds": 0.917,
      "runs": 3,
      "source_requests": 439,
      "source_megabytes": 54.23
     }
    },
-   "build_seconds": 0.56,
-   "zarr_json_bytes": 1477,
+   "build_seconds": 0.27,
+   "zarr_json_bytes": 1464,
    "manifest_bytes": 550364,
-   "store_bytes": 559540,
+   "store_bytes": 559541,
    "strategy": "shards",
    "cases": 2,
    "outcome": "equal"

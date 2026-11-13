@@ -5,8 +5,8 @@
     index_prefix    the store puts the chunk's grid index in front of its bytes (design 2.1)
     sidecar         the codec reads the case of every chunk from another array (design 2.2)
     context         the store answers `get_chunk_context(key)` (design 3, "Zarr v3.2")
-    key_parameters  a key in front of the chunk, followed by numbers that fill in the
-                    case's open parameters (refkv PR #73's design, on Icechunk)
+    numbered_key    a key in front of the chunk that is the case's number in the table,
+                    not a hash of it (the real codec refuses such keys)
 - `zarr_reference`: each chunk is a reference to another array (zarr-specs#288, jbms).
 - encoded chunk shapes declared by the chunk grid (zarr-extensions PR #75), emulated.
 - `DomainView`: an array stored with its padding, plus a declared valid domain
@@ -91,11 +91,7 @@ class SwitchXCodec(ArrayBytesCodec, ArrayBytesCodecPartialDecodeMixin):
             config = json.loads(self.config_json)
             cases = config["cases"]
             # the real codec resolves a case (stored shape, fill value, chain) by its index
-            inner = SwitchCodec(
-                select="key", key_bytes=4,
-                cases=[{"key": i.to_bytes(4, "big").hex(), **{k: v for k, v in c.items() if k not in ("chunks", "key", "parameters")}}
-                       for i, c in enumerate(cases)],
-            )
+            inner = SwitchCodec(cases=[{"chunks": 1, **{k: v for k, v in c.items() if k not in ("chunks", "key", "parameters")}} for c in cases])
             # `runs`: [case, chunks] pairs along the axis, each case listed once in `cases`
             ends, run_case, total = [], [], 0
             for i, n in config.get("runs", []):
@@ -140,7 +136,7 @@ class SwitchXCodec(ArrayBytesCodec, ArrayBytesCodecPartialDecodeMixin):
             context = await byte_getter.store.get_chunk_context(byte_getter.path)
             index = int.from_bytes(context[:4], "little")
             return index, 0, tuple(np.frombuffer(context[4:], dtype="<f8").tolist()[: state["parameters"][index]])
-        if select == "key_parameters":
+        if select in ("key_parameters", "numbered_key"):
             k = config.get("key_bytes", 8)
             head = await byte_getter.get(proto, RangeByteRequest(0, k))
             if head is None:

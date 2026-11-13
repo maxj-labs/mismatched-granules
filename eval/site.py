@@ -230,13 +230,13 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
       <h3>In the array's metadata, by position</h3>
       <div class="meta">chunks 0&ndash;2: layout A &nbsp;&middot;&nbsp; chunks 3&ndash;5: layout B</div>
       <div class="strip"><span>2017</span><span>2018</span><span>2019</span><span class="b">2020</span><span class="b">2021</span><span class="b">2022</span></div>
-      <p>The array's metadata lists which run of chunks has which layout. Nothing is stored with the chunks. Released Icechunk can hold it unless the chunk shape changes, and so can Kerchunk references.</p>
+      <p>The array's metadata lists which run of chunks has which layout, and the reader tells the codec which chunk of the joined array it is decoding. Nothing is stored with the chunks. Released Icechunk can hold it unless the chunk shape changes, and so can Kerchunk references.</p>
     </div>
     <div class="design">
       <h3>With each chunk, as a key in its reference</h3>
       <div class="meta">layouts: A, B</div>
       <div class="strip"><span><b>A</b>2017</span><span><b>A</b>2018</span><span><b>A</b>2019</span><span class="b"><b>B</b>2020</span><span class="b"><b>B</b>2021</span><span class="b"><b>B</b>2022</span></div>
-      <p>Each chunk's reference starts with a few bytes naming its layout, so the key moves wherever the reference moves. It needs a new kind of Icechunk reference (a literal followed by byte ranges), which exists only on a branch, and it cannot be written as Kerchunk references.</p>
+      <p>Each chunk's reference starts with a few bytes naming its layout, so the key moves wherever the reference moves. The key is the start of a hash of the layout, so it depends on nothing but the layout itself. It needs a new kind of Icechunk reference (a literal followed by byte ranges), which exists only on a branch, and it cannot be written as Kerchunk references.</p>
     </div>
   </div>
   <div class="prose">
@@ -245,6 +245,44 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
       <li><b>One array per file, joined by reference.</b> Each chunk of the joined array points to one file's array.</li>
       <li><b>One array per run of files with the same layout, joined by a list.</b> The joined array's metadata lists the pieces in order.</li>
     </ul>
+  </div>
+</section>
+
+<section>
+  <h2 id="stores">What each one stores</h2>
+  <div class="prose">
+    <p>Four yearly files, one chunk each: 2017 and 2018 in layout A, 2020 and 2021 in layout B. In both designs <span class="mono">zarr.json</span> holds one entry per distinct layout, never one per chunk, and the manifest holds one reference per chunk.</p>
+  </div>
+<pre>By position
+  zarr.json   layouts: [A, B]     runs: 2 chunks of A, then 2 of B
+  manifest    c/0 -> 2017.nc [offset, length]
+              c/1 -> 2018.nc [offset, length]
+              c/2 -> 2020.nc [offset, length]
+              c/3 -> 2021.nc [offset, length]
+
+By key
+  zarr.json   layouts: {{ "9f3a…": A, "c41e…": B }}
+  manifest    c/0 -> "9f3a…" + 2017.nc [offset, length]
+              c/1 -> "9f3a…" + 2018.nc [offset, length]
+              c/2 -> "c41e…" + 2020.nc [offset, length]
+              c/3 -> "c41e…" + 2021.nc [offset, length]</pre>
+  <div class="prose">
+    <p>Now the missing 2019 file arrives, in layout A, and is inserted at <span class="mono">c/2</span>. In both designs the 2020 and 2021 references move along by one. What else has to change is the difference between them:</p>
+  </div>
+<pre>By position
+  zarr.json   must be rewritten    runs: 3 chunks of A, then 2 of B
+
+By key
+  zarr.json   unchanged
+  manifest    the new reference    c/2 -> "9f3a…" + 2019.nc [offset, length]</pre>
+  <div class="prose">
+    <p>If every file also had numbers of its own, such as a scale and offset, the key design can carry them after the key. One layout then leaves those numbers open, and files that differ only in them share it:</p>
+  </div>
+<pre>  zarr.json   layouts: {{ "5d02…": A with offset and scale left open (two float64) }}
+  manifest    c/0 -> "5d02…" + 273.15 + 0.01 + 2017.nc [offset, length]
+              c/1 -> "5d02…" + 268.40 + 0.02 + 2018.nc [offset, length]</pre>
+  <div class="prose">
+    <p class="note">Keys are shortened here. A key is the first 8 bytes of the SHA-256 of the layout's JSON, and the codec refuses a key that is not; shorter keys are allowed and are likelier to collide. &ldquo;Position&rdquo; always means a chunk's place in the joined array. A header that records facts about the source chunk, such as its index in the original file, is on the key side: it stays true wherever the chunk lands. The content-hash key and the numbers after it follow <a href="https://github.com/d-v-b/refkv/pull/73">refkv PR&nbsp;#73</a> by Davis Bennett.</p>
   </div>
 </section>
 
@@ -258,7 +296,7 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
     <p><b>By position, any edit that adds or removes chunks is refused until the table is rewritten.</b> The codec checks that its table covers exactly the array's chunks and raises an error when it does not. The one edit it cannot catch is a file replaced by another of the same length in a different layout: all {replace[2]} such trials read wrong values with no error.</p>
     <p><b>By key, nothing is rewritten unless a layout is new.</b> A file in a layout the array already has can be appended, inserted, backfilled or swapped in. A file in a new layout needs one entry added to the table, and reads raise an error until it is added. The writer must still put the right key in each new reference; it never touches what is already stored.</p>
     <p><b>One array per file never needs anything rewritten,</b> because each file keeps its own metadata. The cost shows up elsewhere: with 16,000 one-chunk files it stored {ref_stored:.0f}&times; as much metadata as the keyed design and took {ref_write:.0f}&times; as long to write. It also cannot drop anything smaller than a whole file.</p>
-    <p class="note">A trial is one edit applied to one test case. It makes {reads} reads (the whole array, each file's part, and single cells) and counts as correct only if every read equals the source files. Keys are 8-byte hashes of the layout; 1-byte numbered keys are not safe to edit ({short[2]} of {short[0]} trials read wrong values). A new file that changes how the existing files must be described (a different fill value, data type or chunk shape) means planning the array again in both table designs. Full results: <a href="evaluation.html">Every Option, Tested</a>.</p>
+    <p class="note">A trial is one edit applied to one test case. It makes {reads} reads (the whole array, each file's part, and single cells) and counts as correct only if every read equals the source files. Keys are hashes of the layout. A key that merely numbers the layouts is not safe to edit ({short[2]} of {short[0]} trials read wrong values, with 1-byte numbers), because adding files changes the numbering. A new file that changes how the existing files must be described (a different fill value, data type or chunk shape) means planning the array again in both table designs. Full results: <a href="evaluation.html">Every Option, Tested</a>.</p>
   </div>
 </section>
 
@@ -292,6 +330,7 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
       <li><b>If the files are few and large and edits are frequent,</b> one array per file is the most forgiving, at the costs above.</li>
     </ul>
     <p>Speed does not decide it. On twelve years of Daymet Puerto Rico, behind a local server adding 20 ms per request, all seven variants of the layout table made the same requests and read a full time series in {min(slow):.0f} to {max(slow):.0f} s, or about {min(fast):.0f} s once zarr-python was allowed more requests in flight.</p>
+    <p><b>My reading, beyond what the tests show:</b> build the key design first. A store is easier to extend than the interface between Zarr arrays and codecs, which position needs changed so that a codec is told which chunk it is decoding. Collections whose chunk shape changes need the same store change anyway. Position remains the option that works with stores as they are today.</p>
   </div>
 </section>
 

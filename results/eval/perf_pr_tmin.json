@@ -54,37 +54,37 @@
    "reads": {
     "map: 2 days, whole grid, across the 2020 change": {
      "equal_to_files": true,
-     "seconds": 0.034,
+     "seconds": 0.038,
      "runs": 3,
      "source_requests": 2,
      "source_megabytes": 0.05
     },
     "box: 30 days x 50x50 cells, across the change": {
      "equal_to_files": true,
-     "seconds": 0.208,
+     "seconds": 0.221,
      "runs": 3,
      "source_requests": 30,
      "source_megabytes": 0.76
     },
     "series: 10 years at one cell, across the change": {
      "equal_to_files": true,
-     "seconds": 25.371,
+     "seconds": 25.252,
      "runs": 3,
      "source_requests": 3650,
      "source_megabytes": 94.88
     },
     "series: every day at one cell": {
      "equal_to_files": true,
-     "seconds": 30.009,
+     "seconds": 30.223,
      "runs": 2,
      "source_requests": 4380,
      "source_megabytes": 113.96
     }
    },
-   "build_seconds": 0.09,
+   "build_seconds": 0.05,
    "zarr_json_bytes": 955,
    "manifest_bytes": 76438,
-   "store_bytes": 101494,
+   "store_bytes": 101493,
    "strategy": "switch",
    "cases": 2,
    "outcome": "equal"
@@ -93,37 +93,37 @@
    "reads": {
     "map: 2 days, whole grid, across the 2020 change": {
      "equal_to_files": true,
-     "seconds": 0.034,
+     "seconds": 0.036,
      "runs": 3,
      "source_requests": 2,
      "source_megabytes": 0.05
     },
     "box: 30 days x 50x50 cells, across the change": {
      "equal_to_files": true,
-     "seconds": 0.228,
+     "seconds": 0.211,
      "runs": 3,
      "source_requests": 30,
      "source_megabytes": 0.76
     },
     "series: 10 years at one cell, across the change": {
      "equal_to_files": true,
-     "seconds": 25.262,
+     "seconds": 25.588,
      "runs": 3,
      "source_requests": 3650,
      "source_megabytes": 94.88
     },
     "series: every day at one cell": {
      "equal_to_files": true,
-     "seconds": 30.429,
+     "seconds": 30.606,
      "runs": 2,
      "source_requests": 4380,
      "source_megabytes": 113.96
     }
    },
-   "build_seconds": 0.07,
-   "zarr_json_bytes": 927,
-   "manifest_bytes": 74736,
-   "store_bytes": 99755,
+   "build_seconds": 0.08,
+   "zarr_json_bytes": 938,
+   "manifest_bytes": 74752,
+   "store_bytes": 99771,
    "strategy": "switch",
    "cases": 2,
    "outcome": "equal"
@@ -132,37 +132,37 @@
    "reads": {
     "map: 2 days, whole grid, across the 2020 change": {
      "equal_to_files": true,
-     "seconds": 0.035,
+     "seconds": 0.037,
      "runs": 3,
      "source_requests": 2,
      "source_megabytes": 0.05
     },
     "box: 30 days x 50x50 cells, across the change": {
      "equal_to_files": true,
-     "seconds": 0.224,
+     "seconds": 0.226,
      "runs": 3,
      "source_requests": 30,
      "source_megabytes": 0.76
     },
     "series: 10 years at one cell, across the change": {
      "equal_to_files": true,
-     "seconds": 25.513,
+     "seconds": 25.273,
      "runs": 3,
      "source_requests": 3650,
      "source_megabytes": 94.88
     },
     "series: every day at one cell": {
      "equal_to_files": true,
-     "seconds": 30.667,
+     "seconds": 30.164,
      "runs": 2,
      "source_requests": 4380,
      "source_megabytes": 113.96
     }
    },
-   "build_seconds": 0.09,
-   "zarr_json_bytes": 974,
-   "manifest_bytes": 76434,
-   "store_bytes": 101500,
+   "build_seconds": 0.07,
+   "zarr_json_bytes": 955,
+   "manifest_bytes": 76421,
+   "store_bytes": 101470,
    "strategy": "switch",
    "cases": 2,
    "outcome": "equal"

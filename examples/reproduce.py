@@ -19,6 +19,7 @@ data the wrong decoder usually raises instead.
 import numpy as np
 import zarr
 from zarr.codecs import SwitchCodec
+from zarr.codecs.switch import case_key
 from zarr.core.buffer import default_buffer_prototype
 from zarr.core.sync import sync
 from zarr.storage import MemoryStore
@@ -27,11 +28,12 @@ store, proto = MemoryStore(), default_buffer_prototype()
 data = np.arange(6 * 4, dtype="int16").reshape(6, 4) * 100
 little = [{"name": "bytes", "configuration": {"endian": "little"}}]
 big = [{"name": "bytes", "configuration": {"endian": "big"}}]
-KEY = {"little": bytes.fromhex("a1" * 8), "big": bytes.fromhex("b2" * 8)}
+# a key is the first 8 bytes of the hash of its layout, so it names the layout by its content
+KEY = {"little": case_key({"codecs": little}), "big": case_key({"codecs": big})}
 common = dict(chunks=(1, 4), dtype="int16", fill_value=0, compressors=None, filters=None)
 
 by_position = SwitchCodec(axis=0, cases=[{"chunks": 3, "codecs": little}, {"chunks": 3, "codecs": big}])
-by_key = SwitchCodec(select="key", cases=[{"key": KEY["little"].hex(), "codecs": little}, {"key": KEY["big"].hex(), "codecs": big}])
+by_key = SwitchCodec(select="key", cases=[{"codecs": little}, {"codecs": big}])
 
 
 def write(name: str, codec: SwitchCodec, eras: list[str], rows: list[int], keyed: bool) -> zarr.Array:

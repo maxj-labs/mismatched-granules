@@ -137,7 +137,7 @@
    "reads_wrong": 0,
    "reads_failed": 4,
    "outcome": "fails with an error",
-   "why": "ValueError: A chunk names the case '02', which the array does not list."
+   "why": "KeyError: b'\\x02'"
   },
   "switch_case_id|codec_eras|insert a file": {
    "layout": "new to the array",
@@ -195,7 +195,7 @@
    "reads_wrong": 0,
    "reads_failed": 4,
    "outcome": "fails with an error",
-   "why": "KeyError: b'_V\\xce\\xdeC>,\\xa0'"
+   "why": "ValueError: A chunk names the case '7cfeee95a7f7420b', which the array does not list."
   },
   "switch_key_parameters|codec_eras|insert a file": {
    "layout": "new to the array",
@@ -204,7 +204,7 @@
    "reads_wrong": 0,
    "reads_failed": 4,
    "outcome": "fails with an error",
-   "why": "KeyError: b'wP7\\xa7\\xf9=[\\xb4'"
+   "why": "ValueError: A chunk names the case 'd7062580480c4327', which the array does not list."
   },
   "switch_key_parameters|codec_eras|prepend a file": {
    "layout": "new to the array",
@@ -213,7 +213,7 @@
    "reads_wrong": 0,
    "reads_failed": 4,
    "outcome": "fails with an error",
-   "why": "KeyError: b'\\x80\\x14\\xadz\\x14\\xcet\\xd7'"
+   "why": "ValueError: A chunk names the case 'f25f59f5d87025e6', which the array does not list."
   },
   "switch_key_parameters|codec_eras|replace a file": {
    "layout": "already in the array",
@@ -300,7 +300,7 @@
    "reads_wrong": 0,
    "reads_failed": 7,
    "outcome": "fails with an error",
-   "why": "ValueError: cannot reshape array of size 563 into shape (1,24,30)"
+   "why": "ValueError: When changing to a larger dtype, its size must be a divisor of the total size in bytes of the last axis of the array."
   },
   "switch_sidecar|codec_eras|prepend a file": {
    "layout": "new to the array",
@@ -852,7 +852,7 @@
    "reads_wrong": 0,
    "reads_failed": 4,
    "outcome": "fails with an error",
-   "why": "IndexError: index 8 is out of bounds for axis 0 with size 6"
+   "why": "IndexError: index 6 is out of bounds for axis 0 with size 6"
   },
   "switch_sidecar|padded_last_chunk|prepend a file": {
    "layout": "already in the array",
@@ -861,7 +861,7 @@
    "reads_wrong": 0,
    "reads_failed": 4,
    "outcome": "fails with an error",
-   "why": "IndexError: index 8 is out of bounds for axis 0 with size 6"
+   "why": "IndexError: index 6 is out of bounds for axis 0 with size 6"
   },
   "switch_sidecar|padded_last_chunk|replace a file": {
    "layout": "already in the array",
@@ -1257,7 +1257,7 @@
    "reads_wrong": 0,
    "reads_failed": 9,
    "outcome": "fails with an error",
-   "why": "ValueError: A chunk names the case '0344869dc4497f2a', which the array does not list."
+   "why": "ValueError: A chunk names the case '845c17de483a1eee', which the array does not list."
   },
   "switch_key|chunk_shape_change|replace a file": {
    "layout": "changes how existing files are described",
@@ -1297,7 +1297,7 @@
    "reads_wrong": 0,
    "reads_failed": 9,
    "outcome": "fails with an error",
-   "why": "ValueError: A chunk names the case '01', which the array does not list."
+   "why": "KeyError: b'\\x01'"
   },
   "switch_case_id|chunk_shape_change|prepend a file": {
    "layout": "changes how existing files are described",
@@ -1306,7 +1306,7 @@
    "reads_wrong": 0,
    "reads_failed": 9,
    "outcome": "fails with an error",
-   "why": "ValueError: A chunk names the case '01', which the array does not list."
+   "why": "KeyError: b'\\x01'"
   },
   "switch_case_id|chunk_shape_change|replace a file": {
    "layout": "changes how existing files are described",
@@ -1316,7 +1316,7 @@
    "reads_wrong": 0,
    "reads_failed": 9,
    "outcome": "fails with an error",
-   "why": "ExceptionGroup: unhandled errors in a TaskGroup (4 sub-exceptions)"
+   "why": "ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
   },
   "switch_key_parameters|chunk_shape_change|drop first chunk": {
    "reads": 10,
@@ -1346,7 +1346,7 @@
    "reads_wrong": 0,
    "reads_failed": 9,
    "outcome": "fails with an error",
-   "why": "KeyError: b'\\xc1`\\x00\\xf7\\x8e\\xb0\\xcf\\x8b'"
+   "why": "ValueError: A chunk names the case '845c17de483a1eee', which the array does not list."
   },
   "switch_key_parameters|chunk_shape_change|prepend a file": {
    "layout": "changes how existing files are described",
@@ -1355,7 +1355,7 @@
    "reads_wrong": 0,
    "reads_failed": 9,
    "outcome": "fails with an error",
-   "why": "KeyError: b'\\xc1`\\x00\\xf7\\x8e\\xb0\\xcf\\x8b'"
+   "why": "ValueError: A chunk names the case '845c17de483a1eee', which the array does not list."
   },
   "switch_key_parameters|chunk_shape_change|replace a file": {
    "layout": "changes how existing files are described",
@@ -1365,7 +1365,7 @@
    "reads_wrong": 0,
    "reads_failed": 9,
    "outcome": "fails with an error",
-   "why": "KeyError: b'8m3\\xcc\\xd6\\xa5\\xfac'"
+   "why": "ValueError: A chunk names the case 'b2f5913d19f9bc8d', which the array does not list."
   },
   "switch_index_prefix|chunk_shape_change|drop first chunk": {
    "outcome": "fails with an error",
@@ -1448,7 +1448,7 @@
    "reads_wrong": 0,
    "reads_failed": 9,
    "outcome": "fails with an error",
-   "why": "ExceptionGroup: unhandled errors in a TaskGroup (2 sub-exceptions)"
+   "why": "ExceptionGroup: unhandled errors in a TaskGroup (3 sub-exceptions)"
   },
   "switch_store_context|chunk_shape_change|drop first chunk": {
    "reads": 10,
@@ -1456,7 +1456,7 @@
    "reads_wrong": 0,
    "reads_failed": 4,
    "outcome": "fails with an error",
-   "why": "ValueError: cannot reshape array of size 320 into shape (1,12,15)"
+   "why": "error: Error -5 while decompressing data: incomplete or truncated stream"
   },
   "switch_store_context|chunk_shape_change|drop first file": {
    "reads": 9,
@@ -1499,7 +1499,7 @@
    "reads_wrong": 0,
    "reads_failed": 9,
    "outcome": "fails with an error",
-   "why": "ExceptionGroup: unhandled errors in a TaskGroup (2 sub-exceptions)"
+   "why": "ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
   },
   "array_concat|chunk_shape_change|drop first chunk": {
    "outcome": "fails with an error",
@@ -2256,7 +2256,7 @@
    "reads_wrong": 0,
    "reads_failed": 4,
    "outcome": "fails with an error",
-   "why": "ValueError: A chunk names the case '02', which the array does not list."
+   "why": "KeyError: b'\\x02'"
   },
   "switch_case_id|packing_per_file|insert a file": {
    "layout": "new to the array",
@@ -2694,7 +2694,7 @@
    "reads_wrong": 0,
    "reads_failed": 5,
    "outcome": "fails with an error",
-   "why": "ValueError: A chunk names the case '01', which the array does not list."
+   "why": "KeyError: b'\\x01'"
   },
   "switch_case_id|fill_value_differs|prepend a file": {
    "layout": "new to the array",
@@ -2703,7 +2703,7 @@
    "reads_wrong": 0,
    "reads_failed": 5,
    "outcome": "fails with an error",
-   "why": "ValueError: A chunk names the case '01', which the array does not list."
+   "why": "KeyError: b'\\x01'"
   },
   "switch_case_id|fill_value_differs|replace a file": {
    "layout": "already in the array",
@@ -2742,7 +2742,7 @@
    "reads_wrong": 0,
    "reads_failed": 5,
    "outcome": "fails with an error",
-   "why": "KeyError: b'<\\xa7\\x81V\\xad\\x89\\xea\\x98'"
+   "why": "ValueError: A chunk names the case '570f515eca3559db', which the array does not list."
   },
   "switch_key_parameters|fill_value_differs|prepend a file": {
    "layout": "new to the array",
@@ -2751,7 +2751,7 @@
    "reads_wrong": 0,
    "reads_failed": 5,
    "outcome": "fails with an error",
-   "why": "KeyError: b'<\\xa7\\x81V\\xad\\x89\\xea\\x98'"
+   "why": "ValueError: A chunk names the case '570f515eca3559db', which the array does not list."
   },
   "switch_key_parameters|fill_value_differs|replace a file": {
    "layout": "already in the array",
@@ -2831,7 +2831,7 @@
    "reads_wrong": 0,
    "reads_failed": 5,
    "outcome": "fails with an error",
-   "why": "IndexError: index 4 is out of bounds for axis 0 with size 4"
+   "why": "IndexError: index 6 is out of bounds for axis 0 with size 4"
   },
   "switch_sidecar|fill_value_differs|replace a file": {
    "layout": "already in the array",

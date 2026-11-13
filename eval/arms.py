@@ -9,7 +9,6 @@ case, and any numbers of its own, are kept.
 
 from __future__ import annotations
 
-import hashlib
 import json
 from typing import Any, Callable
 
@@ -49,9 +48,9 @@ OWN_PIECES: list | None = None
 _window: tuple[int, int] = (0, 0)  # the chunks along the joined axis that are kept: (first, count)
 
 
-def _plan(pieces: list[ManifestArray], select: str = "position", key_bytes: int = 8) -> JoinedArrayPlan:
+def _plan(pieces: list[ManifestArray], select: str = "position", parameters: bool = False) -> JoinedArrayPlan:
     try:
-        return plan_joined_array(pieces, axis=0, select=select, key_bytes=key_bytes)
+        return plan_joined_array(pieces, axis=0, select=select, parameters=parameters)
     except NotImplementedError as err:
         raise NotExpressible(str(err)) from None
 
@@ -63,8 +62,8 @@ def _own(pieces: list[ManifestArray]) -> list[ManifestArray]:
     return pieces if OMIT is None else [p for i, p in enumerate(pieces) if i != OMIT]
 
 
-def _own_plan(plan: JoinedArrayPlan, pieces: list[ManifestArray], select: str = "position", key_bytes: int = 8) -> JoinedArrayPlan:
-    return plan if OMIT is None and OWN_PIECES is None else _plan(_own(pieces), select=select, key_bytes=key_bytes)
+def _own_plan(plan: JoinedArrayPlan, pieces: list[ManifestArray], select: str = "position", parameters: bool = False) -> JoinedArrayPlan:
+    return plan if OMIT is None and OWN_PIECES is None else _plan(_own(pieces), select=select, parameters=parameters)
 
 
 def _dropped(shape: tuple, grid: list) -> tuple[tuple, list]:
@@ -90,15 +89,6 @@ def _kept(entries: list[dict]) -> list[dict]:
 def _refs(store: Any, name: str, refs: list[dict]) -> None:
     failed = store.set_virtual_refs(name, [icechunk.VirtualChunkSpec(**r) for r in (_kept(refs) if name == "v" else refs)], validate_containers=True)
     assert not failed, failed
-
-
-def _literals(store: Any, pieces: list[ManifestArray], header: Callable[[int], bytes] | None = None) -> None:
-    """Chunks that store nothing in a file whose fill value is not the array's: written as
-    the bytes that name their case and nothing else. `header` replaces the planner's key."""
-    literals = _plan(pieces, select="key").literals
-    if header is not None:
-        literals = [{"index": lit["index"], "data": header(lit["index"][0]) + lit["data"][8:]} for lit in literals]
-    _write_literals(store, "v", _kept(literals))
 
 
 def _create(store: Any, name: str, plan: JoinedArrayPlan, serializer: Any, **kwargs: Any) -> zarr.Array:
@@ -200,38 +190,37 @@ def switch_key(case: Case, pieces: list[ManifestArray]) -> Built:
 
 
 def switch_case_id(case: Case, pieces: list[ManifestArray]) -> Built:
-    """Every reference carries a 1-byte case number (the per-chunk variant id of veda-odd#498)."""
-    plan = _plan(pieces, select="key", key_bytes=1)
+    """Every reference carries a 1-byte case number (the per-chunk variant id of veda-odd#498).
+
+    The number is a case's place in the table, in order of first appearance, and not a
+    hash of the case. The switch codec refuses such keys, so this is an evaluation codec."""
+    plan = _plan(pieces, select="key")
+    own = _own_plan(plan, pieces, "key")
+    if max(len(plan.cases), len(own.cases)) > 256:
+        raise NotExpressible("more than 256 cases do not fit a key of 1 byte")
+    number = {bytes.fromhex(c["key"]): bytes([i]) for i, c in enumerate(plan.cases)}
+    cases = [{**c, "key": bytes([i]).hex()} for i, c in enumerate(own.cases)]
+    refs = [{**r, "prefix": number[r["prefix"][:8]] + r["prefix"][8:]} for r in plan.refs]
+    literals = [{**lit, "data": number[lit["data"][:8]] + lit["data"][8:]} for lit in plan.literals]
     repo, path = new_repo("switch_case_id", case.name)
     session = repo.writable_session("main")
-    _create(session.store, "v", plan, SwitchCodec(select="key", key_bytes=1, cases=_own_plan(plan, pieces, "key", 1).cases))
-    _refs(session.store, "v", plan.refs)
-    _write_literals(session.store, "v", _kept(plan.literals))
+    _create(session.store, "v", plan, SwitchXCodec(config_json=json.dumps({"select": "numbered_key", "key_bytes": 1, "cases": cases})))
+    _refs(session.store, "v", refs)
+    _write_literals(session.store, "v", _kept(literals))
     session.commit("x")
     return _finish("switch_case_id", case, repo, path, strategy=plan.strategy, cases=len(plan.cases))
 
 
 def switch_key_parameters(case: Case, pieces: list[ManifestArray]) -> Built:
     """A key, then the numbers that fill in the case's open parameters (refkv PR #73's design, on Icechunk)."""
-    plan = _plan(pieces)
-    distinct, ids = _per_chunk_case(plan)
-    templates, which, values = _templates(distinct)
-    keys = [hashlib.sha256(json.dumps(t, sort_keys=True).encode()).digest()[:8] for t in templates]
-    own_templates = _templates(_per_chunk_case(_own_plan(plan, pieces))[0])[0]
-    cases = [{"key": hashlib.sha256(json.dumps(t, sort_keys=True).encode()).digest()[:8].hex(), **t} for t in own_templates]
-
-    def header(chunk: int) -> bytes:
-        d = ids[chunk]
-        return keys[which[d]] + np.asarray(values[d], dtype="<f8").tobytes()
-
-    refs = [{**r, "prefix": header(r["index"][0]) + r.get("prefix", b"")} for r in plan.refs]
+    plan = _plan(pieces, select="key", parameters=True)
     repo, path = new_repo("switch_key_parameters", case.name)
     session = repo.writable_session("main")
-    _create(session.store, "v", plan, SwitchXCodec(config_json=json.dumps({"select": "key_parameters", "key_bytes": 8, "cases": cases})))
-    _refs(session.store, "v", refs)
-    _literals(session.store, pieces, header)
+    _create(session.store, "v", plan, SwitchCodec(select="key", key_bytes=plan.key_bytes, cases=_own_plan(plan, pieces, "key", parameters=True).cases))
+    _refs(session.store, "v", plan.refs)
+    _write_literals(session.store, "v", _kept(plan.literals))
     session.commit("x")
-    return _finish("switch_key_parameters", case, repo, path, strategy=plan.strategy, cases=len(cases))
+    return _finish("switch_key_parameters", case, repo, path, strategy=plan.strategy, cases=len(plan.cases))
 
 
 def switch_index_prefix(case: Case, pieces: list[ManifestArray]) -> Built:

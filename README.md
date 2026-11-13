@@ -8,7 +8,7 @@ The library changes are prototypes on three branches:
 
 | Project | Branch | What it adds |
 |---|---|---|
-| zarr-python | [`maxj-labs/zarr-python@feat/array-concat-codec`](https://github.com/maxj-labs/zarr-python/tree/feat/array-concat-codec) | `switch` codec, chunk coordinates passed to codecs, `array_concat` codec |
+| zarr-python | [`maxj-labs/zarr-python@feat/array-concat-codec`](https://github.com/maxj-labs/zarr-python/tree/feat/array-concat-codec) | `switch` codec (by position, or by a content-hash key with per-chunk parameters, following refkv PR #73), chunk coordinates passed to codecs, `array_concat` codec |
 | VirtualiZarr | [`maxj-labs/VirtualiZarr@feat/concat-mismatched-arrays`](https://github.com/maxj-labs/VirtualiZarr/tree/feat/concat-mismatched-arrays) | `set_options(mismatched_concat="pieces")`, `plan_joined_array`, Icechunk writer |
 | Icechunk | [`maxj-labs/icechunk@feat/virtual-ref-prefix`](https://github.com/maxj-labs/icechunk/tree/feat/virtual-ref-prefix) | virtual references made of a literal and several byte ranges |
 

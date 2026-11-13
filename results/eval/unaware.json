@@ -50,14 +50,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
@@ -73,14 +73,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
@@ -339,14 +339,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
@@ -362,14 +362,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
@@ -668,14 +668,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
@@ -691,14 +691,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
@@ -980,14 +980,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
@@ -1003,14 +1003,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
@@ -1203,14 +1203,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
@@ -1226,14 +1226,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
@@ -1447,14 +1447,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
@@ -1470,14 +1470,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
@@ -1691,14 +1691,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
@@ -1714,14 +1714,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
@@ -1934,14 +1934,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
@@ -1957,14 +1957,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
@@ -2263,14 +2263,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
@@ -2286,14 +2286,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
@@ -2552,14 +2552,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
+   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",
@@ -2575,14 +2575,14 @@
    "icechunk": "2.3.1",
    "icechunk_takes_parts": true,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "released zarr-python, released Icechunk": {
    "zarr": "3.4.2",
    "icechunk": "2.3.1",
    "icechunk_takes_parts": false,
    "outcome": "refuses",
-   "detail": "UnknownCodecError: An implementation for codec 'switch_x' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a "
+   "detail": "UnknownCodecError: An implementation for codec 'switch' is not available. Register one explicitly using the codec registry (see https://zarr.readthedocs.io/en/stable/user-guide/extending/#custom-codecs), or install a Py"
   },
   "zarr-python with the codecs, released Icechunk": {
    "zarr": "3.4.3.dev43+gf3d406f7.d20261110",

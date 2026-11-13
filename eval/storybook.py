@@ -29,13 +29,13 @@ PERF = {"pr": load("perf_pr_tmin.json"), "na": load("perf_na_dayl.json")}
 OPTIONS = {
     "switch_key_parameters": ("Layout table · key and numbers in each reference", "A table of layouts",
         "The array's codec holds a short table of layouts: the ways a chunk in this array can be stored. Every chunk reference begins with a key naming its layout, followed by any numbers that are that chunk's own (a scale and offset, say).",
-        ["A new codec in every Zarr reader", "A new kind of Icechunk reference: a literal followed by byte ranges"], "Built here on Icechunk as an evaluation codec. It is refkv PR #73's design, and refkv itself was also run."),
+        ["A new codec in every Zarr reader", "A new kind of Icechunk reference: a literal followed by byte ranges"], "Built in the zarr-python, Icechunk and VirtualiZarr branches, with typed numbers after the key. It is refkv PR #73's design, and refkv itself was also run."),
     "switch_key": ("Layout table · 8-byte key in each reference", "A table of layouts",
-        "The array's codec holds a short table of layouts: the ways a chunk in this array can be stored. Every chunk reference begins with an 8-byte key, a hash of its layout.",
-        ["A new codec in every Zarr reader", "A new kind of Icechunk reference: a literal followed by byte ranges"], "Built in the zarr-python, Icechunk and VirtualiZarr branches."),
+        "The array's codec holds a short table of layouts: the ways a chunk in this array can be stored. Every chunk reference begins with an 8-byte key, the start of a hash of its layout's content. Shorter keys are allowed and collide sooner.",
+        ["A new codec in every Zarr reader", "A new kind of Icechunk reference: a literal followed by byte ranges"], "Built in the zarr-python, Icechunk and VirtualiZarr branches. The content-hash key is refkv PR #73's."),
     "switch_case_id": ("Layout table · 1-byte number in each reference", "A table of layouts",
-        "The same as a key in each reference, with the shortest key: one byte that numbers the layout. The key's length is a setting; this is its smallest value.",
-        ["A new codec in every Zarr reader", "A new kind of Icechunk reference: a literal followed by byte ranges"], "Built, as the key design with 1-byte keys. This is the per-chunk variant of NASA-IMPACT/veda-odd#498."),
+        "A one-byte key that numbers the layouts in the order they first appear, instead of hashing them. It is here as a caution: the codec in the branch refuses a key that is not a hash of its layout.",
+        ["A new codec in every Zarr reader", "A new kind of Icechunk reference: a literal followed by byte ranges"], "Built as an evaluation codec. This is the per-chunk variant of NASA-IMPACT/veda-odd#498, read literally."),
     "switch_position": ("Layout table · found by position", "A table of layouts",
         "The array's codec holds a short table of layouts, and zarr.json also lists which layout each run of chunks along the joined axis uses. Nothing is stored per chunk; the codec is told which chunk it is decoding.",
         ["A new codec in every Zarr reader", "Zarr readers must tell a codec the chunk's coordinates", "Icechunk change only when the chunk shape changes (virtual shards)"], "Built in the zarr-python and VirtualiZarr branches."),
@@ -147,7 +147,7 @@ def build() -> dict:
             if rec["outcome"] != "equal":
                 why = rec.get("why", "")
                 if arm == "switch_case_id":
-                    why = "one byte numbers at most 256 layouts, and this case has 16,000; a longer key would work (two bytes number 65,536)"
+                    why = "one byte numbers at most 256 layouts, and this case has 16,000"
                 scale[kind] = {"ok": False, "why": why}
                 continue
             notes = []
@@ -160,7 +160,7 @@ def build() -> dict:
                 o["costs"].append(f"With 16,000 chunks where {label}: " + "; ".join(notes) + ".")
         o["scale"] = scale
         if arm == "switch_case_id":
-            o["costs"].append("One byte numbers at most 256 layouts, so a record with more distinct layouts needs a longer key. Key length is a setting: two bytes number 65,536, and the 8-byte option has no practical limit.")
+            o["costs"].append("One byte numbers at most 256 layouts. The hashed key avoids both this limit and the renumbering.")
         if arm == "native_copy":
             o["costs"].append("All of the data is stored a second time, and must be rewritten whenever the source is reprocessed.")
         # real data

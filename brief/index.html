@@ -175,6 +175,22 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   }
 }]</pre>
       <p class="note">Daymet Puerto Rico, 1950&ndash;2025: 27,740 daily chunks in two layouts, found by position. In the code the codec is named <span class="mono">switch</span> and a layout is a &ldquo;case&rdquo;.</p>
+<pre>"codecs": [{
+  "name": "switch",
+  "configuration": {
+    "select": "key",
+    "key_bytes": 8,
+    "cases": [
+      { "key": "9f3a…",
+        "codecs": [bytes, zlib],
+        "encoded_chunk_shape": [1, 231, 364] },
+      { "key": "c41e…",
+        "codecs": [bytes, shuffle, zlib],
+        "encoded_chunk_shape": [1, 231, 364] }
+    ]
+  }
+}]</pre>
+      <p class="note">The same array with a key in each reference. A key is the first <span class="mono">key_bytes</span> bytes of the SHA-256 of its layout's JSON, and the codec refuses one that is not. The keys shown are made up and shortened. A layout may also leave numbers open, such as a scale and offset, and declare their types in <span class="mono">parameters</span>; each reference then carries its own after the key. Both follow <a href="https://github.com/d-v-b/refkv/pull/73">refkv PR&nbsp;#73</a>.</p>
     </div>
   </div>
 </section>
@@ -194,7 +210,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
     </div></div>
   </div>
   <div class="prose">
-    <p><b>What Icechunk needs.</b> A virtual reference that is a literal followed by several byte ranges, from one object or several, and that answers a ranged read by fetching only the parts the range touches, concurrently. The branch stores this in the reserved <code>ChunkRef.extra</code> field, so the flatbuffer schema is unchanged. A key in front of each chunk, as the keyed designs on the other pages use, is the special case of one literal and one range.</p>
+    <p><b>What Icechunk needs.</b> A virtual reference that is a literal followed by several byte ranges, from one object or several, and that answers a ranged read by fetching only the parts the range touches, concurrently. The branch stores this in the reserved <code>ChunkRef.extra</code> field, so the flatbuffer schema is unchanged. A header in front of each chunk, as <a href="https://github.com/NASA-IMPACT/veda-odd/issues/498">NASA-IMPACT/veda-odd#498</a> proposes and the keyed designs on the other pages use, is the special case of one literal and one range.</p>
   </div>
   <h3>Virtual shards make the same requests as plain chunks, once range merging is off</h3>
   <div class="figure">
@@ -266,10 +282,10 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   <table>
     <thead><tr><th>Project</th><th>Change</th><th>Prototype</th><th>Tests run</th></tr></thead>
     <tbody>
-      <tr><td>zarr-extensions</td><td>Specify <span class="mono">switch</span>: the layout found by position (runs along an axis) or by a key in front of the chunk; per-layout codecs, encoded chunk shape, fill value and range merging</td><td>Not drafted as a spec</td><td></td></tr>
-      <tr><td>zarr-python</td><td><span class="mono">switch</span> codec, by position or by key; chunk coordinates passed to codecs that ask; <span class="mono">array_concat</span> codec</td><td><a href="https://github.com/maxj-labs/zarr-python/tree/feat/array-concat-codec">feat/array-concat-codec</a>, about 880 lines</td><td>42 new; all 3,946 codec, array and metadata tests pass</td></tr>
+      <tr><td>zarr-extensions</td><td>Specify <span class="mono">switch</span>: the layout found by position (runs along an axis) or by a key in front of the chunk that is a hash of the layout's content; numbers a layout leaves open and each chunk supplies; per-layout codecs, encoded chunk shape, fill value and range merging</td><td>Not drafted as a spec</td><td></td></tr>
+      <tr><td>zarr-python</td><td><span class="mono">switch</span> codec, by position or by key, with content-hash keys and typed per-chunk numbers; chunk coordinates passed to codecs that ask; <span class="mono">array_concat</span> codec</td><td><a href="https://github.com/maxj-labs/zarr-python/tree/feat/array-concat-codec">feat/array-concat-codec</a>, about 1,050 lines</td><td>47 new; all 3,951 codec, array and metadata tests pass</td></tr>
       <tr><td>Icechunk</td><td>Virtual reference = optional literal + ranges of one or more objects, read by range, parts fetched concurrently; bare integers in rectilinear grids</td><td><a href="https://github.com/maxj-labs/icechunk/tree/feat/virtual-ref-prefix">feat/virtual-ref-prefix</a>, about 420 lines of Rust</td><td>3 new; 391 unit and 119 integration tests pass</td></tr>
-      <tr><td>VirtualiZarr</td><td><span class="mono">set_options(mismatched_concat="pieces")</span>; a planner that picks a plain layout table or virtual shards; data type changes; stacking; absent variables; appending; key selection and key length</td><td><a href="https://github.com/maxj-labs/VirtualiZarr/tree/feat/concat-mismatched-arrays">feat/concat-mismatched-arrays</a>, about 1,190 lines</td><td>16 new; 10 run with released Icechunk, all with the modified one</td></tr>
+      <tr><td>VirtualiZarr</td><td><span class="mono">set_options(mismatched_concat="pieces")</span>; a planner that picks a plain layout table or virtual shards; data type changes; stacking; absent variables; appending; key selection, key length, and shared layouts for files that differ only in scale and offset</td><td><a href="https://github.com/maxj-labs/VirtualiZarr/tree/feat/concat-mismatched-arrays">feat/concat-mismatched-arrays</a>, about 1,210 lines</td><td>16 new; 10 run with released Icechunk, all with the modified one</td></tr>
     </tbody>
   </table>
   </div>
@@ -287,7 +303,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
         <li><b>Appending.</b> Appending along the joined axis works when the new granules fit the existing grid or shards. Writing by region, or appending a layout that does not fit, means planning the array again.</li>
         <li><b>Older Icechunk readers.</b> A reference with a literal or further ranges is stored without a location, so a reader that predates the change fails with an error and cannot return wrong bytes. Whether that suffices, or a format version bump is wanted, is for Icechunk to decide.</li>
         <li><b>Checksums.</b> A timestamp checksum is applied to every object a reference reads. An ETag still covers the first object only.</li>
-        <li><b>Names.</b> <code>switch</code> is also the name of the header-based codec in refkv PR #73. One of them should change.</li>
+        <li><b>Names and canonical form.</b> <code>switch</code> is also the name of the codec in refkv PR #73, whose keyed design this one follows without matching its metadata. One of the names should change. Both hash sorted-key JSON; a specification should name a canonical form (RFC 8785) so that every implementation computes the same key.</li>
       </ul>
     </div>
     <div>
