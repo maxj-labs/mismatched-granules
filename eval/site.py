@@ -154,7 +154,7 @@ def size(n: float) -> str:
 
 def render() -> str:
     brief = (ROOT / "brief" / "index.html").read_text()
-    head = brief[: brief.index("</style>")].replace("<title>One Array from Mismatched Granules</title>", "<title>Mismatched Granules</title>")
+    head = brief[: brief.index("</style>")].replace("<title>Real Collections and Virtual Shards</title>", "<title>Mismatched Granules</title>")
     n = len(surveyed())
     series = "series: every day at one cell"
     table_arms = [a for a, v in PERF["arms"].items() if a.startswith("switch") and v.get("reads")]
@@ -271,7 +271,7 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
 <section>
   <h2>How often do NASA records change away from the end?</h2>
   <div class="prose">
-    <p>If records only ever grew at the end, appending would be the only edit that matters. To check, I looked at {n} collections in NASA's public metadata catalogue (CMR): the seven sampled in the <a href="brief.html">original proposal</a> and nineteen other well-known ones that I chose. For each file the catalogue gives the time its data covers and the time the file was produced. A file is <em>late</em> when it was produced at least a day after a file holding newer data. A store kept up to date would have had to insert, backfill or replace it.</p>
+    <p>If records only ever grew at the end, appending would be the only edit that matters. To check, I looked at {n} collections in NASA's public metadata catalogue (CMR): the seven sampled for <a href="brief.html">Real Collections and Virtual Shards</a> and nineteen other well-known ones that I chose. For each file the catalogue gives the time its data covers and the time the file was produced. A file is <em>late</em> when it was produced at least a day after a file holding newer data. A store kept up to date would have had to insert, backfill or replace it.</p>
   </div>
   {prevalence_table()}
   <div class="prose">
@@ -287,7 +287,7 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
     <ul>
       <li><b>If not,</b> finding the layout by position is enough and asks the least. It needs no store change while the chunk shape is stable, and it read correctly as Kerchunk references in {kpos.count("equal")} of {len(kpos)} test cases. VirtualiZarr's append rewrites the table as it goes.</li>
       <li><b>If so,</b> put a key in each reference. Edits then touch only the references that change, a file in an unknown layout raises an error, and a replaced file cannot be misread. The price is the Icechunk change and somewhat larger manifests ({size(km)} against {size(pm)} for twelve years of Daymet Puerto Rico).</li>
-      <li><b>If the chunk shape changes</b> (Daymet North America in 2020), the Icechunk change is needed either way, because each Zarr chunk becomes a virtual shard. Position then loses most of its advantage.</li>
+      <li><b>If the chunk shape changes</b> (Daymet North America in 2020), the Icechunk change is needed either way, because each Zarr chunk becomes a <a href="brief.html#virtual-shards">virtual shard</a>. Position then loses most of its advantage.</li>
       <li><b>If every file or chunk has numbers of its own</b> (its own scale and offset, say), carry those numbers in the reference beside the key, as refkv PR&nbsp;#73 does.</li>
       <li><b>If the files are few and large and edits are frequent,</b> one array per file is the most forgiving, at the costs above.</li>
     </ul>
@@ -309,9 +309,9 @@ table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink);
       <p>Sixteen options from the public discussions, run against ten test cases, seven kinds of edit, two worst cases at 16,000 chunks, and Daymet. Includes how each was built and the limits of the tests.</p>
     </div>
     <div class="card">
-      <div class="kind">Background</div>
-      <h3><a href="brief.html">The original proposal</a></h3>
-      <p>The first write-up: the <span class="mono">switch</span> codec (the layout table), virtual shards, and results from seven NASA collections. Where it disagrees with the newer pages, they are right.</p>
+      <div class="kind">Real data</div>
+      <h3><a href="brief.html">Real Collections and Virtual Shards</a></h3>
+      <p>How seven NASA collections disagree, results from joining every numeric variable sampled, how virtual shards work, and what each library would take on.</p>
     </div>
   </div>
 </section>

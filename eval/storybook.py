@@ -480,7 +480,7 @@ fromHash();
 
 def render() -> str:
     style = BRIEF.read_text()
-    head = style[: style.index("</style>")].replace("<title>One Array from Mismatched Granules</title>", "<title>Mismatched Granules Storybook</title>")
+    head = style[: style.index("</style>")].replace("<title>Real Collections and Virtual Shards</title>", "<title>Mismatched Granules Storybook</title>")
     data = json.dumps(build()).replace("</", "<\\/")
     return f"""{head}{CSS}</style>
 

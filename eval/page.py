@@ -28,7 +28,7 @@ CASE_TABLE = ["switch_position", "switch_key", "switch_case_id", "switch_key_par
 
 def render(g: dict) -> str:
     style = BRIEF.read_text()
-    head = style[: style.index("</style>")].replace("<title>One Array from Mismatched Granules</title>", "<title>Every Option, Tested</title>")
+    head = style[: style.index("</style>")].replace("<title>Real Collections and Virtual Shards</title>", "<title>Every Option, Tested</title>")
     count, scale, size, CASES, plain = g["count"], g["scale"], g["size"], g["CASES"], g["plain"]
     total, per_chunk, seconds, requests, manifest, growth = g["compose_total"], g["per_chunk"], g["seconds"], g["requests"], g["manifest"], g["growth"]
     cases = "".join(f"<li><b>{g['CASE_LABEL'][c]}.</b> {g['e'](g['MATRIX']['cases'][c][0].upper() + g['MATRIX']['cases'][c][1:])}.</li>" for c in CASES)
@@ -103,7 +103,7 @@ def render(g: dict) -> str:
   <div class="prose"><p>Taken from zarr-specs#399 and #288, zarr-extensions#74 and PR&nbsp;#75, NASA-IMPACT/veda-odd#498, VirtualiZarr#1111 and refkv PR&nbsp;#73. Seven of them are the same codec. It holds a table of <em>layouts</em> (the discussions call them cases): the ways a chunk in this array can be stored. The seven differ only in how a reader learns which layout a chunk has. They share one planner and one encoding of the table, so differences between their rows come from that choice alone.</p></div>
   {g["options_table"]()}
   <div class="prose">
-    <p><b>Virtual shards</b> (d-v-b, zarr-specs#399) are not a row of their own. Every layout-table option uses them when the chunk shape changes, which is the &ldquo;chunk shape change&rdquo; test case below.</p>
+    <p><b><a href="brief.html#virtual-shards">Virtual shards</a></b> (d-v-b, zarr-specs#399) are not a row of their own. Every layout-table option uses them when the chunk shape changes, which is the &ldquo;chunk shape change&rdquo; test case below.</p>
     <p><b>Proposed but not built:</b></p>
     <ul>
       <li><b>A storage transformer</b> (zarr-specs#399 design 2.3; a generalised transformer chain, mkitti). zarr-python refuses any array that declares one, so there is nothing to run it in.</li>

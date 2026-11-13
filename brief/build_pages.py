@@ -11,7 +11,7 @@ PAGES = {
     "index.html": (HERE / "site" / "index.html", "Overview"),
     "storybook.html": (HERE / "storybook" / "index.html", "Storybook"),
     "evaluation.html": (HERE / "evaluation" / "index.html", "Every option, tested"),
-    "brief.html": (HERE / "brief" / "index.html", "Original proposal"),
+    "brief.html": (HERE / "brief" / "index.html", "Real collections"),
 }
 HEAD = """<!doctype html>
 <html lang="en">

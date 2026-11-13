@@ -24,16 +24,16 @@ by `python brief/build_pages.py`, which also puts the same navigation on every p
 | [Overview](https://maxj-labs.github.io/mismatched-granules/) | `eval/site.py` | the short version: the designs, what happens to each when a store is edited, how often NASA records change away from the end, and what to choose |
 | [Storybook](https://maxj-labs.github.io/mismatched-granules/storybook.html) | `eval/storybook.py` | pick an option, or the way your files disagree, and read what follows |
 | [Every option, tested](https://maxj-labs.github.io/mismatched-granules/evaluation.html) | `eval/report.py`, `eval/page.py` | sixteen options against the same test cases, edits, worst cases and Daymet |
-| [Original proposal](https://maxj-labs.github.io/mismatched-granules/brief.html) | `brief/index.html` | the first write-up: the `switch` codec and virtual shards. Where it disagrees with the newer pages, they are right |
+| [Real collections](https://maxj-labs.github.io/mismatched-granules/brief.html) | `brief/index.html` | how seven NASA collections disagree, results from joining them, how virtual shards work, and what each library would take on |
 
-The pages call an entry in the `switch` codec's table a "layout"; the code and the
-original proposal call it a "case".
+The pages call an entry in the `switch` codec's table a "layout"; the code calls it a
+"case".
 
 ## Layout
 
 | Path | What |
 |---|---|
-| `brief/index.html` | The write-up: the proposal and the evidence |
+| `brief/index.html` | The real-collections page, written by hand; the other pages take their styles from it |
 | `bench/` | Every approach on the same Daymet files: `compare.py`, `hdr_arms.py`, `refkv_arm.py`, `na_hybrid.py`, `na_shards.py`; `range_server.py` counts the requests that reach the source and can relay to the archive |
 | `survey/` | Other collections: `layouts.py` (layouts from metadata-only reads), `pick.py` (find layout change points, download a few granules), `run.py` and `all_vars.py` (join and check), `remote.py` (whole records, metadata only), `test_fill.py` |
 | `scripts/` | Daymet download and a first end-to-end build |
