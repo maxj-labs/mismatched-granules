@@ -3,9 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}
+.sitenav{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:baseline;font-size:14px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+.sitenav a{color:var(--ink-2);text-decoration:none}
+.sitenav a:hover{color:var(--ink);text-decoration:underline}
+.sitenav a[aria-current="page"]{color:var(--ink);font-weight:600}
+.sitenav .repo{margin-left:auto}</style>
 <meta name="claude:viewport-fit-sides" content="cover">
-<title>One Array from Mismatched Granules</title>
+<title>Mismatched Granules</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@500;600&display=swap">
 <style>
 /* Layout: one reading column for argument, wider bands for tables and figures; evidence sits directly under each claim. */
@@ -110,341 +115,81 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   .bars { grid-template-columns: 1fr; gap: 4px 0; }
   .bars .track { margin-bottom: 10px; margin-right: 64px; }
 }
+
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); }
+.card { display: flex; flex-direction: column; gap: 8px; padding: 20px 22px 8px 0; min-width: 0; }
+.card + .card { padding-left: 22px; border-left: 1px solid var(--rule); }
+.card .kind { font-family: var(--mono); font-size: 12px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; }
+.card h2 { font-size: 21px; }
+.card h2 a { color: var(--ink); text-decoration-color: var(--accent); text-underline-offset: 4px; }
+.card p { font-size: 14.5px; color: var(--ink-2); }
+.card .for { font-size: 13.5px; color: var(--ink-3); }
+@media (max-width: 760px) { .cards { grid-template-columns: 1fr; } .card + .card { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); } }
 </style>
 
 </head>
 <body>
-<div class="wrap">
+<div class="wrap"><nav class="sitenav" aria-label="Pages"><a href="./" aria-current="page">Overview</a><a href="storybook.html">Storybook</a><a href="evaluation.html">Every option, tested</a><a href="brief.html">Original proposal</a><a class="repo" href="https://github.com/maxj-labs/mismatched-granules">Repository</a></nav>
+<header>
+  <section>
+    <div class="eyebrow">maxj-labs / mismatched-granules</div>
+    <h1>One Zarr Array from Granules That Disagree</h1>
+    <p class="lede">Archives of netCDF and HDF5 granules often cannot be virtualized as one Zarr array, because the files change compression, chunk shape, data type or fill value partway through the record. This site collects prototypes of the proposed fixes and the evidence for choosing between them.</p>
+    <p class="byline">Work in progress, prepared with Claude. Only zarr-python reads these arrays, and nothing has been run against S3.</p>
+  </section>
+</header>
 
 <section>
-  <div class="eyebrow">Proposal for Zarr, Icechunk and VirtualiZarr</div>
-  <h1>One array from granules that don't match</h1>
-  <p class="lede">Many NASA collections cannot be virtualized into a single Zarr array because their files change compression, chunk shape or chunk boundaries partway through the record. Three separable changes fix this. They are built as prototype branches and were checked on seven collections: every read matched the source files.</p>
-  <p class="byline">Max Jones, Development Seed · 10 November 2026 · Experiments and write-up prepared with Claude Code. Code: <a href="https://github.com/maxj-labs/mismatched-granules">maxj-labs/mismatched-granules</a>. These are prototypes, not pull requests; the open issues are listed at the end.</p>
-
-  <div class="claims">
-    <div class="claim">
-      <div class="who">Zarr / zarr-python</div>
-      <div class="what">A <code>switch</code> codec that finds each chunk's case by its position or by a key</div>
-      <div class="why">Picks a codec chain per run of chunks, crops chunks stored larger than their place in the grid, and carries a fill value per run. By position it is enough for 5 of 7 collections with released Icechunk; by key it composes.</div>
+  <div class="cards">
+    <div class="card">
+      <div class="kind">Start here if you are deciding</div>
+      <h2><a href="storybook.html">Storybook</a></h2>
+      <p>Pick an implementation and read what follows from choosing it: what you can support, what you cannot, what gets expensive. Or pick the way your granules disagree and see which implementations serve it.</p>
+      <p class="for">Interactive. Fourteen options, ten use cases, four requirements.</p>
     </div>
-    <div class="claim">
-      <div class="who">Icechunk</div>
-      <div class="what">Virtual references made of a literal plus several byte ranges</div>
-      <div class="why">Makes a Zarr chunk a virtual shard. The only way found to get one ordinary array across a chunk-shape change. Fits in the manifest's reserved field.</div>
+    <div class="card">
+      <div class="kind">The evidence</div>
+      <h2><a href="evaluation.html">Every Option, Tested</a></h2>
+      <p>Fifteen mechanisms from the public discussions, each run against the same ten cases, the requirements in zarr-specs#399, two worst cases at 16,000 chunks, and Daymet behind a server that counts requests.</p>
+      <p class="for">Tables, with how each option was built or emulated and the limits of the test.</p>
     </div>
-    <div class="claim">
-      <div class="who">VirtualiZarr</div>
-      <div class="what">A concat that plans a layout instead of raising</div>
-      <div class="why">Chooses between the two mechanisms from the files' layouts alone, and writes one array. Opt-in; today's behaviour is the default.</div>
+    <div class="card">
+      <div class="kind">The original proposal</div>
+      <h2><a href="brief.html">One Array from Mismatched Granules</a></h2>
+      <p>The case for a switch codec and for virtual shards, with results from Daymet and six other NASA collections. Written before the full evaluation, which favours carrying each chunk's case in its reference more strongly than this page does.</p>
+      <p class="for">For Icechunk, Zarr and VirtualiZarr developers.</p>
     </div>
   </div>
 </section>
 
 <section>
-  <div class="stats">
-    <div class="stat"><b>1,200</b><span>numeric variables joined into one array each, from 2 to 6 sampled granules of 6 collections; plain concat was impossible for 1,054</span></div>
-    <div class="stat"><b>0</b><span>cells that differ from the source files, in every read tested</span></div>
-    <div class="stat"><b>1.00×</b><span>requests and bytes reaching the source against reading granule by granule, for the 11 variables where this was counted</span></div>
-    <div class="stat"><b>80×</b><span>fewer manifest references for 46 years of Daymet North America (1,213,038 chunks, 15,138 references); on a three-year test the store was 3× smaller</span></div>
-  </div>
-</section>
-
-<section>
-  <h2>The problem is common, and it comes in three forms</h2>
+  <h2>What the evaluation found</h2>
   <div class="prose">
-    <p>A Zarr array has one chunk grid, one codec chain and one fill value. Archives written over twenty years do not. Sampling the most-used collections that carry a virtualizability blocker shows three recurring causes: the codec changes, chunks are cut short at granule ends, or the chunk shape itself changes.</p>
+    <ul>
+      <li><b>A table of cases, with each chunk's case carried in its own reference,</b> described every case tested, survived a manifest operation untouched, and stayed small in both worst cases. It needs Icechunk references that are a literal followed by byte ranges.</li>
+      <li><b>The same table found from the chunk's position</b> needs no store change, but returns wrong values, sometimes without an error, when a tool drops chunks without rewriting the table.</li>
+      <li><b>Array concatenation</b> describes everything and reads with released Icechunk, at a cost that grows with the number of pieces.</li>
+      <li><b>The options do not differ on speed.</b> zarr-python's concurrency setting changes read times far more than the choice between them.</li>
+    </ul>
   </div>
+</section>
+
+<section>
+  <h2>Code</h2>
   <div class="scroll">
   <table>
-    <thead><tr><th>Collection</th><th>Variable</th><th>What changes between granules</th><th>Needs</th></tr></thead>
+    <thead><tr><th>Where</th><th>What</th></tr></thead>
     <tbody>
-      <tr><td>MODISA_L3m_CHL, 4 km daily</td><td class="mono">chlor_a</td><td>Chunks 44×87 → 512×1024 on 1 Jan 2021, then 16×1024</td><td><span class="tag sh">shards</span></td></tr>
-      <tr><td>Daymet daily, North America</td><td class="mono">dayl</td><td>Chunks 1×1000×1000 → 10×300×300 in 2020, shuffle added</td><td><span class="tag sh">shards</span></td></tr>
-      <tr><td>Daymet daily, Puerto Rico</td><td class="mono">tmin</td><td>Shuffle added in 2020</td><td><span class="tag sw">switch</span></td></tr>
-      <tr><td>OMPS_NPP_NMTO3_L3_DAILY</td><td class="mono">ColumnAmountO3</td><td>Uncompressed, contiguous → chunked deflate on 31 Mar 2017</td><td><span class="tag sw">switch</span></td></tr>
-      <tr><td>GPM_2ADPR</td><td class="mono">zFactorMeasured and 279 others</td><td>Last chunk of every granule cut short (7,933 scans in chunks of 15 or 32)</td><td><span class="tag sw">switch + crop</span></td></tr>
-      <tr><td>ATL08</td><td class="mono">classed_pc_indx and 728 others</td><td>Chunk of 100,000 larger than the data, or cut short; groups absent from some granules</td><td><span class="tag sw">switch + crop</span></td></tr>
-      <tr><td>TEMPO_NO2_L2</td><td class="mono">gas_profile and 45 others</td><td>Granules of 131–132 steps in chunks of 128; or one chunk of varying length</td><td><span class="tag sw">switch + crop</span></td></tr>
-      <tr><td>OCO2_L2_Lite_FP</td><td class="mono">xco2 and 130 others</td><td>Chunk shape differs in every granule</td><td><span class="tag sw">switch</span></td></tr>
+      <tr><td><a href="https://github.com/maxj-labs/mismatched-granules">maxj-labs/mismatched-granules</a></td><td>Benchmark and evaluation scripts, result files, and the source of these pages</td></tr>
+      <tr><td><a href="https://github.com/maxj-labs/zarr-python/tree/feat/array-concat-codec">zarr-python branch</a></td><td>The <span class="mono">switch</span> and <span class="mono">array_concat</span> codecs; chunk coordinates passed to codecs that ask</td></tr>
+      <tr><td><a href="https://github.com/maxj-labs/icechunk/tree/feat/virtual-ref-prefix">Icechunk branch</a></td><td>Virtual references made of a literal and several byte ranges; a store that prepends the chunk index</td></tr>
+      <tr><td><a href="https://github.com/maxj-labs/VirtualiZarr/tree/feat/concat-mismatched-arrays">VirtualiZarr branch</a></td><td>A concat that plans one array from mismatched files, and writes and appends it</td></tr>
     </tbody>
   </table>
   </div>
-  <p class="note">Change points were located by binary search over each record using metadata-only range requests (14–15 probes per collection). The collections were picked from 86 graded for virtualizability, by public access counts and by whether a few granules could be downloaded. They are not a random sample.</p>
+  <p class="note">Discussions these pages respond to: <a href="https://github.com/zarr-developers/zarr-specs/issues/399">zarr-specs#399</a>, <a href="https://github.com/zarr-developers/zarr-specs/issues/288">zarr-specs#288</a>, <a href="https://github.com/zarr-developers/zarr-extensions/issues/74">zarr-extensions#74</a>, <a href="https://github.com/NASA-IMPACT/veda-odd/issues/498">NASA-IMPACT/veda-odd#498</a>, <a href="https://github.com/zarr-developers/VirtualiZarr/issues/1111">VirtualiZarr#1111</a>, <a href="https://github.com/d-v-b/refkv/pull/73">refkv PR #73</a>.</p>
 </section>
-
-<section>
-  <h2>Mechanism one: a switch codec</h2>
-  <div class="two">
-    <div>
-      <p>The array stays an ordinary Zarr array with one manifest entry per source chunk, on a rectilinear grid. Its single codec holds a short table of cases, run-length encoded along the joined axis. Each case names:</p>
-      <ul>
-        <li><b>a codec chain</b>, the granules' own, with a <code>cast_value</code> in front where a granule stores another data type;</li>
-        <li><b>an encoded chunk shape</b>, when chunks are stored larger than their cell (HDF5 stores a granule's last chunk whole), so the codec decodes then crops;</li>
-        <li><b>a fill value</b>, only when the granules leave chunks unwritten and their fill differs from the array's. A granule that lacks the variable is a run that stores nothing.</li>
-      </ul>
-      <p>Nothing is stored per chunk. In every collection tested the table had one to three cases and <code>zarr.json</code> stayed under 1.9 KB.</p>
-    </div>
-    <div>
-<pre>"codecs": [{
-  "name": "switch",
-  "configuration": {
-    "axis": 0,
-    "cases": [
-      { "chunks": 25550,
-        "codecs": [bytes, zlib],
-        "encoded_chunk_shape": [null, 231, 364] },
-      { "chunks": 2190,
-        "codecs": [bytes, shuffle, zlib],
-        "encoded_chunk_shape": [null, 231, 364] }
-    ]
-  }
-}]</pre>
-      <p class="note">Daymet Puerto Rico, 1950–2025: 27,740 daily chunks, two cases.</p>
-    </div>
-  </div>
-  <div class="prose">
-    <p><b>What it needs from zarr-python.</b> A codec is not told which chunk it is decoding. The branch adds that: a codec that sets <code>needs_chunk_coords</code> receives the chunk's grid coordinates in its <code>ArraySpec</code>. Without it the codec can still read the position back out of the store key, which is how it ran against released zarr-python as a plugin.</p>
-  </div>
-  <div class="prose">
-    <h3 style="margin-top: 28px">The same codec, choosing by key instead of position</h3>
-    <p>A codec that must know where its chunk sits does not compose: it breaks when chunks are re-keyed, nested inside another codec, or handled by a store that never sees coordinates. So the codec has a second mode. Each case names a short key, and every chunk reference carries its case's key as a literal prefix. The codec reads the key, picks the case, and hands that case's chain a view of the bytes after the key, so a sharded case still reads by byte range. It is never told the chunk's position.</p>
-    <p>The key is a hash of the case's content. Granules with the same layout share one case wherever they fall, and appending merges the two tables by union. The cost is 8 bytes per reference and a dependency on the Icechunk change even where the chunk shape never changes.</p>
-  </div>
-  <div class="scroll">
-  <table>
-    <thead><tr><th>Read, 20 ms per source request</th><th class="n">By position</th><th class="n">By key</th><th class="n">Source requests, both</th></tr></thead>
-    <tbody>
-      <tr><td>Daymet Puerto Rico, 76 years: one cell, every day</td><td class="n">189.1 s</td><td class="n">192.2 s</td><td class="n">27,740</td></tr>
-      <tr><td>Daymet Puerto Rico: one cell, 10 years</td><td class="n">25.2 s</td><td class="n">25.6 s</td><td class="n">3,650</td></tr>
-      <tr><td>Daymet North America (virtual shards), 3 years: 2 whole maps</td><td class="n">2.75 s</td><td class="n">2.66 s</td><td class="n">801</td></tr>
-      <tr><td>Daymet North America: one cell, every day</td><td class="n">0.90 s</td><td class="n">0.90 s</td><td class="n">439</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="note">Both arrays written by VirtualiZarr from the same files; every read equals the files and moves the same bytes. The Puerto Rico manifest grows 7% with keys (1.51 to 1.62 MB); the North America one, already dominated by shard indexes, 0.2%.</p>
-  <div class="prose">
-    <p><b>Worst cases.</b> With layouts alternating every chunk, the position table needs one case per chunk: 4.2 MB of <code>zarr.json</code> for 20,000 chunks. The key table needs one case per distinct layout: 0.9 KB for two layouts, 23 KB for a hundred. Decoding costs about 0.26 ms per chunk in either mode whatever the table's length, against 0.05 ms for a plain array with one chain; that fixed difference is the codec decoding chunks one at a time. A record where every chunk has a layout of its own is past what a case table should hold in either mode (about 220 bytes of metadata per chunk).</p>
-    <p><b>What key selection cannot do.</b> A chunk that stores nothing has no reference to carry a key, so a fill value per run of granules needs position. And it cannot encode: nothing tells the codec which case a new chunk belongs to.</p>
-  </div>
-</section>
-
-<section>
-  <h2>Mechanism two: virtual shards</h2>
-  <div class="prose">
-    <p>When the chunk <em>shape</em> changes, no chunk grid fits both layouts, rectilinear or not. The answer is to make each Zarr chunk a shard sized to a common multiple of the layouts, holding either era's source chunks. The shard is never written. Its reference is a concatenation, and zarr's existing <code>sharding_indexed</code> codec reads it by byte range.</p>
-  </div>
-  <div class="figure">
-    <h3>One Zarr chunk of Daymet North America: 10 × 3000 × 3000 cells</h3>
-    <div class="scroll"><div class="shard">
-      <div class="row"><div class="cell lit">shard index<br>literal, 1.4 KB</div><div class="cell src">chunk 0</div><div class="cell src">chunk 1</div><div class="cell src">chunk 2</div><div class="cell src">…</div><div class="cell src">chunk 89</div></div>
-      <div class="cap">Before 2020: 90 source chunks of 1 × 1000 × 1000, each a byte range of the year's netCDF file.</div>
-      <div class="row"><div class="cell lit">shard index<br>literal, 1.6 KB</div><div class="cell src">chunk 0</div><div class="cell src">chunk 1</div><div class="cell src">…</div><div class="cell src">chunk 99</div></div>
-      <div class="cap">From 2020: 100 source chunks of 10 × 300 × 300. The switch codec picks the inner layout per era and crops the 5-day shard at each year's end.</div>
-    </div></div>
-  </div>
-  <div class="prose">
-    <p><b>What Icechunk needs.</b> A virtual reference that is a literal prefix followed by several byte ranges, of one object or of several, and that answers a ranged read by fetching only the parts the range touches, concurrently. The branch stores this in the reserved <code>ChunkRef.extra</code> field, so the flatbuffer schema is unchanged.</p>
-    <p>A per-chunk header, as proposed in NASA-IMPACT/veda-odd#498, is the special case of one literal and one range. Building the general form costs little more and reaches the case headers cannot.</p>
-  </div>
-</section>
-
-<section>
-  <h2>Evidence</h2>
-
-  <h3>Eleven variables, checked closely</h3>
-  <div class="scroll">
-  <table>
-    <thead><tr><th>Collection</th><th>Variable</th><th class="n">Granules</th><th>Strategy</th><th class="n">Cases</th><th class="n">References</th><th>Equal to files</th><th class="n">Source requests<br>one array / by granule</th></tr></thead>
-    <tbody>
-      <tr><td>MODISA_L3m_CHL</td><td class="mono">chlor_a</td><td class="n">6</td><td><span class="tag sh">shards</span></td><td class="n">2</td><td class="n">6</td><td class="yes">yes</td><td class="n">12,034 / 12,034</td></tr>
-      <tr><td>Daymet North America</td><td class="mono">dayl</td><td class="n">3</td><td><span class="tag sh">shards</span></td><td class="n">2</td><td class="n">999</td><td class="yes">yes</td><td class="n">602 / 602</td></tr>
-      <tr><td>Daymet Puerto Rico</td><td class="mono">tmin</td><td class="n">4</td><td><span class="tag sw">switch</span></td><td class="n">2</td><td class="n">1,460</td><td class="yes">yes</td><td class="n">2,885 / 2,885</td></tr>
-      <tr><td>OMPS_NPP_NMTO3_L3_DAILY</td><td class="mono">ColumnAmountO3</td><td class="n">6</td><td><span class="tag sw">switch</span></td><td class="n">2</td><td class="n">6</td><td class="yes">yes</td><td class="n">90 / 90</td></tr>
-      <tr><td>GPM_2ADPR</td><td class="mono">zFactorMeasured</td><td class="n">2</td><td><span class="tag sw">switch</span></td><td class="n">1</td><td class="n">1,058</td><td class="yes">yes</td><td class="n">1,015 / 1,015</td></tr>
-      <tr><td>GPM_2ADPR</td><td class="mono">precipRateNearSurface</td><td class="n">2</td><td><span class="tag sw">switch</span></td><td class="n">1</td><td class="n">496</td><td class="yes">yes</td><td class="n">452 / 452</td></tr>
-      <tr><td>ATL08</td><td class="mono">classed_pc_indx</td><td class="n">4</td><td><span class="tag sw">switch</span></td><td class="n">1</td><td class="n">14</td><td class="yes">yes</td><td class="n">20 / 20</td></tr>
-      <tr><td>TEMPO_NO2_L2</td><td class="mono">gas_profile</td><td class="n">4</td><td><span class="tag sw">switch</span></td><td class="n">1</td><td class="n">128</td><td class="yes">yes</td><td class="n">263 / 263</td></tr>
-      <tr><td>TEMPO_NO2_L2</td><td class="mono">vertical_column_troposphere</td><td class="n">4</td><td><span class="tag sw">switch</span></td><td class="n">1</td><td class="n">4</td><td class="yes">yes</td><td class="n">55 / 55</td></tr>
-      <tr><td>OCO2_L2_Lite_FP</td><td class="mono">xco2</td><td class="n">3</td><td><span class="tag sw">switch</span></td><td class="n">1</td><td class="n">3</td><td class="yes">yes</td><td class="n">35 / 35</td></tr>
-      <tr><td>OCO2_L2_Lite_FP</td><td class="mono">co2_profile_apriori</td><td class="n">3</td><td><span class="tag sw">switch</span></td><td class="n">1</td><td class="n">12</td><td class="yes">yes</td><td class="n">70 / 70</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="note">Reads per variable: a window across each granule boundary, a series along the joined axis, the whole first granule, and 30 scattered points, each compared with h5py reads of the files. Source requests were counted by an HTTP server in front of the files. The strategy was chosen by the planner, not by hand.</p>
-
-  <h3>Every numeric variable in those granules</h3>
-  <div class="scroll">
-  <table>
-    <thead><tr><th>Collection</th><th class="n">Granules</th><th class="n">Numeric variables</th><th class="n">Joined, equal to files</th><th class="n">Plain concat impossible</th><th>Notes</th></tr></thead>
-    <tbody>
-      <tr><td>ATL08</td><td class="n">4</td><td class="n">729</td><td class="n">729</td><td class="n">592</td><td>478 are missing from one granule and add zero length there</td></tr>
-      <tr><td>GPM_2ADPR</td><td class="n">2</td><td class="n">280</td><td class="n">280</td><td class="n">280</td><td></td></tr>
-      <tr><td>OCO2_L2_Lite_FP</td><td class="n">3</td><td class="n">131</td><td class="n">131</td><td class="n">126</td><td></td></tr>
-      <tr><td>TEMPO_NO2_L2</td><td class="n">4</td><td class="n">46</td><td class="n">46</td><td class="n">45</td><td></td></tr>
-      <tr><td>OMPS_NPP_NMTO3_L3_DAILY</td><td class="n">6</td><td class="n">10</td><td class="n">10</td><td class="n">10</td><td>Provenance groups named after each granule's inputs are left out</td></tr>
-      <tr><td>MODISA_L3m_CHL</td><td class="n">6</td><td class="n">4</td><td class="n">4</td><td class="n">1</td><td></td></tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="note">Small variables were compared whole; large ones by a window across each granule boundary and ten scattered cells. All 1,200 used the switch strategy except MODIS-Aqua <span class="mono">chlor_a</span>.</p>
-
-  <h3>Longer records, virtualized without downloading the data</h3>
-  <div class="scroll">
-  <table>
-    <thead><tr><th>Record</th><th class="n">Granules</th><th class="n">Layouts found</th><th>Strategy</th><th class="n">Source chunks</th><th class="n">References</th><th class="n">Store size</th><th>Spot-checks equal</th></tr></thead>
-    <tbody>
-      <tr><td>Daymet North America <span class="mono">dayl</span>, 1980–2025, complete</td><td class="n">46</td><td class="n">2</td><td><span class="tag sh">shards</span></td><td class="n">1,213,038</td><td class="n">15,138</td><td class="n">2.2 MB</td><td class="yes">21 of 21</td></tr>
-      <tr><td>MODISA_L3m_CHL <span class="mono">chlor_a</span>, every 45th day of the record</td><td class="n">230 of 10,311</td><td class="n">3</td><td><span class="tag sh">shards</span></td><td class="n">1,677,474</td><td class="n">230</td><td class="n">13.9 MB</td><td class="yes">30 of 30</td></tr>
-      <tr><td>OMPS_NPP_NMTO3_L3_DAILY <span class="mono">ColumnAmountO3</span>, every 17th day</td><td class="n">302 of 5,126</td><td class="n">2</td><td><span class="tag sw">switch</span></td><td class="n">302</td><td class="n">302</td><td class="n">0.01 MB</td><td class="yes">24 of 24</td></tr>
-      <tr><td>Daymet Puerto Rico <span class="mono">tmin</span>, 1950–2025, complete (downloaded)</td><td class="n">76</td><td class="n">2</td><td><span class="tag sw">switch</span></td><td class="n">27,740</td><td class="n">27,740</td><td class="n">2.0 MB</td><td class="yes">all reads</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="note">The first three were parsed through a relay that forwards byte-range requests to the archive. Spot-checks compare cells read through the joined array with the same cells read from the granule, on both sides of every layout change. Reading only the chunk index cost 21 MB per 1.3 GB Daymet granule, but close to the whole file for MODIS-Aqua, whose index is spread through each file.</p>
-
-  <h3>Virtual shards cost the same as plain chunks, when ranges are not merged</h3>
-  <div class="figure">
-    <h3>Requests reaching the source, relative to reading the same selection chunk by chunk · Daymet North America, 2019–2021</h3>
-    <div class="legend"><span><i style="background:var(--series-2)"></i>Virtual shards, zarr's default range merging</span><span><i style="background:var(--series-1)"></i>Virtual shards as the planner writes them (no merging)</span><span>Bars start at zero; 1.00× is the chunk-by-chunk baseline</span></div>
-    <div class="bars" id="bars"></div>
-    <p class="note">zarr merges byte ranges of a shard that lie within 1 MiB of each other. In a virtual shard, neighbours in the layout are separate source chunks, so merging fetches chunks nobody asked for. The planner turns merging off per case, so readers need no setting. With parts fetched concurrently, a whole-grid map took 2.8 s from shards against 4.8 s chunk by chunk, at 20 ms per request.</p>
-  </div>
-
-  <h3>The per-chunk mechanisms are interchangeable on speed</h3>
-  <div class="prose"><p>On Daymet Puerto Rico, 76 years, every way of telling the codec which chain applies was built and timed. They differ by less than matters; the choice should be made on what each one requires.</p></div>
-  <div class="scroll">
-  <table>
-    <thead><tr><th>How the codec learns the chain</th><th>Store change</th><th class="n">2-day map</th><th class="n">10-year series</th><th class="n">76-year series</th></tr></thead>
-    <tbody>
-      <tr><td>No virtual store: <span class="mono">open_mfdataset</span> on the files</td><td>n/a</td><td class="n">5.70 s</td><td class="n">25.6 s</td><td class="n">174.6 s</td></tr>
-      <tr><td>Chunk position, cases in <span class="mono">zarr.json</span> (proposed)</td><td>none</td><td class="n">0.014 s</td><td class="n">2.59 s</td><td class="n">15.7 s</td></tr>
-      <tr><td>8-byte header in the Icechunk manifest (#498)</td><td>Icechunk</td><td class="n">0.016 s</td><td class="n">2.59 s</td><td class="n">15.8 s</td></tr>
-      <tr><td><span class="mono">conditional</span> codec, 1-byte header in the manifest</td><td>Icechunk</td><td class="n">0.014 s</td><td class="n">2.72 s</td><td class="n">16.6 s</td></tr>
-      <tr><td>Header in a refkv concatenated reference</td><td>refkv, no Icechunk</td><td class="n">0.113 s</td><td class="n">3.96 s</td><td class="n">25.5 s</td></tr>
-      <tr><td>Array concatenation codec (zarr-specs#288)</td><td>none</td><td class="n">0.016 s</td><td class="n">2.17 s</td><td class="n">13.6 s</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="note">Median of 5 (2 for the long series), local disk, warm cache: these show overhead, not network cost, and one run on one machine cannot rank arms that are within 25% of each other. refkv is an experimental project measured as released; its gap is not a verdict on its design. All 40 reads equal the files.</p>
-</section>
-
-<section>
-  <h2>Why this and not the alternatives</h2>
-  <div class="prose"><p>Since this section was written, every option raised in the public discussions (fifteen in all) has been run against the same ten cases, requirements and granules: see <a href="https://maxj-labs.github.io/mismatched-granules/evaluation.html">Every Option, Tested</a>. Its results favour carrying each chunk's case in its reference over finding it by position, more strongly than the summary below does.</p></div>
-  <div class="two">
-    <div>
-      <h3>Array concatenation as the main route</h3>
-      <p>It works everywhere and needs no store change, and it remains the fallback when Icechunk cannot store a shard. Its array can now report chunks that line up with the pieces, so it no longer offers readers one giant chunk. What remains against it: every reader must implement a codec that reads other arrays, manifest operations do not compose with it, and editing a piece silently changes the joined array.</p>
-    </div>
-    <div>
-      <h3>A header that carries the parameters themselves</h3>
-      <p>Storing each chunk's codec parameters in front of it (NASA-IMPACT/veda-odd#498, the <span class="mono">conditional</span> codec) is the right tool when parameters truly vary per chunk. For era-style changes it repeats the same values 27,740 times, and what can vary is limited to what fits a header. A key into a case table is the same idea with the parameters stored once. An earlier version of this page said headers do not compose with partial reads of a shard. That was wrong: the codec reads the header and gives the inner chain a view of the rest, which is how key selection is built here.</p>
-    </div>
-  </div>
-  <div class="prose">
-    <p><b>Position or key.</b> Position needs nothing from the store, so it works with released Icechunk for every collection whose chunk shape is stable, and it is the only mode that handles a per-run fill value or encodes. Key selection composes, survives layouts that come and go, and makes appending a union. Since virtual shards need the Icechunk change anyway, key selection costs nothing further once that lands. A reasonable outcome is one codec with both modes, with position as what ships first.</p>
-    <p><b>The same tax applies to the switch codec.</b> Any reader that wants these arrays must implement it, in every language. It is smaller than a concatenation codec and does no I/O of its own except through sharding, but it is still a new codec, and it depends on the rectilinear chunk grid, which zarr-python still gates behind a setting.</p>
-  </div>
-</section>
-
-<section>
-  <h2>What each project would take on</h2>
-  <div class="scroll">
-  <table>
-    <thead><tr><th>Project</th><th>Change</th><th>Prototype</th><th>Tests run</th></tr></thead>
-    <tbody>
-      <tr><td>zarr-extensions</td><td>Specify <span class="mono">switch</span>: cases found by position (run-length encoded along an axis) or by a key in front of the chunk; per-case codecs, encoded chunk shape, fill value, range merging</td><td>Not drafted as a spec</td><td></td></tr>
-      <tr><td>zarr-python</td><td><span class="mono">switch</span> codec; chunk coordinates passed to codecs that ask; <span class="mono">array_concat</span> codec</td><td><a href="https://github.com/maxj-labs/zarr-python/tree/feat/array-concat-codec">feat/array-concat-codec</a>, about 840 lines</td><td>40 new; all 3,944 codec, array and metadata tests pass</td></tr>
-      <tr><td>Icechunk</td><td>Virtual reference = optional literal + ranges of one or more objects, read by range, parts fetched concurrently; bare integers in rectilinear grids</td><td><a href="https://github.com/maxj-labs/icechunk/tree/feat/virtual-ref-prefix">feat/virtual-ref-prefix</a>, about 420 lines of Rust</td><td>3 new; 391 unit, 119 integration and 253 Python tests pass</td></tr>
-      <tr><td>VirtualiZarr</td><td><span class="mono">set_options(mismatched_concat="pieces")</span>; a planner that picks switch or shards; data type changes; stacking; absent variables; appending; <span class="mono">switch_select="key"</span></td><td><a href="https://github.com/maxj-labs/VirtualiZarr/tree/feat/concat-mismatched-arrays">feat/concat-mismatched-arrays</a>, about 1,110 lines</td><td>11 new; 8 run with released Icechunk, all with the modified one</td></tr>
-    </tbody>
-  </table>
-  </div>
-</section>
-
-<section>
-  <h2>Open issues and limits</h2>
-  <div class="two">
-    <div>
-      <h3>Design questions these prototypes do not settle</h3>
-      <ul>
-        <li><b>Older Icechunk readers.</b> A reference with a prefix or further ranges is now stored without a location, so a reader that predates the change fails with an error and cannot return wrong bytes. Whether that suffices, or a format version bump is wanted, is for Icechunk to decide.</li>
-        <li><b>Checksums.</b> A timestamp checksum is now applied to every object a reference reads. An ETag still covers the first object only.</li>
-        <li><b>Region writes.</b> Appending along the joined axis works when the new granules fit the existing grid or shards. Writing by region, or appending a layout that does not fit, still means planning the array again.</li>
-        <li><b>Codecs that depend on position.</b> Passing chunk coordinates to a codec is the least composable option raised in zarr-specs#399. Key selection avoids it, at the price of needing the store change.</li>
-        <li><b>Per-chunk overhead.</b> The codec decodes chunks one at a time, about 0.2 ms more per chunk than a plain array. That is invisible next to a network request and would show on local reads of very small chunks.</li>
-        <li><b>Names.</b> <code>switch</code> is also the name of the header-based codec in refkv PR #73. One of them should change.</li>
-        <li><b>Encoding.</b> Position selection encodes, so these arrays can be written through Zarr. Key selection is read-only.</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Limits of the evidence</h3>
-      <ul>
-        <li>Only zarr-python reads these arrays. No other Zarr implementation was tried.</li>
-        <li>Nothing was measured against S3. Source requests were counted at a local HTTP server; timings are local.</li>
-        <li>Complete records for Daymet only. MODIS-Aqua and OMPS are samples across their records; GPM, ATL08, TEMPO and OCO-2 are a few granules each.</li>
-        <li>Manifest size for shards that span a whole map: MODIS-Aqua needs about 60 KB of manifest per day, most of it the shard index.</li>
-        <li>Per-granule fill values and data type changes are proven on constructed files. No real sample had unwritten chunks with a differing fill.</li>
-        <li>A marker for "no data" that changes between granules can be remapped, but real data equal to the array's marker would be masked.</li>
-        <li>xarray's default dask chunks follow the Zarr chunks: 27,740 small ones for Daymet Puerto Rico, 360 MB shards for North America. Neither is a good default.</li>
-      </ul>
-    </div>
-  </div>
-  <hr>
-  <p class="note">Related discussions: <a href="https://github.com/zarr-developers/zarr-specs/issues/399">zarr-specs#399</a> (varying codec parameters per chunk), <a href="https://github.com/zarr-developers/zarr-specs/issues/288">zarr-specs#288</a> (virtual concatenation), <a href="https://github.com/zarr-developers/zarr-extensions/issues/74">zarr-extensions#74</a> and <a href="https://github.com/zarr-developers/zarr-extensions/pull/75">PR #75</a> (encoded chunk shapes), the merged <a href="https://github.com/zarr-developers/zarr-extensions/tree/main/codecs/conditional"><span class="mono">conditional</span> codec</a>, <a href="https://github.com/NASA-IMPACT/veda-odd/issues/498">NASA-IMPACT/veda-odd#498</a>, <a href="https://github.com/zarr-developers/VirtualiZarr/issues/1111">VirtualiZarr#1111</a>, and <a href="https://github.com/d-v-b/refkv/pull/73">refkv PR #73</a>, whose <span class="mono">switch</span> and <span class="mono">crop</span> codecs were run unmodified as one of the arms. Scripts, result files and this page's source are in <a href="https://github.com/maxj-labs/mismatched-granules">maxj-labs/mismatched-granules</a>.</p>
-</section>
-
 </div>
-<div id="tip" hidden></div>
-
-<script>
-// Requests relative to the chunk-by-chunk baseline, Daymet North America 2019-2021, 20 ms latency.
-const READS = [
-  { label: "30-day box across the 2020 chunk-shape change", base: 48, def: 118, off: 48 },
-  { label: "30-day box across the 2020/2021 file boundary", base: 36, def: 68, off: 36 },
-  { label: "1-day map of the whole grid, 2021", base: 729, def: 729, off: 729 },
-  { label: "1,095-day series at one cell", base: 439, def: 2079, off: 439 },
-  { label: "1 day at one cell", base: 1, def: 1, off: 1 },
-];
-const MAX = 5.1; // the track runs from 0x to 5.1x; each bar is labelled with its ratio
-const root = document.getElementById("bars");
-const tip = document.getElementById("tip");
-for (const r of READS) {
-  const label = document.createElement("div");
-  label.className = "label";
-  label.textContent = r.label;
-  const track = document.createElement("div");
-  track.className = "track";
-  for (const [cls, n, name] of [["b", r.def, "default range merging"], ["a", r.off, "no merging"]]) {
-    const ratio = n / r.base;
-    const bar = document.createElement("div");
-    bar.className = "bar " + cls;
-    bar.style.width = (ratio / MAX * 100).toFixed(2) + "%";
-    bar.tabIndex = 0;
-    bar.dataset.tip = `${name}: ${n.toLocaleString()} requests, ${ratio.toFixed(2)}× the ${r.base.toLocaleString()} of the chunk-by-chunk baseline`;
-    const v = document.createElement("span");
-    v.textContent = ratio.toFixed(2) + "×";
-    bar.appendChild(v);
-    track.appendChild(bar);
-  }
-  root.append(label, track);
-}
-function show(e) {
-  const t = e.target.closest("[data-tip]");
-  if (!t) { tip.hidden = true; return; }
-  tip.textContent = t.dataset.tip;
-  tip.hidden = false;
-  const box = t.getBoundingClientRect();
-  const x = e.clientX ?? box.left + 20, y = e.clientY ?? box.bottom;
-  tip.style.left = Math.min(x + 12, window.innerWidth - tip.offsetWidth - 8) + "px";
-  tip.style.top = (y + 14) + "px";
-}
-root.addEventListener("pointermove", show);
-root.addEventListener("pointerleave", () => { tip.hidden = true; });
-root.addEventListener("focusin", show);
-root.addEventListener("focusout", () => { tip.hidden = true; });
-</script>
 
 </body>
 </html>

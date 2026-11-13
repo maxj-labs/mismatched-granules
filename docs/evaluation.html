@@ -3,7 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}
+.sitenav{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:baseline;font-size:14px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+.sitenav a{color:var(--ink-2);text-decoration:none}
+.sitenav a:hover{color:var(--ink);text-decoration:underline}
+.sitenav a[aria-current="page"]{color:var(--ink);font-weight:600}
+.sitenav .repo{margin-left:auto}</style>
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>Every Option, Tested</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@500;600&display=swap">
@@ -125,14 +130,14 @@ ol { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 
 
 </head>
 <body>
-<div class="wrap">
+<div class="wrap"><nav class="sitenav" aria-label="Pages"><a href="./">Overview</a><a href="storybook.html">Storybook</a><a href="evaluation.html" aria-current="page">Every option, tested</a><a href="brief.html">Original proposal</a><a class="repo" href="https://github.com/maxj-labs/mismatched-granules">Repository</a></nav>
 
 <header>
   <section>
     <div class="eyebrow">Evaluation &middot; 11 November 2026</div>
     <h1>Every Option, Tested</h1>
     <p class="lede">The discussions on joining mismatched granules into one Zarr array propose about fifteen different mechanisms. Each was built or emulated and run against the same ten cases, the same requirements and the same real granules. This page reports what each one did.</p>
-    <p class="byline">Companion to <a href="https://maxj-labs.github.io/mismatched-granules/">One Array from Mismatched Granules</a>. Every mark and number below is generated from result files in <a href="https://github.com/maxj-labs/mismatched-granules">maxj-labs/mismatched-granules</a> (<span class="mono">eval/</span>, <span class="mono">results/eval/</span>). Prepared with Claude; the judgements at the end are its reading of the results.</p>
+    <p class="byline">Companion to <a href="https://maxj-labs.github.io/mismatched-granules/brief.html">One Array from Mismatched Granules</a>. Every mark and number below is generated from result files in <a href="https://github.com/maxj-labs/mismatched-granules">maxj-labs/mismatched-granules</a> (<span class="mono">eval/</span>, <span class="mono">results/eval/</span>). Prepared with Claude; the judgements at the end are its reading of the results.</p>
   </section>
 </header>
 

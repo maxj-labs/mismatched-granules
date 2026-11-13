@@ -14,6 +14,18 @@ The library changes are prototypes on three branches:
 
 This repository holds what was run against them and what came out.
 
+## Pages
+
+The site is at https://maxj-labs.github.io/mismatched-granules/ and is built into `docs/`
+by `python brief/build_pages.py`, which also puts the same navigation on every page.
+
+| Page | Source | What it is |
+|---|---|---|
+| [Overview](https://maxj-labs.github.io/mismatched-granules/) | `site/index.html` | what this is, and links to the rest |
+| [Storybook](https://maxj-labs.github.io/mismatched-granules/storybook.html) | `eval/storybook.py` | pick an implementation or a use case and read what follows |
+| [Every option, tested](https://maxj-labs.github.io/mismatched-granules/evaluation.html) | `eval/report.py`, `eval/page.py` | fifteen mechanisms against the same cases and requirements |
+| [Original proposal](https://maxj-labs.github.io/mismatched-granules/brief.html) | `brief/index.html` | the case for a switch codec and virtual shards |
+
 ## Layout
 
 | Path | What |

@@ -3,7 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}
+.sitenav{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:baseline;font-size:14px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+.sitenav a{color:var(--ink-2);text-decoration:none}
+.sitenav a:hover{color:var(--ink);text-decoration:underline}
+.sitenav a[aria-current="page"]{color:var(--ink);font-weight:600}
+.sitenav .repo{margin-left:auto}</style>
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>Mismatched Granules Storybook</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@500;600&display=swap">
@@ -155,7 +160,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 
 </head>
 <body>
-<div class="wrap" style="gap: 32px">
+<div class="wrap" style="gap: 32px"><nav class="sitenav" aria-label="Pages"><a href="./">Overview</a><a href="storybook.html" aria-current="page">Storybook</a><a href="evaluation.html">Every option, tested</a><a href="brief.html">Original proposal</a><a class="repo" href="https://github.com/maxj-labs/mismatched-granules">Repository</a></nav>
 <header>
   <section>
     <div class="eyebrow">Storybook &middot; 11 November 2026</div>
