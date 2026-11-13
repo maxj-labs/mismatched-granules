@@ -87,7 +87,7 @@ CASES = {
 }
 NEEDS = {
     "need_released_readers": ("It must read with software people already have", "Released zarr-python and released Icechunk, with nothing new installed."),
-    "need_manifest_ops": ("Tools must be able to slice or shift the array", "A manifest tool drops or moves chunks without knowing anything about the codec."),
+    "need_manifest_ops": ("We insert, backfill or drop files after the store is built", "Files are appended, inserted, backfilled or dropped by editing the stored references, with a tool that may not know the option's own bookkeeping."),
     "need_no_icechunk": ("It must work without Icechunk", "Stored as Kerchunk references, which are either inline bytes or one byte range."),
     "need_many_granules": ("The record is tens of thousands of small granules", "16,000 one-chunk pieces, in the two worst cases: layouts that alternate, and every chunk packed its own way."),
 }
@@ -196,27 +196,58 @@ def build() -> dict:
             o["compose"] = {"verdict": "good", "text": "It is an ordinary array, so there is nothing beside the manifest to go stale. (By inspection, not a run.)"}
         else:
             cells = {k: v for k, v in COMPOSE["cells"].items() if k.startswith(arm + "|") and v["outcome"] != "not applicable"}
-            n = len(cells)
-            good = sum(v["outcome"] == "composes" for v in cells.values())
-            silent = sum(v["outcome"] == "wrong values, no error" for v in cells.values())
-            errors = n - good - silent
-            front = [v for k, v in cells.items() if "first" in k]
-            front_good = sum(v["outcome"] == "composes" for v in front)
-            if good == n:
-                o["compose"] = {"verdict": "good", "text": f"Chunks were dropped from the front and the end of the array with nothing else rewritten, and it read correctly in all {n} trials."}
-            else:
-                text = f"Chunks were dropped from the front and the end of the array with nothing else rewritten. It read correctly in {good} of {n} trials"
-                text += f" ({front_good} of {len(front)} when the chunks came off the front)."
-                if silent:
-                    text += f" In {silent} it returned wrong values with no error."
+
+            def tally(pick) -> tuple[int, int, int, int]:
+                chosen = [v for k, v in cells.items() if pick(k.split("|")[2], v)]
+                ok = sum(v["outcome"] == "composes" for v in chosen)
+                wrong = sum(v["outcome"] == "wrong values, no error" for v in chosen)
+                return len(chosen), ok, wrong, len(chosen) - ok - wrong
+
+            def say(what: str, counts: tuple[int, int, int, int]) -> str:
+                n, ok, wrong, errors = counts
+                if not n:
+                    return ""
+                if ok == n:
+                    return f" {what}: read correctly in all {n} trials."
+                text = f" {what}: read correctly in {ok} of {n}"
+                if wrong:
+                    text += f", returned wrong values with no error in {wrong}"
                 if errors:
-                    text += f" In {errors} it failed with an error."
-                text += " Every tool that drops or moves chunks must also rewrite what this option keeps for itself."
-                if not silent:
-                    text += " It never returned wrong values: it refuses."
-                o["compose"] = {"verdict": "bad" if silent or not good else "partial", "text": text}
+                    text += f", failed with an error in {errors}"
+                return text + "."
+
+            adding = ("append a file", "insert a file", "prepend a file")
+            drops = tally(lambda op, v: op.startswith("drop"))
+            known = tally(lambda op, v: op in adding and v.get("layout") == "already in the array")
+            new = tally(lambda op, v: op in adding and v.get("layout") == "new to the array")
+            swapped = tally(lambda op, v: op == "replace a file" and v.get("layout") == "already in the array")
+            replanned = tally(lambda op, v: v.get("layout") == "changes how existing files are described")
+            text = ("A writer added, replaced or dropped files and rewrote nothing else the array has."
+                    + say("Dropping chunks from the front or the end", drops)
+                    + say("Adding a file (appended, inserted or backfilled) whose layout the array already has", known)
+                    + say("Replacing a file with another of the same length, in a layout the array has", swapped)
+                    + say("Adding a file in a layout new to the array", new)
+                    + say("Adding or replacing a file that changes how the others must be described", replanned))
+            silent = drops[2] + known[2] + new[2] + swapped[2] + replanned[2]
+            everyday = [c for c in (drops, known, swapped) if c[0]]
+            if silent:
+                verdict = "bad"
+                text += " A silent wrong read is the outcome to avoid."
+            elif all(c[1] == c[0] for c in everyday):
+                verdict = "good"
+                if new[0] and new[1] < new[0]:
+                    text += " A new layout must be added to its table first; until then reads are refused."
+            elif not any(c[1] for c in everyday):
+                verdict = "bad"
+                text += " It never returned wrong values, but nothing works until what it keeps for itself is rewritten."
+            else:
+                verdict = "partial"
+                text += " Where it failed, it refused loudly; what it keeps for itself must be rewritten by every tool that edits the store."
+            o["compose"] = {"verdict": verdict, "text": text}
             if arm == "zarr_reference":
                 o["compose"]["text"] += " Its chunks are whole files, so it cannot drop less than a file."
+            if arm == "switch_position":
+                o["compose"]["text"] += " The codec checks that its table covers the array, which is why edits that add or remove chunks are refused; a replaced file of the same length cannot be checked."
             if arm == "switch_store_context":
                 o["compose"]["text"] += " This is the emulation, whose table is indexed by position; a store that kept the context with each reference would carry it along, and that was not tested."
             if arm in ("grid_encoded_shapes", "conditional_with_grid_shapes"):

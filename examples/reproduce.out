@@ -1,0 +1,13 @@
+as built: six chunks, two eras
+  by position: correct
+  by key     : correct
+
+edit 1: the first two chunks are dropped, and the rest move up
+  by position: refused with an error (The switch codec's cases cover 6 chunks along axis 0, but the array has 4)
+  by key     : correct
+
+edit 2: chunk 1 is replaced by a reprocessed copy, now big-endian like the newer era
+  by position: 4 of 24 values wrong, and no error
+    expected row 1: [400, 500, 600, 700]
+    read row 1:     [-28671, -3071, 22530, -17406]
+  by key     : correct

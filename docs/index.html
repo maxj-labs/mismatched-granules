@@ -120,11 +120,29 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .card { display: flex; flex-direction: column; gap: 8px; padding: 20px 22px 8px 0; min-width: 0; }
 .card + .card { padding-left: 22px; border-left: 1px solid var(--rule); }
 .card .kind { font-family: var(--mono); font-size: 12px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; }
-.card h2 { font-size: 21px; }
-.card h2 a { color: var(--ink); text-decoration-color: var(--accent); text-underline-offset: 4px; }
+.card h3 { font-family: var(--display); font-size: 20px; }
+.card h3 a { color: var(--ink); text-decoration-color: var(--accent); text-underline-offset: 4px; }
 .card p { font-size: 14.5px; color: var(--ink-2); }
-.card .for { font-size: 13.5px; color: var(--ink-3); }
-@media (max-width: 760px) { .cards { grid-template-columns: 1fr; } .card + .card { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); } }
+.sub { display: block; font-size: 12.5px; color: var(--ink-3); font-weight: 400; margin-top: 2px; }
+.sub b { font-weight: 600; color: var(--ink-2); }
+.sub0 { font-size: 12.5px; color: var(--ink-3); }
+.dash { color: var(--ink-3); }
+.warn { color: var(--warn); font-weight: 600; }
+table.ops td { padding-top: 11px; padding-bottom: 11px; min-width: 150px; }
+table.ops td:first-child { font-weight: 500; min-width: 200px; }
+table.survey th { white-space: normal; vertical-align: bottom; }
+table.survey tr.grp th { text-align: left; font-size: 13.5px; color: var(--ink); padding-top: 18px; border-bottom: 1px solid var(--ink-3); }
+.designs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.design { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.design h3 { font-family: var(--display); font-size: 18px; }
+.design p { font-size: 14.5px; color: var(--ink-2); }
+.strip { display: flex; gap: 3px; font-family: var(--mono); font-size: 11.5px; }
+.strip span { flex: 1 1 0; min-width: 0; text-align: center; padding: 8px 2px; border-radius: 4px; border: 1px solid var(--rule); background: var(--bg); color: var(--ink-2); white-space: nowrap; overflow: hidden; }
+.strip span.b { background: var(--accent-soft); border-color: var(--accent); color: var(--ink); }
+.strip span b { font-weight: 600; color: var(--accent); margin-right: 3px; }
+.meta { font-family: var(--mono); font-size: 12px; color: var(--ink-2); background: var(--bg); border: 1px dashed var(--ink-3); border-radius: 4px; padding: 7px 10px; }
+.ask { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; max-width: 68ch; font-size: 17px; }
+@media (max-width: 760px) { .cards, .designs { grid-template-columns: 1fr; } .card + .card { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); } .strip { font-size: 10px; } }
 </style>
 
 </head>
@@ -134,44 +152,117 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   <section>
     <div class="eyebrow">maxj-labs / mismatched-granules</div>
     <h1>One Zarr Array from Granules That Disagree</h1>
-    <p class="lede">Archives of netCDF and HDF5 granules often cannot be virtualized as one Zarr array, because the files change compression, chunk shape, data type or fill value partway through the record. This site collects prototypes of the proposed fixes and the evidence for choosing between them.</p>
-    <p class="byline">Work in progress, prepared with Claude. Only zarr-python reads these arrays, and nothing has been run against S3.</p>
+    <p class="lede">Many archives of netCDF and HDF5 granules cannot be virtualized as one Zarr array, because the files change compression, chunk shape, data type or fill value partway through the record. This site tests the fixes proposed for Zarr, Icechunk and VirtualiZarr, and says which to choose for which kind of archive.</p>
+    <p class="byline">Work in progress, prepared with Claude, revised 13 November 2026. Only zarr-python reads these arrays, the test records are small, and nothing has been run against S3.</p>
   </section>
 </header>
 
 <section>
-  <div class="cards">
-    <div class="card">
-      <div class="kind">Start here if you are deciding</div>
-      <h2><a href="storybook.html">Storybook</a></h2>
-      <p>Pick an implementation and read what follows from choosing it: what you can support, what you cannot, what gets expensive. Or pick the way your granules disagree and see which implementations serve it.</p>
-      <p class="for">Interactive. Fifteen options, ten use cases, four requirements.</p>
-    </div>
-    <div class="card">
-      <div class="kind">The evidence</div>
-      <h2><a href="evaluation.html">Every Option, Tested</a></h2>
-      <p>Sixteen options from the public discussions, each run against the same ten cases; subsets against three manifest operations, two worst cases at 16,000 chunks, and Daymet behind a server that counts requests.</p>
-      <p class="for">Tables, with how each option was built or emulated and the limits of the test.</p>
-    </div>
-    <div class="card">
-      <div class="kind">The original proposal</div>
-      <h2><a href="brief.html">One Array from Mismatched Granules</a></h2>
-      <p>The case for a switch codec and for virtual shards, with results from Daymet and six other NASA collections. Written before the full evaluation; where the two disagree, the evaluation is right.</p>
-      <p class="for">For Icechunk, Zarr and VirtualiZarr developers.</p>
-    </div>
+  <h2>The problem, in one example</h2>
+  <div class="prose">
+    <p>Daymet publishes one netCDF file per year. Until 2019 each day's chunk was compressed one way; from 2020 a shuffle filter was added. A Zarr array has one codec chain for all its chunks, so the years cannot be presented as a single array without copying the data. The proposed fixes all let one array hold chunks encoded in more than one way. They differ in how a reader finds out which way a given chunk was encoded.</p>
   </div>
 </section>
 
 <section>
-  <h2>What the evaluation found</h2>
+  <h2>Two places to keep that answer</h2>
+  <div class="designs">
+    <div class="design">
+      <h3>In the array's metadata, by position</h3>
+      <div class="meta">chunks 0&ndash;2: layout A &nbsp;&middot;&nbsp; chunks 3&ndash;5: layout B</div>
+      <div class="strip"><span>2017</span><span>2018</span><span>2019</span><span class="b">2020</span><span class="b">2021</span><span class="b">2022</span></div>
+      <p>The array records which run of chunks uses which layout. Nothing is stored with the chunks. It needs no change to the store unless the chunk shape changes, and it can be written as Kerchunk references.</p>
+    </div>
+    <div class="design">
+      <h3>With each chunk, as a key in its reference</h3>
+      <div class="meta">layouts: A, B</div>
+      <div class="strip"><span><b>A</b>2017</span><span><b>A</b>2018</span><span><b>A</b>2019</span><span class="b"><b>B</b>2020</span><span class="b"><b>B</b>2021</span><span class="b"><b>B</b>2022</span></div>
+      <p>Each chunk's reference begins with a few bytes naming its layout. The key goes wherever the reference goes. It needs Icechunk references that are a literal followed by byte ranges, which exist only on a branch, and it cannot be written as Kerchunk references.</p>
+    </div>
+  </div>
   <div class="prose">
+    <p>Both are one codec holding a table of layouts. A different route keeps arrays apart and joins them: <b>one array per file, joined by reference</b> (each chunk of the joined array is a pointer to a file's own array), or <b>one array per run of like files, joined by a list</b> in the joining array's codec. These need nothing new from the store, and every reader needs a codec that opens other arrays.</p>
+  </div>
+</section>
+
+<section>
+  <h2>What happens when the store is edited</h2>
+  <div class="prose">
+    <p>All four read every test case correctly when the array is built in one go. They part ways when a store is edited afterwards. Each edit below was made by a writer that adds, removes or replaces chunk references, in whatever form the design gives a reference, and rewrites nothing the array already has: not the table, not the list, not another file's references.</p>
+  </div>
+  <div class="scroll"><table class="ops"><thead><tr><th>A writer edits the store and rewrites nothing else</th><th>Case found from position</th><th>Case kept in each reference</th><th>One array per file, joined by reference</th><th>One array per run, joined by a list</th></tr></thead><tbody><tr><td>Append, insert or backfill a file whose layout the array already has</td><td><span class="warn">! refused until its table is rewritten</span><span class="sub">all 6 trials failed with an error; none read wrong values</span></td><td><span class="yes">&#10003; reads correctly</span><span class="sub">all 6 trials, nothing else rewritten</span></td><td><span class="yes">&#10003; reads correctly</span><span class="sub">all 6 trials, nothing else rewritten</span></td><td><span class="warn">! refused until its list of pieces is rewritten</span><span class="sub">all 6 trials failed with an error; none read wrong values</span></td></tr><tr><td>Add a file in a layout new to the array</td><td><span class="warn">! refused until its table is rewritten</span><span class="sub">all 8 trials failed with an error; none read wrong values</span></td><td><span class="warn">! refused until the new layout is added to its table</span><span class="sub">all 8 trials failed with an error; none read wrong values</span></td><td><span class="yes">&#10003; reads correctly</span><span class="sub">all 8 trials, nothing else rewritten</span></td><td><span class="warn">! refused until its list of pieces is rewritten</span><span class="sub">all 8 trials failed with an error; none read wrong values</span></td></tr><tr><td>Replace a file with a reprocessed one of the same length, in a layout the array has</td><td><span class="no">&#10007; can return wrong values</span><span class="sub">3 of 5 trials read wrong values with no error; 2 read correctly</span></td><td><span class="yes">&#10003; reads correctly</span><span class="sub">all 5 trials, nothing else rewritten</span></td><td><span class="yes">&#10003; reads correctly</span><span class="sub">all 5 trials, nothing else rewritten</span></td><td><span class="yes">&#10003; reads correctly</span><span class="sub">all 5 trials, nothing else rewritten</span></td></tr><tr><td>Drop chunks from the front or the end</td><td><span class="warn">! refused until its table is rewritten</span><span class="sub">all 18 trials failed with an error; none read wrong values</span></td><td><span class="yes">&#10003; reads correctly</span><span class="sub">all 18 trials, nothing else rewritten</span></td><td><span class="yes">&#10003; reads correctly</span><span class="sub">all 18 trials, nothing else rewritten</span></td><td><span class="warn">! refused until its list of pieces is rewritten</span><span class="sub">all 17 trials failed with an error; none read wrong values</span></td></tr></tbody></table></div>
+  <div class="prose">
+    <p><b>By position, every edit that adds or removes chunks is refused until the table is rewritten.</b> The codec checks that its table covers the array's chunks and raises when it does not; that check was added during this work, and without it some of these edits read wrong values. One edit it cannot detect: a file replaced by another of the same length in a different layout. All 3 of the 3 trials where the layouts differed read wrong values with no error.</p>
+    <p><b>By key, nothing needs rewriting unless a layout is new.</b> A file in a layout the array already has can be appended, inserted, backfilled or swapped in. A file in a new layout needs one entry added to the table, and reads are refused until it is. The writer does have to put the key in each new reference, so it is not ignorant of the design; what it need not do is touch anything already stored.</p>
+    <p><b>One array per file never needs anything rewritten,</b> because each file keeps its own metadata. It pays for that elsewhere: with 16,000 one-chunk files it stored 19&times; as much beside the chunk data as the keyed design and took 11&times; as long to write, and nothing smaller than a whole file can be dropped.</p>
+    <p class="note">Each trial reads the whole array, each file's part on its own, and single cells (24 reads); it counts as correct only if every read equals the files, and as wrong if any read returns wrong values silently. Trials are the test cases each design can describe. A file that changes how the others must be described (a different fill value, data type or chunk shape) forces the array to be planned again in the table designs: 3 of 3 such trials were refused by key. Keys here are 8-byte hashes of the layout; 1-byte numbered keys are not safe to edit this way (7 of 40 trials read wrong values). Full results: <a href="evaluation.html">Every Option, Tested</a>.</p>
+  </div>
+</section>
+
+<section>
+  <h2>See it happen</h2>
+  <div class="prose"><p>Six chunks written in two eras, then two edits. In memory, 72 lines, and it needs only the zarr-python branch: <a href="https://github.com/maxj-labs/mismatched-granules/blob/main/examples/reproduce.py">examples/reproduce.py</a>. The eras differ only in byte order and nothing is compressed, so a chunk read with the wrong layout cannot fail; it is the worst case for a silent error.</p></div>
+<pre>as built: six chunks, two eras
+  by position: correct
+  by key     : correct
+
+edit 1: the first two chunks are dropped, and the rest move up
+  by position: refused with an error (The switch codec&#x27;s cases cover 6 chunks along axis 0, but the array has 4)
+  by key     : correct
+
+edit 2: chunk 1 is replaced by a reprocessed copy, now big-endian like the newer era
+  by position: 4 of 24 values wrong, and no error
+    expected row 1: [400, 500, 600, 700]
+    read row 1:     [-28671, -3071, 22530, -17406]
+  by key     : correct</pre>
+</section>
+
+<section>
+  <h2>How often do NASA records receive data away from the end?</h2>
+  <div class="prose">
+    <p>If records only ever grew at the end, edits would be rare. To see, 26 collections were examined through NASA's public metadata catalogue: the seven surveyed earlier in this project and nineteen other well-known ones, chosen by me. For each granule the catalogue gives the time its data covers and the time its file was produced. A granule counts as <em>behind</em> when its file was produced at least a day after files holding newer data: from the point of view of a store that is kept up to date, an insertion, a backfill or a replacement.</p>
+  </div>
+  <div class="scroll"><table class="survey"><thead><tr><th>Collection</th><th class="n">Granules sampled</th>
+<th class="n">Last year of production:<br>over a day behind</th><th class="n">Last year of production:<br>over 30 days behind</th><th class="n">Whole sample:<br>over 30 days behind</th></tr></thead><tbody><tr class="grp"><th colspan="5">Older data was made in the last year &middot; 7 collections</th></tr><tr><td><span class="mono">GPM_2ADPR</span><span class="sub">v08 &middot; data 2016&ndash;2026 &middot; files made 2026-03 to 2026-11</span></td><td class="n">60,000 <span class="sub0">of 71,228</span></td><td class="n">93.4%</td><td class="n">93.4%</td><td class="n">93.4%</td></tr><tr><td><span class="mono">MODISA_L3m_CHL</span><span class="sub">v2022.0 &middot; data 2002&ndash;2026 &middot; files made 2022-07 to 2026-07 &middot; one product period of several</span></td><td class="n">20,622 <span class="sub0">of 27,028</span></td><td class="n">78.9%</td><td class="n">77.5%</td><td class="n">15.2%</td></tr><tr><td><span class="mono">SWOT_L2_LR_SSH_BASIC_D</span><span class="sub">vD &middot; data 2023&ndash;2026 &middot; files made 2025-05 to 2026-11</span></td><td class="n">35,405</td><td class="n">46.0%</td><td class="n">44.7%</td><td class="n">54.5%</td></tr><tr><td><span class="mono">AIRS3STD</span><span class="sub">v006 &middot; data 2002&ndash;2026 &middot; files made 2013-03 to 2026-11</span></td><td class="n">8,762</td><td class="n">46.0%</td><td class="n">43.6%</td><td class="n">63.1%</td></tr><tr><td><span class="mono">TEMPO_NO2_L2</span><span class="sub">v04 &middot; data 2025&ndash;2026 &middot; files made 2025-09 to 2026-11</span></td><td class="n">60,000 <span class="sub0">of 128,367</span></td><td class="n">26.3%</td><td class="n">26.3%</td><td class="n">23.9%</td></tr><tr><td><span class="mono">SPL3SMP</span><span class="sub">v009 &middot; data 2015&ndash;2026 &middot; files made 2023-12 to 2026-11</span></td><td class="n">4,164</td><td class="n">33.0%</td><td class="n">20.5%</td><td class="n">76.0%</td></tr><tr><td><span class="mono">MOD13Q1</span><span class="sub">v061 &middot; data 2017&ndash;2026 &middot; files made 2020-10 to 2026-11</span></td><td class="n">60,000 <span class="sub0">of 178,658</span></td><td class="n">4.2%</td><td class="n">4.2%</td><td class="n">15.6%</td></tr><tr class="grp"><th colspan="5">Only short delays in the last year &middot; 4 collections</th></tr><tr><td><span class="mono">OPERA_L3_DSWX-HLS_V1</span><span class="sub">v1.0 &middot; data 2026&ndash;2026 &middot; files made 2026-11 to 2026-11</span></td><td class="n">60,000 <span class="sub0">of 25,078,653</span></td><td class="n">5.3%</td><td class="n">0.0%</td><td class="n">0.0%</td></tr><tr><td><span class="mono">CYGNSS_L3_SOIL_MOISTURE_V3.2</span><span class="sub">v3.2 &middot; data 2018&ndash;2026 &middot; files made 2024-04 to 2026-11</span></td><td class="n">6,036</td><td class="n">5.3%</td><td class="n">0.0%</td><td class="n">42.3%</td></tr><tr><td><span class="mono">HLSS30</span><span class="sub">v2.0 &middot; data 2026&ndash;2026 &middot; files made 2026-10 to 2026-11</span></td><td class="n">60,000 <span class="sub0">of 22,280,081</span></td><td class="n">4.9%</td><td class="n">0.0%</td><td class="n">0.0%</td></tr><tr><td><span class="mono">HLSL30</span><span class="sub">v2.0 &middot; data 2026&ndash;2026 &middot; files made 2026-10 to 2026-11</span></td><td class="n">60,000 <span class="sub0">of 16,241,212</span></td><td class="n">3.2%</td><td class="n">0.0%</td><td class="n">0.0%</td></tr><tr class="grp"><th colspan="5">Older data was made earlier, none in the last year &middot; 6 collections</th></tr><tr><td><span class="mono">GEDI02_A</span><span class="sub">v003 &middot; data 2022&ndash;2026 &middot; files made 2025-08 to 2026-10</span></td><td class="n">60,000 <span class="sub0">of 114,575</span></td><td class="n">0.1%</td><td class="n">0.1%</td><td class="n">25.6%</td></tr><tr><td><span class="mono">OCO2_L2_Lite_FP</span><span class="sub">v11.2r &middot; data 2014&ndash;2026 &middot; files made 2024-08 to 2026-05</span></td><td class="n">4,012</td><td class="n">0.0%</td><td class="n">0.0%</td><td class="n">76.3%</td></tr><tr><td><span class="mono">M2T1NXSLV</span><span class="sub">v5.12.4 &middot; data 1980&ndash;2026 &middot; files made 2014-05 to 2026-10</span></td><td class="n">17,076</td><td class="n">0.0%</td><td class="n">0.0%</td><td class="n">65.1%</td></tr><tr><td><span class="mono">MUR-JPL-L4-GLOB-v4.1</span><span class="sub">v4.1 &middot; data 2002&ndash;2026 &middot; files made 2015-01 to 2026-11</span></td><td class="n">8,930</td><td class="n">0.0%</td><td class="n">0.0%</td><td class="n">52.8%</td></tr><tr><td><span class="mono">GPM_3IMERGDF</span><span class="sub">v07 &middot; data 1998&ndash;2025 &middot; files made 2023-12 to 2026-02</span></td><td class="n">10,135</td><td class="n">0.0%</td><td class="n">0.0%</td><td class="n">50.2%</td></tr><tr><td><span class="mono">NLDAS_FORA0125_H</span><span class="sub">v2.0 &middot; data 2020&ndash;2026 &middot; files made 2021-04 to 2026-11</span></td><td class="n">60,000 <span class="sub0">of 419,496</span></td><td class="n">0.0%</td><td class="n">0.0%</td><td class="n">23.2%</td></tr><tr class="grp"><th colspan="5">Nothing behind in the sample &middot; 9 collections</th></tr><tr><td><span class="mono">ATL08</span><span class="sub">v007 &middot; data 2025&ndash;2026 &middot; files made 2025-10 to 2026-10 &middot; <b>newest 60,000 granules only</b></span></td><td class="n">60,000 <span class="sub0">of 440,625</span></td><td class="n">0.2%</td><td class="n">0.0%</td><td class="n">0.0%</td></tr><tr><td><span class="mono">OMPS_NPP_NMTO3_L3_DAILY</span><span class="sub">v2 &middot; data 2012&ndash;2026 &middot; files made 2017-02 to 2026-11</span></td><td class="n">5,126</td><td class="n">0.8%</td><td class="n">0.0%</td><td class="n">0.6%</td></tr><tr><td><span class="mono">Daymet_Daily_V4R1_2129</span><span class="sub">v4.1 &middot; data 1950&ndash;2025 &middot; files made 2026-05 to 2026-05 &middot; <b>all files made within a week</b></span></td><td class="n">1,176</td><td class="n">0.0%</td><td class="n">0.0%</td><td class="n">0.0%</td></tr><tr><td><span class="mono">GPM_3IMERGHH</span><span class="sub">v07 &middot; data 2022&ndash;2025 &middot; files made 2024-01 to 2026-02 &middot; <b>newest 60,000 granules only</b></span></td><td class="n">60,000 <span class="sub0">of 486,480</span></td><td class="n">0.0%</td><td class="n">0.0%</td><td class="n">0.0%</td></tr><tr><td><span class="mono">VNP09GA</span><span class="sub">v002 &middot; data 2026&ndash;2026 &middot; files made 2026-04 to 2026-11 &middot; <b>newest 60,000 granules only</b></span></td><td class="n">60,000 <span class="sub0">of 2,013,104</span></td><td class="n">0.0%</td><td class="n">0.0%</td><td class="n">0.0%</td></tr><tr><td><span class="mono">GLDAS_NOAH025_3H</span><span class="sub">v2.0 &middot; data 1994&ndash;2014 &middot; files made 2020-11 to 2020-11 &middot; <b>all files made within a week</b></span></td><td class="n">60,000 <span class="sub0">of 195,775</span></td><td class="n">0.0%</td><td class="n">0.0%</td><td class="n">0.0%</td></tr><tr><td><span class="mono">ATL03</span><span class="sub">v007 &middot; data 2025&ndash;2026 &middot; files made 2026-02 to 2026-10 &middot; <b>newest 60,000 granules only</b></span></td><td class="n">60,000 <span class="sub0">of 597,432</span></td><td class="n">0.0%</td><td class="n">0.0%</td><td class="n">0.0%</td></tr><tr><td><span class="mono">SENTINEL-1A_SLC</span><span class="sub">v1 &middot; data 2026&ndash;2026 &middot; files made 2026-03 to 2026-06 &middot; <b>production time equals data time</b></span></td><td class="n">60,000 <span class="sub0">of 2,140,803</span></td><td class="n">0.0%</td><td class="n">0.0%</td><td class="n">0.0%</td></tr><tr><td><span class="mono">ECCO_L4_SSH_05DEG_DAILY_V4R4</span><span class="sub">v4r4 &middot; data 1992&ndash;2017 &middot; files made 2020-12 to 2020-12 &middot; <b>all files made within a week</b></span></td><td class="n">9,497</td><td class="n">0.0%</td><td class="n">0.0%</td><td class="n">0.0%</td></tr></tbody></table></div>
+  <div class="prose">
+    <p><b>In 7 of 26 collections, at least 1% of the files produced in the last year of the sample hold data more than 30 days older than data already produced.</b> 4 more show only short delays, a few days of latency between tiles or passes. 6 show older data being made earlier in their record but not in the last year, typically a reprocessing campaign. 9 show nothing behind, and for 8 of those the sample could not have shown it, for the reason given in the table.</p>
+    <p class="note">This is what public metadata suggests, not a record of what any store experienced. Production time is whatever the provider reports; it is not the time a file was published, and some providers reset it when files are migrated. Only current files are seen, so a file replaced in data order leaves no trace. &ldquo;Behind&rdquo; is measured against the newest data produced so far, so the first filling of a new version, done newest-first, counts as behind throughout. Files made within a day of each other are treated as one delivery. Collections with more than 60,000 granules are sampled from their newest data only. The last year of production is the last in the sample, whenever that was. A store built once, after a reprocessing campaign has finished, would see none of that campaign.</p>
+  </div>
+</section>
+
+<section>
+  <h2>What to choose</h2>
+  <div class="prose">
+    <p class="ask">After the store is built, will files be inserted, backfilled, replaced or dropped by anything other than a tool that rewrites the design's own table?</p>
     <ul>
-      <li><b>No single winner.</b> Two designs for a table of cases both work, and trade against each other.</li>
-      <li><b>Keeping a chunk's case in its reference</b> was the only kind that kept reading correctly when a tool dropped leading chunks without knowing the codec. It needs Icechunk references that are a literal followed by byte ranges, and cannot be stored as Kerchunk references.</li>
-      <li><b>Finding the case from the chunk's position</b> needs no store change where the chunk shape is stable, but its table must be rewritten whenever leading chunks move; where it was not, reads failed or, in some cases, returned wrong values with no error.</li>
-      <li><b>Array concatenation</b> describes everything and reads with released Icechunk, at a cost that grows with the number of pieces.</li>
-      <li><b>The case-table options did not differ on speed.</b> zarr-python's concurrency setting changed read times far more than the choice between them.</li>
+      <li><b>If not,</b> finding the case by position is enough and asks the least. It needs no store change where the chunk shape is stable, and it read correctly as Kerchunk references in 9 of 10 test cases. VirtualiZarr's append rewrites the table as it goes; that path is covered by its tests.</li>
+      <li><b>If so,</b> keep the case in each reference. Edits then touch only the references that change, a new layout that is not registered is refused loudly, and a replaced file cannot be misread. The price is the Icechunk change and somewhat larger manifests (76.4 KB against 62.4 KB for twelve years of Daymet Puerto Rico).</li>
+      <li><b>If the chunk shape changes</b> (Daymet North America in 2020), the Icechunk change is needed either way, because each Zarr chunk becomes a virtual shard. That removes most of position's advantage.</li>
+      <li><b>If every file or chunk has numbers of its own</b> (packing with its own scale and offset), carry those numbers in the reference beside the key, as refkv PR&nbsp;#73 does.</li>
+      <li><b>If the files are few and large and edits are frequent,</b> one array per file is the most forgiving, at the costs above.</li>
     </ul>
+    <p>Speed did not separate the table designs in these tests. On twelve years of Daymet Puerto Rico, behind a local server adding 20 ms per request, the seven variants read a full series in 30 to 31 s with the same requests, and in about 3 s once zarr-python was allowed more requests in flight.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Go deeper</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="kind">Interactive</div>
+      <h3><a href="storybook.html">Storybook</a></h3>
+      <p>Pick an implementation and read what follows from choosing it, or pick the way your granules disagree and see which implementations serve it.</p>
+    </div>
+    <div class="card">
+      <div class="kind">The evidence</div>
+      <h3><a href="evaluation.html">Every Option, Tested</a></h3>
+      <p>Sixteen options from the public discussions against ten cases, seven kinds of edit, two worst cases at 16,000 chunks, and Daymet. How each was built, and the limits of the tests.</p>
+    </div>
+    <div class="card">
+      <div class="kind">Background</div>
+      <h3><a href="brief.html">The original proposal</a></h3>
+      <p>The first write-up: the switch codec, virtual shards, and results from seven NASA collections. Where it differs from the pages above, they are right.</p>
+    </div>
   </div>
 </section>
 
@@ -181,15 +272,14 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   <table>
     <thead><tr><th>Where</th><th>What</th></tr></thead>
     <tbody>
-      <tr><td><a href="https://github.com/maxj-labs/mismatched-granules">maxj-labs/mismatched-granules</a></td><td>Benchmark and evaluation scripts, result files, and the source of these pages</td></tr>
-      <tr><td><a href="https://github.com/maxj-labs/zarr-python/tree/feat/array-concat-codec">zarr-python branch</a></td><td>The <span class="mono">switch</span> and <span class="mono">array_concat</span> codecs; chunk coordinates passed to codecs that ask</td></tr>
+      <tr><td><a href="https://github.com/maxj-labs/mismatched-granules">maxj-labs/mismatched-granules</a></td><td>Test scripts, result files, the demonstration above, and the source of these pages</td></tr>
+      <tr><td><a href="https://github.com/maxj-labs/zarr-python/tree/feat/array-concat-codec">zarr-python branch</a></td><td>The <span class="mono">switch</span> codec, by position or by key, and the <span class="mono">array_concat</span> codec</td></tr>
       <tr><td><a href="https://github.com/maxj-labs/icechunk/tree/feat/virtual-ref-prefix">Icechunk branch</a></td><td>Virtual references made of a literal and several byte ranges</td></tr>
-      <tr><td><a href="https://github.com/maxj-labs/icechunk/tree/feat/chunk-index-prefix">Icechunk branch, index prefix</a></td><td>On top of the first: a store that prepends the chunk index, built only to evaluate that proposal</td></tr>
       <tr><td><a href="https://github.com/maxj-labs/VirtualiZarr/tree/feat/concat-mismatched-arrays">VirtualiZarr branch</a></td><td>A concat that plans one array from mismatched files, and writes and appends it</td></tr>
     </tbody>
   </table>
   </div>
-  <p class="note">Discussions these pages respond to: <a href="https://github.com/zarr-developers/zarr-specs/issues/399">zarr-specs#399</a>, <a href="https://github.com/zarr-developers/zarr-specs/issues/288">zarr-specs#288</a>, <a href="https://github.com/zarr-developers/zarr-extensions/issues/74">zarr-extensions#74</a>, <a href="https://github.com/NASA-IMPACT/veda-odd/issues/498">NASA-IMPACT/veda-odd#498</a>, <a href="https://github.com/zarr-developers/VirtualiZarr/issues/1111">VirtualiZarr#1111</a>, <a href="https://github.com/d-v-b/refkv/pull/73">refkv PR #73</a>.</p>
+  <p class="note">Not yet built in any design: inserting, backfilling or replacing through VirtualiZarr. Its writer appends; anything else means planning the array again. The edits above were made on the stored references directly. Discussions these pages respond to: <a href="https://github.com/zarr-developers/zarr-specs/issues/399">zarr-specs#399</a>, <a href="https://github.com/zarr-developers/zarr-specs/issues/288">zarr-specs#288</a>, <a href="https://github.com/zarr-developers/zarr-extensions/issues/74">zarr-extensions#74</a>, <a href="https://github.com/NASA-IMPACT/veda-odd/issues/498">NASA-IMPACT/veda-odd#498</a>, <a href="https://github.com/zarr-developers/VirtualiZarr/issues/1111">VirtualiZarr#1111</a>, <a href="https://github.com/d-v-b/refkv/pull/73">refkv PR #73</a>.</p>
 </section>
 </div>
 

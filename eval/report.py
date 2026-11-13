@@ -184,17 +184,34 @@ def readers_table() -> str:
 # ------------------------------------------------------------------ composition
 
 
-def compose_counts(arm: str, operation: str) -> dict:
+ADDING = ("append a file", "insert a file", "prepend a file")
+DROPPING = ("drop first chunk", "drop first file", "drop last chunk")
+REPLACING = ("replace a file",)
+COMPOSE_COLUMNS = [  # (heading, operations, how the arriving file relates to the array)
+    ("Drop chunks, front or end", DROPPING, None),
+    ("Add a file, layout already in the array", ADDING, "already in the array"),
+    ("Add a file, layout new to the array", ADDING, "new to the array"),
+    ("Replace a file, layout already in the array", REPLACING, "already in the array"),
+    ("Add or replace a file that changes how the others are described", ADDING + REPLACING, "changes how existing files are described"),
+]
+
+
+def compose_counts(arm: str, operations: tuple, layout: str | None = None) -> dict:
     out = {"composes": 0, "wrong values, no error": 0, "fails with an error": 0}
     for k, v in COMPOSE.get("cells", {}).items():
         a, _, op = k.split("|")
-        if a == arm and op == operation and v["outcome"] in out:
+        if a == arm and op in operations and v["outcome"] in out and (layout is None or v.get("layout") == layout):
             out[v["outcome"]] += 1
     return out
 
 
-def compose_cell(arm: str, operation: str) -> str:
-    c = compose_counts(arm, operation)
+def compose_n(arms: list[str], operations: tuple, layout: str | None, outcome: str | None = None) -> int:
+    """Trials over several options: all of them, or those with one outcome."""
+    return sum(sum(compose_counts(a, operations, layout).values()) if outcome is None else compose_counts(a, operations, layout)[outcome] for a in arms)
+
+
+def compose_cell(arm: str, operations: tuple, layout: str | None = None) -> str:
+    c = compose_counts(arm, operations, layout)
     n = sum(c.values())
     if not n:
         return ""
@@ -209,23 +226,19 @@ def compose_cell(arm: str, operation: str) -> str:
 
 
 def compose_table() -> str:
-    ops = COMPOSE.get("operations", [])
-    head = "".join(f"<th>{o[0].upper() + o[1:]}</th>" for o in ops)
+    head = "".join(f"<th>{h}</th>" for h, _, _ in COMPOSE_COLUMNS)
     body = ""
     for a in VIRTUAL:
         if a in COMPOSE.get("ordinary_arrays", []):
-            body += f'<tr><td>{LABEL[a]}</td><td colspan="{len(ops)}" class="sub0">an ordinary array: nothing beside the manifest to go stale (not run)</td></tr>'
+            body += f'<tr><td>{LABEL[a]}</td><td colspan="{len(COMPOSE_COLUMNS)}" class="sub0">an ordinary array: nothing beside the manifest to go stale (not run)</td></tr>'
         elif any(k.startswith(a + "|") for k in COMPOSE.get("cells", {})):
-            body += f"<tr><td>{LABEL[a]}</td>" + "".join(f"<td>{compose_cell(a, o)}</td>" for o in ops) + "</tr>"
+            body += f"<tr><td>{LABEL[a]}</td>" + "".join(f"<td>{compose_cell(a, ops, layout)}</td>" for _, ops, layout in COMPOSE_COLUMNS) + "</tr>"
     return f"""<div class="scroll"><table><thead><tr><th>Option</th>{head}</tr></thead><tbody>{body}</tbody></table></div>"""
 
 
-def compose_total(arm: str) -> dict:
-    out = {"composes": 0, "wrong values, no error": 0, "fails with an error": 0}
-    for op in COMPOSE.get("operations", []):
-        for k, v in compose_counts(arm, op).items():
-            out[k] += v
-    return out
+def compose_total(arm: str, operations: tuple | None = None, layout: str | None = None) -> dict:
+    operations = operations or tuple(COMPOSE.get("operations", []))
+    return compose_counts(arm, operations, layout)
 
 
 # ------------------------------------------------------------------ growth

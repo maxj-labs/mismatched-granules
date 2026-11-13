@@ -335,7 +335,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
     </div>
   </div>
   <div class="prose">
-    <p><b>Position or key.</b> Position needs nothing from the store where the chunk shape is stable, reads as Kerchunk references, and can encode. Its table is indexed by position, so a tool that drops or moves leading chunks must rewrite it; in the evaluation, tools that did not got errors or, in some cases, wrong values with no error. A key travels with its reference and survived those operations untouched, at the price of the Icechunk change and larger manifests. Which matters more depends on whether codec-agnostic tools will rewrite these manifests.</p>
+    <p><b>Position or key.</b> Position needs nothing from the store where the chunk shape is stable, reads as Kerchunk references, and can encode. Its table is indexed by position, so every edit to the store has to rewrite it. The codec checks that the table covers the array, so a missed rewrite is refused when chunks were added or removed; a file replaced by one of the same length in a different layout cannot be checked, and in the evaluation some such edits read wrong values with no error. A key travels with its reference and read correctly after those edits, at the price of the Icechunk change and larger manifests. Which matters more depends on whether a store is edited after it is built.</p>
     <p><b>The same tax applies to the switch codec.</b> Any reader that wants these arrays must implement it, in every language. It is smaller than a concatenation codec and does no I/O of its own except through sharding, but it is still a new codec, and it depends on the rectilinear chunk grid, which zarr-python still gates behind a setting.</p>
   </div>
 </section>

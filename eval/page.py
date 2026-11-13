@@ -20,6 +20,8 @@ ol { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 
 """
 
 BY_REFERENCE = ["switch_key", "switch_case_id", "switch_key_parameters"]
+BY_REFERENCE_HASHED = ["switch_key", "switch_key_parameters"]
+EDITS = ("append a file", "insert a file", "prepend a file", "replace a file")
 BY_POSITION = ["switch_position", "switch_index_prefix", "switch_sidecar", "switch_store_context"]
 CASE_TABLE = ["switch_position", "switch_key", "switch_case_id", "switch_key_parameters", "switch_index_prefix", "switch_sidecar", "switch_store_context"]
 
@@ -66,7 +68,7 @@ def render(g: dict) -> str:
   <section>
     <div class="eyebrow">Evaluation &middot; revised 13 November 2026</div>
     <h1>Every Option, Tested</h1>
-    <p class="lede">The discussions on joining mismatched granules into one Zarr array propose about fifteen mechanisms. Each was built or emulated and run against the same ten small cases. Subsets were then run against three manifest operations, two worst cases and real Daymet granules. This page reports what each one did.</p>
+    <p class="lede">The discussions on joining mismatched granules into one Zarr array propose about sixteen options. Each was built or emulated and run against the same ten small cases. Subsets were then run against seven kinds of edit to a stored array, two worst cases and real Daymet granules. This page reports what each one did.</p>
     <p class="byline">Every mark and number in the tables, and every figure quoted in the text, is generated from result files in <a href="https://github.com/maxj-labs/mismatched-granules">maxj-labs/mismatched-granules</a> (<span class="mono">eval/</span>, <span class="mono">results/eval/</span>). Prepared with Claude. This version replaces one whose tests favoured some options over others; what changed is listed at the end.</p>
   </section>
 </header>
@@ -75,8 +77,8 @@ def render(g: dict) -> str:
   <div class="claims">
     <div class="claim">
       <div class="who">What separates the options</div>
-      <div class="what">Whether a chunk's case travels with its reference</div>
-      <div class="why">A tool that knows nothing of the codec dropped chunks from the front or the end of each array. Options that keep the case in each reference read correctly in {trials(BY_REFERENCE, "composes")} of {all_trials(BY_REFERENCE)} trials. Options that look it up by position read correctly in {trials(BY_POSITION, "composes")} of {all_trials(BY_POSITION)} (every failure came from dropping at the front), and returned wrong values with no error in {trials(BY_POSITION, "wrong values, no error")}.</div>
+      <div class="what">What an edit to the store can break</div>
+      <div class="why">A writer added, replaced or dropped files and rewrote nothing else. With the case in each reference, {g["compose_n"](BY_REFERENCE_HASHED, EDITS, "already in the array") + g["compose_n"](BY_REFERENCE_HASHED, g["DROPPING"], None)} of {g["compose_n"](BY_REFERENCE_HASHED, EDITS, "already in the array") + g["compose_n"](BY_REFERENCE_HASHED, g["DROPPING"], None)} trials read correctly where the file's layout was already known. By position, every edit that changed the number of chunks was refused until the table was rewritten, and {g["compose_n"](["switch_position"], g["REPLACING"], "already in the array", "wrong values, no error")} replaced-file trials read wrong values with no error.</div>
     </div>
     <div class="claim">
       <div class="who">What does not</div>
@@ -139,13 +141,15 @@ def render(g: dict) -> str:
 </section>
 
 <section>
-  <h2>Operations on the manifest</h2>
-  <div class="prose"><p>zarr-specs#399 asks that a solution compose with manifest-level operations. Three were run, each the way a tool that knows nothing of the option would do it: the array's shape and chunk grid lose the chunks, and the remaining references move up. Whatever else the option keeps (a codec's configuration, a side array, a list of pieces, an attribute) is left alone. Six of the cases were used; an option was run on those it can describe.</p></div>
+  <h2>Edits to a stored array</h2>
+  <div class="prose"><p>zarr-specs#399 asks that a solution compose with manifest-level operations. Seven kinds of edit were run. Three drop chunks (the first chunk, the first file, the last chunk). Three add a file (appended, inserted in the middle, or put at the front as a backfill). One replaces a file with another of the same length. Each was made by a writer that adds, removes or replaces chunk references, in whatever form the option gives a reference (a key in front, for the keyed options), and rewrites nothing the array already has: not a codec's configuration, a side array, a list of pieces or an attribute. Six of the cases were used; an option was run on those it can describe. A trial reads the whole array, each file's part on its own, and single cells; it is correct only if every read equals the files, and wrong if any read returns wrong values without an error.</p></div>
   {g["compose_table"]()}
   <div class="prose">
-    <p><b>Dropping from the front is what tells the options apart.</b> A case kept in the reference moves with the reference. A table indexed by position does not: the first rows of the table now describe the wrong chunks. Where the misread chunk fails to decompress, the result is an error; where it decompresses to plausible numbers (layouts that differ only in a filter, or in packing), the result is wrong values and no error. Dropping from the end is harmless to every option but concatenation.</p>
-    <p><b>Concatenation refuses rather than misreads.</b> Its codec checks its list of pieces against the array's shape and raises. The reference-per-chunk codec composes because its chunks are whole files, which also means it cannot drop less than a file.</p>
-    <p><b>Three caveats.</b> The store-context row is an emulation whose table is indexed by position; a store that kept the context with each reference would carry it along, and that was not tested. The grid row's encoded sizes sit in an attribute here and in the chunk grid in the proposal, which a manifest tool rewrites anyway; its pass comes from a case where every encoded size is the same. And these are three operations: renaming, concatenating two joined arrays and nesting under another codec were not run.</p>
+    <p><b>A case kept in the reference moves with the reference.</b> With hashed 8-byte keys, with or without per-chunk numbers, every drop and every added or replaced file in a known layout read correctly. A file in a new layout is refused until its case is added to the table, except where the new layout differs only in numbers that the reference itself carries.</p>
+    <p><b>By position, edits are refused, not misread, with one exception.</b> The codec now checks that its table covers the array's chunks, so any edit that adds or removes chunks fails when the array is opened until the table is rewritten. Before that check was added, dropping leading chunks read wrong values in some cases. The exception is replacing a file with one of the same length in a different layout: the count is unchanged, nothing can be checked, and {g["compose_n"](["switch_position"], g["REPLACING"], "already in the array", "wrong values, no error")} such trials read wrong values with no error. The index-prefix option has the same check and the same exception. Tables kept in side arrays or by the emulated store call have no such check, and misread more often.</p>
+    <p><b>A 1-byte numbered key is not safe to edit.</b> Adding a file at the front or in the middle, or replacing one, can change which number a layout has; {g["compose_n"](["switch_case_id"], EDITS, None, "wrong values, no error")} trials read wrong values with no error. Hashing the layout into the key removes the problem.</p>
+    <p><b>Keeping each file as its own array composes with everything tried.</b> The reference-per-chunk codec read correctly in every trial, because nothing is shared between files. It cannot drop less than a file, and its costs are in the next section. The concatenation codec, which lists its pieces, refuses every edit but replacement: it checks its list against the array's shape.</p>
+    <p><b>Caveats.</b> A file that changes how the others must be described (a different fill value, data type or chunk shape) forces the table designs to plan the array again; those trials are in the last column. The store-context row is an emulation whose table is indexed by position; a store that kept the context with each reference would carry it along, and that was not tested. The grid rows keep encoded sizes in an attribute where the proposal puts them in the chunk grid. Trial counts are small, in places two or three per cell. Renaming, concatenating two joined arrays and nesting under another codec were not run. None of these edits is yet available through VirtualiZarr except appending; they were made on the stored references directly.</p>
   </div>
 </section>
 
@@ -185,13 +189,13 @@ def render(g: dict) -> str:
   <div class="prose">
     <p>The tests do not produce a single winner. They show two workable designs for the case table, and a trade between them.</p>
     <ul>
-      <li><b>Keep the case in each reference</b> (a key, with or without per-chunk numbers; this is refkv PR&nbsp;#73's design). It is the only kind that kept reading correctly when leading chunks were dropped by a tool that does not know the codec. It needs Icechunk references that are a literal followed by byte ranges, which virtual shards also need; it cannot be stored as Kerchunk references; and its manifests are larger.</li>
-      <li><b>Find the case from the chunk's position.</b> It needs no store change unless the chunk shape changes, reads through released Icechunk and as Kerchunk references, and stores least. Any tool that drops or moves leading chunks must rewrite its table, and one that does not can produce wrong values with no error.</li>
-      <li><b>If chunks carry numbers of their own</b> (per-file or per-chunk packing), carrying those numbers per chunk keeps what a reader must parse small. Three options did that here: in the reference, in side arrays, and through a store call. Only the first also survived the manifest operations.</li>
-      <li><b>Concatenation</b> describes everything, reads with released Icechunk once the codec is installed, and refuses rather than misreads when the manifest is changed under it. Its costs grow with the number of pieces, so it suits a few eras better than many small granules.</li>
+      <li><b>Keep the case in each reference</b> (a hashed key, with or without per-chunk numbers; the latter is refkv PR&nbsp;#73's design). Edits touch only the references that change, and a layout that is not in the table is refused. It needs Icechunk references that are a literal followed by byte ranges, which virtual shards also need; it cannot be stored as Kerchunk references; and its manifests are larger.</li>
+      <li><b>Find the case from the chunk's position.</b> It needs no store change unless the chunk shape changes, reads through released Icechunk and as Kerchunk references, and stores least. Its table must be rewritten on every edit; with the coverage check, a missed rewrite is refused, except for a replaced file of the same length, which can be misread silently.</li>
+      <li><b>If chunks carry numbers of their own</b> (per-file or per-chunk packing), carrying those numbers per chunk keeps what a reader must parse small. Three options did that here: in the reference, in side arrays, and through a store call. Only the first also read correctly after the edits above.</li>
+      <li><b>Keeping files as separate arrays</b> (concatenation, or a reference per chunk) describes everything and reads with released Icechunk once the codec is installed. Joined by reference it composed with every edit; joined by a list it refused them. Its costs grow with the number of pieces, so it suits a few eras better than many small granules.</li>
       <li><b>The narrow proposals</b> each solve part of the problem and can be combined; two of them together covered {count("conditional_with_grid_shapes")} of the {len(CASES)} cases.</li>
     </ul>
-    <p>My reading, which the tests inform but do not settle: the deciding question is whether codec-agnostic tools will rewrite these manifests. If they will, the case belongs in the reference. If every tool that touches them can be taught the table, position is simpler and asks less of the store.</p>
+    <p>My reading, which the tests inform but do not settle: the deciding question is whether a store is edited after it is built by anything that might not update the design's own table. If files are inserted, backfilled, replaced or dropped that way, the case belongs in the reference. If the store is built once or only appended to by a tool that knows the table, position is simpler and asks less of the store. The <a href="https://maxj-labs.github.io/mismatched-granules/">overview</a> sets this beside a survey of how often NASA collections receive data behind what they already hold.</p>
   </div>
 </section>
 
@@ -217,7 +221,8 @@ def render(g: dict) -> str:
       <ul>
         <li>Position's table is written with each case once. It had repeated the codec chain for every run, which made its metadata look {{megabytes}} large.</li>
         <li>Stored size is reported beside the size of the document, and the side-array option carries per-chunk numbers like the others.</li>
-        <li>The manifest test runs three operations on every option with nothing decided in advance.</li>
+        <li>The edit test runs seven kinds of edit on every option with nothing decided in advance, and judges each on several reads, not only a read of the whole array.</li>
+        <li>The position codec checks that its table covers the array, which turned most of its silent failures into refusals.</li>
         <li>Timings are medians of three, and the claim that the options do not differ on speed is limited to what the data shows.</li>
       </ul>
     </div>

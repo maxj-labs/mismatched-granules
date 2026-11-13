@@ -4,6 +4,12 @@
   "drop first file",
   "drop last chunk"
  ],
+ "additions": [
+  "append a file",
+  "insert a file",
+  "prepend a file"
+ ],
+ "replacement": "replace a file",
  "ordinary_arrays": [
   "materialize_odd_chunks",
   "native_copy"
@@ -11,91 +17,478 @@
  "cells": {
   "switch_position|codec_eras|drop first chunk": {
    "outcome": "fails with an error",
-   "why": "error: Error -3 while decompressing data: incorrect header check"
+   "why": "ValueError: The switch codec's cases cover 18 chunks along axis 0, but the array has 17. The table must be rewritten whenever chunks are added, removed "
   },
   "switch_position|codec_eras|drop first file": {
    "outcome": "fails with an error",
-   "why": "error: Error -3 while decompressing data: incorrect header check"
+   "why": "ValueError: The switch codec's cases cover 18 chunks along axis 0, but the array has 12. The table must be rewritten whenever chunks are added, removed "
   },
   "switch_position|codec_eras|drop last chunk": {
-   "outcome": "composes"
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 18 chunks along axis 0, but the array has 17. The table must be rewritten whenever chunks are added, removed "
+  },
+  "switch_position|codec_eras|append a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 12 chunks along axis 0, but the array has 18. The table must be rewritten whenever chunks are added, removed "
+  },
+  "switch_position|codec_eras|insert a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 12 chunks along axis 0, but the array has 18. The table must be rewritten whenever chunks are added, removed "
+  },
+  "switch_position|codec_eras|prepend a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 12 chunks along axis 0, but the array has 18. The table must be rewritten whenever chunks are added, removed "
+  },
+  "switch_position|codec_eras|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 4,
+   "reads_failed": 0,
+   "outcome": "wrong values, no error",
+   "why": "4 of 10 reads returned wrong values"
   },
   "switch_key|codec_eras|drop first chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key|codec_eras|drop first file": {
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key|codec_eras|drop last chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key|codec_eras|append a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "ValueError: A chunk names the case '7cfeee95a7f7420b', which the array does not list."
+  },
+  "switch_key|codec_eras|insert a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "ValueError: A chunk names the case 'd7062580480c4327', which the array does not list."
+  },
+  "switch_key|codec_eras|prepend a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "ValueError: A chunk names the case 'f25f59f5d87025e6', which the array does not list."
+  },
+  "switch_key|codec_eras|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_case_id|codec_eras|drop first chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_case_id|codec_eras|drop first file": {
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_case_id|codec_eras|drop last chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
+  "switch_case_id|codec_eras|append a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "ValueError: A chunk names the case '02', which the array does not list."
+  },
+  "switch_case_id|codec_eras|insert a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 3,
+   "reads_wrong": 0,
+   "reads_failed": 7,
+   "outcome": "fails with an error",
+   "why": "ValueError: When changing to a larger dtype, its size must be a divisor of the total size in bytes of the last axis of the array."
+  },
+  "switch_case_id|codec_eras|prepend a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 0,
+   "reads_wrong": 3,
+   "reads_failed": 7,
+   "outcome": "wrong values, no error",
+   "why": "3 of 10 reads returned wrong values; 7 failed"
+  },
+  "switch_case_id|codec_eras|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 0,
+   "reads_wrong": 6,
+   "reads_failed": 4,
+   "outcome": "wrong values, no error",
+   "why": "6 of 10 reads returned wrong values; 4 failed"
+  },
   "switch_key_parameters|codec_eras|drop first chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key_parameters|codec_eras|drop first file": {
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key_parameters|codec_eras|drop last chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key_parameters|codec_eras|append a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "KeyError: b'_V\\xce\\xdeC>,\\xa0'"
+  },
+  "switch_key_parameters|codec_eras|insert a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "KeyError: b'wP7\\xa7\\xf9=[\\xb4'"
+  },
+  "switch_key_parameters|codec_eras|prepend a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "KeyError: b'\\x80\\x14\\xadz\\x14\\xcet\\xd7'"
+  },
+  "switch_key_parameters|codec_eras|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_index_prefix|codec_eras|drop first chunk": {
    "outcome": "fails with an error",
-   "why": "error: Error -3 while decompressing data: incorrect header check"
+   "why": "ValueError: The table covers 18 chunks along axis 0, but the array has 17."
   },
   "switch_index_prefix|codec_eras|drop first file": {
    "outcome": "fails with an error",
-   "why": "error: Error -3 while decompressing data: incorrect header check"
+   "why": "ValueError: The table covers 18 chunks along axis 0, but the array has 12."
   },
   "switch_index_prefix|codec_eras|drop last chunk": {
-   "outcome": "composes"
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 18 chunks along axis 0, but the array has 17."
+  },
+  "switch_index_prefix|codec_eras|append a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 12 chunks along axis 0, but the array has 18."
+  },
+  "switch_index_prefix|codec_eras|insert a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 12 chunks along axis 0, but the array has 18."
+  },
+  "switch_index_prefix|codec_eras|prepend a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 12 chunks along axis 0, but the array has 18."
+  },
+  "switch_index_prefix|codec_eras|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 4,
+   "reads_failed": 0,
+   "outcome": "wrong values, no error",
+   "why": "4 of 10 reads returned wrong values"
   },
   "switch_sidecar|codec_eras|drop first chunk": {
-   "outcome": "fails with an error",
-   "why": "error: Error -3 while decompressing data: incorrect header check"
+   "reads": 24,
+   "reads_correct": 20,
+   "reads_wrong": 2,
+   "reads_failed": 2,
+   "outcome": "wrong values, no error",
+   "why": "2 of 24 reads returned wrong values; 2 failed"
   },
   "switch_sidecar|codec_eras|drop first file": {
-   "outcome": "fails with an error",
-   "why": "error: Error -3 while decompressing data: incorrect header check"
+   "reads": 19,
+   "reads_correct": 0,
+   "reads_wrong": 9,
+   "reads_failed": 10,
+   "outcome": "wrong values, no error",
+   "why": "9 of 19 reads returned wrong values; 10 failed"
   },
   "switch_sidecar|codec_eras|drop last chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
+  },
+  "switch_sidecar|codec_eras|append a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "IndexError: index 12 is out of bounds for axis 0 with size 12"
+  },
+  "switch_sidecar|codec_eras|insert a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 3,
+   "reads_wrong": 0,
+   "reads_failed": 7,
+   "outcome": "fails with an error",
+   "why": "ValueError: cannot reshape array of size 563 into shape (1,24,30)"
+  },
+  "switch_sidecar|codec_eras|prepend a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 0,
+   "reads_wrong": 3,
+   "reads_failed": 7,
+   "outcome": "wrong values, no error",
+   "why": "3 of 10 reads returned wrong values; 7 failed"
+  },
+  "switch_sidecar|codec_eras|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 4,
+   "reads_failed": 0,
+   "outcome": "wrong values, no error",
+   "why": "4 of 10 reads returned wrong values"
   },
   "switch_store_context|codec_eras|drop first chunk": {
-   "outcome": "fails with an error",
-   "why": "error: Error -3 while decompressing data: incorrect header check"
+   "reads": 24,
+   "reads_correct": 20,
+   "reads_wrong": 2,
+   "reads_failed": 2,
+   "outcome": "wrong values, no error",
+   "why": "2 of 24 reads returned wrong values; 2 failed"
   },
   "switch_store_context|codec_eras|drop first file": {
-   "outcome": "fails with an error",
-   "why": "error: Error -3 while decompressing data: incorrect header check"
+   "reads": 19,
+   "reads_correct": 0,
+   "reads_wrong": 9,
+   "reads_failed": 10,
+   "outcome": "wrong values, no error",
+   "why": "9 of 19 reads returned wrong values; 10 failed"
   },
   "switch_store_context|codec_eras|drop last chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
+  "switch_store_context|codec_eras|append a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "IndexError: index 12 is out of bounds for axis 0 with size 12"
+  },
+  "switch_store_context|codec_eras|insert a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 3,
+   "reads_wrong": 0,
+   "reads_failed": 7,
+   "outcome": "fails with an error",
+   "why": "ValueError: When changing to a larger dtype, its size must be a divisor of the total size in bytes of the last axis of the array."
+  },
+  "switch_store_context|codec_eras|prepend a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 0,
+   "reads_wrong": 3,
+   "reads_failed": 7,
+   "outcome": "wrong values, no error",
+   "why": "3 of 10 reads returned wrong values; 7 failed"
+  },
+  "switch_store_context|codec_eras|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 4,
+   "reads_failed": 0,
+   "outcome": "wrong values, no error",
+   "why": "4 of 10 reads returned wrong values"
+  },
   "conditional_codec|codec_eras|drop first chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "conditional_codec|codec_eras|drop first file": {
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "conditional_codec|codec_eras|drop last chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "conditional_codec|codec_eras|append a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "conditional_codec|codec_eras|insert a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 3,
+   "reads_wrong": 3,
+   "reads_failed": 4,
+   "outcome": "wrong values, no error",
+   "why": "3 of 10 reads returned wrong values; 4 failed"
+  },
+  "conditional_codec|codec_eras|prepend a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "conditional_codec|codec_eras|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "conditional_with_grid_shapes|codec_eras|drop first chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "conditional_with_grid_shapes|codec_eras|drop first file": {
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "conditional_with_grid_shapes|codec_eras|drop last chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "conditional_with_grid_shapes|codec_eras|append a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "conditional_with_grid_shapes|codec_eras|insert a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 3,
+   "reads_wrong": 3,
+   "reads_failed": 4,
+   "outcome": "wrong values, no error",
+   "why": "3 of 10 reads returned wrong values; 4 failed"
+  },
+  "conditional_with_grid_shapes|codec_eras|prepend a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "conditional_with_grid_shapes|codec_eras|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "array_concat|codec_eras|drop first chunk": {
@@ -110,85 +503,487 @@
    "outcome": "fails with an error",
    "why": "ValueError: The pieces' sizes add up to 18, but the array has length 17 along axis 0."
   },
+  "array_concat|codec_eras|append a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 12, but the array has length 18 along axis 0."
+  },
+  "array_concat|codec_eras|insert a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 12, but the array has length 18 along axis 0."
+  },
+  "array_concat|codec_eras|prepend a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 12, but the array has length 18 along axis 0."
+  },
+  "array_concat|codec_eras|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
   "zarr_reference|codec_eras|drop first chunk": {
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "zarr_reference|codec_eras|drop first file": {
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "zarr_reference|codec_eras|drop last chunk": {
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|codec_eras|append a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|codec_eras|insert a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|codec_eras|prepend a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|codec_eras|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_position|padded_last_chunk|drop first chunk": {
-   "outcome": "composes"
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 9 chunks along axis 0, but the array has 8. The table must be rewritten whenever chunks are added, removed or"
   },
   "switch_position|padded_last_chunk|drop first file": {
-   "outcome": "composes"
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 9 chunks along axis 0, but the array has 6. The table must be rewritten whenever chunks are added, removed or"
   },
   "switch_position|padded_last_chunk|drop last chunk": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 9 chunks along axis 0, but the array has 8. The table must be rewritten whenever chunks are added, removed or"
+  },
+  "switch_position|padded_last_chunk|append a file": {
+   "layout": "already in the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 6 chunks along axis 0, but the array has 9. The table must be rewritten whenever chunks are added, removed or"
+  },
+  "switch_position|padded_last_chunk|insert a file": {
+   "layout": "already in the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 6 chunks along axis 0, but the array has 9. The table must be rewritten whenever chunks are added, removed or"
+  },
+  "switch_position|padded_last_chunk|prepend a file": {
+   "layout": "already in the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 6 chunks along axis 0, but the array has 9. The table must be rewritten whenever chunks are added, removed or"
+  },
+  "switch_position|padded_last_chunk|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key|padded_last_chunk|drop first chunk": {
+   "reads": 15,
+   "reads_correct": 15,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key|padded_last_chunk|drop first file": {
+   "reads": 13,
+   "reads_correct": 13,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key|padded_last_chunk|drop last chunk": {
+   "reads": 15,
+   "reads_correct": 15,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key|padded_last_chunk|append a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key|padded_last_chunk|insert a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key|padded_last_chunk|prepend a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key|padded_last_chunk|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_case_id|padded_last_chunk|drop first chunk": {
+   "reads": 15,
+   "reads_correct": 15,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_case_id|padded_last_chunk|drop first file": {
+   "reads": 13,
+   "reads_correct": 13,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_case_id|padded_last_chunk|drop last chunk": {
+   "reads": 15,
+   "reads_correct": 15,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_case_id|padded_last_chunk|append a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_case_id|padded_last_chunk|insert a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_case_id|padded_last_chunk|prepend a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_case_id|padded_last_chunk|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key_parameters|padded_last_chunk|drop first chunk": {
+   "reads": 15,
+   "reads_correct": 15,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key_parameters|padded_last_chunk|drop first file": {
+   "reads": 13,
+   "reads_correct": 13,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key_parameters|padded_last_chunk|drop last chunk": {
+   "reads": 15,
+   "reads_correct": 15,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key_parameters|padded_last_chunk|append a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key_parameters|padded_last_chunk|insert a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key_parameters|padded_last_chunk|prepend a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key_parameters|padded_last_chunk|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_index_prefix|padded_last_chunk|drop first chunk": {
-   "outcome": "composes"
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 9 chunks along axis 0, but the array has 8."
   },
   "switch_index_prefix|padded_last_chunk|drop first file": {
-   "outcome": "composes"
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 9 chunks along axis 0, but the array has 6."
   },
   "switch_index_prefix|padded_last_chunk|drop last chunk": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 9 chunks along axis 0, but the array has 8."
+  },
+  "switch_index_prefix|padded_last_chunk|append a file": {
+   "layout": "already in the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 6 chunks along axis 0, but the array has 9."
+  },
+  "switch_index_prefix|padded_last_chunk|insert a file": {
+   "layout": "already in the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 6 chunks along axis 0, but the array has 9."
+  },
+  "switch_index_prefix|padded_last_chunk|prepend a file": {
+   "layout": "already in the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 6 chunks along axis 0, but the array has 9."
+  },
+  "switch_index_prefix|padded_last_chunk|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_sidecar|padded_last_chunk|drop first chunk": {
+   "reads": 15,
+   "reads_correct": 15,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_sidecar|padded_last_chunk|drop first file": {
+   "reads": 13,
+   "reads_correct": 13,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_sidecar|padded_last_chunk|drop last chunk": {
+   "reads": 15,
+   "reads_correct": 15,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_sidecar|padded_last_chunk|append a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "IndexError: index 8 is out of bounds for axis 0 with size 6"
+  },
+  "switch_sidecar|padded_last_chunk|insert a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "IndexError: index 8 is out of bounds for axis 0 with size 6"
+  },
+  "switch_sidecar|padded_last_chunk|prepend a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "IndexError: index 8 is out of bounds for axis 0 with size 6"
+  },
+  "switch_sidecar|padded_last_chunk|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_store_context|padded_last_chunk|drop first chunk": {
+   "reads": 15,
+   "reads_correct": 15,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_store_context|padded_last_chunk|drop first file": {
+   "reads": 13,
+   "reads_correct": 13,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_store_context|padded_last_chunk|drop last chunk": {
+   "reads": 15,
+   "reads_correct": 15,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_store_context|padded_last_chunk|append a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "IndexError: index 6 is out of bounds for axis 0 with size 6"
+  },
+  "switch_store_context|padded_last_chunk|insert a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "IndexError: index 6 is out of bounds for axis 0 with size 6"
+  },
+  "switch_store_context|padded_last_chunk|prepend a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "IndexError: index 6 is out of bounds for axis 0 with size 6"
+  },
+  "switch_store_context|padded_last_chunk|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "conditional_with_grid_shapes|padded_last_chunk|drop first chunk": {
+   "reads": 15,
+   "reads_correct": 15,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "conditional_with_grid_shapes|padded_last_chunk|drop first file": {
+   "reads": 13,
+   "reads_correct": 13,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "conditional_with_grid_shapes|padded_last_chunk|drop last chunk": {
+   "reads": 15,
+   "reads_correct": 15,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "conditional_with_grid_shapes|padded_last_chunk|append a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "IndexError: tuple index out of range"
+  },
+  "conditional_with_grid_shapes|padded_last_chunk|insert a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "IndexError: tuple index out of range"
+  },
+  "conditional_with_grid_shapes|padded_last_chunk|prepend a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "IndexError: tuple index out of range"
+  },
+  "conditional_with_grid_shapes|padded_last_chunk|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "array_concat|padded_last_chunk|drop first chunk": {
@@ -203,105 +998,508 @@
    "outcome": "fails with an error",
    "why": "ValueError: The pieces' sizes add up to 30, but the array has length 28 along axis 0."
   },
+  "array_concat|padded_last_chunk|append a file": {
+   "layout": "already in the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 20, but the array has length 30 along axis 0."
+  },
+  "array_concat|padded_last_chunk|insert a file": {
+   "layout": "already in the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 20, but the array has length 30 along axis 0."
+  },
+  "array_concat|padded_last_chunk|prepend a file": {
+   "layout": "already in the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 20, but the array has length 30 along axis 0."
+  },
+  "array_concat|padded_last_chunk|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
   "zarr_reference|padded_last_chunk|drop first chunk": {
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "zarr_reference|padded_last_chunk|drop first file": {
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "zarr_reference|padded_last_chunk|drop last chunk": {
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|padded_last_chunk|append a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|padded_last_chunk|insert a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|padded_last_chunk|prepend a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|padded_last_chunk|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "grid_encoded_shapes|padded_last_chunk|drop first chunk": {
+   "reads": 15,
+   "reads_correct": 15,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "grid_encoded_shapes|padded_last_chunk|drop first file": {
+   "reads": 13,
+   "reads_correct": 13,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "grid_encoded_shapes|padded_last_chunk|drop last chunk": {
+   "reads": 15,
+   "reads_correct": 15,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "grid_encoded_shapes|padded_last_chunk|append a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "IndexError: tuple index out of range"
+  },
+  "grid_encoded_shapes|padded_last_chunk|insert a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "IndexError: tuple index out of range"
+  },
+  "grid_encoded_shapes|padded_last_chunk|prepend a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "IndexError: tuple index out of range"
+  },
+  "grid_encoded_shapes|padded_last_chunk|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "domain_convention|padded_last_chunk|drop first chunk": {
+   "reads": 15,
+   "reads_correct": 11,
+   "reads_wrong": 4,
+   "reads_failed": 0,
    "outcome": "wrong values, no error",
-   "why": "the wrong shape"
+   "why": "4 of 15 reads returned wrong values"
   },
   "domain_convention|padded_last_chunk|drop first file": {
    "outcome": "not applicable",
    "why": "no chunk boundary falls at the end of the first file"
   },
   "domain_convention|padded_last_chunk|drop last chunk": {
+   "reads": 15,
+   "reads_correct": 15,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "domain_convention|padded_last_chunk|append a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 1,
+   "reads_failed": 3,
+   "outcome": "wrong values, no error",
+   "why": "1 of 10 reads returned wrong values; 3 failed"
+  },
+  "domain_convention|padded_last_chunk|insert a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 1,
+   "reads_failed": 3,
+   "outcome": "wrong values, no error",
+   "why": "1 of 10 reads returned wrong values; 3 failed"
+  },
+  "domain_convention|padded_last_chunk|prepend a file": {
+   "layout": "already in the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 1,
+   "reads_failed": 3,
+   "outcome": "wrong values, no error",
+   "why": "1 of 10 reads returned wrong values; 3 failed"
+  },
+  "domain_convention|padded_last_chunk|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_position|chunk_shape_change|drop first chunk": {
    "outcome": "fails with an error",
-   "why": "error: Error -5 while decompressing data: incomplete or truncated stream"
+   "why": "ValueError: The switch codec's cases cover 4 chunks along axis 0, but the array has 3. The table must be rewritten whenever chunks are added, removed or"
   },
   "switch_position|chunk_shape_change|drop first file": {
    "outcome": "fails with an error",
-   "why": "ValueError: cannot reshape array of size 320 into shape (1,12,15)"
+   "why": "ValueError: The switch codec's cases cover 4 chunks along axis 0, but the array has 2. The table must be rewritten whenever chunks are added, removed or"
   },
   "switch_position|chunk_shape_change|drop last chunk": {
-   "outcome": "composes"
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 4 chunks along axis 0, but the array has 3. The table must be rewritten whenever chunks are added, removed or"
+  },
+  "switch_position|chunk_shape_change|append a file": {
+   "layout": "changes how existing files are described",
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 8 chunks along axis 0, but the array has 4. The table must be rewritten whenever chunks are added, removed or"
+  },
+  "switch_position|chunk_shape_change|prepend a file": {
+   "layout": "changes how existing files are described",
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 2 chunks along axis 0, but the array has 4. The table must be rewritten whenever chunks are added, removed or"
+  },
+  "switch_position|chunk_shape_change|replace a file": {
+   "layout": "changes how existing files are described",
+   "replacement_has_the_same_layout": false,
+   "reads": 9,
+   "reads_correct": 0,
+   "reads_wrong": 0,
+   "reads_failed": 9,
+   "outcome": "fails with an error",
+   "why": "ExceptionGroup: unhandled errors in a TaskGroup (4 sub-exceptions)"
   },
   "switch_key|chunk_shape_change|drop first chunk": {
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key|chunk_shape_change|drop first file": {
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key|chunk_shape_change|drop last chunk": {
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
+  "switch_key|chunk_shape_change|append a file": {
+   "layout": "changes how existing files are described",
+   "reads": 9,
+   "reads_correct": 0,
+   "reads_wrong": 0,
+   "reads_failed": 9,
+   "outcome": "fails with an error",
+   "why": "ValueError: A chunk names the case '845c17de483a1eee', which the array does not list."
+  },
+  "switch_key|chunk_shape_change|prepend a file": {
+   "layout": "changes how existing files are described",
+   "reads": 9,
+   "reads_correct": 0,
+   "reads_wrong": 0,
+   "reads_failed": 9,
+   "outcome": "fails with an error",
+   "why": "ValueError: A chunk names the case '0344869dc4497f2a', which the array does not list."
+  },
+  "switch_key|chunk_shape_change|replace a file": {
+   "layout": "changes how existing files are described",
+   "replacement_has_the_same_layout": false,
+   "reads": 9,
+   "reads_correct": 0,
+   "reads_wrong": 0,
+   "reads_failed": 9,
+   "outcome": "fails with an error",
+   "why": "ValueError: A chunk names the case 'b2f5913d19f9bc8d', which the array does not list."
+  },
   "switch_case_id|chunk_shape_change|drop first chunk": {
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_case_id|chunk_shape_change|drop first file": {
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_case_id|chunk_shape_change|drop last chunk": {
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
+  "switch_case_id|chunk_shape_change|append a file": {
+   "layout": "changes how existing files are described",
+   "reads": 9,
+   "reads_correct": 0,
+   "reads_wrong": 0,
+   "reads_failed": 9,
+   "outcome": "fails with an error",
+   "why": "ValueError: A chunk names the case '01', which the array does not list."
+  },
+  "switch_case_id|chunk_shape_change|prepend a file": {
+   "layout": "changes how existing files are described",
+   "reads": 9,
+   "reads_correct": 0,
+   "reads_wrong": 0,
+   "reads_failed": 9,
+   "outcome": "fails with an error",
+   "why": "ValueError: A chunk names the case '01', which the array does not list."
+  },
+  "switch_case_id|chunk_shape_change|replace a file": {
+   "layout": "changes how existing files are described",
+   "replacement_has_the_same_layout": false,
+   "reads": 9,
+   "reads_correct": 0,
+   "reads_wrong": 0,
+   "reads_failed": 9,
+   "outcome": "fails with an error",
+   "why": "ExceptionGroup: unhandled errors in a TaskGroup (4 sub-exceptions)"
+  },
   "switch_key_parameters|chunk_shape_change|drop first chunk": {
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key_parameters|chunk_shape_change|drop first file": {
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key_parameters|chunk_shape_change|drop last chunk": {
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
+  },
+  "switch_key_parameters|chunk_shape_change|append a file": {
+   "layout": "changes how existing files are described",
+   "reads": 9,
+   "reads_correct": 0,
+   "reads_wrong": 0,
+   "reads_failed": 9,
+   "outcome": "fails with an error",
+   "why": "KeyError: b'\\xc1`\\x00\\xf7\\x8e\\xb0\\xcf\\x8b'"
+  },
+  "switch_key_parameters|chunk_shape_change|prepend a file": {
+   "layout": "changes how existing files are described",
+   "reads": 9,
+   "reads_correct": 0,
+   "reads_wrong": 0,
+   "reads_failed": 9,
+   "outcome": "fails with an error",
+   "why": "KeyError: b'\\xc1`\\x00\\xf7\\x8e\\xb0\\xcf\\x8b'"
+  },
+  "switch_key_parameters|chunk_shape_change|replace a file": {
+   "layout": "changes how existing files are described",
+   "replacement_has_the_same_layout": false,
+   "reads": 9,
+   "reads_correct": 0,
+   "reads_wrong": 0,
+   "reads_failed": 9,
+   "outcome": "fails with an error",
+   "why": "KeyError: b'8m3\\xcc\\xd6\\xa5\\xfac'"
   },
   "switch_index_prefix|chunk_shape_change|drop first chunk": {
    "outcome": "fails with an error",
-   "why": "error: Error -5 while decompressing data: incomplete or truncated stream"
+   "why": "ValueError: The table covers 4 chunks along axis 0, but the array has 3."
   },
   "switch_index_prefix|chunk_shape_change|drop first file": {
    "outcome": "fails with an error",
-   "why": "error: Error -5 while decompressing data: incomplete or truncated stream"
+   "why": "ValueError: The table covers 4 chunks along axis 0, but the array has 2."
   },
   "switch_index_prefix|chunk_shape_change|drop last chunk": {
-   "outcome": "composes"
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 4 chunks along axis 0, but the array has 3."
+  },
+  "switch_index_prefix|chunk_shape_change|append a file": {
+   "layout": "changes how existing files are described",
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 8 chunks along axis 0, but the array has 4."
+  },
+  "switch_index_prefix|chunk_shape_change|prepend a file": {
+   "layout": "changes how existing files are described",
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 2 chunks along axis 0, but the array has 4."
+  },
+  "switch_index_prefix|chunk_shape_change|replace a file": {
+   "layout": "changes how existing files are described",
+   "replacement_has_the_same_layout": false,
+   "reads": 9,
+   "reads_correct": 0,
+   "reads_wrong": 0,
+   "reads_failed": 9,
+   "outcome": "fails with an error",
+   "why": "error: Error -5 while decompressing data: incomplete or truncated stream"
   },
   "switch_sidecar|chunk_shape_change|drop first chunk": {
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
    "outcome": "fails with an error",
    "why": "error: Error -5 while decompressing data: incomplete or truncated stream"
   },
   "switch_sidecar|chunk_shape_change|drop first file": {
-   "outcome": "fails with an error",
-   "why": "ValueError: cannot reshape array of size 320 into shape (1,12,15)"
-  },
-  "switch_sidecar|chunk_shape_change|drop last chunk": {
-   "outcome": "composes"
-  },
-  "switch_store_context|chunk_shape_change|drop first chunk": {
+   "reads": 9,
+   "reads_correct": 0,
+   "reads_wrong": 0,
+   "reads_failed": 9,
    "outcome": "fails with an error",
    "why": "error: Error -5 while decompressing data: incomplete or truncated stream"
   },
+  "switch_sidecar|chunk_shape_change|drop last chunk": {
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_sidecar|chunk_shape_change|append a file": {
+   "layout": "changes how existing files are described",
+   "reads": 9,
+   "reads_correct": 0,
+   "reads_wrong": 0,
+   "reads_failed": 9,
+   "outcome": "fails with an error",
+   "why": "error: Error -3 while decompressing data: incorrect header check"
+  },
+  "switch_sidecar|chunk_shape_change|prepend a file": {
+   "layout": "changes how existing files are described",
+   "reads": 9,
+   "reads_correct": 0,
+   "reads_wrong": 0,
+   "reads_failed": 9,
+   "outcome": "fails with an error",
+   "why": "IndexError: index 2 is out of bounds for axis 0 with size 2"
+  },
+  "switch_sidecar|chunk_shape_change|replace a file": {
+   "layout": "changes how existing files are described",
+   "replacement_has_the_same_layout": false,
+   "reads": 9,
+   "reads_correct": 0,
+   "reads_wrong": 0,
+   "reads_failed": 9,
+   "outcome": "fails with an error",
+   "why": "ExceptionGroup: unhandled errors in a TaskGroup (2 sub-exceptions)"
+  },
+  "switch_store_context|chunk_shape_change|drop first chunk": {
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "ValueError: cannot reshape array of size 320 into shape (1,12,15)"
+  },
   "switch_store_context|chunk_shape_change|drop first file": {
+   "reads": 9,
+   "reads_correct": 0,
+   "reads_wrong": 0,
+   "reads_failed": 9,
    "outcome": "fails with an error",
    "why": "error: Error -5 while decompressing data: incomplete or truncated stream"
   },
   "switch_store_context|chunk_shape_change|drop last chunk": {
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
+  },
+  "switch_store_context|chunk_shape_change|append a file": {
+   "layout": "changes how existing files are described",
+   "reads": 9,
+   "reads_correct": 0,
+   "reads_wrong": 0,
+   "reads_failed": 9,
+   "outcome": "fails with an error",
+   "why": "error: Error -3 while decompressing data: incorrect header check"
+  },
+  "switch_store_context|chunk_shape_change|prepend a file": {
+   "layout": "changes how existing files are described",
+   "reads": 9,
+   "reads_correct": 0,
+   "reads_wrong": 0,
+   "reads_failed": 9,
+   "outcome": "fails with an error",
+   "why": "IndexError: index 2 is out of bounds for axis 0 with size 2"
+  },
+  "switch_store_context|chunk_shape_change|replace a file": {
+   "layout": "changes how existing files are described",
+   "replacement_has_the_same_layout": false,
+   "reads": 9,
+   "reads_correct": 0,
+   "reads_wrong": 0,
+   "reads_failed": 9,
+   "outcome": "fails with an error",
+   "why": "ExceptionGroup: unhandled errors in a TaskGroup (2 sub-exceptions)"
   },
   "array_concat|chunk_shape_change|drop first chunk": {
    "outcome": "fails with an error",
@@ -315,102 +1513,535 @@
    "outcome": "fails with an error",
    "why": "ValueError: The pieces' sizes add up to 16, but the array has length 12 along axis 0."
   },
+  "array_concat|chunk_shape_change|append a file": {
+   "layout": "changes how existing files are described",
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 8, but the array has length 16 along axis 0."
+  },
+  "array_concat|chunk_shape_change|prepend a file": {
+   "layout": "changes how existing files are described",
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 8, but the array has length 16 along axis 0."
+  },
+  "array_concat|chunk_shape_change|replace a file": {
+   "layout": "changes how existing files are described",
+   "replacement_has_the_same_layout": false,
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
   "zarr_reference|chunk_shape_change|drop first chunk": {
+   "reads": 8,
+   "reads_correct": 8,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "zarr_reference|chunk_shape_change|drop first file": {
+   "reads": 8,
+   "reads_correct": 8,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "zarr_reference|chunk_shape_change|drop last chunk": {
+   "reads": 8,
+   "reads_correct": 8,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|chunk_shape_change|append a file": {
+   "layout": "changes how existing files are described",
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|chunk_shape_change|prepend a file": {
+   "layout": "changes how existing files are described",
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|chunk_shape_change|replace a file": {
+   "layout": "changes how existing files are described",
+   "replacement_has_the_same_layout": false,
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_position|layouts_alternate|drop first chunk": {
-   "outcome": "wrong values, no error",
-   "why": "7920 of 16560 cells differ"
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 24 chunks along axis 0, but the array has 23. The table must be rewritten whenever chunks are added, removed "
   },
   "switch_position|layouts_alternate|drop first file": {
-   "outcome": "wrong values, no error",
-   "why": "15840 of 15840 cells differ"
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 24 chunks along axis 0, but the array has 22. The table must be rewritten whenever chunks are added, removed "
   },
   "switch_position|layouts_alternate|drop last chunk": {
-   "outcome": "composes"
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 24 chunks along axis 0, but the array has 23. The table must be rewritten whenever chunks are added, removed "
+  },
+  "switch_position|layouts_alternate|append a file": {
+   "layout": "already in the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 22 chunks along axis 0, but the array has 24. The table must be rewritten whenever chunks are added, removed "
+  },
+  "switch_position|layouts_alternate|insert a file": {
+   "layout": "already in the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 22 chunks along axis 0, but the array has 24. The table must be rewritten whenever chunks are added, removed "
+  },
+  "switch_position|layouts_alternate|prepend a file": {
+   "layout": "already in the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 22 chunks along axis 0, but the array has 24. The table must be rewritten whenever chunks are added, removed "
+  },
+  "switch_position|layouts_alternate|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 19,
+   "reads_correct": 16,
+   "reads_wrong": 3,
+   "reads_failed": 0,
+   "outcome": "wrong values, no error",
+   "why": "3 of 19 reads returned wrong values"
   },
   "switch_key|layouts_alternate|drop first chunk": {
+   "reads": 30,
+   "reads_correct": 30,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key|layouts_alternate|drop first file": {
+   "reads": 29,
+   "reads_correct": 29,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key|layouts_alternate|drop last chunk": {
+   "reads": 30,
+   "reads_correct": 30,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key|layouts_alternate|append a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key|layouts_alternate|insert a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key|layouts_alternate|prepend a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key|layouts_alternate|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_case_id|layouts_alternate|drop first chunk": {
+   "reads": 30,
+   "reads_correct": 30,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_case_id|layouts_alternate|drop first file": {
+   "reads": 29,
+   "reads_correct": 29,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_case_id|layouts_alternate|drop last chunk": {
+   "reads": 30,
+   "reads_correct": 30,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
+  "switch_case_id|layouts_alternate|append a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_case_id|layouts_alternate|insert a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_case_id|layouts_alternate|prepend a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 0,
+   "reads_wrong": 19,
+   "reads_failed": 0,
+   "outcome": "wrong values, no error",
+   "why": "19 of 19 reads returned wrong values"
+  },
+  "switch_case_id|layouts_alternate|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 19,
+   "reads_correct": 0,
+   "reads_wrong": 19,
+   "reads_failed": 0,
+   "outcome": "wrong values, no error",
+   "why": "19 of 19 reads returned wrong values"
+  },
   "switch_key_parameters|layouts_alternate|drop first chunk": {
+   "reads": 30,
+   "reads_correct": 30,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key_parameters|layouts_alternate|drop first file": {
+   "reads": 29,
+   "reads_correct": 29,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key_parameters|layouts_alternate|drop last chunk": {
+   "reads": 30,
+   "reads_correct": 30,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key_parameters|layouts_alternate|append a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key_parameters|layouts_alternate|insert a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key_parameters|layouts_alternate|prepend a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key_parameters|layouts_alternate|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_index_prefix|layouts_alternate|drop first chunk": {
-   "outcome": "wrong values, no error",
-   "why": "7920 of 16560 cells differ"
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 24 chunks along axis 0, but the array has 23."
   },
   "switch_index_prefix|layouts_alternate|drop first file": {
-   "outcome": "wrong values, no error",
-   "why": "15840 of 15840 cells differ"
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 24 chunks along axis 0, but the array has 22."
   },
   "switch_index_prefix|layouts_alternate|drop last chunk": {
-   "outcome": "composes"
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 24 chunks along axis 0, but the array has 23."
+  },
+  "switch_index_prefix|layouts_alternate|append a file": {
+   "layout": "already in the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 22 chunks along axis 0, but the array has 24."
+  },
+  "switch_index_prefix|layouts_alternate|insert a file": {
+   "layout": "already in the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 22 chunks along axis 0, but the array has 24."
+  },
+  "switch_index_prefix|layouts_alternate|prepend a file": {
+   "layout": "already in the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 22 chunks along axis 0, but the array has 24."
+  },
+  "switch_index_prefix|layouts_alternate|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 19,
+   "reads_correct": 16,
+   "reads_wrong": 3,
+   "reads_failed": 0,
+   "outcome": "wrong values, no error",
+   "why": "3 of 19 reads returned wrong values"
   },
   "switch_sidecar|layouts_alternate|drop first chunk": {
+   "reads": 30,
+   "reads_correct": 15,
+   "reads_wrong": 15,
+   "reads_failed": 0,
    "outcome": "wrong values, no error",
-   "why": "7920 of 16560 cells differ"
+   "why": "15 of 30 reads returned wrong values"
   },
   "switch_sidecar|layouts_alternate|drop first file": {
+   "reads": 29,
+   "reads_correct": 0,
+   "reads_wrong": 29,
+   "reads_failed": 0,
    "outcome": "wrong values, no error",
-   "why": "15840 of 15840 cells differ"
+   "why": "29 of 29 reads returned wrong values"
   },
   "switch_sidecar|layouts_alternate|drop last chunk": {
+   "reads": 30,
+   "reads_correct": 30,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
+  },
+  "switch_sidecar|layouts_alternate|append a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 16,
+   "reads_wrong": 0,
+   "reads_failed": 3,
+   "outcome": "fails with an error",
+   "why": "IndexError: index 22 is out of bounds for axis 0 with size 22"
+  },
+  "switch_sidecar|layouts_alternate|insert a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 9,
+   "reads_wrong": 7,
+   "reads_failed": 3,
+   "outcome": "wrong values, no error",
+   "why": "7 of 19 reads returned wrong values; 3 failed"
+  },
+  "switch_sidecar|layouts_alternate|prepend a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 0,
+   "reads_wrong": 16,
+   "reads_failed": 3,
+   "outcome": "wrong values, no error",
+   "why": "16 of 19 reads returned wrong values; 3 failed"
+  },
+  "switch_sidecar|layouts_alternate|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 19,
+   "reads_correct": 16,
+   "reads_wrong": 3,
+   "reads_failed": 0,
+   "outcome": "wrong values, no error",
+   "why": "3 of 19 reads returned wrong values"
   },
   "switch_store_context|layouts_alternate|drop first chunk": {
+   "reads": 30,
+   "reads_correct": 15,
+   "reads_wrong": 15,
+   "reads_failed": 0,
    "outcome": "wrong values, no error",
-   "why": "7920 of 16560 cells differ"
+   "why": "15 of 30 reads returned wrong values"
   },
   "switch_store_context|layouts_alternate|drop first file": {
+   "reads": 29,
+   "reads_correct": 0,
+   "reads_wrong": 29,
+   "reads_failed": 0,
    "outcome": "wrong values, no error",
-   "why": "15840 of 15840 cells differ"
+   "why": "29 of 29 reads returned wrong values"
   },
   "switch_store_context|layouts_alternate|drop last chunk": {
+   "reads": 30,
+   "reads_correct": 30,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
+  "switch_store_context|layouts_alternate|append a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 16,
+   "reads_wrong": 0,
+   "reads_failed": 3,
+   "outcome": "fails with an error",
+   "why": "IndexError: index 22 is out of bounds for axis 0 with size 22"
+  },
+  "switch_store_context|layouts_alternate|insert a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 9,
+   "reads_wrong": 7,
+   "reads_failed": 3,
+   "outcome": "wrong values, no error",
+   "why": "7 of 19 reads returned wrong values; 3 failed"
+  },
+  "switch_store_context|layouts_alternate|prepend a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 0,
+   "reads_wrong": 16,
+   "reads_failed": 3,
+   "outcome": "wrong values, no error",
+   "why": "16 of 19 reads returned wrong values; 3 failed"
+  },
+  "switch_store_context|layouts_alternate|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 19,
+   "reads_correct": 16,
+   "reads_wrong": 3,
+   "reads_failed": 0,
+   "outcome": "wrong values, no error",
+   "why": "3 of 19 reads returned wrong values"
+  },
   "conditional_codec|layouts_alternate|drop first chunk": {
+   "reads": 30,
+   "reads_correct": 30,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "conditional_codec|layouts_alternate|drop first file": {
+   "reads": 29,
+   "reads_correct": 29,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "conditional_codec|layouts_alternate|drop last chunk": {
+   "reads": 30,
+   "reads_correct": 30,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "conditional_codec|layouts_alternate|append a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "conditional_codec|layouts_alternate|insert a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "conditional_codec|layouts_alternate|prepend a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "conditional_codec|layouts_alternate|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "conditional_with_grid_shapes|layouts_alternate|drop first chunk": {
+   "reads": 30,
+   "reads_correct": 30,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "conditional_with_grid_shapes|layouts_alternate|drop first file": {
+   "reads": 29,
+   "reads_correct": 29,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "conditional_with_grid_shapes|layouts_alternate|drop last chunk": {
+   "reads": 30,
+   "reads_correct": 30,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "conditional_with_grid_shapes|layouts_alternate|append a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "conditional_with_grid_shapes|layouts_alternate|insert a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "conditional_with_grid_shapes|layouts_alternate|prepend a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "conditional_with_grid_shapes|layouts_alternate|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "array_concat|layouts_alternate|drop first chunk": {
@@ -425,85 +2056,446 @@
    "outcome": "fails with an error",
    "why": "ValueError: The pieces' sizes add up to 24, but the array has length 23 along axis 0."
   },
+  "array_concat|layouts_alternate|append a file": {
+   "layout": "already in the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 22, but the array has length 24 along axis 0."
+  },
+  "array_concat|layouts_alternate|insert a file": {
+   "layout": "already in the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 22, but the array has length 24 along axis 0."
+  },
+  "array_concat|layouts_alternate|prepend a file": {
+   "layout": "already in the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 22, but the array has length 24 along axis 0."
+  },
+  "array_concat|layouts_alternate|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
   "zarr_reference|layouts_alternate|drop first chunk": {
+   "reads": 18,
+   "reads_correct": 18,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "zarr_reference|layouts_alternate|drop first file": {
+   "reads": 18,
+   "reads_correct": 18,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "zarr_reference|layouts_alternate|drop last chunk": {
+   "reads": 18,
+   "reads_correct": 18,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|layouts_alternate|append a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|layouts_alternate|insert a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|layouts_alternate|prepend a file": {
+   "layout": "already in the array",
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|layouts_alternate|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_position|packing_per_file|drop first chunk": {
-   "outcome": "wrong values, no error",
-   "why": "1440 of 12240 cells differ"
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 18 chunks along axis 0, but the array has 17. The table must be rewritten whenever chunks are added, removed "
   },
   "switch_position|packing_per_file|drop first file": {
-   "outcome": "wrong values, no error",
-   "why": "8640 of 8640 cells differ"
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 18 chunks along axis 0, but the array has 12. The table must be rewritten whenever chunks are added, removed "
   },
   "switch_position|packing_per_file|drop last chunk": {
-   "outcome": "composes"
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 18 chunks along axis 0, but the array has 17. The table must be rewritten whenever chunks are added, removed "
+  },
+  "switch_position|packing_per_file|append a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 12 chunks along axis 0, but the array has 18. The table must be rewritten whenever chunks are added, removed "
+  },
+  "switch_position|packing_per_file|insert a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 12 chunks along axis 0, but the array has 18. The table must be rewritten whenever chunks are added, removed "
+  },
+  "switch_position|packing_per_file|prepend a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 12 chunks along axis 0, but the array has 18. The table must be rewritten whenever chunks are added, removed "
+  },
+  "switch_position|packing_per_file|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 4,
+   "reads_failed": 0,
+   "outcome": "wrong values, no error",
+   "why": "4 of 10 reads returned wrong values"
   },
   "switch_key|packing_per_file|drop first chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key|packing_per_file|drop first file": {
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key|packing_per_file|drop last chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key|packing_per_file|append a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "ValueError: A chunk names the case '6dd6bb7a6d4fdef5', which the array does not list."
+  },
+  "switch_key|packing_per_file|insert a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "ValueError: A chunk names the case '642d9b7b6b34b69d', which the array does not list."
+  },
+  "switch_key|packing_per_file|prepend a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "ValueError: A chunk names the case '73adeaa050a4da6b', which the array does not list."
+  },
+  "switch_key|packing_per_file|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_case_id|packing_per_file|drop first chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_case_id|packing_per_file|drop first file": {
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_case_id|packing_per_file|drop last chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
+  "switch_case_id|packing_per_file|append a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "ValueError: A chunk names the case '02', which the array does not list."
+  },
+  "switch_case_id|packing_per_file|insert a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 3,
+   "reads_wrong": 3,
+   "reads_failed": 4,
+   "outcome": "wrong values, no error",
+   "why": "3 of 10 reads returned wrong values; 4 failed"
+  },
+  "switch_case_id|packing_per_file|prepend a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 0,
+   "reads_wrong": 6,
+   "reads_failed": 4,
+   "outcome": "wrong values, no error",
+   "why": "6 of 10 reads returned wrong values; 4 failed"
+  },
+  "switch_case_id|packing_per_file|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 0,
+   "reads_wrong": 10,
+   "reads_failed": 0,
+   "outcome": "wrong values, no error",
+   "why": "10 of 10 reads returned wrong values"
+  },
   "switch_key_parameters|packing_per_file|drop first chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key_parameters|packing_per_file|drop first file": {
+   "reads": 19,
+   "reads_correct": 19,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key_parameters|packing_per_file|drop last chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key_parameters|packing_per_file|append a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key_parameters|packing_per_file|insert a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key_parameters|packing_per_file|prepend a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key_parameters|packing_per_file|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_index_prefix|packing_per_file|drop first chunk": {
-   "outcome": "wrong values, no error",
-   "why": "1440 of 12240 cells differ"
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 18 chunks along axis 0, but the array has 17."
   },
   "switch_index_prefix|packing_per_file|drop first file": {
-   "outcome": "wrong values, no error",
-   "why": "8640 of 8640 cells differ"
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 18 chunks along axis 0, but the array has 12."
   },
   "switch_index_prefix|packing_per_file|drop last chunk": {
-   "outcome": "composes"
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 18 chunks along axis 0, but the array has 17."
+  },
+  "switch_index_prefix|packing_per_file|append a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 12 chunks along axis 0, but the array has 18."
+  },
+  "switch_index_prefix|packing_per_file|insert a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 12 chunks along axis 0, but the array has 18."
+  },
+  "switch_index_prefix|packing_per_file|prepend a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 12 chunks along axis 0, but the array has 18."
+  },
+  "switch_index_prefix|packing_per_file|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 4,
+   "reads_failed": 0,
+   "outcome": "wrong values, no error",
+   "why": "4 of 10 reads returned wrong values"
   },
   "switch_sidecar|packing_per_file|drop first chunk": {
+   "reads": 24,
+   "reads_correct": 20,
+   "reads_wrong": 4,
+   "reads_failed": 0,
    "outcome": "wrong values, no error",
-   "why": "1440 of 12240 cells differ"
+   "why": "4 of 24 reads returned wrong values"
   },
   "switch_sidecar|packing_per_file|drop first file": {
+   "reads": 19,
+   "reads_correct": 0,
+   "reads_wrong": 19,
+   "reads_failed": 0,
    "outcome": "wrong values, no error",
-   "why": "8640 of 8640 cells differ"
+   "why": "19 of 19 reads returned wrong values"
   },
   "switch_sidecar|packing_per_file|drop last chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
+  },
+  "switch_sidecar|packing_per_file|append a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "IndexError: index 12 is out of bounds for axis 0 with size 12"
+  },
+  "switch_sidecar|packing_per_file|insert a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 3,
+   "reads_wrong": 3,
+   "reads_failed": 4,
+   "outcome": "wrong values, no error",
+   "why": "3 of 10 reads returned wrong values; 4 failed"
+  },
+  "switch_sidecar|packing_per_file|prepend a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 0,
+   "reads_wrong": 6,
+   "reads_failed": 4,
+   "outcome": "wrong values, no error",
+   "why": "6 of 10 reads returned wrong values; 4 failed"
+  },
+  "switch_sidecar|packing_per_file|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 4,
+   "reads_failed": 0,
+   "outcome": "wrong values, no error",
+   "why": "4 of 10 reads returned wrong values"
   },
   "switch_store_context|packing_per_file|drop first chunk": {
+   "reads": 24,
+   "reads_correct": 20,
+   "reads_wrong": 4,
+   "reads_failed": 0,
    "outcome": "wrong values, no error",
-   "why": "1440 of 12240 cells differ"
+   "why": "4 of 24 reads returned wrong values"
   },
   "switch_store_context|packing_per_file|drop first file": {
+   "reads": 19,
+   "reads_correct": 0,
+   "reads_wrong": 19,
+   "reads_failed": 0,
    "outcome": "wrong values, no error",
-   "why": "8640 of 8640 cells differ"
+   "why": "19 of 19 reads returned wrong values"
   },
   "switch_store_context|packing_per_file|drop last chunk": {
+   "reads": 24,
+   "reads_correct": 24,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
+  },
+  "switch_store_context|packing_per_file|append a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 0,
+   "reads_failed": 4,
+   "outcome": "fails with an error",
+   "why": "IndexError: index 12 is out of bounds for axis 0 with size 12"
+  },
+  "switch_store_context|packing_per_file|insert a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 3,
+   "reads_wrong": 3,
+   "reads_failed": 4,
+   "outcome": "wrong values, no error",
+   "why": "3 of 10 reads returned wrong values; 4 failed"
+  },
+  "switch_store_context|packing_per_file|prepend a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 0,
+   "reads_wrong": 6,
+   "reads_failed": 4,
+   "outcome": "wrong values, no error",
+   "why": "6 of 10 reads returned wrong values; 4 failed"
+  },
+  "switch_store_context|packing_per_file|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 6,
+   "reads_wrong": 4,
+   "reads_failed": 0,
+   "outcome": "wrong values, no error",
+   "why": "4 of 10 reads returned wrong values"
   },
   "array_concat|packing_per_file|drop first chunk": {
    "outcome": "fails with an error",
@@ -517,80 +2509,386 @@
    "outcome": "fails with an error",
    "why": "ValueError: The pieces' sizes add up to 18, but the array has length 17 along axis 0."
   },
+  "array_concat|packing_per_file|append a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 12, but the array has length 18 along axis 0."
+  },
+  "array_concat|packing_per_file|insert a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 12, but the array has length 18 along axis 0."
+  },
+  "array_concat|packing_per_file|prepend a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 12, but the array has length 18 along axis 0."
+  },
+  "array_concat|packing_per_file|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
   "zarr_reference|packing_per_file|drop first chunk": {
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "zarr_reference|packing_per_file|drop first file": {
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "zarr_reference|packing_per_file|drop last chunk": {
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|packing_per_file|append a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|packing_per_file|insert a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|packing_per_file|prepend a file": {
+   "layout": "new to the array",
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|packing_per_file|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": false,
+   "reads": 10,
+   "reads_correct": 10,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_position|fill_value_differs|drop first chunk": {
-   "outcome": "composes"
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 8 chunks along axis 0, but the array has 7. The table must be rewritten whenever chunks are added, removed or"
   },
   "switch_position|fill_value_differs|drop first file": {
-   "outcome": "wrong values, no error",
-   "why": "2880 of 5760 cells differ"
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 8 chunks along axis 0, but the array has 4. The table must be rewritten whenever chunks are added, removed or"
   },
   "switch_position|fill_value_differs|drop last chunk": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 8 chunks along axis 0, but the array has 7. The table must be rewritten whenever chunks are added, removed or"
+  },
+  "switch_position|fill_value_differs|append a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 4 chunks along axis 0, but the array has 8. The table must be rewritten whenever chunks are added, removed or"
+  },
+  "switch_position|fill_value_differs|prepend a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The switch codec's cases cover 4 chunks along axis 0, but the array has 8. The table must be rewritten whenever chunks are added, removed or"
+  },
+  "switch_position|fill_value_differs|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key|fill_value_differs|drop first chunk": {
+   "reads": 14,
+   "reads_correct": 14,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key|fill_value_differs|drop first file": {
+   "reads": 11,
+   "reads_correct": 11,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key|fill_value_differs|drop last chunk": {
+   "reads": 14,
+   "reads_correct": 14,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key|fill_value_differs|append a file": {
+   "layout": "new to the array",
+   "reads": 9,
+   "reads_correct": 4,
+   "reads_wrong": 0,
+   "reads_failed": 5,
+   "outcome": "fails with an error",
+   "why": "ValueError: A chunk names the case '570f515eca3559db', which the array does not list."
+  },
+  "switch_key|fill_value_differs|prepend a file": {
+   "layout": "new to the array",
+   "reads": 9,
+   "reads_correct": 4,
+   "reads_wrong": 0,
+   "reads_failed": 5,
+   "outcome": "fails with an error",
+   "why": "ValueError: A chunk names the case '570f515eca3559db', which the array does not list."
+  },
+  "switch_key|fill_value_differs|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_case_id|fill_value_differs|drop first chunk": {
+   "reads": 14,
+   "reads_correct": 14,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_case_id|fill_value_differs|drop first file": {
+   "reads": 11,
+   "reads_correct": 11,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_case_id|fill_value_differs|drop last chunk": {
+   "reads": 14,
+   "reads_correct": 14,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_case_id|fill_value_differs|append a file": {
+   "layout": "new to the array",
+   "reads": 9,
+   "reads_correct": 4,
+   "reads_wrong": 0,
+   "reads_failed": 5,
+   "outcome": "fails with an error",
+   "why": "ValueError: A chunk names the case '01', which the array does not list."
+  },
+  "switch_case_id|fill_value_differs|prepend a file": {
+   "layout": "new to the array",
+   "reads": 9,
+   "reads_correct": 4,
+   "reads_wrong": 0,
+   "reads_failed": 5,
+   "outcome": "fails with an error",
+   "why": "ValueError: A chunk names the case '01', which the array does not list."
+  },
+  "switch_case_id|fill_value_differs|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key_parameters|fill_value_differs|drop first chunk": {
+   "reads": 14,
+   "reads_correct": 14,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key_parameters|fill_value_differs|drop first file": {
+   "reads": 11,
+   "reads_correct": 11,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_key_parameters|fill_value_differs|drop last chunk": {
+   "reads": 14,
+   "reads_correct": 14,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_key_parameters|fill_value_differs|append a file": {
+   "layout": "new to the array",
+   "reads": 9,
+   "reads_correct": 4,
+   "reads_wrong": 0,
+   "reads_failed": 5,
+   "outcome": "fails with an error",
+   "why": "KeyError: b'<\\xa7\\x81V\\xad\\x89\\xea\\x98'"
+  },
+  "switch_key_parameters|fill_value_differs|prepend a file": {
+   "layout": "new to the array",
+   "reads": 9,
+   "reads_correct": 4,
+   "reads_wrong": 0,
+   "reads_failed": 5,
+   "outcome": "fails with an error",
+   "why": "KeyError: b'<\\xa7\\x81V\\xad\\x89\\xea\\x98'"
+  },
+  "switch_key_parameters|fill_value_differs|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_index_prefix|fill_value_differs|drop first chunk": {
-   "outcome": "composes"
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 8 chunks along axis 0, but the array has 7."
   },
   "switch_index_prefix|fill_value_differs|drop first file": {
-   "outcome": "wrong values, no error",
-   "why": "2880 of 5760 cells differ"
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 8 chunks along axis 0, but the array has 4."
   },
   "switch_index_prefix|fill_value_differs|drop last chunk": {
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 8 chunks along axis 0, but the array has 7."
+  },
+  "switch_index_prefix|fill_value_differs|append a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 4 chunks along axis 0, but the array has 8."
+  },
+  "switch_index_prefix|fill_value_differs|prepend a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The table covers 4 chunks along axis 0, but the array has 8."
+  },
+  "switch_index_prefix|fill_value_differs|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_sidecar|fill_value_differs|drop first chunk": {
+   "reads": 14,
+   "reads_correct": 14,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_sidecar|fill_value_differs|drop first file": {
+   "reads": 11,
+   "reads_correct": 5,
+   "reads_wrong": 6,
+   "reads_failed": 0,
    "outcome": "wrong values, no error",
-   "why": "2880 of 5760 cells differ"
+   "why": "6 of 11 reads returned wrong values"
   },
   "switch_sidecar|fill_value_differs|drop last chunk": {
+   "reads": 14,
+   "reads_correct": 14,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_sidecar|fill_value_differs|append a file": {
+   "layout": "new to the array",
+   "reads": 9,
+   "reads_correct": 4,
+   "reads_wrong": 0,
+   "reads_failed": 5,
+   "outcome": "fails with an error",
+   "why": "IndexError: index 6 is out of bounds for axis 0 with size 4"
+  },
+  "switch_sidecar|fill_value_differs|prepend a file": {
+   "layout": "new to the array",
+   "reads": 9,
+   "reads_correct": 4,
+   "reads_wrong": 0,
+   "reads_failed": 5,
+   "outcome": "fails with an error",
+   "why": "IndexError: index 4 is out of bounds for axis 0 with size 4"
+  },
+  "switch_sidecar|fill_value_differs|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_store_context|fill_value_differs|drop first chunk": {
+   "reads": 14,
+   "reads_correct": 14,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "switch_store_context|fill_value_differs|drop first file": {
+   "reads": 11,
+   "reads_correct": 5,
+   "reads_wrong": 6,
+   "reads_failed": 0,
    "outcome": "wrong values, no error",
-   "why": "2880 of 5760 cells differ"
+   "why": "6 of 11 reads returned wrong values"
   },
   "switch_store_context|fill_value_differs|drop last chunk": {
+   "reads": 14,
+   "reads_correct": 14,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "switch_store_context|fill_value_differs|append a file": {
+   "layout": "new to the array",
+   "reads": 9,
+   "reads_correct": 4,
+   "reads_wrong": 0,
+   "reads_failed": 5,
+   "outcome": "fails with an error",
+   "why": "IndexError: index 4 is out of bounds for axis 0 with size 4"
+  },
+  "switch_store_context|fill_value_differs|prepend a file": {
+   "layout": "new to the array",
+   "reads": 9,
+   "reads_correct": 4,
+   "reads_wrong": 0,
+   "reads_failed": 5,
+   "outcome": "fails with an error",
+   "why": "IndexError: index 4 is out of bounds for axis 0 with size 4"
+  },
+  "switch_store_context|fill_value_differs|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "array_concat|fill_value_differs|drop first chunk": {
@@ -605,13 +2903,69 @@
    "outcome": "fails with an error",
    "why": "ValueError: The pieces' sizes add up to 16, but the array has length 14 along axis 0."
   },
+  "array_concat|fill_value_differs|append a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 8, but the array has length 16 along axis 0."
+  },
+  "array_concat|fill_value_differs|prepend a file": {
+   "layout": "new to the array",
+   "outcome": "fails with an error",
+   "why": "ValueError: The pieces' sizes add up to 8, but the array has length 16 along axis 0."
+  },
+  "array_concat|fill_value_differs|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
   "zarr_reference|fill_value_differs|drop first chunk": {
+   "reads": 8,
+   "reads_correct": 8,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "zarr_reference|fill_value_differs|drop first file": {
+   "reads": 8,
+   "reads_correct": 8,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   },
   "zarr_reference|fill_value_differs|drop last chunk": {
+   "reads": 8,
+   "reads_correct": 8,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|fill_value_differs|append a file": {
+   "layout": "new to the array",
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|fill_value_differs|prepend a file": {
+   "layout": "new to the array",
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
+   "outcome": "composes"
+  },
+  "zarr_reference|fill_value_differs|replace a file": {
+   "layout": "already in the array",
+   "replacement_has_the_same_layout": true,
+   "reads": 9,
+   "reads_correct": 9,
+   "reads_wrong": 0,
+   "reads_failed": 0,
    "outcome": "composes"
   }
  }

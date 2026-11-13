@@ -69,6 +69,21 @@ class SwitchXCodec(ArrayBytesCodec, ArrayBytesCodecPartialDecodeMixin):
     def compute_encoded_size(self, input_byte_length: int, chunk_spec: ArraySpec) -> int:
         raise NotImplementedError
 
+    def validate(self, *, shape: Any, dtype: Any, chunk_grid: Any) -> None:
+        """Where the table is a list of runs in the metadata, it must cover the array's
+        chunks, as the position mode of the real codec checks. (A table kept in a side
+        array or by the store cannot be checked here: its length is not in the metadata.)"""
+        config = json.loads(self.config_json)
+        if config["select"] != "index_prefix":
+            return
+        from zarr.core.chunk_grids import ChunkGrid
+
+        sizes = getattr(chunk_grid, "chunk_shapes", None) or chunk_grid.chunk_shape
+        chunks = ChunkGrid.from_sizes(shape, sizes).grid_shape[config["axis"]]
+        covered = sum(n for _, n in config["runs"])
+        if covered != chunks:
+            raise ValueError(f"The table covers {covered} chunks along axis {config['axis']}, but the array has {chunks}.")
+
     @property
     def _state(self) -> dict:
         state = self.__dict__.get("_cached")

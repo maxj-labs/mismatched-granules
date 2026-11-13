@@ -38,6 +38,14 @@ DIMS = ("time", "y", "x")
 # itself (a codec's configuration, a side array, a list of pieces, an attribute) changes.
 DROP_FIRST = 0
 DROP_LAST = 0
+# compose.py sets this to the index of a file to model that file being added later by
+# such a tool: the array has every file's chunks and references, as the tool would leave
+# it, but whatever the option keeps for itself is as it was before the file arrived.
+OMIT: int | None = None
+# ...and to the files the array held before, to model a file being replaced: the array has
+# the new file's chunks and references in the old one's place, and the option's own state
+# is as it was made for the old files.
+OWN_PIECES: list | None = None
 _window: tuple[int, int] = (0, 0)  # the chunks along the joined axis that are kept: (first, count)
 
 
@@ -46,6 +54,17 @@ def _plan(pieces: list[ManifestArray], select: str = "position", key_bytes: int 
         return plan_joined_array(pieces, axis=0, select=select, key_bytes=key_bytes)
     except NotImplementedError as err:
         raise NotExpressible(str(err)) from None
+
+
+def _own(pieces: list[ManifestArray]) -> list[ManifestArray]:
+    """The files the option's own state was made from."""
+    if OWN_PIECES is not None:
+        return OWN_PIECES
+    return pieces if OMIT is None else [p for i, p in enumerate(pieces) if i != OMIT]
+
+
+def _own_plan(plan: JoinedArrayPlan, pieces: list[ManifestArray], select: str = "position", key_bytes: int = 8) -> JoinedArrayPlan:
+    return plan if OMIT is None and OWN_PIECES is None else _plan(_own(pieces), select=select, key_bytes=key_bytes)
 
 
 def _dropped(shape: tuple, grid: list) -> tuple[tuple, list]:
@@ -162,7 +181,7 @@ def switch_position(case: Case, pieces: list[ManifestArray]) -> Built:
     plan = _plan(pieces)
     repo, path = new_repo("switch_position", case.name)
     session = repo.writable_session("main")
-    _create(session.store, "v", plan, SwitchCodec(axis=0, cases=plan.cases))
+    _create(session.store, "v", plan, SwitchCodec(axis=0, cases=_own_plan(plan, pieces).cases))
     _refs(session.store, "v", plan.refs)
     session.commit("x")
     return _finish("switch_position", case, repo, path, strategy=plan.strategy, cases=len(_per_chunk_case(plan)[0]))
@@ -173,7 +192,7 @@ def switch_key(case: Case, pieces: list[ManifestArray]) -> Built:
     plan = _plan(pieces, select="key")
     repo, path = new_repo("switch_key", case.name)
     session = repo.writable_session("main")
-    _create(session.store, "v", plan, SwitchCodec(select="key", key_bytes=plan.key_bytes, cases=plan.cases))
+    _create(session.store, "v", plan, SwitchCodec(select="key", key_bytes=plan.key_bytes, cases=_own_plan(plan, pieces, "key").cases))
     _refs(session.store, "v", plan.refs)
     _write_literals(session.store, "v", _kept(plan.literals))
     session.commit("x")
@@ -185,7 +204,7 @@ def switch_case_id(case: Case, pieces: list[ManifestArray]) -> Built:
     plan = _plan(pieces, select="key", key_bytes=1)
     repo, path = new_repo("switch_case_id", case.name)
     session = repo.writable_session("main")
-    _create(session.store, "v", plan, SwitchCodec(select="key", key_bytes=1, cases=plan.cases))
+    _create(session.store, "v", plan, SwitchCodec(select="key", key_bytes=1, cases=_own_plan(plan, pieces, "key", 1).cases))
     _refs(session.store, "v", plan.refs)
     _write_literals(session.store, "v", _kept(plan.literals))
     session.commit("x")
@@ -198,7 +217,8 @@ def switch_key_parameters(case: Case, pieces: list[ManifestArray]) -> Built:
     distinct, ids = _per_chunk_case(plan)
     templates, which, values = _templates(distinct)
     keys = [hashlib.sha256(json.dumps(t, sort_keys=True).encode()).digest()[:8] for t in templates]
-    cases = [{"key": k.hex(), **t} for k, t in zip(keys, templates)]
+    own_templates = _templates(_per_chunk_case(_own_plan(plan, pieces))[0])[0]
+    cases = [{"key": hashlib.sha256(json.dumps(t, sort_keys=True).encode()).digest()[:8].hex(), **t} for t in own_templates]
 
     def header(chunk: int) -> bytes:
         d = ids[chunk]
@@ -217,7 +237,7 @@ def switch_key_parameters(case: Case, pieces: list[ManifestArray]) -> Built:
 def switch_index_prefix(case: Case, pieces: list[ManifestArray]) -> Built:
     """The store puts the chunk's grid index in front of its bytes (zarr-specs#399 design 2.1); the table is as for position."""
     plan = _plan(pieces)
-    distinct, ids = _per_chunk_case(plan)
+    distinct, ids = _per_chunk_case(_own_plan(plan, pieces))
     repo, path = new_repo("switch_index_prefix", case.name)
     session = repo.writable_session("main")
     config = {"select": "index_prefix", "axis": 0, "ndim": 3, "cases": distinct, "runs": _runs(ids)}
@@ -246,7 +266,7 @@ def switch_sidecar(case: Case, pieces: list[ManifestArray]) -> Built:
     plan = _plan(pieces)
     repo, path = new_repo("switch_sidecar", case.name)
     session = repo.writable_session("main")
-    templates, has_parameters = _write_tables(session.store, plan)
+    templates, has_parameters = _write_tables(session.store, _own_plan(plan, pieces))
     config = {"select": "sidecar", "axis": 0, "sidecar": "__cases", "sidecar_parameters": "__parameters" if has_parameters else None, "cases": templates}
     _create(session.store, "v", plan, SwitchXCodec(config_json=json.dumps(config)))
     _refs(session.store, "v", plan.refs)
@@ -259,7 +279,7 @@ def switch_store_context(case: Case, pieces: list[ManifestArray]) -> Built:
     plan = _plan(pieces)
     repo, path = new_repo("switch_store_context", case.name)
     session = repo.writable_session("main")
-    templates, has_parameters = _write_tables(session.store, plan)
+    templates, has_parameters = _write_tables(session.store, _own_plan(plan, pieces))
     config = {"select": "context", "cases": templates}
     _create(session.store, "v", plan, SwitchXCodec(config_json=json.dumps(config)))
     _refs(session.store, "v", plan.refs)
@@ -299,6 +319,15 @@ def _conditional(arm: str, case: Case, pieces: list[ManifestArray], crop_in_grid
             raise NotExpressible("the files apply the same filters in different orders")
     masks = [sum(1 << union.index(c) for c in t) for t in tails]
     refs = [{**r, "prefix": bytes([masks[ids[r["index"][0]]]])} for r in plan.refs]
+    if OMIT is not None or OWN_PIECES is not None:  # the codec lists the compressors of the files it was made from
+        own_distinct = _per_chunk_case(_own_plan(plan, pieces))[0]
+        own_tails = [[c for c in d["codecs"] if c not in head] for d in own_distinct]
+        union = []
+        for t in sorted(own_tails, key=len, reverse=True):
+            for c in t:
+                if c not in union:
+                    union.append(c)
+    own_encoded = _encoded_sizes(_own_plan(plan, pieces))
     encoded = _encoded_sizes(plan)
     padded = crop_in_grid and encoded != plan.chunk_grid[0]
     if padded:
@@ -306,7 +335,7 @@ def _conditional(arm: str, case: Case, pieces: list[ManifestArray], crop_in_grid
     repo, path = new_repo(arm, case.name)
     session = repo.writable_session("main")
     chain = [*head, {"name": "conditional", "configuration": {"codecs": union, "header_bits": 8}}]
-    _plain_array(session, plan, chain, plan.chunk_grid, plan.shape, {"encoded_chunk_shapes": [encoded, None, None]} if padded else {})
+    _plain_array(session, plan, chain, plan.chunk_grid, plan.shape, {"encoded_chunk_shapes": [own_encoded, None, None]} if padded else {})
     _refs(session.store, "v", refs)
     session.commit("x")
     return _finish(arm, case, repo, path, cases=len(set(masks)))
@@ -363,7 +392,7 @@ def array_concat(case: Case, pieces: list[ManifestArray]) -> Built:
     shape, _ = _dropped(cma.shape, [[chunks[0]] * n, None, None])
     root.require_array(
         name="v", shape=shape, chunks=chunks, dtype=pieces[0].dtype, filters=None, compressors=None,
-        serializer=ArrayConcatCodec(axis=0, pieces=[{"path": f"../_pieces/v/{i}", "size": p.shape[0]} for i, p in enumerate(pieces)]),
+        serializer=ArrayConcatCodec(axis=0, pieces=[{"path": f"../_pieces/v/{i}", "size": p.shape[0]} for i, p in enumerate(pieces) if i != OMIT]),
         dimension_names=DIMS, fill_value=pieces[0].metadata.fill_value,
     )
     session.commit("x")
@@ -431,7 +460,8 @@ def grid_encoded_shapes(case: Case, pieces: list[ManifestArray]) -> Built:
     session = repo.writable_session("main")
     encoded = _encoded_sizes(plan)
     padded = encoded != plan.chunk_grid[0]
-    _plain_array(session, plan, one["codecs"], plan.chunk_grid, plan.shape, {"encoded_chunk_shapes": [encoded, None, None]} if padded else {})
+    own_encoded = _encoded_sizes(_own_plan(plan, pieces))
+    _plain_array(session, plan, one["codecs"], plan.chunk_grid, plan.shape, {"encoded_chunk_shapes": [own_encoded, None, None]} if padded else {})
     _refs(session.store, "v", plan.refs)
     session.commit("x")
     return _finish("grid_encoded_shapes", case, repo, path, emulated="declared in an attribute, read by a patched grid")
@@ -453,6 +483,16 @@ def domain_convention(case: Case, pieces: list[ManifestArray]) -> Built:
         else:
             merged.append([a, b])
     shape = (int(starts[-1]), *plan.shape[1:])
+    if OMIT is not None or OWN_PIECES is not None:  # the declared domain is the one written before the file arrived
+        own = _own_plan(plan, pieces)
+        own_encoded = _encoded_sizes(own)
+        own_starts = np.concatenate([[0], np.cumsum(own_encoded)])
+        merged = []
+        for a, b in ([int(own_starts[i]), int(own_starts[i]) + n] for i, n in enumerate(own.chunk_grid[0])):
+            if merged and merged[-1][1] == a:
+                merged[-1][1] = b
+            else:
+                merged.append([a, b])
     _plain_array(session, plan, one["codecs"], [encoded, plan.chunk_grid[1], plan.chunk_grid[2]], shape, {"domain": merged})
     _refs(session.store, "v", plan.refs)
     session.commit("x")
